@@ -36,7 +36,9 @@ export const AuthProvider = ({ initialData, children }: ProviderProps) => {
     }
   );
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    console.log('call the api to see if the user is logge in');
+  }, []);
 
   return <AuthContext.Provider value={{ state, setState }}>{children}</AuthContext.Provider>;
 };
