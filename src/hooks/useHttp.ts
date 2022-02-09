@@ -1,5 +1,5 @@
-import { httpClient } from './../services/http.client'
+import { httpClient } from '../utils/httpClient';
 
 export function useHttp() {
-    return httpClient
+  return httpClient;
 }

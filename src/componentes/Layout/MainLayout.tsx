@@ -1,4 +1,4 @@
-import { useAuth } from '@/context/auth-context';
+import { useAuth } from '@/lib/auth';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -11,18 +11,14 @@ export const Navbar = () => {
     return <button onClick={action}>{text}</button>;
   };
 
-  const { state, ...auth } = useAuth();
+  const auth = useAuth();
 
   const handleLogin = () => {
-    auth.reducer.doUserLogin({ name: { first: 'pablo', last: 'motos' } });
-  };
-
-  const handleRandomLogin = async () => {
-    auth.reducer.doUserLogin({ name: { first: 'fer', last: 'montero' } });
+    auth.login({ name: { first: 'pablo', last: 'motos' } } as any);
   };
 
   const handleLogout = () => {
-    auth.reducer.doLogout();
+    auth.logout();
     window.location.assign(window.location.origin as unknown as string);
   };
 
@@ -37,19 +33,16 @@ export const Navbar = () => {
         </Link>
       </div>
       <div className="flex gap-4">
-        {state.isLoggedIn && (
+        {auth.user && (
           <>
             <Link to="profile">profile</Link>
             <MenuLink text="logout" action={handleLogout} />
           </>
         )}
-        {!state.isLoggedIn && (
+        {!auth.user && (
           <>
             <Link to="/auth/login">login</Link>
             <Link to="/auth/register">register</Link>
-
-            <MenuLink text="do login" action={handleLogin} />
-            <MenuLink text="random login" action={handleRandomLogin} />
           </>
         )}
       </div>

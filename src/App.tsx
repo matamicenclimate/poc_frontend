@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 import './i18n/config';
 import { AppProvider } from '@/providers/AppProvider';

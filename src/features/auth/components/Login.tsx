@@ -1,12 +1,11 @@
-import * as React from 'react';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
-import { useAuth } from '@/context/auth-context';
+import { useAuth } from '@/lib/auth';
 
 export const Login = () => {
-  const { state, ...auth } = useAuth();
+  const auth = useAuth();
 
   const handleLogin = () => {
-    auth.reducer.doUserLogin({ name: { first: 'pablo', last: 'motos' } });
+    auth.login({ name: { first: 'pablo', last: 'motos' } } as any);
   };
 
   return (
