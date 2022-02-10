@@ -1,7 +1,5 @@
-import * as React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { lazyImport } from '@/utils/lazyImport';
 import { Dashboard } from '@/features/misc/routes/Dashboard';
 import { Profile } from '@/features/users/routes/Profile';
 

@@ -35,7 +35,7 @@ export const Navbar = () => {
       <div className="flex gap-4">
         {auth.user && (
           <>
-            <Link to="profile">profile</Link>
+            <Link to="profile" >profile</Link>
             <MenuLink text="logout" action={handleLogout} />
           </>
         )}
