@@ -1,5 +1,5 @@
-import { useAuth } from '@/lib/auth';
 import * as React from 'react';
+import { useAuth } from '@/lib/auth';
 import { Link } from 'react-router-dom';
 
 interface MainLayoutProps {
@@ -12,10 +12,6 @@ export const Navbar = () => {
   };
 
   const auth = useAuth();
-
-  const handleLogin = () => {
-    auth.login({ name: { first: 'pablo', last: 'motos' } } as any);
-  };
 
   const handleLogout = () => {
     auth.logout();
@@ -35,7 +31,7 @@ export const Navbar = () => {
       <div className="flex gap-4">
         {auth.user && (
           <>
-            <Link to="profile" >profile</Link>
+            <Link to="profile">profile</Link>
             <MenuLink text="logout" action={handleLogout} />
           </>
         )}
