@@ -6,6 +6,10 @@ interface MainLayoutProps {
   children: React.ReactNode;
 }
 
+export const Footer = () => {
+  return <footer>footer</footer>;
+};
+
 export const Navbar = () => {
   const MenuLink = ({ text, action }: any) => {
     return <button onClick={action}>{text}</button>;
@@ -48,9 +52,10 @@ export const Navbar = () => {
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
   return (
-    <div className="max-w-screen-sm mx-auto">
+    <div className="max-w-screen-sm mx-auto min-h-screen flex flex-col">
       <Navbar />
-      {children}
+      <div className="flex-grow">{children}</div>
+      <Footer />
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import { Button } from '@/componentes/Elements/Button/Button';
 import { Form } from '@/componentes/Form/Form';
 import { Input } from '@/componentes/Form/Inputs';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
@@ -17,7 +18,7 @@ export const Login = () => {
       <Form onSubmit={handleLogin} className="flex flex-col">
         <label htmlFor="email">email</label>
         <Input name="email" type="email" />
-        <button type="submit">hasme login</button>
+        <Button type="submit">hasme login</Button>
       </Form>
     </MainLayout>
   );
