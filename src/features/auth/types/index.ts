@@ -1,10 +1,9 @@
 export type AuthUser = {
-  id: string;
+  issuer: string;
+  publicAddress: string;
   email: string;
-  firstName: string;
-  lastName: string;
-  bio: string;
-  role: 'ADMIN' | 'USER';
+  isMfaEnabled: boolean;
+  phoneNumber: null | string;
 };
 
 export type UserResponse = {

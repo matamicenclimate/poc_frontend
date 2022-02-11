@@ -1,22 +1,13 @@
-import { AuthUser, UserResponse } from './../types/index';
-import { httpClient } from '@/utils/httpClient';
+import { magiclink } from '@/lib/magiclink';
 
 export type LoginCredentialsDTO = {
   email: string;
-  password: string;
 };
 
-export const loginWithEmailAndPassword = (data: LoginCredentialsDTO): Promise<UserResponse> => {
-  return Promise.resolve({
-    jwt: 'asds',
-    user: {
-      id: 'string',
-      email: 'string',
-      firstName: 'string',
-      lastName: 'string',
-      bio: 'string',
-      role: 'ADMIN',
-    },
-  });
-  return httpClient.post('/auth/login', data);
+export const loginWithEmailAndPassword = async (data: LoginCredentialsDTO): Promise<any> => {
+  const redirectURI = `${window.location.origin}/auth/callback`; // 👈 This will be our callback URI
+  console.log(redirectURI);
+  return magiclink.auth.loginWithMagicLink({ ...data, redirectURI });
+
+  // return httpClient.post('/auth/login', data);
 };

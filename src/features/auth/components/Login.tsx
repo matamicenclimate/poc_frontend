@@ -7,9 +7,10 @@ import { useAuth } from '@/lib/auth';
 export const Login = () => {
   const auth = useAuth();
 
-  const handleLogin = (data: any) => {
+  const handleLogin = async (data: Record<string, any>) => {
     console.log(data);
-    auth.login({ name: { first: 'pablo', last: 'motos' } } as any);
+
+    await auth.login({ email: data.email });
   };
 
   return (

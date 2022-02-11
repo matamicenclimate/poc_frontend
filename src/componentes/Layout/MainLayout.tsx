@@ -19,7 +19,6 @@ export const Navbar = () => {
 
   const handleLogout = () => {
     auth.logout();
-    window.location.assign(window.location.origin as unknown as string);
   };
 
   return (
