@@ -6,6 +6,6 @@
     "part3": "Check out the @types/react-i18next to see an example."
   },
   "login.heading": "Login Email",
-  "dialogs.base.cancel": "Cancel",
-  "dialogs.base.accept": "Accept"
+  "dialogs.base.cancel": "Cancelar",
+  "dialogs.base.accept": "Aceptar"
 }

@@ -6,7 +6,7 @@ export type LoginCredentialsDTO = {
 
 export const loginWithEmailAndPassword = async (data: LoginCredentialsDTO): Promise<any> => {
   const redirectURI = `${window.location.origin}/auth/callback`; // 👈 This will be our callback URI
-  console.log(redirectURI);
+
   return magiclink.auth.loginWithMagicLink({ ...data, redirectURI });
 
   // return httpClient.post('/auth/login', data);

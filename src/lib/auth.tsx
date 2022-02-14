@@ -7,6 +7,7 @@ import { RegisterCredentialsDTO, registerWithEmailAndPassword } from '@/features
 import { AuthUser, UserResponse } from '@/features/auth/types';
 import { magiclink } from './magiclink';
 import { getUser } from '@/features/auth/api/getUser';
+import { MainLayout } from '@/componentes/Layout/MainLayout';
 
 async function handleUserResponse(data: UserResponse) {
   const { jwt, user } = data;
@@ -19,6 +20,10 @@ async function loadUser(): Promise<AuthUser | null> {
   console.log({ isLoggedIn });
 
   if (isLoggedIn) {
+    // /* Get the DID for the user */
+    // const jwt = await magiclink.user.getIdToken();
+    // storage.setToken(jwt);
+
     /* Get user metadata including email */
     const userMetadata = await getUser();
     return userMetadata;
@@ -27,18 +32,17 @@ async function loadUser(): Promise<AuthUser | null> {
   return null;
 }
 
-async function loginFn(data: LoginCredentialsDTO) {
+async function loginFn(data: LoginCredentialsDTO): Promise<AuthUser> {
   // const response = await loginWithEmailAndPassword(data);
   const redirectURI = `${window.location.origin}/auth/callback`; // 👈 This will be our callback URI
-  console.log(redirectURI);
+
   const jwt = await magiclink.auth.loginWithMagicLink({ ...data, redirectURI });
+
   storage.setToken(jwt as string);
   console.log({ jwt });
 
-  const userMetadata = await magiclink.user.getMetadata();
-  // TODO: fix this types xD
-
-  return userMetadata as unknown as AuthUser;
+  const userMetadata = await getUser();
+  return userMetadata;
 }
 
 async function registerFn(data: RegisterCredentialsDTO) {

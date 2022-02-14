@@ -14,11 +14,13 @@ export const Form = ({ defaultValues, children, onSubmit, className }: FormProps
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={className}>
       {React.Children.map(children, (child) => {
+        console.log(child.props.name);
         return child.props.name
           ? React.createElement(child.type, {
               ...{
                 ...child.props,
                 register: methods.register,
+                control: methods.control,
                 key: child.props.name,
               },
             })
