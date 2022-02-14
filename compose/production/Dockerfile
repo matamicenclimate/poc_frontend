@@ -8,9 +8,6 @@ ADD ./compose/production/nginx.conf /etc/nginx/nginx.conf
 # set working directory
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /node_modules/.bin:$PATH
-
 # install app dependencies
 COPY package.json ./
 COPY yarn.lock ./
