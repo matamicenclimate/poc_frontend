@@ -25,9 +25,9 @@ COPY ./compose/production/start ./start
 RUN sed -i 's/\r//' ./start
 RUN chmod +x ./start
 
-
-# add app
-COPY . ./
+# copy code
+COPY . .
+RUN rm -rf .env*
 
 # start app
 ENTRYPOINT ["./entrypoint"]
