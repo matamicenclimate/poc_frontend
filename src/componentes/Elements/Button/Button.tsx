@@ -3,9 +3,9 @@ import clsx from 'clsx';
 const base = 'rounded-md';
 
 const sizes = {
-  sm: 'p-2',
-  md: 'p-3',
-  lg: 'p-4',
+  sm: 'p-1',
+  md: 'p-2',
+  lg: 'p-3',
 };
 
 const variants = {
