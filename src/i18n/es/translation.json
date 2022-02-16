@@ -7,5 +7,18 @@
   },
   "login.heading": "Login Email",
   "dialogs.base.cancel": "Cancelar",
-  "dialogs.base.accept": "Aceptar"
+  "dialogs.base.accept": "Aceptar",
+  "uploadDocuments.link": "subir documentos",
+  "upload.documents.project.title": "Título del proyecto",
+  "upload.documents.send.button": "Send documents",
+  "upload.documents.registry.name": "Nombre del registro desde el que está transfiriendo los créditos",
+  "upload.documents.project.type": "Tipo de proyecto",
+  "upload.documents.project.type.options.carbon": "Compensación de carbono",
+  "upload.documents.project.type.options.nature": "Soluciones basadas en la naturaleza",
+  "upload.documents.project.type.options.irecs": "Irecs",
+  "upload.documents.credits.amount": "Cantidad de créditos a transferir",
+  "upload.documents.serialNumber": "Número de serie de los créditos a transferir",
+  "upload.documents.PDD": "PDD",
+  "upload.documents.modal.button.accept": "Got it, thanks!",
+  "upload.documents.modal.title": "Formulario enviado con éxito"
 }

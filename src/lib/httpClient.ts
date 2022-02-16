@@ -6,7 +6,7 @@ function authRequestInterceptor(config: AxiosRequestConfig) {
   const token = storage.getToken();
   const headers = config.headers as AxiosRequestHeaders;
   if (token) {
-    headers.authorization = `${token}`;
+    headers.authorization = `Bearer ${token}`;
   }
 
   headers.Accept = 'application/json';
@@ -23,6 +23,7 @@ httpClient.interceptors.response.use(
     return response.data;
   },
   (error) => {
+    // TODO: revalidate cookie if we have an auth error once
     const message = error.response?.data?.message || error.message;
     // useNotificationStore.getState().addNotification({
     //   type: 'error',

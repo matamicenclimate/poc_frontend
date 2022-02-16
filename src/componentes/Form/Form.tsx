@@ -1,14 +1,24 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-
+import useYupValidationResolver from './useValidationResolver';
+import * as yup from 'yup';
 interface FormProps {
   defaultValues?: any;
   children: React.ReactElement[];
   onSubmit: (data: any) => void;
-  className: string;
+  className?: string;
+  validationSchema?: any;
 }
-export const Form = ({ defaultValues, children, onSubmit, className }: FormProps) => {
-  const methods = useForm({ defaultValues });
+export const Form = ({
+  defaultValues,
+  children,
+  onSubmit,
+  className,
+  validationSchema = yup.object({}),
+}: FormProps) => {
+  console.log({ validationSchema });
+  const resolver = useYupValidationResolver(validationSchema);
+  const methods = useForm({ defaultValues, resolver, mode: 'onBlur' });
   const { handleSubmit } = methods;
 
   return (

@@ -7,7 +7,6 @@ import { RegisterCredentialsDTO, registerWithEmailAndPassword } from '@/features
 import { AuthUser, UserResponse } from '@/features/auth/types';
 import { magiclink } from './magiclink';
 import { getUser } from '@/features/auth/api/getUser';
-import { MainLayout } from '@/componentes/Layout/MainLayout';
 
 async function handleUserResponse(data: UserResponse) {
   const { jwt, user } = data;
@@ -21,8 +20,8 @@ async function loadUser(): Promise<AuthUser | null> {
 
   if (isLoggedIn) {
     // /* Get the DID for the user */
-    // const jwt = await magiclink.user.getIdToken();
-    // storage.setToken(jwt);
+    const jwt = await magiclink.user.getIdToken();
+    storage.setToken(jwt);
 
     /* Get user metadata including email */
     const userMetadata = await getUser();
@@ -53,6 +52,7 @@ async function registerFn(data: RegisterCredentialsDTO) {
 
 async function logoutFn() {
   await magiclink.user.logout();
+  storage.clearToken();
   window.location.assign(window.location.origin as unknown as string);
 }
 

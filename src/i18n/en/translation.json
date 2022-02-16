@@ -7,5 +7,18 @@
   },
   "login.heading": "Login Email",
   "dialogs.base.cancel": "Cancel",
-  "dialogs.base.accept": "Accept"
+  "dialogs.base.accept": "Accept",
+  "uploadDocuments.link": "upload documents",
+  "upload.documents.project.title": "Title of project\t",
+  "upload.documents.send.button": "Enviar documentos",
+  "upload.documents.registry.name": "Name of the registry you are transfering the credits from",
+  "upload.documents.project.type": "Project type",
+  "upload.documents.project.type.options.carbon": "Carbon offset",
+  "upload.documents.project.type.options.nature": "Nature based solutions",
+  "upload.documents.project.type.options.irecs": "Irecs",
+  "upload.documents.credits.amount": "Amount of credits to be transferred",
+  "upload.documents.serialNumber": "Serial number of credits to be transferred",
+  "upload.documents.PDD": "PDD",
+  "upload.documents.modal.button.accept": "Entendido ¡gracias!",
+  "upload.documents.modal.title": "Form submitted successfully"
 }

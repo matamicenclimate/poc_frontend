@@ -1,10 +1,8 @@
-import { Dialog } from '@/componentes/Dialog/Dialog';
 import { Button } from '@/componentes/Elements/Button/Button';
 import { Form } from '@/componentes/Form/Form';
 import { Input } from '@/componentes/Form/Inputs';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { useAuth } from '@/lib/auth';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export const Login = () => {
