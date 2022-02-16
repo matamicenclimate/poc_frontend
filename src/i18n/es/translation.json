@@ -20,5 +20,6 @@
   "upload.documents.serialNumber": "Número de serie de los créditos a transferir",
   "upload.documents.PDD": "PDD",
   "upload.documents.modal.button.accept": "Got it, thanks!",
-  "upload.documents.modal.title": "Formulario enviado con éxito"
+  "upload.documents.modal.title": "Formulario enviado con éxito",
+  "auth.Callback.error": "Ingreso invalido"
 }

@@ -20,5 +20,7 @@
   "upload.documents.serialNumber": "Serial number of credits to be transferred",
   "upload.documents.PDD": "PDD",
   "upload.documents.modal.button.accept": "Entendido ¡gracias!",
-  "upload.documents.modal.title": "Form submitted successfully"
+  "upload.documents.modal.title": "Form submitted successfully",
+  "auth.Callback.logingIn": "Login in with magic link...",
+  "auth.Callback.error": "Invalid login"
 }

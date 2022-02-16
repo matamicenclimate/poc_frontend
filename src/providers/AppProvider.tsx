@@ -1,10 +1,20 @@
 import * as React from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClientProvider } from 'react-query';
 // import { AuthProvider } from '@/context/auth-context';
 import { ErrorBoundary } from 'react-error-boundary';
 import { AuthProvider } from '@/lib/auth';
+import { transitions, positions, Provider as AlertProvider } from 'react-alert';
+import { Alert } from '@/componentes/Elements/Alert/Alert';
+import { queryClient } from '@/lib/react-query';
 
-const queryClient = new QueryClient();
+const options = {
+  // you can also just use 'bottom center'
+  position: positions.BOTTOM_CENTER,
+  timeout: 5000,
+  offset: '30px',
+  // you can also just use 'scale'
+  transition: transitions.SCALE,
+};
 
 const ErrorFallback = () => {
   return (
@@ -22,10 +32,12 @@ const ErrorFallback = () => {
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>{children}</AuthProvider>
-      </QueryClientProvider>
-    </ErrorBoundary>
+    <AlertProvider template={Alert} {...options}>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <QueryClientProvider client={queryClient}>
+          <AuthProvider>{children}</AuthProvider>
+        </QueryClientProvider>
+      </ErrorBoundary>
+    </AlertProvider>
   );
 };
