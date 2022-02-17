@@ -19,7 +19,7 @@ async function loadUser(): Promise<AuthUser | null> {
   console.log({ isLoggedIn });
 
   if (isLoggedIn) {
-    // /* Get the DID for the user */
+    /* Get the DID for the user */
     const jwt = await magiclink.user.getIdToken();
     storage.setToken(jwt);
 
@@ -32,13 +32,11 @@ async function loadUser(): Promise<AuthUser | null> {
 }
 
 async function loginFn(data: LoginCredentialsDTO): Promise<AuthUser> {
-  // const response = await loginWithEmailAndPassword(data);
   const redirectURI = `${window.location.origin}/auth/callback`; // 👈 This will be our callback URI
 
   const jwt = await magiclink.auth.loginWithMagicLink({ ...data, redirectURI });
 
   storage.setToken(jwt as string);
-  console.log({ jwt });
 
   const userMetadata = await getUser();
   return userMetadata;

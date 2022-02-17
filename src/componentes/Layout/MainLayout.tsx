@@ -10,6 +10,8 @@ export const Footer = () => {
   return <footer>footer</footer>;
 };
 
+const linkStyle = 'flex items-center';
+
 export const Navbar = () => {
   const MenuLink = ({ text, action }: any) => {
     return <button onClick={action}>{text}</button>;
@@ -32,16 +34,25 @@ export const Navbar = () => {
         </Link>
       </div>
       <div className="flex gap-4">
+        <Link to="/wallet" className={linkStyle}>
+          0 CLIMATE
+        </Link>
         {auth.user && (
           <>
-            <Link to="/profile">profile</Link>
+            <Link to="/profile" className={linkStyle}>
+              profile
+            </Link>
             <MenuLink text="logout" action={handleLogout} />
           </>
         )}
         {!auth.user && (
           <>
-            <Link to="/auth/login">login</Link>
-            <Link to="/auth/register">register</Link>
+            <Link to="/auth/login" className={linkStyle}>
+              login
+            </Link>
+            <Link to="/auth/register" className={linkStyle}>
+              register
+            </Link>
           </>
         )}
       </div>
