@@ -20,7 +20,7 @@ export const Callback = () => {
         const userMetadata = await magiclink.user.getMetadata();
         console.log({ userMetadata });
         await auth.refetchUser();
-      } catch (e: any) {
+      } catch (e) {
         alert.error(t('auth.Callback.error'));
         setTimeout(() => {
           window.location.assign(window.location.origin as unknown as string);

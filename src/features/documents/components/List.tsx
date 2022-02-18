@@ -1,3 +1,4 @@
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { useAuth } from '@/lib/auth';
 import { t } from 'i18next';
@@ -30,7 +31,7 @@ export const DocumentList = () => {
     if (documents.error instanceof Error) {
       return <>{('An error has occurred: ' + documents.error.message) as string}</>;
     }
-    return <>{'Loading...'}</>;
+    return <Spinner />;
   };
   return (
     <MainLayout>
