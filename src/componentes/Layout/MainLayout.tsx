@@ -39,10 +39,13 @@ export const Navbar = () => {
         </Link>
         {auth.user && (
           <>
+            <Link to="/documents/list" className={linkStyle}>
+              documents
+            </Link>
             <Link to="/profile" className={linkStyle}>
               profile
             </Link>
-            <MenuLink text="logout" action={handleLogout} />
+            <MenuLink text="logout" className="link" action={handleLogout} />
           </>
         )}
         {!auth.user && (

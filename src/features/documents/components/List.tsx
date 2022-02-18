@@ -1,5 +1,7 @@
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { useAuth } from '@/lib/auth';
+import { t } from 'i18next';
+import { Link } from 'react-router-dom';
 import { getDocuments } from '../api/getDocuments';
 
 export const DocumentList = () => {
@@ -9,9 +11,20 @@ export const DocumentList = () => {
   const renderDocuments = () => {
     if (documents.data) {
       return (
-        <div className="flex gap-4">
-          <pre>{JSON.stringify(documents.data, null, 2)}</pre>
-        </div>
+        <ul className="flex flex-col gap-4">
+          {documents.data.map((document) => (
+            <li key={document._id}>
+              <div className="flex   flex-col border">
+                <div>{document._id}</div>
+                <div>
+                  <h3>{document.title}</h3>
+                </div>
+                <div>{document.status}</div>
+                <Link to={`/documents/${document._id}`}>{t('documents.List.viewDetails')}</Link>
+              </div>
+            </li>
+          ))}
+        </ul>
       );
     }
     if (documents.error instanceof Error) {
@@ -21,7 +34,13 @@ export const DocumentList = () => {
   };
   return (
     <MainLayout>
-      <h1>List of documents</h1>
+      <div className="flex justify-between">
+        <h1>List of documents</h1>
+        <div>
+          <Link to="/documents/upload">{t('uploadDocuments.link')}</Link>
+        </div>
+      </div>
+
       {renderDocuments()}
     </MainLayout>
   );

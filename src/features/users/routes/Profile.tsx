@@ -22,7 +22,10 @@ export const Profile = () => {
     <MainLayout>
       <h1>profile</h1>
       <pre>{JSON.stringify(user, null, 2)}</pre>
+      <h2>Wallet</h2>
       <div>Algo Wallet Addr: {wallet}</div>
+      <h2>Token</h2>
+
       <p className="break-all">{storage.getToken()}</p>
       <p className="break-all">{toke}</p>
     </MainLayout>

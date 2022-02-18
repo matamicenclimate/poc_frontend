@@ -31,6 +31,6 @@ httpClient.interceptors.response.use(
     //   message,
     // });
 
-    return Promise.reject(error);
+    return Promise.reject(new Error(message as string));
   }
 );

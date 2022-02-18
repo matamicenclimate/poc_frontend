@@ -9,9 +9,7 @@ export const Dashboard = () => {
   return (
     <MainLayout>
       <h1>Dashboard</h1>
-      <Button>
-        <Link to="/documents/upload">{t('uploadDocuments.link')}</Link>
-      </Button>
+      <Link to="/documents/upload">{t('uploadDocuments.link')}</Link>
     </MainLayout>
   );
 };

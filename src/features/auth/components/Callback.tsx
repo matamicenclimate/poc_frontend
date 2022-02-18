@@ -22,6 +22,9 @@ export const Callback = () => {
         await auth.refetchUser();
       } catch (e: any) {
         alert.error(t('auth.Callback.error'));
+        setTimeout(() => {
+          window.location.assign(window.location.origin as unknown as string);
+        }, 3000);
       }
     };
     onMount();

@@ -12,5 +12,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-a {
+a,
+.link {
+  color: blue;
+  text-decoration: underline;
+}
+
+h1 {
+  font-size: 1.6rem;
+}
+h2 {
+  font-size: 1.4rem;
+}
+h3 {
+  font-size: 1.2rem;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-weight: bold;
 }
