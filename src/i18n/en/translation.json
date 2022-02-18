@@ -10,7 +10,7 @@
   "dialogs.base.accept": "Accept",
   "uploadDocuments.link": "upload documents",
   "upload.documents.project.title": "Title of project\t",
-  "upload.documents.send.button": "Enviar documentos",
+  "upload.documents.send.button": "Send documents",
   "upload.documents.registry.name": "Name of the registry you are transfering the credits from",
   "upload.documents.project.type": "Project type",
   "upload.documents.project.type.options.carbon": "Carbon offset",
@@ -19,8 +19,12 @@
   "upload.documents.credits.amount": "Amount of credits to be transferred",
   "upload.documents.serialNumber": "Serial number of credits to be transferred",
   "upload.documents.PDD": "PDD",
-  "upload.documents.modal.button.accept": "Entendido ¡gracias!",
+  "upload.documents.modal.button.accept": "Got it, thanks!",
   "upload.documents.modal.title": "Form submitted successfully",
   "auth.Callback.logingIn": "Login in with magic link...",
-  "auth.Callback.error": "Invalid login"
+  "auth.Callback.error": "Invalid login",
+  "upload.documents.validation.error": "Required field",
+  "upload.documents.modal.claim": "Message sent succesfully. We will contact you in the next few days.",
+  "components.dialog.accept.button": "Accept",
+  "components.dialog.cancel.button": "Cancel"
 }

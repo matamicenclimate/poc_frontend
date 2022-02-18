@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import useYupValidationResolver from './useValidationResolver';
 import * as yup from 'yup';
+
 interface FormProps {
   defaultValues?: any;
   children: React.ReactElement[];
@@ -32,6 +33,7 @@ export const Form = ({
                 register: methods.register,
                 control: methods.control,
                 key: child.props.name,
+                errors: methods.formState.errors,
               },
             })
           : child;

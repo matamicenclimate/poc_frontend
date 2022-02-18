@@ -6,6 +6,7 @@ import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { Dialog } from '@/componentes/Dialog/Dialog';
 import { Form } from '@/componentes/Form/Form';
 import { Input } from '@/componentes/Form/Inputs';
+
 import { Select } from '@/componentes/Form/Select';
 import { useUploadDocument } from '../api/useUploadDocument';
 import { useAuth } from '@/lib/auth';
@@ -37,31 +38,83 @@ export const UploadDocuments = () => {
     { value: 'bme', label: 'BME' },
   ];
 
+  const SUPPORTED_FORMATS = ['application/pdf'];
+
   const user = useAuth();
+
   const validationSchema = yup.object({
-    title: yup.string().required('Required'),
+    title: yup.string().required(t('upload.documents.validation.error')),
+    type: yup.object().required(t('upload.documents.validation.error')),
+    registry: yup.array().required(t('upload.documents.validation.error')),
+    credits: yup.string().required(t('upload.documents.validation.error')),
+    serial_number: yup.string().required(t('upload.documents.validation.error')),
+    document: yup
+      .mixed()
+      .nullable()
+      .test(
+        'document',
+        t('upload.documents.validation.error'),
+        // value it is equal [object FileList]
+        // value && console.log('_______value ' + JSON.stringify(value)
+        //JSON.stringify(value)[0] it is equal to  {"0":{}}
+        (value) => !value || (value && !SUPPORTED_FORMATS.includes(value.type))
+      )
+      .required(t('upload.documents.validation.error')),
   });
+
   return (
     <MainLayout>
       <>
         <Form onSubmit={handleData} className="flex flex-col" validationSchema={validationSchema}>
-          <label htmlFor="title">{t('upload.documents.project.title')}</label>
-          <Input name="title" type="text" />
+          <Input
+            htmlFor="title"
+            label={t('upload.documents.project.title')}
+            required
+            name="title"
+            type="text"
+          />
 
-          <label htmlFor="type">{t('upload.documents.registry.name')}</label>
-          <Select name="type" options={typeOptions} />
+          <Select
+            htmlFor="type"
+            label={t('upload.documents.registry.name')}
+            required
+            name="type"
+            options={typeOptions}
+          />
 
-          <label htmlFor="registry">{t('upload.documents.registry.name')}</label>
-          <Select name="registry" options={registryOptions} isMulti />
+          <Select
+            htmlFor="registry"
+            label={t('upload.documents.registry.name')}
+            required
+            name="registry"
+            options={registryOptions}
+            isMulti
+          />
 
-          <label htmlFor="credits">{t('upload.documents.credits.amount')}</label>
-          <Input name="credits" type="number" />
+          <Input
+            htmlFor="credits"
+            label={t('upload.documents.credits.amount')}
+            required
+            name="credits"
+            type="number"
+          />
 
-          <label htmlFor="serial_number">{t('upload.documents.serialNumber')}</label>
-          <Input name="serial_number" type="text" />
+          <Input
+            htmlFor="serial_number"
+            label={t('upload.documents.serialNumber')}
+            required
+            name="serial_number"
+            type="text"
+          />
 
-          <label htmlFor="document">{t('upload.documents.PDD')}</label>
-          <Input name="document" type="file" accept={'.pdf'} />
+          <Input
+            htmlFor="document"
+            label={t('upload.documents.PDD')}
+            required
+            name="document"
+            type="file"
+            accept={'.pdf'}
+          />
 
           <Input type="hidden" name="created_by_user" value={user.user?.email} />
 
@@ -75,6 +128,7 @@ export const UploadDocuments = () => {
           isOpen={isOpen}
           setIsOpen={setIsOpen}
           title={t('upload.documents.modal.title')}
+          claim={t('upload.documents.modal.claim')}
           acceptLabel={t('upload.documents.modal.button.accept')}
         />
       </>

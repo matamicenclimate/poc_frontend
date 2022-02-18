@@ -5,13 +5,32 @@ import ReactSelect from 'react-select';
 export type SelectOption = { value: any; label: string | TFunction };
 type SelectProps = {
   name: string;
+  label?: string;
+  htmlFor?: string;
   options: SelectOption[];
   isMulti?: boolean;
   // this should be inyected by the <Form />
   control?: any;
+  errors?: Record<string, any>;
+  required?: boolean;
+  labelClassName?: string;
+  errorClassName?: string;
+  selectClassName?: string;
 };
 
-export const Select = ({ name, options, isMulti = false, control }: SelectProps) => {
+export const Select = ({
+  name,
+  label,
+  htmlFor,
+  errors = {},
+  required = false,
+  labelClassName,
+  errorClassName,
+  selectClassName,
+  options,
+  isMulti = false,
+  control,
+}: SelectProps) => {
   // const { control } = useForm();
 
   return (
@@ -19,7 +38,21 @@ export const Select = ({ name, options, isMulti = false, control }: SelectProps)
       name={name}
       // this is inyected by the <Form /> component
       control={control}
-      render={({ field }) => <ReactSelect {...field} options={options} isMulti={isMulti} />}
+      render={({ field }) => (
+        <div className="mb-4">
+          {label && (
+            <label className={labelClassName} htmlFor={htmlFor}>
+              {label} {required && ' *'}
+            </label>
+          )}
+          <ReactSelect {...field} className={selectClassName} options={options} isMulti={isMulti} />
+          {errors[name] && (
+            <p className={`text-red-700 ${errorClassName}`} role="alert">
+              {errors[name].message}
+            </p>
+          )}
+        </div>
+      )}
     />
   );
 };
