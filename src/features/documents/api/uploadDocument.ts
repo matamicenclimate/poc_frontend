@@ -1,3 +1,4 @@
+import { documentKeys } from './index';
 import { SelectOption } from '@/componentes/Form/Select';
 import { AxiosRequestConfig } from 'axios';
 import { httpClient } from '@/lib/httpClient';
@@ -33,8 +34,8 @@ function toFormData(carbonDocument: CarbonDocumentDTO) {
   return formData;
 }
 
-export function useUploadDocument() {
-  const queryClient = useQueryClient();
+export function uploadDocument() {
+  // const queryClient = useQueryClient();
 
   const config: AxiosRequestConfig<FormData> = {
     headers: {
@@ -52,6 +53,7 @@ export function useUploadDocument() {
       onSuccess: () => {
         // ✅ refetch the comments list for our blog post
         //   queryClient.invalidateQueries(['posts', id, 'comments']);
+        // documentKeys.detail(id)
       },
     }
   );

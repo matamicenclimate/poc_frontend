@@ -31,7 +31,8 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -73,7 +74,8 @@
     "postcss-nesting": "^10.1.2",
     "postcss-preset-env": "^7.3.1",
     "prettier": "2.5.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "husky": "^7.0.0"
   },
   "jest": {
     "moduleNameMapper": {

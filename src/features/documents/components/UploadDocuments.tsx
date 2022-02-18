@@ -8,7 +8,7 @@ import { Form } from '@/componentes/Form/Form';
 import { Input } from '@/componentes/Form/Inputs';
 
 import { Select } from '@/componentes/Form/Select';
-import { useUploadDocument } from '../api/useUploadDocument';
+import { uploadDocument } from '../api/uploadDocument';
 import { useAuth } from '@/lib/auth';
 import * as yup from 'yup';
 
@@ -16,7 +16,7 @@ export const UploadDocuments = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const uploadDocuments = useUploadDocument();
+  const uploadDocuments = uploadDocument();
 
   const handleData = async (data: any) => {
     await uploadDocuments.mutateAsync(data);

@@ -10,7 +10,7 @@ export const Dashboard = () => {
     <MainLayout>
       <h1>Dashboard</h1>
       <Button>
-        <Link to="/upload/documents">{t('uploadDocuments.link')}</Link>
+        <Link to="/documents/upload">{t('uploadDocuments.link')}</Link>
       </Button>
     </MainLayout>
   );
