@@ -6,6 +6,8 @@ import { AuthProvider } from '@/lib/auth';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert';
 import { Alert } from '@/componentes/Elements/Alert/Alert';
 import { queryClient } from '@/lib/react-query';
+import { HelmetProvider } from 'react-helmet-async';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 const options = {
   // you can also just use 'bottom center'
@@ -32,12 +34,15 @@ const ErrorFallback = () => {
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
   return (
-    <AlertProvider template={Alert} {...options}>
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <QueryClientProvider client={queryClient}>
-          <AuthProvider>{children}</AuthProvider>
-        </QueryClientProvider>
-      </ErrorBoundary>
-    </AlertProvider>
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <HelmetProvider>
+        <AlertProvider template={Alert} {...options}>
+          <QueryClientProvider client={queryClient}>
+            {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}
+            <AuthProvider>{children}</AuthProvider>
+          </QueryClientProvider>
+        </AlertProvider>
+      </HelmetProvider>
+    </ErrorBoundary>
   );
 };

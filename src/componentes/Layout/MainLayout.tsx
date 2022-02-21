@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { useAuth } from '@/lib/auth';
 import { Link } from 'react-router-dom';
+import { Head } from './Head';
 
 interface MainLayoutProps {
+  title?: string;
   children: React.ReactNode;
 }
 
@@ -63,12 +65,15 @@ export const Navbar = () => {
   );
 };
 
-export const MainLayout = ({ children }: MainLayoutProps) => {
+export const MainLayout = ({ title, children }: MainLayoutProps) => {
   return (
-    <div className="max-w-screen-sm mx-auto min-h-screen flex flex-col">
-      <Navbar />
-      <div className="flex-grow">{children}</div>
-      <Footer />
-    </div>
+    <>
+      <Head title={title} />
+      <div className="max-w-screen-sm mx-auto min-h-screen flex flex-col">
+        <Navbar />
+        <div className="flex-grow">{children}</div>
+        <Footer />
+      </div>
+    </>
   );
 };
