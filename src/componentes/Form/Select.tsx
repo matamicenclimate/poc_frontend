@@ -6,7 +6,6 @@ export type SelectOption = { value: any; label: string | TFunction };
 type SelectProps = {
   name: string;
   label?: string;
-  htmlFor?: string;
   options: SelectOption[];
   isMulti?: boolean;
   // this should be inyected by the <Form />
@@ -21,7 +20,6 @@ type SelectProps = {
 export const Select = ({
   name,
   label,
-  htmlFor,
   errors = {},
   required = false,
   labelClassName,
@@ -41,11 +39,18 @@ export const Select = ({
       render={({ field }) => (
         <div className="mb-4">
           {label && (
-            <label className={labelClassName} htmlFor={htmlFor}>
+            <label className={labelClassName} htmlFor={name} id={name}>
               {label} {required && ' *'}
             </label>
           )}
-          <ReactSelect {...field} className={selectClassName} options={options} isMulti={isMulti} />
+          <ReactSelect
+            {...field}
+            aria-labelledby={name}
+            inputId={name}
+            className={selectClassName}
+            options={options}
+            isMulti={isMulti}
+          />
           {errors[name] && (
             <p className={`text-red-700 ${errorClassName}`} role="alert">
               {errors[name].message}

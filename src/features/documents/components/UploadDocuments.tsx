@@ -66,24 +66,16 @@ export const UploadDocuments = () => {
     <MainLayout>
       <>
         <Form onSubmit={handleData} className="flex flex-col" validationSchema={validationSchema}>
-          <Input
-            htmlFor="title"
-            label={t('upload.documents.project.title')}
-            required
-            name="title"
-            type="text"
-          />
+          <Input label={t('upload.documents.project.title')} required name="title" type="text" />
 
           <Select
-            htmlFor="type"
-            label={t('upload.documents.registry.name')}
+            label={t('upload.documents.project.type')}
             required
             name="type"
             options={typeOptions}
           />
 
           <Select
-            htmlFor="registry"
             label={t('upload.documents.registry.name')}
             required
             name="registry"
@@ -92,7 +84,6 @@ export const UploadDocuments = () => {
           />
 
           <Input
-            htmlFor="credits"
             label={t('upload.documents.credits.amount')}
             required
             name="credits"
@@ -100,7 +91,6 @@ export const UploadDocuments = () => {
           />
 
           <Input
-            htmlFor="serial_number"
             label={t('upload.documents.serialNumber')}
             required
             name="serial_number"
@@ -108,7 +98,6 @@ export const UploadDocuments = () => {
           />
 
           <Input
-            htmlFor="document"
             label={t('upload.documents.PDD')}
             required
             name="document"

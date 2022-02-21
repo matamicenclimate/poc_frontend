@@ -17,7 +17,6 @@ export function Input({
   name,
   type,
   label,
-  htmlFor,
   register,
   errors = {},
   required = false,
@@ -30,12 +29,13 @@ export function Input({
   return (
     <div className="mb-4 flex flex-col">
       {label && (
-        <label className={labelClassName} htmlFor={htmlFor}>
+        <label className={labelClassName} htmlFor={name} id={name}>
           {label} {required && ' *'}
         </label>
       )}
       <input
         type={type}
+        id={name}
         className={`border error:border-red-700 invalid:border-red-500 ${inputClassName}`}
         {...register(name)}
         {...rest}
