@@ -1,6 +1,7 @@
 import { UseFormRegister } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
-export interface InputProps {
+export type InputProps = {
   name: string;
   type: 'text' | 'email' | 'number' | 'file' | 'hidden';
   label?: string;
@@ -11,7 +12,10 @@ export interface InputProps {
   labelClassName?: string;
   errorClassName?: string;
   inputClassName?: string;
-}
+  value?: any;
+  defaultValue?: any;
+  accept?: string;
+};
 
 export function Input({
   name,
@@ -24,7 +28,10 @@ export function Input({
   errorClassName,
   inputClassName,
   ...rest
-}: any) {
+}: InputProps) {
+  const { t } = useTranslation();
+  if (!register)
+    throw new Error('Input component requires a register. Are you using it inside a <Form />');
   return (
     <div className="mb-4 flex flex-col">
       {label && (
@@ -41,7 +48,7 @@ export function Input({
       />
       {errors[name] && (
         <p className={`text-red-700 ${errorClassName}`} role="alert">
-          {errors[name].message}
+          {t(errors[name].key)}
         </p>
       )}
     </div>

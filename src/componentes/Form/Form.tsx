@@ -17,7 +17,6 @@ export const Form = ({
   className,
   validationSchema = yup.object({}),
 }: FormProps) => {
-  console.log({ validationSchema });
   const resolver = useYupValidationResolver(validationSchema);
   const methods = useForm({ defaultValues, resolver, mode: 'onBlur' });
   const { handleSubmit } = methods;

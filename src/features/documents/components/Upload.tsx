@@ -42,19 +42,21 @@ export const Upload = () => {
   const user = useAuth();
 
   const validationSchema = yup.object({
-    title: yup.string().required(t('validation.errors.required')),
-    type: yup.object().required(t('validation.errors.required')),
-    registry: yup.array().required(t('validation.errors.required')),
-    credits: yup.string().required(t('validation.errors.required')),
-    serial_number: yup.string().required(t('validation.errors.required')),
+    title: yup.string().required(),
+    type: yup.object().required(),
+    registry: yup.array().required(),
+    credits: yup.string().required(),
+    serial_number: yup.string().required(),
     document: yup
-      .mixed()
-      .test('required', t('validation.errors.required'), (value) => {
-        return value.length === 1;
-      })
+      .array()
+      .nullable()
       .test('format', t('validation.errors.format.pdf'), (value) => {
-        return SUPPORTED_FORMATS.includes(value[0].type);
-      }),
+        if (value) {
+          return value[0] && SUPPORTED_FORMATS.includes(value[0].type);
+        }
+        return false;
+      })
+      .required(),
   });
 
   return (
@@ -100,7 +102,7 @@ export const Upload = () => {
             accept={'.pdf'}
           />
 
-          <Input type="hidden" name="created_by_user" value={user.user?.email} />
+          <Input type="hidden" name="created_by_user" defaultValue={user.user?.email as string} />
 
           <Button type="submit" disabled={uploadDocuments.isLoading}>
             {t('upload.documents.send.button')}

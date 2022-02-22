@@ -1,5 +1,6 @@
 import { TFunction } from 'i18next';
 import { Controller } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import ReactSelect from 'react-select';
 
 export type SelectOption = { value: any; label: string | TFunction };
@@ -30,6 +31,7 @@ export const Select = ({
   control,
 }: SelectProps) => {
   // const { control } = useForm();
+  const { t } = useTranslation();
 
   return (
     <Controller
@@ -53,7 +55,7 @@ export const Select = ({
           />
           {errors[name] && (
             <p className={`text-red-700 ${errorClassName}`} role="alert">
-              {errors[name].message}
+              {t(errors[name].key)}
             </p>
           )}
         </div>
