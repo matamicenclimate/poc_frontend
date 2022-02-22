@@ -22,8 +22,10 @@
   "upload.documents.modal.button.accept": "Entendido ¡Gracias!",
   "upload.documents.modal.title": "Formulario enviado con éxito",
   "auth.Callback.error": "Ingreso invalido",
-  "upload.documents.validation.error": "Campo requerido",
   "upload.documents.modal.claim": "Mensaje enviado con éxito. Nos pondremos en contacto contigo en los próximos días.",
   "components.dialog.accept.button": "Aceptar",
-  "components.dialog.cancel.button": "Cancelar"
+  "components.dialog.cancel.button": "Cancelar",
+  "validation.errors.required": "Campo requerido",
+  "validation.errors.format": "Formato inválido",
+  "validation.errors.format.pdf": "Formato inválido. Formato requerido: pdf"
 }

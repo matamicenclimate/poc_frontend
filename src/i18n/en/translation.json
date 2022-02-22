@@ -23,8 +23,10 @@
   "upload.documents.modal.title": "Form submitted successfully",
   "auth.Callback.logingIn": "Login in with magic link...",
   "auth.Callback.error": "Invalid login",
-  "upload.documents.validation.error": "Required field",
   "upload.documents.modal.claim": "Message sent succesfully. We will contact you in the next few days.",
   "components.dialog.accept.button": "Accept",
-  "components.dialog.cancel.button": "Cancel"
+  "components.dialog.cancel.button": "Cancel",
+  "validation.errors.required": "Required field",
+  "validation.errors.format": "Invalid format",
+  "validation.errors.format.pdf": "Invalid format. Required format: pdf"
 }

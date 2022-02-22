@@ -16,7 +16,6 @@ async function handleUserResponse(data: UserResponse) {
 
 async function loadUser(): Promise<AuthUser | null> {
   const isLoggedIn = await magiclink.user.isLoggedIn();
-  console.log({ isLoggedIn });
 
   if (isLoggedIn) {
     /* Get the DID for the user */

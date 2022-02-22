@@ -12,7 +12,7 @@ import { uploadDocument } from '../api/uploadDocument';
 import { useAuth } from '@/lib/auth';
 import * as yup from 'yup';
 
-export const UploadDocuments = () => {
+export const Upload = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -21,7 +21,6 @@ export const UploadDocuments = () => {
   const handleData = async (data: any) => {
     await uploadDocuments.mutateAsync(data);
     setIsOpen((old) => !old);
-    console.log(data);
   };
 
   const typeOptions = [
@@ -43,23 +42,19 @@ export const UploadDocuments = () => {
   const user = useAuth();
 
   const validationSchema = yup.object({
-    title: yup.string().required(t('upload.documents.validation.error')),
-    type: yup.object().required(t('upload.documents.validation.error')),
-    registry: yup.array().required(t('upload.documents.validation.error')),
-    credits: yup.string().required(t('upload.documents.validation.error')),
-    serial_number: yup.string().required(t('upload.documents.validation.error')),
+    title: yup.string().required(t('validation.errors.required')),
+    type: yup.object().required(t('validation.errors.required')),
+    registry: yup.array().required(t('validation.errors.required')),
+    credits: yup.string().required(t('validation.errors.required')),
+    serial_number: yup.string().required(t('validation.errors.required')),
     document: yup
       .mixed()
-      .nullable()
-      .test(
-        'document',
-        t('upload.documents.validation.error'),
-        // value it is equal [object FileList]
-        // value && console.log('_______value ' + JSON.stringify(value)
-        //JSON.stringify(value)[0] it is equal to  {"0":{}}
-        (value) => !value || (value && !SUPPORTED_FORMATS.includes(value.type))
-      )
-      .required(t('upload.documents.validation.error')),
+      .test('required', t('validation.errors.required'), (value) => {
+        return value.length === 1;
+      })
+      .test('format', t('validation.errors.format.pdf'), (value) => {
+        return SUPPORTED_FORMATS.includes(value[0].type);
+      }),
   });
 
   return (

@@ -26,23 +26,17 @@ function toFormData(carbonDocument: CarbonDocumentDTO) {
 
   formData.append('document', document[0]);
 
-  console.log({
-    carbonDocument,
-    formData,
-  });
-
   return formData;
 }
 
 export function uploadDocument() {
-  // const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
 
   const config: AxiosRequestConfig<FormData> = {
     headers: {
       'content-type': 'application/form-data',
     },
   };
-
   return useMutation(
     (carbonDocument: CarbonDocumentDTO) => {
       const formData = toFormData(carbonDocument);
@@ -51,9 +45,7 @@ export function uploadDocument() {
     },
     {
       onSuccess: () => {
-        // ✅ refetch the comments list for our blog post
-        //   queryClient.invalidateQueries(['posts', id, 'comments']);
-        // documentKeys.detail(id)
+        queryClient.invalidateQueries(documentKeys.lists());
       },
     }
   );

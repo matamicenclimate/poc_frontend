@@ -25,7 +25,6 @@ export const Form = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={className}>
       {React.Children.map(children, (child) => {
-        console.log(child.props.name);
         return child.props.name
           ? React.createElement(child.type, {
               ...{

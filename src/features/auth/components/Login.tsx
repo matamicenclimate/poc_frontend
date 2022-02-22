@@ -10,8 +10,6 @@ export const Login = () => {
   const { t } = useTranslation();
 
   const handleLogin = async (data: Record<string, any>) => {
-    console.log(data);
-
     await auth.login({ email: data.email });
   };
 

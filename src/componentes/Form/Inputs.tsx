@@ -25,7 +25,6 @@ export function Input({
   inputClassName,
   ...rest
 }: any) {
-  console.log(JSON.stringify(errors.name));
   return (
     <div className="mb-4 flex flex-col">
       {label && (
