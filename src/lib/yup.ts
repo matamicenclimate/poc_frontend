@@ -2,7 +2,6 @@ import * as yup from 'yup';
 
 yup.setLocale({
   // use constant translation keys for messages without values
-
   mixed: {
     default: 'validation.errors.required',
     required: 'validation.errors.required',

@@ -7,7 +7,7 @@ export type InputProps = {
   label?: string;
   htmlFor?: string;
   register?: UseFormRegister<any>;
-  errors?: Record<string, any>;
+  errors?: Record<string, Record<string, string>>;
   required?: boolean;
   labelClassName?: string;
   errorClassName?: string;

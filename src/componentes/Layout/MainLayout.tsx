@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useAuth } from '@/lib/auth';
 import { Link } from 'react-router-dom';
 import { Head } from './Head';
-
+import logo from '@/assets/logo.png';
 interface MainLayoutProps {
   title?: string;
   children: React.ReactNode;
@@ -26,13 +26,10 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="p-4 border flex gap-4 mb-4 justify-between">
+    <div className="p-2 px-4 border flex gap-4 mb-4 justify-between">
       <div>
         <Link to="/">
-          <img
-            src="https://app.dekaweb.staging.dekaside.com/_nuxt/img/brand-deka-logo-m.795996a.svg"
-            alt="dekalabs react test"
-          />
+          <img src={logo} alt="dekalabs react test" className="w-12" />
         </Link>
       </div>
       <div className="flex gap-4">

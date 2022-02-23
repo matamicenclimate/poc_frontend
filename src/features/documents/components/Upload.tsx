@@ -47,16 +47,13 @@ export const Upload = () => {
     registry: yup.array().required(),
     credits: yup.string().required(),
     serial_number: yup.string().required(),
-    document: yup
-      .array()
-      .nullable()
-      .test('format', t('validation.errors.format.pdf'), (value) => {
-        if (value) {
-          return value[0] && SUPPORTED_FORMATS.includes(value[0].type);
-        }
-        return false;
-      })
-      .required(),
+    // document: yup.array().nullable().required(),
+    // .test('format', t('validation.errors.format.pdf'), (value) => {
+    //   if (value) {
+    //     return value[0] && SUPPORTED_FORMATS.includes(value[0].type);
+    //   }
+    //   return false;
+    // }),
   });
 
   return (

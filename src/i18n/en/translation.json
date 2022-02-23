@@ -28,5 +28,9 @@
   "components.dialog.cancel.button": "Cancel",
   "validation.errors.required": "Required field",
   "validation.errors.format": "Invalid format",
-  "validation.errors.format.pdf": "Invalid format. Required format: pdf"
+  "validation.errors.format.pdf": "Invalid format. Required format: pdf",
+  "auth.Login.form.email": "Email",
+  "auth.Login.login": "Login",
+  "auth.Register.register": "Register",
+  "wallet.Wallet.title": "Wallet"
 }
