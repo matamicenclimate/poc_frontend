@@ -1,12 +1,13 @@
 import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { getDocument } from '../api/getDocument';
 
 export const DocumentDetails = () => {
   const { documentId } = useParams();
-
+  const { t } = useTranslation();
   const document = getDocument(documentId as string);
 
   const renderDocument = () => {
@@ -42,7 +43,7 @@ export const DocumentDetails = () => {
     <MainLayout>
       <Breadcrumb
         links={[
-          { to: '/documents', label: 'documents' },
+          { to: '/documents', label: t('documents.List.breadcrumbTitle') },
           {
             to: `/documents/${documentId}`,
             label: document.data ? (document.data.title as string) : (documentId as string),

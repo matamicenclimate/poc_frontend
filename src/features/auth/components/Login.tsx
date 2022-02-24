@@ -34,7 +34,6 @@ export const Login = () => {
 
           <Button type="submit">{t('auth.Login.login')}</Button>
         </Form>
-        <Link to="/">home</Link>
       </div>
     </LoginLayout>
   );

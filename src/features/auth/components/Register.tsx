@@ -10,7 +10,6 @@ export const Register = () => {
   const auth = useAuth();
   const { t } = useTranslation();
 
-
   const handleLogin = async (data: { email: string }) => {
     await auth.login({ email: data.email });
   };

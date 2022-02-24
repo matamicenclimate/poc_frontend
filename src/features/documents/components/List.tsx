@@ -36,7 +36,7 @@ export const DocumentList = () => {
   };
   return (
     <MainLayout title={t('head.List.title')}>
-      <Breadcrumb links={[{ to: '/documents/list', label: 'documents' }]} />
+      <Breadcrumb links={[{ to: '/documents/list', label: t('documents.List.breadcrumbTitle') }]} />
       <div className="flex justify-between">
         <h1>{t('documents.List.title')}</h1>
         <div>

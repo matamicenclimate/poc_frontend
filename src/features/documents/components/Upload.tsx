@@ -13,6 +13,7 @@ import { Select, SelectOption } from '@/componentes/Form/Select';
 
 import { uploadDocument } from '../api/uploadDocument';
 import { getFormOptions } from '../api/getFormOptions';
+import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
 
 export const Upload = () => {
   const { t } = useTranslation();
@@ -20,15 +21,14 @@ export const Upload = () => {
 
   const uploadDocuments = uploadDocument();
   const formOption = getFormOptions();
+  const user = useAuth();
 
-  const handleData = async (data: any) => {
+  const handleSubmit = async (data: Record<string, any>) => {
     await uploadDocuments.mutateAsync(data);
     setIsOpen((old) => !old);
   };
 
   const SUPPORTED_FORMATS = ['application/pdf'];
-
-  const user = useAuth();
 
   const validationSchema = yup.object({
     title: yup.string().required(),
@@ -49,7 +49,11 @@ export const Upload = () => {
     if (formOption.data) {
       return (
         <Fragment>
-          <Form onSubmit={handleData} className="flex flex-col" validationSchema={validationSchema}>
+          <Form
+            onSubmit={handleSubmit}
+            className="flex flex-col"
+            validationSchema={validationSchema}
+          >
             <Input label={t('uploadDocuments.project.title')} required name="title" type="text" />
 
             <Select
@@ -111,7 +115,17 @@ export const Upload = () => {
 
   return (
     <MainLayout title={t('head.Upload.title')}>
+      <Breadcrumb
+        links={[
+          { to: '/documents', label: t('documents.List.breadcrumbTitle') },
+          {
+            to: `/documents/upload`,
+            label: t('documents.Upload.title'),
+          },
+        ]}
+      />
       <h1 className="mb-4">{t('uploadDocuments.title')}</h1>
+
       <>{renderForm()}</>
     </MainLayout>
   );

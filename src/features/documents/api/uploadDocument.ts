@@ -1,3 +1,4 @@
+import { useAlert } from 'react-alert';
 import { documentKeys } from './index';
 import { SelectOption } from '@/componentes/Form/Select';
 import { AxiosRequestConfig } from 'axios';
@@ -11,10 +12,9 @@ function toFormData(carbonDocument: CarbonDocumentDTO) {
 
   const { document, ...newDocument } = carbonDocument;
 
-  newDocument.type = carbonDocument.type?.value ?? 'test';
+  newDocument.type = carbonDocument.type?.value;
+  newDocument.registry = carbonDocument.registry?.value;
   newDocument.status = 'pending';
-  // console.log({ carbonDocument });
-  // console.log({ document });
 
   // parse the object to formData
   Object.keys(newDocument).forEach((key) => {
@@ -36,6 +36,7 @@ function toFormData(carbonDocument: CarbonDocumentDTO) {
 
 export function uploadDocument() {
   const queryClient = useQueryClient();
+  const alert = useAlert();
 
   const config: AxiosRequestConfig<FormData> = {
     headers: {
@@ -51,6 +52,9 @@ export function uploadDocument() {
     {
       onSuccess: () => {
         queryClient.invalidateQueries(documentKeys.lists());
+      },
+      onError: () => {
+        alert.error('Error uploading document');
       },
     }
   );

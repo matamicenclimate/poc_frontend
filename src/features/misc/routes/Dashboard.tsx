@@ -7,7 +7,7 @@ export const Dashboard = () => {
   const { t } = useTranslation();
 
   return (
-    <MainLayout title="Dashboard">
+    <MainLayout title={t('misc.Dashboard.title')}>
       <Breadcrumb />
       <h1>Dashboard</h1>
       <Link to="/documents/upload">{t('uploadDocuments.link')}</Link>

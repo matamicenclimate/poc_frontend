@@ -1,3 +1,4 @@
+import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { magiclink } from '@/lib/magiclink';
 import { useEffect, useState } from 'react';
@@ -24,6 +25,8 @@ export const Wallet = () => {
 
   return (
     <MainLayout title={t('head.Wallet.title')}>
+      <Breadcrumb links={[{ to: '/wallet', label: t('head.Wallet.title') }]} />
+
       <h1>{t('wallet.Wallet.title')}</h1>
     </MainLayout>
   );
