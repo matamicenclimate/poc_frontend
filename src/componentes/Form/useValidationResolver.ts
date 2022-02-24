@@ -4,12 +4,10 @@ const useYupValidationResolver = (validationSchema: Record<string, any>) =>
   useCallback(
     async (data) => {
       try {
-        console.log(data);
-
         const values = await validationSchema.validate(data, {
           abortEarly: false,
         });
-        console.log({ values });
+        // console.log({ values });
 
         return {
           values,

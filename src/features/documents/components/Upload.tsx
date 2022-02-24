@@ -1,41 +1,30 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import * as yup from 'yup';
+import { useAuth } from '@/lib/auth';
 
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { Button } from '@/componentes/Elements/Button/Button';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { Dialog } from '@/componentes/Dialog/Dialog';
 import { Form } from '@/componentes/Form/Form';
 import { Input } from '@/componentes/Form/Inputs';
+import { Select, SelectOption } from '@/componentes/Form/Select';
 
-import { Select } from '@/componentes/Form/Select';
 import { uploadDocument } from '../api/uploadDocument';
-import { useAuth } from '@/lib/auth';
-import * as yup from 'yup';
+import { getFormOptions } from '../api/getFormOptions';
 
 export const Upload = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const uploadDocuments = uploadDocument();
+  const formOption = getFormOptions();
 
   const handleData = async (data: any) => {
     await uploadDocuments.mutateAsync(data);
     setIsOpen((old) => !old);
   };
-
-  const typeOptions = [
-    { value: 'carbon', label: t('upload.documents.project.type.options.carbon') },
-    { value: 'nature', label: t('upload.documents.project.type.options.nature') },
-    { value: 'irecs', label: t('upload.documents.project.type.options.irecs') },
-  ];
-
-  const registryOptions = [
-    { value: 'cdm', label: 'CDM' },
-    { value: 'verra', label: 'Verra' },
-    { value: 'goldStandard', label: 'Gold Standard' },
-    { value: 'ecoregistry', label: 'Ecoregistry' },
-    { value: 'bme', label: 'BME' },
-  ];
 
   const SUPPORTED_FORMATS = ['application/pdf'];
 
@@ -44,77 +33,86 @@ export const Upload = () => {
   const validationSchema = yup.object({
     title: yup.string().required(),
     type: yup.object().required(),
-    registry: yup.array().required(),
+    registry: yup.object().required(),
     credits: yup.string().required(),
     serial_number: yup.string().required(),
-    // document: yup.array().nullable().required(),
-    // .test('format', 'validation.errors.format.pdf', (value) => {
-    //   if (value) {
-    //     return value[0] && SUPPORTED_FORMATS.includes(value[0].type);
-    //   }
-    //   return false;
-    // }),
+    document: yup
+      .mixed()
+      .nullable()
+      .required()
+      .test('format', 'validation.errors.format.pdf', (value) => {
+        return value.length === 1 && SUPPORTED_FORMATS.includes(value[0].type);
+      }),
   });
 
+  const renderForm = () => {
+    if (formOption.data) {
+      return (
+        <Fragment>
+          <Form onSubmit={handleData} className="flex flex-col" validationSchema={validationSchema}>
+            <Input label={t('uploadDocuments.project.title')} required name="title" type="text" />
+
+            <Select
+              label={t('uploadDocuments.project.type')}
+              required
+              name="type"
+              options={(formOption.data?.type as SelectOption[]) ?? []}
+            />
+
+            <Select
+              label={t('uploadDocuments.registry.name')}
+              required
+              name="registry"
+              options={(formOption.data?.registry as SelectOption[]) ?? []}
+            />
+
+            <Input
+              label={t('uploadDocuments.credits.amount')}
+              required
+              name="credits"
+              type="number"
+            />
+
+            <Input
+              label={t('uploadDocuments.serialNumber')}
+              required
+              name="serial_number"
+              type="text"
+            />
+
+            <Input
+              label={t('uploadDocuments.PDD')}
+              required
+              name="document"
+              type="file"
+              accept={'.pdf'}
+            />
+
+            <Input type="hidden" name="created_by_user" defaultValue={user.user?.email as string} />
+
+            <Button type="submit" disabled={uploadDocuments.isLoading}>
+              {t('uploadDocuments.send.button')}
+            </Button>
+          </Form>
+
+          <Dialog
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            title={t('uploadDocuments.modal.title')}
+            claim={t('uploadDocuments.modal.claim')}
+            acceptLabel={t('uploadDocuments.modal.button.accept')}
+          />
+        </Fragment>
+      );
+    }
+
+    return <Spinner />;
+  };
+
   return (
-    <MainLayout>
-      <>
-        <Form onSubmit={handleData} className="flex flex-col" validationSchema={validationSchema}>
-          <Input label={t('upload.documents.project.title')} required name="title" type="text" />
-
-          <Select
-            label={t('upload.documents.project.type')}
-            required
-            name="type"
-            options={typeOptions}
-          />
-
-          <Select
-            label={t('upload.documents.registry.name')}
-            required
-            name="registry"
-            options={registryOptions}
-            isMulti
-          />
-
-          <Input
-            label={t('upload.documents.credits.amount')}
-            required
-            name="credits"
-            type="number"
-          />
-
-          <Input
-            label={t('upload.documents.serialNumber')}
-            required
-            name="serial_number"
-            type="text"
-          />
-
-          <Input
-            label={t('upload.documents.PDD')}
-            required
-            name="document"
-            type="file"
-            accept={'.pdf'}
-          />
-
-          <Input type="hidden" name="created_by_user" defaultValue={user.user?.email as string} />
-
-          <Button type="submit" disabled={uploadDocuments.isLoading}>
-            {t('upload.documents.send.button')}
-          </Button>
-        </Form>
-      </>
-      <>
-        <Dialog
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-          title={t('upload.documents.modal.title')}
-          claim={t('upload.documents.modal.claim')}
-          acceptLabel={t('upload.documents.modal.button.accept')}
-        />
-      </>
+    <MainLayout title={t('head.Upload.title')}>
+      <h1 className="mb-4">{t('uploadDocuments.title')}</h1>
+      <>{renderForm()}</>
     </MainLayout>
   );
 };

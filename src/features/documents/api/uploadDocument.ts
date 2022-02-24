@@ -13,8 +13,8 @@ function toFormData(carbonDocument: CarbonDocumentDTO) {
 
   newDocument.type = carbonDocument.type?.value ?? 'test';
   newDocument.status = 'pending';
-  console.log({ carbonDocument });
-  console.log({ document });
+  // console.log({ carbonDocument });
+  // console.log({ document });
 
   // parse the object to formData
   Object.keys(newDocument).forEach((key) => {

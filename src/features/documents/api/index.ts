@@ -2,6 +2,7 @@ export const documentKeys = {
   all: ['document'] as const,
   lists: () => [...documentKeys.all, 'list'] as const,
   detail: (id: string) => [...documentKeys.all, 'detail', id] as const,
+  form: () => [...documentKeys.all, 'form'] as const,
 };
 
 export interface CarbonDocument {

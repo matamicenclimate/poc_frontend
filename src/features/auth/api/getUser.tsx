@@ -9,7 +9,6 @@ export const getUser = async (): Promise<AuthUser> => {
   const getStrapiUser = httpClient.get('/users/me');
 
   const data = await Promise.all([getMagicUser, getStrapiUser]);
-  console.log(data);
 
   return { ...data[1], magic_user: data[0] } as unknown as AuthUser;
 };

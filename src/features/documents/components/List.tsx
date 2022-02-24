@@ -35,10 +35,10 @@ export const DocumentList = () => {
     return <Spinner />;
   };
   return (
-    <MainLayout>
+    <MainLayout title={t('head.List.title')}>
       <Breadcrumb links={[{ to: '/documents/list', label: 'documents' }]} />
       <div className="flex justify-between">
-        <h1>List of documents</h1>
+        <h1>{t('documents.List.title')}</h1>
         <div>
           <Link to="/documents/upload">{t('uploadDocuments.link')}</Link>
         </div>

@@ -23,7 +23,7 @@ export const Wallet = () => {
   const account = getBalance(address);
 
   return (
-    <MainLayout title="Wallet">
+    <MainLayout title={t('head.Wallet.title')}>
       <h1>{t('wallet.Wallet.title')}</h1>
     </MainLayout>
   );
