@@ -2,7 +2,7 @@ import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { useAuth } from '@/lib/auth';
 import { t } from 'i18next';
-import { Link } from 'react-router-dom';
+import { Link } from '@/componentes/Elements/Link/Link';
 import { getDocuments } from '../api/getDocuments';
 
 export const DocumentList = () => {

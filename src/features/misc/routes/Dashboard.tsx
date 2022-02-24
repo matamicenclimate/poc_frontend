@@ -1,5 +1,5 @@
 import { MainLayout } from '@/componentes/Layout/MainLayout';
-import { Link } from 'react-router-dom';
+import { Link } from '@/componentes/Elements/Link/Link';
 import { useTranslation } from 'react-i18next';
 
 export const Dashboard = () => {

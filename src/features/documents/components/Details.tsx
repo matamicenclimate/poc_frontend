@@ -1,3 +1,4 @@
+import { Link } from '@/componentes/Elements/Link/Link';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { useParams } from 'react-router-dom';
 import { getDocument } from '../api/getDocument';
@@ -18,7 +19,7 @@ export const DocumentDetails = () => {
           <div>createdAt: {document.data.createdAt}</div>
           <div>updatedAt: {document.data.updatedAt}</div>
           <div>
-            <a href={document.data.document?.url}>preview</a>
+            <Link href={document.data.document?.url}>preview</Link>
           </div>
           {/* <pre>{JSON.stringify(document.data, null, 2)}</pre> */}
         </div>

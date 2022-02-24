@@ -1,9 +1,10 @@
 import { Button } from '@/componentes/Elements/Button/Button';
 import { Form } from '@/componentes/Form/Form';
 import { Input } from '@/componentes/Form/Inputs';
-import { MainLayout } from '@/componentes/Layout/MainLayout';
+import { LoginLayout } from '@/componentes/Layout/LoginLayout';
 import { useAuth } from '@/lib/auth';
 import { useTranslation } from 'react-i18next';
+import { Link } from '@/componentes/Elements/Link/Link';
 
 export const Login = () => {
   const auth = useAuth();
@@ -14,13 +15,17 @@ export const Login = () => {
   };
 
   return (
-    <MainLayout>
-      <Form onSubmit={handleLogin} className="flex flex-col">
-        <label htmlFor="email">{t('auth.Login.form.email')}</label>
-        <Input name="email" type="email" />
+    <LoginLayout>
+      <div>
+        <Link to="/auth/login">login</Link>
+        <Link to="/auth/register">register</Link>
+        <Form onSubmit={handleLogin} className="flex flex-col">
+          <label htmlFor="email">{t('auth.Login.form.email')}</label>
+          <Input name="email" type="email" />
 
-        <Button type="submit">{t('auth.Login.login')}</Button>
-      </Form>
-    </MainLayout>
+          <Button type="submit">{t('auth.Login.login')}</Button>
+        </Form>
+      </div>
+    </LoginLayout>
   );
 };

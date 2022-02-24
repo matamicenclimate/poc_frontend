@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useAuth } from '@/lib/auth';
+import { Link } from 'react-router-dom';
 import { Head } from './Head';
 import logo from '@/assets/logo.png';
-import { Link } from '@/componentes/Elements/Link/Link';
 interface MainLayoutProps {
   title?: string;
   children: React.ReactNode;
@@ -64,14 +64,15 @@ export const Navbar = () => {
   );
 };
 
-export const MainLayout = ({ title, children }: MainLayoutProps) => {
+export const LoginLayout = ({ title, children }: MainLayoutProps) => {
   return (
     <>
       <Head title={title} />
-      <div className="min-h-screen flex flex-col">
-        <Navbar />
-        <div className="max-w-screen-md mx-auto flex-grow w-full">{children}</div>
-        <Footer />
+      <div className="min-h-screen grid grid-cols-5">
+        {/* <Navbar /> */}
+        <div className="col-span-2 bg-gray-300 p-4">some text</div>
+        <div className="col-span-3 flex flex-col justify-around p-4">{children}</div>
+        {/* <Footer /> */}
       </div>
     </>
   );

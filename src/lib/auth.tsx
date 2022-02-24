@@ -44,7 +44,9 @@ async function loginFn(data: LoginCredentialsDTO): Promise<AuthUser> {
 async function registerFn(data: RegisterCredentialsDTO) {
   const response = await registerWithEmailAndPassword(data);
   const user = await handleUserResponse(response);
-  return user;
+
+  // TODO: fix this
+  return user as unknown as AuthUser;
 }
 
 async function logoutFn() {
