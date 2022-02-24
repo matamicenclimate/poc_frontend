@@ -17,8 +17,8 @@ export const Callback = () => {
         await magiclink.auth.loginWithCredential();
 
         /* Get user metadata including email */
-        const userMetadata = await magiclink.user.getMetadata();
-        console.log({ userMetadata });
+        // const userMetadata = await magiclink.user.getMetadata();
+        // console.log({ userMetadata });
         await auth.refetchUser();
       } catch (e) {
         alert.error(t('auth.Callback.error'));

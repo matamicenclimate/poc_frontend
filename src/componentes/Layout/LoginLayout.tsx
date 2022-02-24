@@ -70,7 +70,10 @@ export const LoginLayout = ({ title, children }: MainLayoutProps) => {
       <Head title={title} />
       <div className="min-h-screen grid grid-cols-5">
         {/* <Navbar /> */}
-        <div className="col-span-2 bg-gray-300 p-4">some text</div>
+        <div className="col-span-2 bg-gray-300 p-4">
+          <div>some text</div>
+          <Link to="/">home</Link>
+        </div>
         <div className="col-span-3 flex flex-col justify-around p-4">{children}</div>
         {/* <Footer /> */}
       </div>

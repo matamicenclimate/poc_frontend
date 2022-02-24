@@ -10,7 +10,7 @@ export const Login = () => {
   const auth = useAuth();
   const { t } = useTranslation();
 
-  const handleLogin = async (data: Record<string, any>) => {
+  const handleLogin = async (data: { email: string }) => {
     await auth.login({ email: data.email });
   };
 
@@ -23,9 +23,14 @@ export const Login = () => {
         <Link to="/auth/register" as="button">
           register
         </Link>
+        <h1>{t('auth.Login.pageTitle')}</h1>
         <Form onSubmit={handleLogin} className="flex flex-col">
-          <label htmlFor="email">{t('auth.Login.form.email')}</label>
-          <Input name="email" type="email" />
+          <Input
+            name="email"
+            type="email"
+            label={t('auth.Login.form.email')}
+            placeholder={t('auth.Login.form.email')}
+          />
 
           <Button type="submit">{t('auth.Login.login')}</Button>
         </Form>

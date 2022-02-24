@@ -1,7 +1,8 @@
 import { Button } from '@/componentes/Elements/Button/Button';
+import { Link } from '@/componentes/Elements/Link/Link';
 import { Form } from '@/componentes/Form/Form';
 import { Input } from '@/componentes/Form/Inputs';
-import { MainLayout } from '@/componentes/Layout/MainLayout';
+import { LoginLayout } from '@/componentes/Layout/LoginLayout';
 import { useAuth } from '@/lib/auth';
 import { useTranslation } from 'react-i18next';
 
@@ -9,20 +10,31 @@ export const Register = () => {
   const auth = useAuth();
   const { t } = useTranslation();
 
-  const handleLogin = async (data: Record<string, any>) => {
-    console.log(data);
-
+  const handleLogin = async (data: { email: string }) => {
     await auth.login({ email: data.email });
   };
 
   return (
-    <MainLayout>
-      <Form onSubmit={handleLogin} className="flex flex-col">
-        <label htmlFor="email">{t('auth.Login.form.email')}</label>
-        <Input name="email" type="email" />
+    <LoginLayout title={t('auth.Register.pageTitle')}>
+      <div>
+        <Link to="/auth/login" as="button">
+          login
+        </Link>
+        <Link to="/auth/register" as="button">
+          register
+        </Link>
+        <h1>{t('auth.Register.pageTitle')}</h1>
+        <Form onSubmit={handleLogin} className="flex flex-col">
+          <Input
+            name="email"
+            type="email"
+            label={t('auth.Login.form.email')}
+            placeholder={t('auth.Login.form.email')}
+          />
 
-        <Button type="submit">{t('auth.Register.register')}</Button>
-      </Form>
-    </MainLayout>
+          <Button type="submit">{t('auth.Register.register')}</Button>
+        </Form>
+      </div>
+    </LoginLayout>
   );
 };

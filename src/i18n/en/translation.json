@@ -33,5 +33,6 @@
   "auth.Login.login": "Login",
   "auth.Register.register": "Register",
   "wallet.Wallet.title": "Wallet",
-  "auth.Login.pageTitle": "Login"
+  "auth.Login.pageTitle": "Login",
+  "auth.Register.pageTitle": "Register"
 }
