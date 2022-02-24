@@ -4,6 +4,7 @@ import { useAuth } from '@/lib/auth';
 import { t } from 'i18next';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { getDocuments } from '../api/getDocuments';
+import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
 
 export const DocumentList = () => {
   const { user } = useAuth();
@@ -35,6 +36,7 @@ export const DocumentList = () => {
   };
   return (
     <MainLayout>
+      <Breadcrumb links={[{ to: '/documents/list', label: 'documents' }]} />
       <div className="flex justify-between">
         <h1>List of documents</h1>
         <div>

@@ -15,16 +15,21 @@ export const Login = () => {
   };
 
   return (
-    <LoginLayout>
+    <LoginLayout title={t('auth.Login.pageTitle')}>
       <div>
-        <Link to="/auth/login">login</Link>
-        <Link to="/auth/register">register</Link>
+        <Link to="/auth/login" as="button">
+          login
+        </Link>
+        <Link to="/auth/register" as="button">
+          register
+        </Link>
         <Form onSubmit={handleLogin} className="flex flex-col">
           <label htmlFor="email">{t('auth.Login.form.email')}</label>
           <Input name="email" type="email" />
 
           <Button type="submit">{t('auth.Login.login')}</Button>
         </Form>
+        <Link to="/">home</Link>
       </div>
     </LoginLayout>
   );
