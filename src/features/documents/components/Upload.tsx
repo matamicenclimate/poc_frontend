@@ -125,7 +125,7 @@ export const Upload = () => {
         ]}
       />
       <h1 className="mb-4">{t('uploadDocuments.title')}</h1>
-      test
+
       <>{renderForm()}</>
     </MainLayout>
   );
