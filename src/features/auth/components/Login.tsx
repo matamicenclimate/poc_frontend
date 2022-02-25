@@ -18,7 +18,7 @@ export const Login = () => {
     <LoginLayout title={t('auth.Login.pageTitle')}>
       <div>
         <Link to="/auth/login" as="button">
-          login - test deleteme
+          login
         </Link>
         <Link to="/auth/register" as="button">
           register
