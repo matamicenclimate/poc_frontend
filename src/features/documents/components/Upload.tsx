@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import { useAuth } from '@/lib/auth';
 
-import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { Button } from '@/componentes/Elements/Button/Button';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { Dialog } from '@/componentes/Dialog/Dialog';
@@ -45,9 +44,19 @@ export const Upload = () => {
       }),
   });
 
-  const renderForm = () => {
-    if (formOption.data) {
-      return (
+  return (
+    <MainLayout title={t('head.Upload.title')}>
+      <Breadcrumb
+        links={[
+          { to: '/documents', label: t('documents.List.breadcrumbTitle') },
+          {
+            to: `/documents/upload`,
+            label: t('documents.Upload.title'),
+          },
+        ]}
+      />
+      <h1 className="mb-4">{t('uploadDocuments.title')}</h1>
+      <>
         <Fragment>
           <Form
             onSubmit={handleSubmit}
@@ -107,26 +116,7 @@ export const Upload = () => {
             acceptLabel={t('uploadDocuments.modal.button.accept')}
           />
         </Fragment>
-      );
-    }
-
-    return <Spinner />;
-  };
-
-  return (
-    <MainLayout title={t('head.Upload.title')}>
-      <Breadcrumb
-        links={[
-          { to: '/documents', label: t('documents.List.breadcrumbTitle') },
-          {
-            to: `/documents/upload`,
-            label: t('documents.Upload.title'),
-          },
-        ]}
-      />
-      <h1 className="mb-4">{t('uploadDocuments.title')}</h1>
-
-      <>{renderForm()}</>
+      </>
     </MainLayout>
   );
 };

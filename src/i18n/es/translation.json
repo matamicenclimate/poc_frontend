@@ -5,6 +5,7 @@
     "part2": "In order to infer the appropriate type for t function, you should use type augmentation to override the Resources type.",
     "part3": "Check out the @types/react-i18next to see an example."
   },
+
   "login.heading": "Login Email",
 
   "dialogs.base.cancel": "Cancelar",
@@ -14,11 +15,12 @@
   "auth.Callback.error": "Acceso invalido",
   "auth.Login.form.email": "Email",
   "auth.Login.login": "Acceso",
+  "auth.Login.pageTitlev": "Acceso",
   "auth.Register.register": "Registro",
 
   "head.Upload.title": "Subir documentos de carbono",
   "head.List.title": "Lista de documentos",
-  "head.Profile.title": "Perfil",
+  "head.Profile.pageTitle": "Perfil",
   "head.Wallet.title": "Cartera",
 
   "uploadDocuments.title": "Subir documentos de carbono",
@@ -36,6 +38,7 @@
   "uploadDocuments.modal.button.accept": "Entendido ¡Gracias!",
   "uploadDocuments.modal.title": "Formulario enviado con éxito",
   "uploadDocuments.modal.claim": "Mensaje enviado con éxito. Nos pondremos en contacto contigo en los próximos días.",
+
   "components.dialog.accept.button": "Aceptar",
   "components.dialog.cancel.button": "Cancelar",
 
@@ -47,6 +50,9 @@
 
   "documents.List.title": "Lista de documentos",
   "documents.List.viewDetails": "Ver detalles",
+  "documents.List.breadcrumbTitle": "Documentos",
+  "documents.Upload.title": "Subir Documento",
 
-  "profile.title": "Perfil"
+  "misc.Dashboard.title": "Home",
+  "misc.Landing.title": "Welcome"
 }

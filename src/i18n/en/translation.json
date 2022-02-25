@@ -5,21 +5,27 @@
     "part2": "In order to infer the appropriate type for t function, you should use type augmentation to override the Resources type.",
     "part3": "Check out the @types/react-i18next to see an example."
   },
+
   "login.heading": "Login E  ",
+
   "dialogs.base.cancel": "Cancel",
   "dialogs.base.accept": "Accept",
+
   "auth.Callback.logingIn": "Login in with Magic Link...",
   "auth.Callback.error": "Invalid login",
   "auth.Login.form.email": "Email",
   "auth.Login.login": "Login",
+  "auth.Login.pageTitle": "Login",
   "auth.Register.register": "Register",
+
   "head.Upload.title": "Upload carbon documents",
   "head.List.title": "List of documents",
-  "head.Profile.title": "Profile",
+  "head.Profile.pageTitle": "Profile",
   "head.Wallet.title": "Wallet",
+
   "uploadDocuments.title": "Upload carbon documents",
   "uploadDocuments.link": "Upload documents",
-  "uploadDocuments.project.title": "Title of project\t",
+  "uploadDocuments.project.title": "Title of project",
   "uploadDocuments.send.button": "Send documents",
   "uploadDocuments.registry.name": "Name of the registry you are transfering the credits from",
   "uploadDocuments.project.type": "Project type",
@@ -32,20 +38,21 @@
   "uploadDocuments.modal.button.accept": "Got it, thanks!",
   "uploadDocuments.modal.title": "Form submitted successfully",
   "uploadDocuments.modal.claim": "Message sent succesfully. We will contact you in the next few days.",
+
   "components.dialog.accept.button": "Accept",
   "components.dialog.cancel.button": "Cancel",
+
   "validation.errors.required": "Required field",
   "validation.errors.format": "Invalid format",
+  "validation.errors.format.pdf": "Invalid format. Required format: pdf",
+
   "wallet.Wallet.title": "Wallet",
+
   "documents.List.title": "List of documents",
   "documents.List.viewDetails": "View details",
-  "profile.title": "Profile",
-  "validation.errors.format.pdf": "Invalid format. Required format: pdf",
-  "auth.Login.pageTitle": "Login",
-  "auth.Register.pageTitle": "Register",
-  "head.Profile.pageTitle": "Profile",
   "documents.List.breadcrumbTitle": "Documents",
   "documents.Upload.title": "Upload Document",
+
   "misc.Dashboard.title": "Home",
   "misc.Landing.title": "Welcome"
 }
