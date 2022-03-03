@@ -1,17 +1,24 @@
 import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
+import { Button } from '@/componentes/Elements/Button/Button';
 import { Link } from '@/componentes/Elements/Link/Link';
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { getDocument } from '../api/getDocument';
+import { mintNftDocument } from '../api/mintNftDocument';
 
 export const DocumentDetails = () => {
   const { documentId } = useParams();
   const { t } = useTranslation();
   const document = getDocument(documentId as string);
+  const mintDocument = mintNftDocument();
 
   const renderDocument = () => {
     if (document.data) {
+      const showBlockchainData =
+        ['claimed', 'minted', 'completed'].includes(document.data.status as string) &&
+        process.env.NODE_ENV === 'development';
       return (
         <>
           <div className="flex flex-col gap-4">
@@ -24,7 +31,62 @@ export const DocumentDetails = () => {
             <div>
               <Link href={document.data.document?.url}>preview</Link>
             </div>
-            {/* <pre>{JSON.stringify(document.data, null, 2)}</pre> */}
+            {showBlockchainData ? (
+              <div className="border p-2">
+                <div>
+                  mint group:{' '}
+                  <Link
+                    href={`https://testnet.algoexplorer.io/tx/group/${encodeURIComponent(
+                      document.data.minted_group_id as string
+                    )}`}
+                  >
+                    {document.data.minted_group_id}
+                  </Link>
+                </div>
+                <div>
+                  minted asa:{' '}
+                  <Link
+                    href={`https://testnet.algoexplorer.io/asset/${document.data.minted_supplier_asa_id}`}
+                  >
+                    {document.data.minted_supplier_asa_id}
+                  </Link>
+                </div>
+                <div>
+                  minted asa txn:{' '}
+                  <Link
+                    href={`https://testnet.algoexplorer.io/tx/${document.data.minted_supplier_asa_txn_id}`}
+                  >
+                    {document.data.minted_supplier_asa_txn_id}
+                  </Link>
+                </div>
+                <div>
+                  fee asa:{' '}
+                  <Link
+                    href={`https://testnet.algoexplorer.io/asset/${document.data.minted_climate_asa_id}`}
+                  >
+                    {document.data.minted_climate_asa_id}
+                  </Link>
+                </div>
+                <div>
+                  fee asa txn:{' '}
+                  <Link
+                    href={`https://testnet.algoexplorer.io/tx/${document.data.minted_climate_asa_txn_id}`}
+                  >
+                    {document.data.minted_climate_asa_txn_id}
+                  </Link>
+                </div>
+                <div>
+                  {mintDocument.isLoading ? <Spinner /> : null}
+                  <Button
+                    onClick={() => mintDocument.mutate(document.data._id as string)}
+                    disabled={mintDocument.isLoading}
+                  >
+                    mint
+                  </Button>
+                  <Button onClick={() => console.log('todo')}>claim</Button>
+                </div>
+              </div>
+            ) : null}
           </div>
         </>
       );

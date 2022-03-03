@@ -16,6 +16,7 @@ type RouterLinkProps = {
 type AnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   to?: undefined;
   href?: string;
+  target?: string;
 } & BaseProps;
 
 // Guard to check if href exists in props
@@ -23,19 +24,23 @@ const hasHref = (props: RouterLinkProps | AnchorProps): props is AnchorProps => 
 
 // Component
 // la discriminacion de TS no funciona bien con la destructuración
-export const Link = (props: RouterLinkProps | AnchorProps) => {
+export const Link = ({ as, size, variant, ...props }: RouterLinkProps | AnchorProps) => {
   const getClassName = () => {
-    if (props.as === 'button') {
+    if (as === 'button') {
       return clsx(
         buttonStyles.base,
-        buttonStyles.sizes[props.size ?? 'md'],
-        buttonStyles.variants[props.variant ?? 'primary']
+        buttonStyles.sizes[size ?? 'md'],
+        buttonStyles.variants[variant ?? 'primary']
       );
     }
     return '';
   };
+
   // anchor render
-  if (hasHref(props)) return <a className={getClassName()} {...props} />;
+  if (hasHref(props)) {
+    return <a className={getClassName()} target={props.target ?? '_blank'} {...props} />;
+  }
+
   // button render
   return <RouterLink to={props.to as To} className={getClassName()} {...props} />;
 };

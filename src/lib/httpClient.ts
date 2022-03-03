@@ -1,6 +1,7 @@
 import Axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 
 import storage from '@/utils/storage';
+import { magiclink } from './magiclink';
 
 function authRequestInterceptor(config: AxiosRequestConfig) {
   const token = storage.getToken();
@@ -22,9 +23,17 @@ httpClient.interceptors.response.use(
   (response) => {
     return response.data;
   },
-  (error) => {
+  async (error) => {
     // TODO: revalidate cookie if we have an auth error once
     const message = error.response?.data?.message || error.message;
+
+    if (message === 'Invalid token.') {
+      /* Get the DID for the user */
+      const jwt = await magiclink.user.getIdToken();
+      storage.setToken(jwt);
+
+      return httpClient.request(error.config);
+    }
     // useNotificationStore.getState().addNotification({
     //   type: 'error',
     //   title: 'Error',
