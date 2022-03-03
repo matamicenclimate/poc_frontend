@@ -5,6 +5,7 @@ node_js:
   - lts/*
 notifications:
   slack:
+    if: type = push AND branch = develop
     secure: e9KIucuHYZphR69wNqokLe5hPr2UYoDaloAeBYchYRnErwZZXVzo0bPYxjHUIYGjX7rylTih3kiuimMPjxh3+r+lWWddkffAI8SptK5qKaMfYljhik8wnfQO7PGiZ+YRqhGqtGsnC91vx6hEAZeQ5gv90xXFbV/P/D+BbJ4QzcTwcPgXaaKIyZUR55MDDmT5B5T3sU8+93JPugL7gK6f5N8A/RzicKMUp0rM7JEv/5ypm09VxKFL/sb3Lltp9Ws232ygTXVRpCSAV/IUKhkf5tE01iBR7fOxDbm9N7Ql3Eg+7DE4QOu8db4v+uVM6fASB9coTTp8fLjmho3Bsa9yGiRAZa2cwijgeLUV4hF+3OFZ11RFAS1JhMhzrBNNHfXMlQR/umTqOKyjF+P8Rt67MXfQMv6OfYMYgaSc/zhx8cF//qkEra7lqIokC7+INNvoIRxGOPC6BGSA3bfx+LHXGXpOnw7WMPOkfTrFz05yJEaKLcycw/+foB+kKX4yxkEG+9rl0y9ODYB8Mw87w5340I763nHZqQX5ovmcrd9dVSNRDR4pgGgsRbBPZ6PIy4mD5Lyw5FFRwY+K0D+jpnwz9JF94yWw0juA98EyF8LfvQYxXBn7JsX2xlMpx2oWG+eY17McF/ZM+lN+oSPjaAUx2o5Zy+MPpoXSef5pR2ELXig=
     template:
       - '*Project:* %{repository_name}'
