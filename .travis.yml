@@ -3,36 +3,50 @@ dist: bionic
 language: node_js
 node_js:
   - lts/*
-# notifications:
-#   slack:
-#     secure: sfm6Y0fGJvyH3cpFRldJ45To7DQfmJpVEWFSbvYvQrAAgCoLsdP6c4jnLcvSFqmyYTrbeJz4dYKEp9E0Uvjx+8BiNii2fn8cel1HNoDsudxsotu6+CieSA9Qo9b74KSEVVRDeNV4dXTz5cwTPq8UOaWNAtYNdRi5tycHKu4WiSSqGvgohBvmXM74cD6cQWsUb2Y1OTmzepLtotly4nGzoV0RQ6WBDaftK72SaoyAF7GIDmYyMr1EKlb87pejFvfXI8zpPeLVdJNjjMF4IFzFysjVdvbR4XaKVWD3Uip+8SCvTbH85NaKrv1lwNW0scqnrOyeDrcUntgixARVcUVOqCwhPtAaOPZkoHrhS5nsnbowI+Fp6bLlPxzJR9utozLZMARmh+LMA7inQE4jzXE8ya1+s0EmAC5ofrMHbmzAdYHLil25ALQrj7abIwgRknG+LaUnQCFKtz6liF91dC+WpvHflnLFI9ehBBeVXpQWE1o0xPNbnmqRkyDyHjqcOFYZvmRxvbcS42B3d9X8ojxwME/fI3zuHc+YaBFObzt6cHfOz0vtVAySqz/P0EvHl7VKOc3nfGn6l5ciRe82Kji5mQAUHAvKBto6mHEYD13ilOEEE9gm4PfO2CdU443QfAOcKwS3mIoCuoZ+uL9cnC7FNRZl0E2CoQmtUJ9iVP//m00=
-#   template:
-#     - '*Project:* %{repository_name}'
-#     - '*Build:* <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch}'
-#     - '*Duration:* %{duration}'
-#     - '*Result:* %{result}'
-#     - '*Message:* %{message}'
+notifications:
+  slack:
+    secure: e9KIucuHYZphR69wNqokLe5hPr2UYoDaloAeBYchYRnErwZZXVzo0bPYxjHUIYGjX7rylTih3kiuimMPjxh3+r+lWWddkffAI8SptK5qKaMfYljhik8wnfQO7PGiZ+YRqhGqtGsnC91vx6hEAZeQ5gv90xXFbV/P/D+BbJ4QzcTwcPgXaaKIyZUR55MDDmT5B5T3sU8+93JPugL7gK6f5N8A/RzicKMUp0rM7JEv/5ypm09VxKFL/sb3Lltp9Ws232ygTXVRpCSAV/IUKhkf5tE01iBR7fOxDbm9N7Ql3Eg+7DE4QOu8db4v+uVM6fASB9coTTp8fLjmho3Bsa9yGiRAZa2cwijgeLUV4hF+3OFZ11RFAS1JhMhzrBNNHfXMlQR/umTqOKyjF+P8Rt67MXfQMv6OfYMYgaSc/zhx8cF//qkEra7lqIokC7+INNvoIRxGOPC6BGSA3bfx+LHXGXpOnw7WMPOkfTrFz05yJEaKLcycw/+foB+kKX4yxkEG+9rl0y9ODYB8Mw87w5340I763nHZqQX5ovmcrd9dVSNRDR4pgGgsRbBPZ6PIy4mD5Lyw5FFRwY+K0D+jpnwz9JF94yWw0juA98EyF8LfvQYxXBn7JsX2xlMpx2oWG+eY17McF/ZM+lN+oSPjaAUx2o5Zy+MPpoXSef5pR2ELXig=
+    template:
+      - '*Project:* %{repository_name}'
+      - '*Build:* <%{build_url}|#%{build_number}> (<%{compare_url}|%{commit}>) of %{repository_slug}@%{branch}'
+      - '*Duration:* %{duration}'
+      - '*Result:* %{result}'
+      - '*Message:* %{message}'
 env:
   global:
     - PROJECT_NAME=climatecoin
     - REPO_NAME=climatecoin-frontend
 jobs:
   include:
-    - stage: test
+    - stage: test pull request
+      if: type = pull_request
       addons:
         apt:
           packages:
-            - python3
-            - python3-pip
-            - gcc
-            - g++
-            - make
+            - jq
+            - curl
       before_script:
-        - npm install -g node-gyp
+        - npm install -g commitlint
       script:
         - yarn test
+        - echo $TRAVIS_REPO_SLUG
+        - echo $TRAVIS_PULL_REQUEST
+        - curl -X GET -u $GITHUB_ACCESS_TOKEN:x-oauth-basic "https://api.github.com/repos/${TRAVIS_REPO_SLUG}/pulls/${TRAVIS_PULL_REQUEST}" 2> /dev/null | jq -r ".title" | npx commitlint
+    - stage: test
+      if: type = push AND branch = develop
+      script:
+        - yarn test
+    - stage: build pull request
+      if: type = pull_request
+      services:
+        - docker
+      script:
+        - VERSION=`node -p "require('./package.json').version"`
+        - IMAGE_ID=registry.dekaside.com/$PROJECT_NAME/$REPO_NAME
+        - docker build . -f ./compose/production/Dockerfile --tag $IMAGE_ID:latest --tag
+          $IMAGE_ID:$VERSION
     - stage: build and push latest
-      if: branch = develop
+      if: branch = develop AND type = push
       services:
         - docker
       script:
@@ -45,6 +59,6 @@ jobs:
         - docker push $IMAGE_ID:$VERSION
         - docker push $IMAGE_ID:latest
     - stage: deploy
-      if: branch = develop
+      if: branch = develop AND type = push
       script:
         - curl -X POST "${SERVICE_WEBHOOK_STAGING}"

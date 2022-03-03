@@ -2,7 +2,11 @@ import clsx from 'clsx';
 import { Link as RouterLink, To } from 'react-router-dom';
 import { ButtonStyleProps, buttonStyles } from '../Button/Button';
 
-type BaseProps = { as?: string; children: React.ReactNode; className?: string } & ({
+type BaseProps = {
+  as?: string;
+  children: React.ReactNode;
+  className?: string;
+} & ({
   as?: 'button';
 } & ButtonStyleProps);
 

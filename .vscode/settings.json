@@ -1,4 +1,29 @@
 {
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "prettier.requireConfig": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.options": {
+    "extensions": [".html", ".js", ".ts", ".jsx", ".tsx"]
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "i18n-ally.localesPaths": ["src/i18n"],
   "i18n-ally.keystyle": "flat"
 }

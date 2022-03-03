@@ -1,6 +1,5 @@
-import { initReactQueryAuth } from 'react-query-auth';
-
 import storage from '@/utils/storage';
+import { initReactQueryAuth } from 'react-query-auth';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { LoginCredentialsDTO } from '@/features/auth/api/login';
 import { RegisterCredentialsDTO, registerWithEmailAndPassword } from '@/features/auth/api/register';
