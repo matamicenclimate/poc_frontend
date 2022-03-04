@@ -15,15 +15,13 @@ export const DocumentList = () => {
       return (
         <ul className="flex flex-col gap-4">
           {documents.data.map((document) => (
-            <li key={document._id}>
-              <div className="flex   flex-col border">
-                <div>{document._id}</div>
-                <div>
-                  <h3>{document.title}</h3>
-                </div>
-                <div>{document.status}</div>
-                <Link to={`/documents/${document._id}`}>{t('documents.List.viewDetails')}</Link>
+            <li key={document._id} className="flex flex-col border">
+              <div>{document._id}</div>
+              <div>
+                <h3>{document.title}</h3>
               </div>
+              <div>{document.status}</div>
+              <Link to={`/documents/${document._id}`}>{t('documents.List.viewDetails')}</Link>
             </li>
           ))}
         </ul>

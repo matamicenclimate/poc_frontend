@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "craco start",
+    "develop": "craco start",
     "start:local": "set NODE_ENV=localhost && craco start",
     "build": "craco build",
     "test": "craco test",

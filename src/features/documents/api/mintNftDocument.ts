@@ -6,7 +6,7 @@ import { useAlert } from 'react-alert';
 export type CarbonDocumentDTO = Record<string, any>;
 
 function mintNft(documentId: string): Promise<CarbonDocument> {
-  return httpClient.get(`/carbon-documents/${documentId}/mint`);
+  return httpClient.post(`/carbon-documents/${documentId}/mint`);
 }
 
 export function mintNftDocument() {
