@@ -1,9 +1,11 @@
+import clsx from 'clsx';
 import { TFunction } from 'i18next';
 import { Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import ReactSelect from 'react-select';
 
 export type SelectOption = { value: any; label: string | TFunction };
+
 type SelectProps = {
   name: string;
   label?: string;
@@ -16,6 +18,7 @@ type SelectProps = {
   labelClassName?: string;
   errorClassName?: string;
   selectClassName?: string;
+  wrapperClassName?: string;
 };
 
 export const Select = ({
@@ -26,6 +29,7 @@ export const Select = ({
   labelClassName,
   errorClassName,
   selectClassName,
+  wrapperClassName,
   options,
   isMulti = false,
   control,
@@ -39,9 +43,9 @@ export const Select = ({
       // this is inyected by the <Form /> component
       control={control}
       render={({ field }) => (
-        <div className="mb-4">
+        <div className={clsx('mb-4 flex flex-col', wrapperClassName)}>
           {label && (
-            <label className={labelClassName} htmlFor={name} id={name}>
+            <label className={clsx('ml-2', labelClassName)} htmlFor={name} id={name}>
               {label} {required && ' *'}
             </label>
           )}
@@ -54,7 +58,7 @@ export const Select = ({
             isMulti={isMulti}
           />
           {errors[name] && (
-            <p className={`text-red-700 ${errorClassName}`} role="alert">
+            <p className={clsx('text-red-700', errorClassName)} role="alert">
               {t(errors[name].key)}
             </p>
           )}

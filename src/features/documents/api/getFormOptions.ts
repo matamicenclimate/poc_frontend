@@ -1,25 +1,29 @@
 import { documentKeys } from './index';
 import { useQuery } from 'react-query';
+import { httpClient } from '@/lib/httpClient';
 
-function fetchFormOptions(): Promise<{
-  registry: Record<string, string>[];
-  type: Record<string, string>[];
-}> {
-  return Promise.resolve({
-    registry: [
-      { value: 'cdm', label: 'CDM' },
-      { value: 'verra', label: 'Verra' },
-      { value: 'goldStandard', label: 'Gold Standard' },
-      { value: 'ecoregistry', label: 'Ecoregistry' },
-      { value: 'bme', label: 'BME' },
-    ],
-    type: [
-      { value: 'carbon', label: 'Carbon offset' },
-      { value: 'nature', label: 'Nature based solutions' },
-      { value: 'irecs', label: 'Irecs' },
-    ],
-  });
+export interface FormInfo {
+  ['project-types']: FormOption[];
+  sdgs: FormOption[];
+  types: FormOption[];
+  ['sub-types']: FormOption[];
+  methodologies: FormOption[];
+  validators: FormOption[];
+  ['first-verifiers']: FormOption[];
+  standards: FormOption[];
+  registries: FormOption[];
+}
+
+export interface FormOption {
+  name: string;
+  id: string;
+  description?: string;
+  instructions?: string;
+}
+
+function fetchFormOptions(): Promise<FormInfo> {
+  return httpClient.get(`/info`);
 }
 export function getFormOptions() {
-  return useQuery(documentKeys.form(), () => fetchFormOptions());
+  return useQuery(documentKeys.form(), fetchFormOptions, { staleTime: 60 * 60 });
 }

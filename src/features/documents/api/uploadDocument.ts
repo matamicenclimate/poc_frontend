@@ -4,17 +4,31 @@ import { SelectOption } from '@/componentes/Form/Select';
 import { AxiosRequestConfig } from 'axios';
 import { httpClient } from '@/lib/httpClient';
 import { useMutation, useQueryClient } from 'react-query';
+import { format } from 'date-fns';
 
 export type CarbonDocumentDTO = Record<string, any>;
 
 function toFormData(carbonDocument: CarbonDocumentDTO) {
   const formData = new FormData();
 
-  const { document, ...newDocument } = carbonDocument;
+  const { ...newDocument } = carbonDocument;
 
-  newDocument.type = carbonDocument.type?.value;
-  newDocument.registry = carbonDocument.registry?.value;
   newDocument.status = 'pending';
+
+  function isSelectOption(object: Record<string, any>): object is SelectOption {
+    if (typeof object !== 'object') return false;
+    return !!object.value && !!object.label;
+  }
+
+  function isFileList(object: Record<string, any>): object is FileList {
+    if (typeof object !== 'object') return false;
+    return !!object[0] && (!!object[0].name || !!object[0].size);
+  }
+
+  function isDate(object: Record<string, any>): object is Date {
+    if (typeof object !== 'object') return false;
+    return object instanceof Date && !isNaN(object.valueOf());
+  }
 
   // parse the object to formData
   Object.keys(newDocument).forEach((key) => {
@@ -22,14 +36,16 @@ function toFormData(carbonDocument: CarbonDocumentDTO) {
       newDocument[key].forEach((option: SelectOption) => {
         formData.append(`${key}[]`, option.value);
       });
+    } else if (isDate(newDocument[key])) {
+      formData.append(key, format(newDocument[key], 'yyyy-MM-dd'));
+    } else if (isSelectOption(newDocument[key])) {
+      formData.append(key, newDocument[key].value);
+    } else if (isFileList(newDocument[key])) {
+      formData.append(key, newDocument[key][0]);
     } else {
       formData.append(key, newDocument[key]);
     }
   });
-
-  if (document && document[0]) {
-    formData.append('document', document[0]);
-  }
 
   return formData;
 }

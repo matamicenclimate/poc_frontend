@@ -42,3 +42,15 @@ interface Document {
   __v?: number;
   id?: string;
 }
+
+export interface FormInfo {
+  registries: Array<object>;
+  ['project-types']: Array<object>;
+  sdgs: Array<object>;
+  types: Array<object>;
+  ['sub-types']: Array<object>;
+  methodologies: Array<object>;
+  validators: Array<object>;
+  ['first-verifiers']: Array<object>;
+  standards: Array<object>;
+}

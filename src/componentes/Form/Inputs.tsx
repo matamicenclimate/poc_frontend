@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 export type InputProps = {
   name: string;
-  type: 'text' | 'email' | 'number' | 'file' | 'hidden';
+  type: 'text' | 'email' | 'number' | 'file' | 'hidden' | 'date' | 'country';
   placeholder?: string;
   label?: string;
   htmlFor?: string;
@@ -14,7 +14,9 @@ export type InputProps = {
   labelClassName?: string;
   errorClassName?: string;
   inputClassName?: string;
+  wrapperClassName?: string;
   value?: any;
+  step?: string;
   defaultValue?: any;
   accept?: string;
 };
@@ -30,13 +32,14 @@ export function Input({
   labelClassName,
   errorClassName,
   inputClassName,
+  wrapperClassName,
   ...rest
 }: InputProps) {
   const { t } = useTranslation();
   if (!register)
     throw new Error('Input component requires a register. Are you using it inside a <Form />');
   return (
-    <div className="mb-4 flex flex-col">
+    <div className={`mb-4 flex flex-col ${wrapperClassName}`}>
       {label && (
         <label className={clsx('ml-2', labelClassName)} htmlFor={name} id={name}>
           {label} {required && ' *'}
