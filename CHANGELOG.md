@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/Dekalabs/climatecoin-frontend/compare/v0.1.0...v0.2.0) (2022-03-09)
+
+
+### Features
+
+* breadcrumbs in all pages. added error handling for uplaod ([#17](https://github.com/Dekalabs/climatecoin-frontend/issues/17)) ([2689c09](https://github.com/Dekalabs/climatecoin-frontend/commit/2689c097b68f07202d9c88395cfe2d251faa6e53))
+* breadcrumd and links as buttons ([#14](https://github.com/Dekalabs/climatecoin-frontend/issues/14)) ([7ca93e0](https://github.com/Dekalabs/climatecoin-frontend/commit/7ca93e0e79a670c92f216467625b7c9a097637f1))
+* display blockchain information ([#20](https://github.com/Dekalabs/climatecoin-frontend/issues/20)) ([ceeb2be](https://github.com/Dekalabs/climatecoin-frontend/commit/ceeb2beb480e2e3ed25286d5cf45c490bc7c0cbe))
+* expand form ([#22](https://github.com/Dekalabs/climatecoin-frontend/issues/22)) ([8957206](https://github.com/Dekalabs/climatecoin-frontend/commit/89572069adb17cb2f1a37ffe47c5df133510533d))
+* login and register paged updated ([#15](https://github.com/Dekalabs/climatecoin-frontend/issues/15)) ([ced7315](https://github.com/Dekalabs/climatecoin-frontend/commit/ced7315267c25c5ac8e1a8696ae0cd6ff745d962))
+* nft list view ([#21](https://github.com/Dekalabs/climatecoin-frontend/issues/21)) ([c310906](https://github.com/Dekalabs/climatecoin-frontend/commit/c310906951d4857ae319d99278a886833a65e8b0))
+* theme and user auth ([#13](https://github.com/Dekalabs/climatecoin-frontend/issues/13)) ([8e30780](https://github.com/Dekalabs/climatecoin-frontend/commit/8e30780df7dfa3bc700b10aa27bdb084b8e603cd))
+
+
+### Bug Fixes
+
+* form render and translations ([#18](https://github.com/Dekalabs/climatecoin-frontend/issues/18)) ([24c9c18](https://github.com/Dekalabs/climatecoin-frontend/commit/24c9c18d33c7a68b79ab08d099b51145a8aa732b))
+* upload combo, some translations and validation ([#16](https://github.com/Dekalabs/climatecoin-frontend/issues/16)) ([a2e790f](https://github.com/Dekalabs/climatecoin-frontend/commit/a2e790f5be235926826f3d54e0fc9dda8ff0c6fb))
+
 ## 0.1.0 (2022-02-23)
 
 
