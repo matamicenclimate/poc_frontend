@@ -28,11 +28,16 @@ module.exports = {
           9: 'var(--color--neutral-8)',
           8: 'var(--color--neutral-9)',
         },
+        accent: {
+          primary: {
+            DEFAULT: 'var(--color--primary-blue-accent)',
+          },
+        },
       },
     },
     fontSize: {
-      sm: ['14px', '1'],
-      md: ['16px', '1,14'],
+      sm: ['0.875rem', '0.625rem'],
+      md: ['1rem', '0.712rem'],
     },
   },
   plugins: [],

@@ -1,16 +1,17 @@
 import clsx from 'clsx';
 
-const base = 'rounded-full font-bold disabled:opacity-75';
+const base = 'rounded-full font-bold disabled:opacity-50';
 
 const sizes = {
-  sm: 'min-w-78 min-h-10 px-4 py-3 text-sm',
-  md: 'min-w-101 min-h-12 px-6 py-4 text-md',
+  sm: 'px-4 py-3 text-sm',
+  md: 'px-6 py-4 text-md',
 };
 
 const variants = {
-  primary: 'text-black bg-primary',
-  light: 'text-neutral-2 bg-neutral-6',
-  dark: 'text-neutral-2 bg-neutral-6',
+  primary: 'text-neutral-8 bg-primary hover:bg-accent-primary',
+  light:
+    'text-neutral-2 bg-neutral-8 border-solid border-2 border-neutral-6 hover:text-neutral-8 hover:bg-neutral-2 disabled:text-neutral-8 disabled:bg-neutral-2',
+  dark: 'text-neutral-2 bg-neutral-8 border-solid border-2 border-neutral-4 hover:border-transparent disabled:border-transparent',
 };
 
 export const buttonStyles = { base, sizes, variants };
@@ -18,8 +19,10 @@ export const buttonStyles = { base, sizes, variants };
 type ButtonProps = {
   onClick?: () => void;
   children: React.ReactNode;
-  disabled?: boolean;
   type?: 'submit';
+  disabled?: boolean;
+  iconLeft?: React.ReactNode;
+  iconRight?: React.ReactNode;
 } & ButtonStyleProps;
 
 export type ButtonStyleProps = {
@@ -32,6 +35,9 @@ export const Button = ({
   size = 'md',
   variant = 'primary',
   disabled = false,
+  iconLeft,
+  iconRight,
+  children,
   ...props
 }: ButtonProps) => {
   return (
@@ -40,6 +46,10 @@ export const Button = ({
       className={clsx(base, sizes[size], variants[variant])}
       disabled={disabled}
       {...props}
-    ></button>
+    >
+      {iconLeft}
+      {children}
+      {iconRight}
+    </button>
   );
 };

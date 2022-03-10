@@ -1,8 +1,11 @@
 :root {
+  /* Primary */
   --color--primary-blue: #3772ff;
   --color--primary-purple: #9757d7;
   --color--primary-orange: #ff6838;
   --color--primary-green: #58bd7d;
+
+  /* Secondary */
   --color--secondary-blue: #dfe9ff;
   --color--secondary-yellow: #ffd166;
   --color--secondary-purple: #dbf;
@@ -16,4 +19,7 @@
   --color--neutral-7: #f4f5f6;
   --color--neutral-8: #fcfcfd;
   --color--neutral-9: #fff;
+
+  /* Accent */
+  --color--primary-blue-accent: #2955c0;
 }
