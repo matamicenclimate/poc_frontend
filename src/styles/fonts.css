@@ -1,0 +1,48 @@
+@font-face {
+  font-family: DMSans;
+  src: local(DMSans-Bold),
+    url(./fonts/DM_Sans/DMSans-Bold.ttf) format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: Poppins;
+  src: local(Poppins-Regular),
+    url(./fonts/Poppins/Poppins-Regular.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: Poppins;
+  src: local(Poppins-Medium),
+    url(./fonts/Poppins/Poppins-Medium.ttf) format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: Poppins;
+  src: local(Poppins-SemiBold),
+    url(./fonts/Poppins/Poppins-SemiBold.ttf) format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: Poppins;
+  src: local(Poppins-Bold),
+    url(./fonts/Poppins/Poppins-Bold.ttf) format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+.font-DMSans {
+  font-family: DMSans;
+}
+
+.font-Poppins {
+  font-family: Poppins;
+}

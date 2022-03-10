@@ -1,16 +1,16 @@
 import clsx from 'clsx';
 
-const base = 'rounded-md disabled:opacity-75';
+const base = 'rounded-full font-bold disabled:opacity-75';
 
 const sizes = {
-  sm: 'p-1',
-  md: 'p-2',
-  lg: 'p-3',
+  sm: 'min-w-78 min-h-10 px-4 py-3 text-sm',
+  md: 'min-w-101 min-h-12 px-6 py-4 text-md',
 };
 
 const variants = {
-  light: 'text-white bg-secondary',
-  primary: 'text-white bg-blue-600',
+  primary: 'text-white bg-primary hover:bg-primary-alt',
+  light: 'text-[color:var(--color--neutral-2)] [background:var(--color--neutral-6)] ',
+  dark: 'text-[color:var(--color--neutral-2)] [background:var(--color--neutral-6)] ',
 };
 
 export const buttonStyles = { base, sizes, variants };
@@ -40,6 +40,6 @@ export const Button = ({
       className={clsx(base, sizes[size], variants[variant])}
       disabled={disabled}
       {...props}
-    />
+    ></button>
   );
 };

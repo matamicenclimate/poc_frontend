@@ -296,11 +296,11 @@ export const Upload = () => {
             name="created_by_user"
             defaultValue={user.user?.email as string}
           />
-
-          <Button type="submit" disabled={uploadDocuments.isLoading}>
-            {t('uploadDocuments.send.button')}
-          </Button>
         </Form>
+
+        <Button type="submit" size="md" disabled={uploadDocuments.isLoading}>
+          {t('uploadDocuments.send.button')}
+        </Button>
 
         <Dialog
           isOpen={isOpen}
