@@ -8,9 +8,9 @@ const sizes = {
 };
 
 const variants = {
-  primary: 'text-white bg-primary hover:bg-primary-alt',
-  light: 'text-[color:var(--color--neutral-2)] [background:var(--color--neutral-6)] ',
-  dark: 'text-[color:var(--color--neutral-2)] [background:var(--color--neutral-6)] ',
+  primary: 'text-black bg-primary',
+  light: 'text-neutral-2 bg-neutral-6',
+  dark: 'text-neutral-2 bg-neutral-6',
 };
 
 export const buttonStyles = { base, sizes, variants };
