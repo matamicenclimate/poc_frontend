@@ -5,6 +5,7 @@ import { LoginLayout } from '@/componentes/Layout/LoginLayout';
 import { useAuth } from '@/lib/auth';
 import { useTranslation } from 'react-i18next';
 import { Link } from '@/componentes/Elements/Link/Link';
+import { Title } from '@/componentes/Elements/Title/Title';
 
 export const Login = () => {
   const auth = useAuth();
@@ -23,7 +24,7 @@ export const Login = () => {
         <Link to="/auth/register" as="button">
           register
         </Link>
-        <h1>{t('auth.Login.pageTitle')}</h1>
+        <Title size={1}>{t('auth.Login.pageTitle')}</Title>
         <Form onSubmit={handleLogin} className="flex flex-col">
           <Input
             name="email"

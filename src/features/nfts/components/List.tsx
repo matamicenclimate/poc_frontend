@@ -1,6 +1,7 @@
 import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
+import { Title } from '@/componentes/Elements/Title/Title';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { useTranslation } from 'react-i18next';
 import { getNFTs } from '../api/getNFTs';
@@ -17,7 +18,7 @@ export const NFTList = () => {
             <li key={nft._id} className="flex flex-col border">
               <div>{nft._id}</div>
               <div>
-                <h3>{nft.asa_id}</h3>
+                <Title size={3}>{nft.asa_id}</Title>
               </div>
               <div>{nft.status}</div>
               <Link to={`/nfts/${nft._id}`}>{t('nfts.List.viewDetails')}</Link>
@@ -35,7 +36,7 @@ export const NFTList = () => {
   return (
     <MainLayout title="NFT List">
       <Breadcrumb links={[{ to: '/nfts/list', label: t('nfts.List.breadcrumbTitle') }]} />
-      <h1>{t('nfts.List.title')}</h1>
+      <Title size={1}>{t('nfts.List.title')}</Title>
 
       {renderNfts()}
     </MainLayout>

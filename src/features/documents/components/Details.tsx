@@ -2,6 +2,7 @@ import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
 import { Button } from '@/componentes/Elements/Button/Button';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
+import { Title } from '@/componentes/Elements/Title/Title';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
@@ -22,7 +23,7 @@ export const DocumentDetails = () => {
       return (
         <>
           <div className="flex flex-col gap-4">
-            <h1>{document.data.title}</h1>
+            <Title size={1}>{document.data.title}</Title>
             <div>sn: {document.data.serial_number}</div>
             <div>amt: {document.data.credits}</div>
             <div>{document.data.status}</div>

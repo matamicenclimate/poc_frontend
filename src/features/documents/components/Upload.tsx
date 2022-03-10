@@ -14,6 +14,7 @@ import { getFormOptions, FormOption } from '../api/getFormOptions';
 import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
 import { allCountries } from 'country-region-data';
 import { validationSchema } from '../validation/FormValidation';
+import { Title } from '@/componentes/Elements/Title/Title';
 
 export const Upload = () => {
   const { t } = useTranslation();
@@ -54,7 +55,9 @@ export const Upload = () => {
           },
         ]}
       />
-      <h1 className="mb-4">{t('uploadDocuments.title')}</h1>
+      <Title size={1} className="mb-4">
+        {t('uploadDocuments.title')}
+      </Title>
       <>
         <Form
           onSubmit={handleSubmit}

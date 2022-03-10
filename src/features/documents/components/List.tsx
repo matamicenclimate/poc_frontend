@@ -5,6 +5,7 @@ import { t } from 'i18next';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { getDocuments } from '../api/getDocuments';
 import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
+import { Title } from '@/componentes/Elements/Title/Title';
 
 export const DocumentList = () => {
   const { user } = useAuth();
@@ -18,7 +19,7 @@ export const DocumentList = () => {
             <li key={document._id} className="flex flex-col border">
               <div>{document._id}</div>
               <div>
-                <h3>{document.title}</h3>
+                <Title size={3}>{document.title}</Title>
               </div>
               <div>{document.status}</div>
               <Link to={`/documents/${document._id}`}>{t('documents.List.viewDetails')}</Link>
@@ -35,11 +36,11 @@ export const DocumentList = () => {
   return (
     <MainLayout title={t('head.List.title')}>
       <Breadcrumb links={[{ to: '/documents/list', label: t('documents.List.breadcrumbTitle') }]} />
-      <div className="flex justify-between">
-        <h1>{t('documents.List.title')}</h1>
-        <div>
-          <Link to="/documents/upload">{t('uploadDocuments.link')}</Link>
-        </div>
+      <div className="flex items-center justify-between">
+        <Title size={1}>{t('documents.List.title')}</Title>
+        <Link to="/documents/upload" as="button">
+          {t('uploadDocuments.link')}
+        </Link>
       </div>
 
       {renderDocuments()}

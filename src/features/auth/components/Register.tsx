@@ -1,5 +1,6 @@
 import { Button } from '@/componentes/Elements/Button/Button';
 import { Link } from '@/componentes/Elements/Link/Link';
+import { Title } from '@/componentes/Elements/Title/Title';
 import { Form } from '@/componentes/Form/Form';
 import { Input } from '@/componentes/Form/Inputs';
 import { LoginLayout } from '@/componentes/Layout/LoginLayout';
@@ -23,7 +24,7 @@ export const Register = () => {
         <Link to="/auth/register" as="button">
           register
         </Link>
-        <h1>{t('auth.Register.pageTitle')}</h1>
+        <Title size={1}>{t('auth.Register.pageTitle')}</Title>
         <Form onSubmit={handleLogin} className="flex flex-col">
           <Input
             name="email"
