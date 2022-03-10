@@ -12,7 +12,6 @@ import { Select, SelectOption } from '@/componentes/Form/Select';
 import { uploadDocument } from '../api/uploadDocument';
 import { getFormOptions, FormOption } from '../api/getFormOptions';
 import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
-import { allCountries } from 'country-region-data';
 import { validationSchema } from '../validation/FormValidation';
 import { Title } from '@/componentes/Elements/Title/Title';
 
@@ -28,13 +27,6 @@ export const Upload = () => {
     await uploadDocuments.mutateAsync(data);
     setIsOpen((old) => !old);
   };
-
-  const parseCountries = allCountries.map((country) => {
-    return {
-      value: country[1],
-      label: country[0],
-    };
-  });
 
   const formOptionToSelectOption = (options: FormOption[] | undefined): SelectOption[] => {
     if (options === undefined) return [];
@@ -68,7 +60,7 @@ export const Upload = () => {
             wrapperClassName="col-span-2"
             label={t('uploadDocuments.project.type')}
             required
-            name="project-types"
+            name="project_types"
             options={formOptionToSelectOption(formOption.data?.['project-types'])}
           />
 
@@ -101,7 +93,7 @@ export const Upload = () => {
             label={t('uploadDocuments.country')}
             name="country"
             required
-            options={(parseCountries as SelectOption[]) ?? []}
+            options={formOptionToSelectOption(formOption.data?.countries)}
           />
 
           <Input
@@ -175,7 +167,7 @@ export const Upload = () => {
             wrapperClassName="col-span-2"
             label={t('uploadDocuments.subtype')}
             required
-            name="sub-types"
+            name="sub_type"
             options={formOptionToSelectOption(formOption.data?.['sub-types'])}
           />
 
@@ -183,7 +175,7 @@ export const Upload = () => {
           <Select
             wrapperClassName="col-span-2"
             label={t('uploadDocuments.methodology')}
-            name="methodologies"
+            name="methodology"
             options={formOptionToSelectOption(formOption.data?.methodologies)}
           />
 
@@ -206,7 +198,7 @@ export const Upload = () => {
           <Select
             wrapperClassName="col-span-2"
             label={t('uploadDocuments.validator')}
-            name="validators"
+            name="validator"
             options={formOptionToSelectOption(formOption.data?.validators)}
           />
 
@@ -214,7 +206,7 @@ export const Upload = () => {
           <Select
             wrapperClassName="col-span-2"
             label={t('uploadDocuments.firstVerifier')}
-            name="first-verifiers"
+            name="first_verifier"
             options={formOptionToSelectOption(formOption.data?.['first-verifiers'])}
           />
 
@@ -231,7 +223,7 @@ export const Upload = () => {
             wrapperClassName="col-span-2"
             label={t('uploadDocuments.registry.name')}
             required
-            name="registries"
+            name="registry"
             options={formOptionToSelectOption(formOption.data?.registries)}
           />
 

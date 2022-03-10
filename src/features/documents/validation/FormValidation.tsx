@@ -23,7 +23,7 @@ const imageValidation = yup
   });
 
 export const validationSchema = yup.object({
-  ['project-types']: yup.object().required(),
+  project_types: yup.object().required(),
   title: yup.string().required(),
   sdgs: yup.array().nullable(),
   description: yup.string().required(),
@@ -36,14 +36,14 @@ export const validationSchema = yup.object({
   project_registration: dateValidation.required(),
   project_video: yup.string(),
   types: yup.object().required(),
-  ['sub-types']: yup.object().required(),
-  methodologies: yup.object(),
+  sub_type: yup.object().required(),
+  methodology: yup.object(),
   credit_start: dateValidation.required(),
   credit_end: dateValidation.required(),
   validators: yup.object(),
-  ['first-verifiers']: yup.object(),
+  first_verifier: yup.object(),
   standard: yup.object().required(),
-  registries: yup.object().required(),
+  registry: yup.object().required(),
   credits: yup.string().required(),
   serial_number: yup.string().required(),
   registry_url: yup.string().required(),

@@ -12,6 +12,7 @@ export interface FormInfo {
   ['first-verifiers']: FormOption[];
   standards: FormOption[];
   registries: FormOption[];
+  countries: FormOption[];
 }
 
 export interface FormOption {

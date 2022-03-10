@@ -45,6 +45,7 @@ interface Document {
 
 export interface FormInfo {
   registries: Array<object>;
+  countries: Array<object>;
   ['project-types']: Array<object>;
   sdgs: Array<object>;
   types: Array<object>;
