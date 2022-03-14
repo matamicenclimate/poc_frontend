@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { DocumentDetails } from '../components/Details';
-import { DocumentList } from '../components/List';
-import { Upload } from '../components/Upload';
+import { DocumentDetails } from '../pages/Details';
+import { DocumentList } from '../pages/List';
+import { Upload } from '../pages/Upload';
 
 export const DocumentRouter = () => {
   return (

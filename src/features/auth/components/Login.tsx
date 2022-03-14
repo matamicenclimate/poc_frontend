@@ -6,13 +6,17 @@ import { useAuth } from '@/lib/auth';
 import { useTranslation } from 'react-i18next';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Title } from '@/componentes/Elements/Title/Title';
+import { useState } from 'react';
 
 export const Login = () => {
   const auth = useAuth();
   const { t } = useTranslation();
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (data: { email: string }) => {
+    setLoading(true);
     await auth.login({ email: data.email });
+    setLoading(false);
   };
 
   return (
@@ -33,7 +37,9 @@ export const Login = () => {
             placeholder={t('auth.Login.form.email')}
           />
 
-          <Button type="submit">{t('auth.Login.login')}</Button>
+          <Button type="submit" disabled={loading}>
+            {t('auth.Login.login')}
+          </Button>
         </Form>
       </div>
     </LoginLayout>

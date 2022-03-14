@@ -42,11 +42,16 @@ export const Select = ({
       name={name}
       // this is inyected by the <Form /> component
       control={control}
+      defaultValue=""
       render={({ field }) => (
         <div className={clsx('mb-4 flex flex-col', wrapperClassName)}>
           {label && (
-            <label className={clsx('ml-2', labelClassName)} htmlFor={name} id={name}>
-              {label} {required && ' *'}
+            <label
+              className={clsx('mb-3 text-xs text-neutral-4', labelClassName)}
+              htmlFor={name}
+              id={name}
+            >
+              {label} {required && '(required)'}
             </label>
           )}
           <ReactSelect

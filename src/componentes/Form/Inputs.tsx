@@ -41,15 +41,19 @@ export function Input({
   return (
     <div className={`mb-4 flex flex-col ${wrapperClassName}`}>
       {label && (
-        <label className={clsx('ml-2', labelClassName)} htmlFor={name} id={name}>
-          {label} {required && ' *'}
+        <label
+          className={clsx('mb-3 text-xs text-neutral-4', labelClassName)}
+          htmlFor={name}
+          id={name}
+        >
+          {label} {required && '(required)'}
         </label>
       )}
       <input
         type={type}
         id={name}
         placeholder={placeholder}
-        className={`border p-2 rounded-md   error:border-red-700 invalid:border-red-500 ${inputClassName}`}
+        className={`error:border-red-700 rounded-md border   p-2 invalid:border-red-500 ${inputClassName}`}
         {...register(name)}
         {...rest}
       />

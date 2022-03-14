@@ -5,5 +5,15 @@ module.exports = {
     alias: {
       '@': path.resolve(__dirname, 'src'),
     },
+    module: {
+      rules: [
+        {
+          loader: 'react-svg-loader',
+          options: {
+            jsx: true, // true outputs JSX tags
+          },
+        },
+      ],
+    },
   },
 };

@@ -12,6 +12,18 @@ const documentValidation = yup
   .mixed()
   .nullable()
   .test('format', 'validation.errors.format.document', (value) => {
+    console.log(value, value.length === 1 && DOCUMENTS_SUPPORTED_FORMATS.includes(value[0].type));
+
+    return value.length === 1 && DOCUMENTS_SUPPORTED_FORMATS.includes(value[0].type);
+  });
+
+const fileInputValidation = yup
+  .array()
+  .required()
+  .test('format', 'validation.errors.format.document', (value) => {
+    if (!value) return false;
+    console.log(value, value.length === 1 && DOCUMENTS_SUPPORTED_FORMATS.includes(value[0].type));
+
     return value.length === 1 && DOCUMENTS_SUPPORTED_FORMATS.includes(value[0].type);
   });
 
@@ -50,5 +62,5 @@ export const validationSchema = yup.object({
   pdd: documentValidation.required(),
   validation_report: documentValidation,
   monitoring_report: documentValidation,
-  verification_report: documentValidation.required(),
+  verification_report: fileInputValidation.required(),
 });
