@@ -6,6 +6,7 @@ import { RegisterCredentialsDTO, registerWithEmailAndPassword } from '@/features
 import { AuthUser, UserResponse } from '@/features/auth/types';
 import { magiclink } from './magiclink';
 import { getUser } from '@/features/auth/api/getUser';
+import { httpClient } from '@/lib/httpClient';
 
 async function handleUserResponse(data: UserResponse) {
   const { jwt, user } = data;
@@ -37,6 +38,13 @@ async function loginFn(data: LoginCredentialsDTO): Promise<AuthUser> {
   storage.setToken(jwt as string);
 
   const userMetadata = await getUser();
+
+  const issuer = userMetadata.magic_user.issuer;
+  const publicAddress = userMetadata.magic_user.publicAddress;
+
+  const updateData = { issuer: issuer, publicAddress: publicAddress };
+  httpClient.put(`/users/${userMetadata.id}`, updateData);
+
   return userMetadata;
 }
 
@@ -61,7 +69,7 @@ const authConfig = {
   logoutFn,
   LoaderComponent() {
     return (
-      <div className="w-screen h-screen flex justify-center items-center">
+      <div className="flex h-screen w-screen items-center justify-center">
         <Spinner size="xl" />
       </div>
     );
