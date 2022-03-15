@@ -5,7 +5,6 @@
     "part2": "In order to infer the appropriate type for t function, you should use type augmentation to override the Resources type.",
     "part3": "Check out the @types/react-i18next to see an example."
   },
-
   "login.heading": "Login Email",
   "dialogs.base.cancel": "Cancelar",
   "dialogs.base.accept": "Aceptar",
@@ -37,7 +36,6 @@
   "uploadDocuments.sdgs": "SDG's",
   "uploadDocuments.description": "Descripción",
   "uploadDocuments.project.url": "URL del proyecto",
-
   "components.dialog.accept.button": "Aceptar",
   "components.dialog.cancel.button": "Cancelar",
   "validation.errors.required": "Campo requerido",
@@ -65,9 +63,13 @@
   "uploadDocuments.projectLocation": "Localización del proyecto",
   "uploadDocuments.projectLatitude": "Latitud",
   "uploadDocuments.projectLongitude": "Longitud",
-  "documents.List.breadcrumbTitle": "Documentos",
-  "documents.Upload.title": "Subir Documento",
-
+  "documents.List.breadcrumbTitle": "Documents",
+  "documents.Upload.stepper.INFO": "Info",
+  "documents.Upload.stepper.DETAILS": "Detalles",
+  "documents.Upload.stepper.CONFIG": "Configuración",
+  "documents.Upload.stepper.FILES": "Archivos",
+  "documents.Upload.stepper.CONFIRMATION": "Confirmación",
+  "documents.Upload.title": "Transferir créditos",
   "misc.Dashboard.title": "Home",
   "misc.Landing.title": "Welcome"
 }

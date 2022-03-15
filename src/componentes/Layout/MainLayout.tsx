@@ -51,7 +51,6 @@ export const Navbar = () => {
     <div className="mx-auto w-full border pb-5 pt-5">
       <div className="mx-auto flex">
         <div className="mr-10 pl-20">
-
           <Link to="/">
             <img src={logo} alt="dekalabs react test" className="w-12" />
           </Link>
@@ -128,7 +127,7 @@ export const MainLayout = ({ title, children }: MainLayoutProps) => {
       <Head title={title} />
       <div className="flex min-h-screen flex-col">
         <Navbar />
-        <div className="mx-auto w-full max-w-screen-md flex-grow">{children}</div>
+        <div className="mx-auto w-full max-w-screen-lg flex-grow">{children}</div>
         <Footer />
       </div>
     </>

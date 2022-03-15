@@ -1,6 +1,8 @@
 import clsx from 'clsx';
 import { UseFormRegister } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { FieldError } from './FieldError';
+import { Label } from './Label';
 
 export type InputProps = {
   name: string;
@@ -36,51 +38,64 @@ export function Input({
   ...rest
 }: InputProps) {
   const { t } = useTranslation();
-  if (!register)
+
+  if (!register) {
     throw new Error('Input component requires a register. Are you using it inside a <Form />');
+  }
+
   return (
-    <div className={`mb-4 flex flex-col ${wrapperClassName}`}>
-      {label && (
-        <label
-          className={clsx('mb-3 text-xs text-neutral-4', labelClassName)}
-          htmlFor={name}
-          id={name}
-        >
-          {label} {required && '(required)'}
-        </label>
-      )}
+    <div className={`flex flex-col ${wrapperClassName}`}>
+      <Label {...{ labelClassName, name, required, label }} />
+
       <input
         type={type}
         id={name}
         placeholder={placeholder}
-        className={`error:border-red-700 rounded-md border   p-2 invalid:border-red-500 ${inputClassName}`}
+        className={`error:border-red-700 rounded-md border p-2 invalid:border-red-500 ${inputClassName}`}
         {...register(name)}
         {...rest}
       />
       {errors[name] && (
-        <p className={`text-red-700 ${errorClassName}`} role="alert">
-          {t(errors[name].key)}
-        </p>
+        <FieldError errorClassName={errorClassName}>{t(errors[name].key)}</FieldError>
       )}
     </div>
   );
 }
 
-export function Select({ errors, register, options, name, ...rest }: any) {
+export function Textarea({
+  name,
+  type,
+  label,
+  placeholder,
+  register,
+  errors = {},
+  required = false,
+  labelClassName,
+  errorClassName,
+  inputClassName,
+  wrapperClassName,
+  ...rest
+}: InputProps) {
+  const { t } = useTranslation();
+
+  if (!register) {
+    throw new Error('Input component requires a register. Are you using it inside a <Form />');
+  }
+
   return (
-    <>
-      <select {...register(name)} {...rest}>
-        {options.map((value: any) => (
-          <option key={value} value={value}>
-            {value}
-          </option>
-        ))}
-      </select>
-      {errors && (
-        <p className="text-red" role="alert">
-          {errors[name].message}
-        </p>
+    <div className={`flex flex-col ${wrapperClassName}`}>
+      <Label {...{ labelClassName, name, required, label }} />
+
+      <textarea
+        id={name}
+        placeholder={placeholder}
+        className={`error:border-red-700 rounded-md border p-2 invalid:border-red-500 ${inputClassName}`}
+        {...register(name)}
+        {...rest}
+      />
+      {errors[name] && (
+        <FieldError errorClassName={errorClassName}>{t(errors[name].key)}</FieldError>
       )}
-    </>
+    </div>
   );
 }

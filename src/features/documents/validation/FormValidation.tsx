@@ -19,27 +19,35 @@ const documentValidation = yup
 
 const fileInputValidation = yup
   .array()
-  .required()
   .test('format', 'validation.errors.format.document', (value) => {
     if (!value) return false;
-    console.log(value, value.length === 1 && DOCUMENTS_SUPPORTED_FORMATS.includes(value[0].type));
 
-    return value.length === 1 && DOCUMENTS_SUPPORTED_FORMATS.includes(value[0].type);
+    const fileTypes = value.map((file) => file.type);
+    const includesErrors = fileTypes
+      .map((type) => DOCUMENTS_SUPPORTED_FORMATS.includes(type))
+      .includes(false);
+
+    return !includesErrors;
   });
 
-const imageValidation = yup
-  .mixed()
-  .nullable()
-  .test('format', 'validation.errors.format.image', (value) => {
-    return value.length === 1 && IMAGES_SUPPORTED_FORMATS.includes(value[0].type);
-  });
+const imageValidation = yup.array().test('format', 'validation.errors.format.image', (value) => {
+  if (!value) return false;
+  if (value.length === 0) return false;
+
+  const fileTypes = value.map((file) => file.type);
+  const includesErrors = fileTypes
+    .map((type) => IMAGES_SUPPORTED_FORMATS.includes(type))
+    .includes(false);
+
+  return !includesErrors;
+});
 
 export const validationSchema = yup.object({
-  project_types: yup.object().required(),
+  project_types: yup.object().nullable().required(),
   title: yup.string().required(),
   sdgs: yup.array().nullable(),
   description: yup.string().required(),
-  country: yup.object().nullable().required(),
+  country: yup.object().nullable().nullable().required(),
   project_url: yup.string().required(),
   project_latitude: yup.string().nullable(),
   project_longitude: yup.string().nullable(),
@@ -47,15 +55,15 @@ export const validationSchema = yup.object({
   cover: imageValidation.required(),
   project_registration: dateValidation.required(),
   project_video: yup.string(),
-  types: yup.object().required(),
-  sub_type: yup.object().required(),
-  methodology: yup.object(),
+  types: yup.object().nullable().required(),
+  sub_type: yup.object().nullable().required(),
+  methodology: yup.object().nullable(),
   credit_start: dateValidation.required(),
   credit_end: dateValidation.required(),
-  validators: yup.object(),
-  first_verifier: yup.object(),
-  standard: yup.object().required(),
-  registry: yup.object().required(),
+  validators: yup.object().nullable(),
+  first_verifier: yup.object().nullable(),
+  standard: yup.object().nullable().required(),
+  registry: yup.object().nullable().required(),
   credits: yup.string().required(),
   serial_number: yup.string().required(),
   registry_url: yup.string().required(),

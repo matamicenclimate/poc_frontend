@@ -6,7 +6,7 @@ import { Button } from '@/componentes/Elements/Button/Button';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { Dialog } from '@/componentes/Dialog/Dialog';
 import { Form } from '@/componentes/Form/Form';
-import { Input } from '@/componentes/Form/Inputs';
+import { Input, Textarea } from '@/componentes/Form/Inputs';
 import { Select, SelectOption } from '@/componentes/Form/Select';
 
 import { uploadDocument } from '../api/uploadDocument';
@@ -18,6 +18,9 @@ import { Card } from '@/componentes/Card/Card';
 import useYupValidationResolver from '@/componentes/Form/useValidationResolver';
 import { useForm } from 'react-hook-form';
 import FileInput from '@/componentes/Form/FileInput';
+import { Link } from 'react-router-dom';
+import { ReactComponent as CheckIcon } from '@/assets/icons/bx-check-line.svg';
+import { ProjectPreview } from '../components/ProjectPreview';
 
 const formOptionToSelectOption = (options: FormOption[] | undefined): SelectOption[] => {
   if (options === undefined) return [];
@@ -78,7 +81,7 @@ export const Upload = () => {
       )}
       {currStep === UploadSteps.CONFIRMATION ? (
         <Button type="submit" size="md" disabled={uploadDocuments.isLoading}>
-          {t('uploadDocuments.send.button')} ad
+          {t('uploadDocuments.send.button')}
         </Button>
       ) : (
         <Button type={undefined} onClick={nextStep}>
@@ -90,59 +93,68 @@ export const Upload = () => {
 
   return (
     <MainLayout title={t('head.Upload.title')}>
-      <div>
-        <Title size={1} className="mb-4">
-          {t('uploadDocuments.title')}
-        </Title>
+      <div className="flex items-center py-12">
+        <div className="flex-grow">
+          <Title size={2} as={1}>
+            {t('documents.Upload.title')}
+          </Title>
+        </div>
+        <div className="word-break max-w-[300px] text-sm text-neutral-4">
+          Do you have doubts about how projects are created or managed in Climatecoin?
+        </div>
+        <Link to="" className="text-bold">
+          More info {'>'}
+        </Link>
       </div>
       <div className="grid md:grid-cols-3">
         <div id="left-column-wrapper" className="">
           <div>
-            {[
-              'Project info',
-              'Project details',
-              'Configuration',
-              'Upload files',
-              'Confirmation',
-            ].map((title, index) => (
-              <div key={index}>
-                {index !== 0 ? (
-                  <div>
-                    <div className="ml-6 h-6 w-px border-r-2 border-dashed"></div>
-                  </div>
-                ) : null}
-                <div
-                  key={index}
-                  onClick={() => setCurrStep(index)}
-                  className="flex w-60 cursor-pointer gap-4 rounded-full p-2 text-sm shadow-sm"
-                >
+            {Object.keys(UploadSteps)
+              .filter((val: any) => isNaN(val))
+              .map((title, index) => (
+                <div key={index}>
+                  {index !== 0 ? (
+                    <div>
+                      <div className="ml-6 h-6 w-px border-r-2 border-dashed"></div>
+                    </div>
+                  ) : null}
                   <div
-                    className={clsx(
-                      'flex h-8 w-8 items-center justify-center rounded-full border-2',
-                      currStep === index && 'border-green-600',
-                      currStep > index && 'border-green-600 bg-green-600 text-white'
-                    )}
+                    key={index}
+                    onClick={() => setCurrStep(index)}
+                    className="flex w-60 cursor-pointer gap-4 rounded-full p-2 text-sm shadow-sm"
                   >
-                    {index + 1}
+                    <div
+                      className={clsx(
+                        'flex h-7 w-7 items-center justify-center rounded-full border-2',
+                        currStep === index && 'border-green-600',
+                        currStep > index && 'border-green-600 bg-green-600 text-white'
+                      )}
+                    >
+                      {currStep > index ? <CheckIcon /> : index + 1}
+                    </div>
+                    <div className="flex items-center">
+                      {t(`documents.Upload.stepper.${title}`)}
+                    </div>
                   </div>
-                  <div className="flex items-center">{title}</div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
         <div className="md:col-span-2">
           <form onSubmit={methods.handleSubmit(handleSubmit)}>
             {currStep === UploadSteps.INFO ? (
               <Card>
-                <Title size={4}>Project Info</Title>
-                <div className="grid grid-cols-2">
+                <Title size={5} as={2}>
+                  Project Info
+                </Title>
+                <div className="mt-8 grid grid-cols-2 gap-4">
                   <Select
                     {...{
                       ...baseInputProps,
                       name: 'project_types',
                       options: formOptionToSelectOption(formOption.data?.['project-types']),
                       label: t('uploadDocuments.project.type'),
+                      wrapperClassName: '',
                     }}
                     required
                   />
@@ -152,6 +164,7 @@ export const Upload = () => {
                       options: formOptionToSelectOption(formOption.data?.countries),
                       label: t('uploadDocuments.country'),
                       name: 'country',
+                      wrapperClassName: '',
                     }}
                     required
                   />
@@ -169,7 +182,7 @@ export const Upload = () => {
                     name="title"
                     type="text"
                   />
-                  <Input
+                  <Textarea
                     {...{ ...baseInputProps }}
                     label={t('uploadDocuments.description')}
                     required
@@ -188,10 +201,12 @@ export const Upload = () => {
               </Card>
             ) : null}
             {/** Hide the DIV with css instead of unmounting it so that we dont loose the value of the FileInputs */}
-            <div className={clsx(currStep === UploadSteps.DETAILS ? 'block' : 'hidden')}>
+            {currStep === UploadSteps.DETAILS ? (
               <Card>
-                <Title size={4}>Project Details</Title>
-                <div className="grid grid-cols-2">
+                <Title size={5} as={2}>
+                  Project Details
+                </Title>
+                <div className="mt-8 grid grid-cols-2 gap-4">
                   <Input
                     {...baseInputProps}
                     wrapperClassName="col-span-1"
@@ -209,23 +224,19 @@ export const Upload = () => {
                     type="number"
                     step="any"
                   />
-
-                  <Input
+                  <FileInput
                     {...baseInputProps}
                     label={t('uploadDocuments.projectThumbnail')}
                     required
                     name="thumbnail"
-                    type="file"
-                    accept={'.png' || '.jpg' || '.jpeg'}
+                    accept={'.png, .jpg, .jpeg'}
                   />
-
-                  <Input
+                  <FileInput
                     {...baseInputProps}
                     label={t('uploadDocuments.projectCover')}
                     required
                     name="cover"
-                    type="file"
-                    accept={'.png' || '.jpg' || '.jpeg'}
+                    accept={'.png, .jpg, .jpeg'}
                   />
                   <Input
                     {...baseInputProps}
@@ -258,11 +269,13 @@ export const Upload = () => {
                   <StepperNavigation />
                 </div>
               </Card>
-            </div>
+            ) : null}
             {currStep === UploadSteps.CONFIG ? (
               <Card>
-                <Title size={4}>Project Details</Title>
-                <div className="grid grid-cols-2">
+                <Title size={5} as={2}>
+                  Project Details
+                </Title>
+                <div className="mt-8 grid grid-cols-2 gap-4">
                   {' '}
                   <Input
                     {...baseInputProps}
@@ -345,10 +358,12 @@ export const Upload = () => {
                 </div>
               </Card>
             ) : null}
-            <div className={clsx(currStep === UploadSteps.FILES ? 'block' : 'hidden')}>
+            {currStep === UploadSteps.FILES ? (
               <Card>
-                <Title size={4}>Project Details</Title>
-                <div className="grid grid-cols-2">
+                <Title size={5} as={2}>
+                  Project Details
+                </Title>
+                <div className="mt-8 grid grid-cols-2 gap-4">
                   <FileInput
                     {...baseInputProps}
                     wrapperClassName="col-span-2"
@@ -384,16 +399,20 @@ export const Upload = () => {
                     type="hidden"
                     name="created_by_user"
                     defaultValue={user.user?.email as string}
-                  />{' '}
+                  />
                   <StepperNavigation />
                 </div>
               </Card>
-            </div>
+            ) : null}
             {currStep === UploadSteps.CONFIRMATION ? (
               <Card>
-                <Title size={4}>Project Details</Title>
-                <div className="grid grid-cols-2">
-                  {' '}
+                <Title size={5} as={2}>
+                  Project Details
+                </Title>
+                <div className="mt-8 grid grid-cols-2 gap-4">
+                  <div className="col-span-2">
+                    <ProjectPreview values={methods.getValues()} />
+                  </div>
                   <StepperNavigation />
                 </div>
               </Card>

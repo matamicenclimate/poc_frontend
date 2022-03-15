@@ -3,6 +3,8 @@ import { TFunction } from 'i18next';
 import { Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import ReactSelect from 'react-select';
+import { FieldError } from './FieldError';
+import { Label } from './Label';
 
 export type SelectOption = { value: any; label: string | TFunction };
 
@@ -42,18 +44,10 @@ export const Select = ({
       name={name}
       // this is inyected by the <Form /> component
       control={control}
-      defaultValue=""
+      defaultValue={isMulti ? [] : ''}
       render={({ field }) => (
-        <div className={clsx('mb-4 flex flex-col', wrapperClassName)}>
-          {label && (
-            <label
-              className={clsx('mb-3 text-xs text-neutral-4', labelClassName)}
-              htmlFor={name}
-              id={name}
-            >
-              {label} {required && '(required)'}
-            </label>
-          )}
+        <div className={clsx('flex flex-col', wrapperClassName)}>
+          <Label {...{ labelClassName, name, required, label }} />
           <ReactSelect
             {...field}
             aria-labelledby={name}
@@ -63,9 +57,7 @@ export const Select = ({
             isMulti={isMulti}
           />
           {errors[name] && (
-            <p className={clsx('text-red-700', errorClassName)} role="alert">
-              {t(errors[name].key)}
-            </p>
+            <FieldError errorClassName={errorClassName}>{t(errors[name].key)}</FieldError>
           )}
         </div>
       )}

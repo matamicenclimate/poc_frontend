@@ -26,5 +26,8 @@ function fetchFormOptions(): Promise<FormInfo> {
   return httpClient.get(`/info`);
 }
 export function getFormOptions() {
-  return useQuery(documentKeys.form(), fetchFormOptions, { staleTime: 60 * 60 });
+  return useQuery(documentKeys.form(), fetchFormOptions, {
+    staleTime: 60 * 60,
+    refetchOnWindowFocus: false,
+  });
 }
