@@ -17,6 +17,7 @@ export const protectedRoutes = [
       { path: '/documents/*', element: <DocumentRouter /> },
       { path: '/profile', element: <Profile /> },
       { path: '/wallet', element: <Wallet /> },
+      { path: '/home', element: <Dashboard /> },
       { path: '/', element: <Dashboard /> },
       { path: '*', element: <Navigate to="." /> },
     ],

@@ -20,13 +20,13 @@ module.exports = {
         neutral: {
           1: 'var(--color--neutral-1)',
           2: 'var(--color--neutral-2)',
-          4: 'var(--color--neutral-3)',
-          3: 'var(--color--neutral-4)',
+          3: 'var(--color--neutral-3)',
+          4: 'var(--color--neutral-4)',
           5: 'var(--color--neutral-5)',
           6: 'var(--color--neutral-6)',
           7: 'var(--color--neutral-7)',
-          9: 'var(--color--neutral-8)',
-          8: 'var(--color--neutral-9)',
+          8: 'var(--color--neutral-8)',
+          9: 'var(--color--neutral-9)',
         },
         accent: {
           primary: {
