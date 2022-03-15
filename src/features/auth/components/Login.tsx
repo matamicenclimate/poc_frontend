@@ -4,10 +4,9 @@ import { Input } from '@/componentes/Form/Inputs';
 import { LoginLayout } from '@/componentes/Layout/LoginLayout';
 import { useAuth } from '@/lib/auth';
 import { useTranslation } from 'react-i18next';
-import { Link } from '@/componentes/Elements/Link/Link';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { useState } from 'react';
-
+import { ReactComponent as LockIcon } from '@/assets/icons/bx-lock-alt.svg';
 export const Login = () => {
   const auth = useAuth();
   const { t } = useTranslation();
@@ -21,23 +20,30 @@ export const Login = () => {
 
   return (
     <LoginLayout title={t('auth.Login.pageTitle')}>
-      <div>
-        <Link to="/auth/login" as="button">
-          login
-        </Link>
-        <Link to="/auth/register" as="button">
-          register
-        </Link>
-        <Title size={1}>{t('auth.Login.pageTitle')}</Title>
-        <Form onSubmit={handleLogin} className="flex flex-col">
+      <div className="mx-auto max-w-screen-sm space-y-8 text-center">
+        <Title size={3} as={1}>
+          {t('auth.Login.pageTitle')}
+        </Title>
+        <div>
+          <p className="mb-4 text-sm text-neutral-4">{t('auth.Login.safetyWarning')}</p>
+          <div className="flex items-center justify-center rounded-full bg-neutral-7 p-2 px-4 text-sm font-medium">
+            <LockIcon />
+            <p>
+              <span className="text-primary-green">https://</span>secure.climatecoin.com/login
+            </p>
+          </div>
+        </div>
+        <hr />
+        <Form onSubmit={handleLogin} className="flex flex-col gap-8 text-left">
           <Input
             name="email"
             type="email"
             label={t('auth.Login.form.email')}
-            placeholder={t('auth.Login.form.email')}
+            placeholder={t('auth.Login.form.email.placeholder')}
+            required
           />
 
-          <Button type="submit" disabled={loading}>
+          <Button type="submit" disabled={loading} size="sm">
             {t('auth.Login.login')}
           </Button>
         </Form>

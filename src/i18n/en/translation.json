@@ -11,9 +11,9 @@
   "auth.Callback.logingIn": "Login in with Magic Link...",
   "auth.Callback.error": "Invalid login",
   "auth.Login.form.email": "Email",
-  "auth.Login.login": "Login",
+  "auth.Login.login": "Access with Magiclink",
   "auth.Register.register": "Register",
-  "auth.Login.pageTitle": "Login",
+  "auth.Login.pageTitle": "Access to Climatecoin",
   "auth.Register.pageTitle": "Register",
   "head.Upload.title": "Upload carbon documents",
   "head.List.title": "List of documents",
@@ -76,5 +76,7 @@
   "uploadDocuments.country": "Country",
   "uploadDocuments.projectLocation": "Project location",
   "uploadDocuments.projectLatitude": "Latitude",
-  "uploadDocuments.projectLongitude": "Longitude"
+  "uploadDocuments.projectLongitude": "Longitude",
+  "auth.Login.form.email.placeholder": "Write your email...",
+  "auth.Login.safetyWarning": "Please make sure that you access from"
 }

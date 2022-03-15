@@ -5,7 +5,6 @@ import { useAuth } from '@/lib/auth';
 import { Button } from '@/componentes/Elements/Button/Button';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { Dialog } from '@/componentes/Dialog/Dialog';
-import { Form } from '@/componentes/Form/Form';
 import { Input, Textarea } from '@/componentes/Form/Inputs';
 import { Select, SelectOption } from '@/componentes/Form/Select';
 
@@ -51,7 +50,7 @@ export const Upload = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const resolver = useYupValidationResolver(validationSchema);
-  const methods = useForm({ resolver, mode: 'onBlur' });
+  const methods = useForm<any>({ resolver, mode: 'onBlur' });
 
   const uploadDocuments = uploadDocument();
   const formOption = getFormOptions();

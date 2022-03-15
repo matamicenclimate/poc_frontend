@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useAuth } from '@/lib/auth';
 import { Head } from './Head';
-import logo from '@/assets/logo.png';
+import { ReactComponent as LogoDark } from '@/assets/logo-dark.svg';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Dropdown } from '../Elements/Dropdown/Dropdown';
 interface MainLayoutProps {
@@ -52,7 +52,7 @@ export const Navbar = () => {
       <div className="mx-auto flex">
         <div className="mr-10 pl-20">
           <Link to="/">
-            <img src={logo} alt="dekalabs react test" className="w-12" />
+            <LogoDark />
           </Link>
         </div>
         <div className="flex w-full justify-between">
