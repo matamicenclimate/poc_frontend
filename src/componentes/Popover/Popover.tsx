@@ -9,21 +9,14 @@ import React, {
 import { Popover as HLPopover } from '@headlessui/react';
 import { usePopper } from 'react-popper';
 import { VirtualElement } from '@popperjs/core';
+import { ReactComponent as IconDots } from '@/assets/icons/bx-dots-vertical.svg';
+
 import * as PopperJS from '@popperjs/core';
 import clsx from 'clsx';
 
-export interface PopoverOptionsProps {
-  name: string;
-  icon?: string;
-  onClick?: () => void | SyntheticEvent | React.ChangeEvent<HTMLDivElement>;
-  type?: 'error' | 'default';
-  style?: 'primary' | 'secondary' | 'error' | 'default';
-  size?: 'small' | 'default' | 'large';
-  disabled?: boolean;
-}
-
 type ICompoundComponent = {
   Option: React.FC<PopoverOptionsProps>;
+  Wallet: React.FC<PopoverWalletProps>;
   Button: React.FC;
   Panel: React.FC<PopoverPanelProps>;
 } & React.FC<PopoverProps>;
@@ -99,14 +92,28 @@ const PopoverPanel = ({ config = {}, children, className }: PopoverPanelProps) =
   );
 };
 
+export interface PopoverOptionsProps {
+  name: string;
+  description?: string;
+  isActive?: boolean;
+  icon?: React.ReactNode;
+  onClick?: () => void | SyntheticEvent | React.ChangeEvent<HTMLDivElement>;
+  type?: 'error' | 'default';
+  style?: 'primary' | 'secondary' | 'error' | 'default';
+  size?: 'small' | 'default' | 'large';
+  disabled?: boolean;
+}
+
 const PopoverOption = ({
   name,
   icon,
   type,
+  description,
   style = 'default',
   size = 'default',
   onClick,
   disabled,
+  isActive,
 }: PopoverOptionsProps) => {
   const { setClose } = usePopoverContext();
   const handleClick = () => {
@@ -126,27 +133,98 @@ const PopoverOption = ({
       tabIndex={0}
       key={name}
       className={clsx(
-        'flex items-center px-2 py-1 transition duration-150 ease-in-out',
+        'flex items-center border-neutral-6  px-2 py-1 pt-3 pb-3 font-alt  transition duration-150 ease-in-out',
         size === 'default' && '',
         !disabled && 'hover:bg-blue-100',
         ' cursor-pointer select-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50'
       )}
     >
-      <p
-        className={clsx(
-          'text-base px-2 font-normal ',
-          !disabled && [
-            style === 'default' && 'text-secondary',
-            style === 'primary' && 'text-primary',
-            style === 'secondary' && 'text-secondary',
-            style === 'error' && 'text-red-500',
-            type === 'error' && 'text-red-500',
-          ],
-          disabled && 'text-black-500'
-        )}
-      >
-        {name}
-      </p>
+      {icon && icon}
+      <div>
+        <p
+          className={clsx(
+            'px-2 text-sm font-normal ',
+            isActive && 'text-neutral-3',
+            !disabled && [style === 'default' && 'text-neutral-4'],
+            disabled && 'text-black-500'
+          )}
+        >
+          {name}
+        </p>
+        <p className="px-2 text-[10px] text-neutral-4">{description}</p>
+      </div>
+    </div>
+  );
+};
+
+export interface PopoverWalletProps {
+  name: string;
+  account?: string;
+  amount: string;
+  isActive?: boolean;
+  icon?: React.ReactNode;
+  onClick?: () => void | SyntheticEvent | React.ChangeEvent<HTMLDivElement>;
+  type?: 'error' | 'default';
+  style?: 'primary' | 'secondary' | 'error' | 'default';
+  size?: 'small' | 'default' | 'large';
+  disabled?: boolean;
+}
+
+const PopoverWallet = ({
+  name,
+  icon,
+  account,
+  amount,
+  style = 'default',
+  size = 'default',
+  onClick,
+  disabled,
+  isActive,
+}: PopoverWalletProps) => {
+  const { setClose } = usePopoverContext();
+  const handleClick = () => {
+    if (disabled) return;
+    if (onClick) onClick();
+    setClose();
+  };
+  return (
+    <div
+      onClick={handleClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter') {
+          handleClick();
+        }
+      }}
+      role="button"
+      tabIndex={0}
+      key={name}
+      className={clsx(
+        'flex	min-w-fit items-center border-neutral-6  px-2 py-1 pt-3 pb-3 font-alt  transition duration-150 ease-in-out',
+        size === 'default' && '',
+        !disabled && 'hover:bg-blue-100',
+        ' cursor-pointer select-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50'
+      )}
+    >
+      {icon && icon}
+      <div className="flex flex-col px-4">
+        <div className="flex items-baseline py-1.5">
+          <p
+            className={clsx(
+              'text-md font-normal text-neutral-3 ',
+              isActive && 'text-black',
+              !disabled && [style === 'default' && 'text-neutral-4'],
+              disabled && 'text-black-500'
+            )}
+          >
+            {name}
+          </p>
+          <p className={clsx('pl-1 text-sm font-normal text-neutral-5 ')}>{account}</p>
+        </div>
+        <p className={clsx('text-md font-normal text-primary')}>{amount}</p>
+      </div>
+      <button>
+        <IconDots />
+      </button>
     </div>
   );
 };
@@ -161,6 +239,7 @@ const PopoverButton = ({ children }: any) => {
 
 Popover.Button = PopoverButton;
 Popover.Option = PopoverOption;
+Popover.Wallet = PopoverWallet;
 Popover.Panel = PopoverPanel;
 
 export default Popover as unknown as ICompoundComponent;

@@ -1,21 +1,47 @@
 {
   "auth": {
-    "Callback.error": "Invalid login",
-    "Callback.logingIn": "Login in with Magic Link...",
-    "Login.form.email.placeholder": "Write your email...",
-    "Login.form.email": "Email",
-    "Login.login": "Access with Magiclink",
-    "Login.pageTitle": "Access to Climatecoin",
-    "Login.safetyWarning": "Please make sure that you access from",
-    "Register.pageTitle": "Register",
-    "Register.register": "Register"
+    "Callback": {
+      "error": "Invalid login",
+      "logingIn": "Login in with Magic Link..."
+    },
+    "Login": {
+      "login": "Access with Magiclink",
+      "pageTitle": "Access to Climatecoin",
+      "safetyWarning": "Please make sure that you access from",
+      "form": {
+        "email.placeholder": "Write your email...",
+        "email": "Email"
+      }
+    },
+    "Register": {
+      "pageTitle": "Register",
+      "register": "Register"
+    }
   },
   "components": {
-    "dialog.accept.button": "Accept",
-    "dialog.cancel.button": "Cancel",
-    "Navbar.i18n.english": "English",
-    "Navbar.i18n.french": "French",
-    "Navbar.i18n.spanish": "Spanish"
+    "dialog": {
+      "accept": {
+        "button": "Accept"
+      },
+      "cancel": {
+        "button": "Cancel"
+      }
+    },
+    "Navbar": {
+      "i18n": {
+        "title": "Language",
+        "spanish": "Spanish",
+        "french": "French",
+        "english": "English"
+      },
+      "currency": "Currency"
+    }
+  },
+  "dialogs": {
+    "base": {
+      "accept": "Accept",
+      "cancel": "Cancel"
+    }
   },
   "dialogs.base.accept": "Accept",
   "dialogs.base.cancel": "Cancel",
@@ -26,12 +52,14 @@
       "viewDetails": "View details"
     },
     "Upload": {
-      "stepper.CONFIG": "Configuration",
-      "stepper.CONFIRMATION": "Confimation",
-      "stepper.DETAILS": "Project details",
-      "stepper.FILES": "Upload files",
-      "stepper.INFO": "Project info",
       "title": "Transfer credits",
+      "stepper": {
+        "CONFIG": "Configuration",
+        "CONFIRMATION": "Confimation",
+        "DETAILS": "Project details",
+        "FILES": "Upload files",
+        "INFO": "Project info"
+      },
       "confirmationText": "I confirm the creation of this project and the terms and conditions of Climatecoin.",
       "confirmationTextPre": "I confirm the creation of this project and the",
       "confirmationTextLink": "terms and conditions",

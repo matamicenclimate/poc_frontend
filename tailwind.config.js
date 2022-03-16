@@ -40,6 +40,10 @@ module.exports = {
       sm: ['0.875rem', '1rem'],
       md: ['1rem', '0.712rem'],
     },
+    fontFamily: {
+      DEFAULT: ['Poppins'],
+      alt: ['DMSans'],
+    },
   },
   plugins: [],
 };

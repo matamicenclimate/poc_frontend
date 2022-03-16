@@ -1,11 +1,16 @@
 import { useAuth } from '@/lib/auth';
-import { Dropdown } from '../../../Elements/Dropdown/Dropdown';
+import { ReactComponent as IconArrowDown } from '@/assets/icons/bx-arrow-down-simple-line.svg';
+import { ReactComponent as IconShare } from '@/assets/icons/bx-share-square.svg';
+import { ReactComponent as IconLock } from '@/assets/icons/bx-lock-line.svg';
+import { ReactComponent as IconCog } from '@/assets/icons/bx-cog-line2.svg';
+import { ReactComponent as IconBrightness } from '@/assets/icons/bx-brightness-line.svg';
+import { ReactComponent as IconLogout } from '@/assets/icons/bx-logout.svg';
+import { ReactComponent as IconUser } from '@/assets/icons/bx-user-line.svg';
+import clsx from 'clsx';
+
+import Popover from '@/componentes/Popover/Popover';
 
 export const Profile = () => {
-  const MenuLink = ({ text, action }: any) => {
-    return <button onClick={action}>{text}</button>;
-  };
-
   const auth = useAuth();
 
   const handleLogout = () => {
@@ -13,34 +18,94 @@ export const Profile = () => {
   };
 
   const profileOptions = [
-    { name: 'Profile', href: '/profile', description: 'Manage your profile' },
+    {
+      name: 'Profile',
+      icon: <IconUser className={'h-5 w-5'} />,
+      href: '/profile',
+      description: 'Manage your profile',
+    },
     {
       name: 'Payment methods',
       href: '/payment-methods',
+      icon: <IconShare className={'h-5 w-5'} />,
       description: 'Manage your payment methods',
     },
-    { name: 'Security', href: '/security', description: 'Manage your account security' },
+    {
+      name: 'Security',
+      icon: <IconLock className={'h-5 w-5'} />,
+      href: '/security',
+      description: 'Manage your account security',
+    },
     {
       name: 'Configuration',
+      icon: <IconCog className={'h-5 w-5'} />,
       href: '/configuration',
       description: 'Set up your account and alerts',
     },
-    { name: 'Promoter mode', href: '/documents/upload', description: 'Create your own credits' },
+
+    {
+      name: 'Promoter mode',
+      icon: <IconBrightness className={'h-5 w-5'} />,
+      href: '/documents/upload',
+      description: 'Create your own credits',
+    },
   ];
 
   return (
-    <Dropdown
-      label={
-        <img
-          className="h-10 w-10 rounded-full"
-          alt="100x100"
-          src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg"
-          data-holder-rendered="true"
-        />
-      }
-      options={profileOptions}
-    >
-      <MenuLink text="logout" className="bg-primary text-neutral-8" action={handleLogout} />
-    </Dropdown>
+    <div className="flex items-center">
+      <Popover>
+        <Popover.Button>
+          <div className="flex">
+            <button className="text-sm font-bold uppercase hover:bg-blue-100">
+              <img
+                className="h-10 w-10 rounded-full"
+                alt="100x100"
+                src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg"
+                data-holder-rendered="true"
+              />
+            </button>
+            <IconArrowDown />
+          </div>
+        </Popover.Button>
+        <Popover.Panel>
+          <div>
+            <div className="w-64 pr-4 text-sm text-neutral-4">
+              {profileOptions.map((option, i) => {
+                return (
+                  <div key={i} className="border-b last:border-none">
+                    <Popover.Option
+                      icon={<div className={'pr-1'}>{option.icon}</div>}
+                      description={option.description}
+                      name={option.name}
+                      isActive
+                      onClick={() => {
+                        console.log('TO DO');
+                      }}
+                    />
+                  </div>
+                );
+              })}
+
+              <div
+                onClick={handleLogout}
+                role="button"
+                tabIndex={0}
+                key={'logout'}
+                className={clsx(
+                  'flex items-center border-neutral-6 px-2 py-1 pt-3 pb-3 font-alt  transition duration-150 ease-in-out'
+                )}
+              >
+                <div className="pr-1">
+                  <IconLogout className={'h-5 w-5'} />
+                </div>
+                <div className="pr-2">
+                  <p className={clsx('px-2 font-normal text-neutral-3')}>Log out</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Popover.Panel>
+      </Popover>
+    </div>
   );
 };

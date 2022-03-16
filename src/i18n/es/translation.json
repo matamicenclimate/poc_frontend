@@ -10,9 +10,15 @@
   "components": {
     "dialog.accept.button": "Aceptar",
     "dialog.cancel.button": "Cancelar",
-    "Navbar.i18n.english": "Inglés",
-    "Navbar.i18n.french": "Francés",
-    "Navbar.i18n.spanish": "Español"
+    "Navbar": {
+      "i18n": {
+        "title": "Idioma",
+        "spanish": "Español",
+        "french": "Francés",
+        "english": "Inglés"
+      },
+      "currency": "Moneda"
+    }
   },
   "dialogs.base.accept": "Aceptar",
   "dialogs.base.cancel": "Cancelar",

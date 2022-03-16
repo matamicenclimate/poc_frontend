@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { useState } from 'react';
 import { ReactComponent as LockIcon } from '@/assets/icons/bx-lock-alt.svg';
+
 export const Login = () => {
   const auth = useAuth();
   const { t } = useTranslation();
