@@ -1,75 +1,101 @@
 {
-  "title": "Welcome to react using react-i18next and typescript 4.1",
-  "description": {
-    "part1": "This is an example without namespaces.",
-    "part2": "In order to infer the appropriate type for t function, you should use type augmentation to override the Resources type.",
-    "part3": "Check out the @types/react-i18next to see an example."
+  "auth": {
+    "Callback.error": "Acceso invalido",
+    "Callback.logingIn": "Acceso con Magic Link...",
+    "Login.form.email": "Email",
+    "Login.login": "Acceso",
+    "Login.pageTitlev": "Acceso",
+    "Register.register": "Registro"
   },
-  "login.heading": "Login Email",
-  "dialogs.base.cancel": "Cancelar",
+
+  "components": {
+    "dialog.accept.button": "Aceptar",
+    "dialog.cancel.button": "Cancelar",
+    "Navbar.i18n.english": "Inglés",
+    "Navbar.i18n.french": "Francés",
+    "Navbar.i18n.spanish": "Español"
+  },
+
   "dialogs.base.accept": "Aceptar",
-  "auth.Callback.logingIn": "Acceso con Magic Link...",
-  "auth.Callback.error": "Acceso invalido",
-  "auth.Login.form.email": "Email",
-  "auth.Login.login": "Acceso",
-  "auth.Login.pageTitlev": "Acceso",
-  "auth.Register.register": "Registro",
-  "head.Upload.title": "Subir documentos de carbono",
-  "head.List.title": "Lista de documentos",
-  "head.Profile.pageTitle": "Perfil",
-  "head.Wallet.title": "Cartera",
-  "uploadDocuments.title": "Subir documentos de carbono",
-  "uploadDocuments.link": "Subir documentos",
-  "uploadDocuments.project.title": "Título del proyecto",
-  "uploadDocuments.send.button": "Enviar documentos",
-  "uploadDocuments.registry.name": "Tipo",
-  "uploadDocuments.project.type": "Tipo de proyecto",
-  "uploadDocuments.project.type.options.carbon": "Compensación de carbono",
-  "uploadDocuments.project.type.options.nature": "Soluciones basadas en la naturaleza",
-  "uploadDocuments.project.type.options.irecs": "Irecs",
-  "uploadDocuments.credits.amount": "Cantidad de créditos a transferir",
-  "uploadDocuments.serialNumber": "Número de serie de los créditos a transferir",
-  "uploadDocuments.PDD": "PDD",
-  "uploadDocuments.modal.button.accept": "Entendido ¡Gracias!",
-  "uploadDocuments.modal.title": "Formulario enviado con éxito",
-  "uploadDocuments.modal.claim": "Mensaje enviado con éxito. Nos pondremos en contacto contigo en los próximos días.",
-  "uploadDocuments.sdgs": "SDG's",
-  "uploadDocuments.description": "Descripción",
-  "uploadDocuments.project.url": "URL del proyecto",
-  "components.dialog.accept.button": "Aceptar",
-  "components.dialog.cancel.button": "Cancelar",
-  "validation.errors.required": "Campo requerido",
-  "validation.errors.format": "Formato inválido",
-  "validation.errors.format.document": "Campo requerido. Formato: pdf",
-  "validation.errors.format.image": "Campo requerido. Formato: png, jpg o jpeg",
-  "wallet.Wallet.title": "Cartera",
-  "documents.List.title": "Lista de documentos",
-  "documents.List.viewDetails": "Ver detalles",
+  "dialogs.base.cancel": "Cancelar",
+
+  "documents": {
+    "List": {
+      "breadcrumbTitle": "Documents",
+      "title": "Lista de documentos",
+      "viewDetails": "Ver detalles"
+    },
+    "Upload": {
+      "stepper.CONFIG": "Configuración",
+      "stepper.CONFIRMATION": "Confirmación",
+      "stepper.DETAILS": "Detalles",
+      "stepper.FILES": "Archivos",
+      "stepper.INFO": "Info",
+      "title": "Transferir créditos"
+    }
+  },
+
+  "head": {
+    "List.title": "Lista de documentos",
+    "Profile.pageTitle": "Perfil",
+    "Upload.title": "Subir documentos de carbono",
+    "Wallet.title": "Cartera"
+  },
+
+  "login.heading": "Login Email",
+
+  "misc": {
+    "misc.Dashboard.title": "Home",
+    "misc.Landing.title": "Welcome"
+  },
+
   "profile.title": "Perfil",
-  "uploadDocuments.projectThumbnail": "Imágenes del proyecto: thumbnail",
-  "uploadDocuments.projectCover": "Imágenes del proyecto: cover",
-  "uploadDocuments.project.registration": "Fecha de registro de proyectos",
-  "uploadDocuments.project.video": "Video del proyecto",
-  "uploadDocuments.type": "Tipo",
-  "uploadDocuments.subtype": "Subtipo",
-  "uploadDocuments.methodology": "Metodología",
-  "uploadDocuments.validator": "Validador",
-  "uploadDocuments.firstVerifier": "Primer verificador",
-  "uploadDocuments.standard": "Estándar",
-  "uploadDocuments.registry.link": "Enlace (url) al registro",
-  "uploadDocuments.validation.report": "Informe de validación",
-  "uploadDocuments.monitoring.report": "Informe de monitorización",
-  "uploadDocuments.verification.report": "Informe de verificación",
-  "uploadDocuments.projectLocation": "Localización del proyecto",
-  "uploadDocuments.projectLatitude": "Latitud",
-  "uploadDocuments.projectLongitude": "Longitud",
-  "documents.List.breadcrumbTitle": "Documents",
-  "documents.Upload.stepper.INFO": "Info",
-  "documents.Upload.stepper.DETAILS": "Detalles",
-  "documents.Upload.stepper.CONFIG": "Configuración",
-  "documents.Upload.stepper.FILES": "Archivos",
-  "documents.Upload.stepper.CONFIRMATION": "Confirmación",
-  "documents.Upload.title": "Transferir créditos",
-  "misc.Dashboard.title": "Home",
-  "misc.Landing.title": "Welcome"
+
+  "uploadDocuments": {
+    "credits.amount": "Cantidad de créditos a transferir",
+    "description": "Descripción",
+    "firstVerifier": "Primer verificador",
+    "link": "Subir documentos",
+    "methodology": "Metodología",
+    "modal.button.accept": "Entendido ¡Gracias!",
+    "modal.claim": "Mensaje enviado con éxito. Nos pondremos en contacto contigo en los próximos días.",
+    "modal.title": "Formulario enviado con éxito",
+    "monitoring.report": "Informe de monitorización",
+    "PDD": "PDD",
+    "project.registration": "Fecha de registro de proyectos",
+    "project.title": "Título del proyecto",
+    "project.type.options.carbon": "Compensación de carbono",
+    "project.type.options.irecs": "Irecs",
+    "project.type.options.nature": "Soluciones basadas en la naturaleza",
+    "project.type": "Tipo de proyecto",
+    "project.url": "URL del proyecto",
+    "project.video": "Video del proyecto",
+    "projectCover": "Imágenes del proyecto: cover",
+    "projectLatitude": "Latitud",
+    "projectLocation": "Localización del proyecto",
+    "projectLongitude": "Longitud",
+    "projectThumbnail": "Imágenes del proyecto: thumbnail",
+    "registry.link": "Enlace (url) al registro",
+    "registry.name": "Tipo",
+    "sdgs": "SDG's",
+    "send.button": "Enviar documentos",
+    "serialNumber": "Número de serie de los créditos a transferir",
+    "standard": "Estándar",
+    "subtype": "Subtipo",
+    "title": "Subir documentos de carbono",
+    "type": "Tipo",
+    "validation.report": "Informe de validación",
+    "validator": "Validador",
+    "verification.report": "Informe de verificación"
+  },
+
+  "validation": {
+    "errors.format.document": "Campo requerido. Formato: pdf",
+    "errors.format.image": "Campo requerido. Formato: png, jpg o jpeg",
+    "errors.format.pdf": "Formato inválido. Formato requerido: pdf",
+    "errors.format": "Formato inválido",
+    "errors.required": "Campo requerido"
+  },
+
+  "wallet.Wallet.title": "Cartera"
 }
