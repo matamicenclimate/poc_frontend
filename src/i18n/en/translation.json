@@ -35,14 +35,20 @@
       "confirmationText": "I confirm the creation of this project and the terms and conditions of Climatecoin.",
       "confirmationTextPre": "I confirm the creation of this project and the",
       "confirmationTextLink": "terms and conditions",
-      "confirmationTextPost": "of Climatecoin."
+      "confirmationTextPost": "of Climatecoin.",
+      "description": "Do you have doubts about how projects are created or managed in Climatecoin?\n"
     }
   },
   "head": {
     "List.title": "List of documents",
     "Profile.pageTitle": "Profile",
     "Upload.title": "Upload carbon documents",
-    "Wallet.title": "Wallet"
+    "Wallet.title": "Wallet",
+    "climatecoins": {
+      "Buy": {
+        "title": "Buy Climatecoins"
+      }
+    }
   },
   "login.heading": "Login Email",
   "misc": {
@@ -97,5 +103,16 @@
     "errors.format": "Invalid format",
     "errors.required": "Required field"
   },
-  "wallet.Wallet.title": "Wallet"
+  "wallet.Wallet.title": "Wallet",
+  "climatecoins": {
+    "Buy": {
+      "title": "Buy Climatecoins",
+      "description": "Do you know what your CCs are worth?\n\nYou will help with climate change!",
+      "stepper": {
+        "SELECT": "Select",
+        "CONDITIONS": "Conditions",
+        "CONFIRMATION": "Confirmation"
+      }
+    }
+  }
 }

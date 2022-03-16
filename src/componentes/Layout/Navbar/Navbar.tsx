@@ -30,7 +30,7 @@ export const Navbar = () => {
             <Link to="/home" className={`text-neutral-2 ${linkStyle}`}>
               Home
             </Link>
-            <Link to="/buy" className={`text-neutral-4 ${linkStyle}`}>
+            <Link to="/coins/buy" className={`text-neutral-4 ${linkStyle}`}>
               Buy
             </Link>
             <Link to="/sell" className={`text-neutral-4 ${linkStyle}`}>
@@ -40,7 +40,7 @@ export const Navbar = () => {
               About us
             </Link>
             {auth.user && (
-              <Link to="/developer" className={`text-primary ${linkStyle}`}>
+              <Link to="/documents/upload" className={`text-primary ${linkStyle}`}>
                 Developer
               </Link>
             )}

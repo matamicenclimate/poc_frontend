@@ -32,14 +32,20 @@
       "confirmationText": "Confirmo la creación de este proyecto y los términos y condiciones de Climatecoin.",
       "confirmationTextPre": "Confirmo la creación de este proyecto y los",
       "confirmationTextLink": "términos y condiciones",
-      "confirmationTextPost": "de Climatecoin."
+      "confirmationTextPost": "de Climatecoin.",
+      "description": "¿Tienes dudas sobre cómo se crean o gestionan los proyectos en Climatecoin?"
     }
   },
   "head": {
     "List.title": "Lista de documentos",
     "Profile.pageTitle": "Perfil",
     "Upload.title": "Subir documentos de carbono",
-    "Wallet.title": "Cartera"
+    "Wallet.title": "Cartera",
+    "climatecoins": {
+      "Buy": {
+        "title": "Comprar Climatecoins"
+      }
+    }
   },
   "login.heading": "Login Email",
   "misc": {
@@ -91,5 +97,16 @@
     "errors.format": "Formato inválido",
     "errors.required": "Campo requerido"
   },
-  "wallet.Wallet.title": "Cartera"
+  "wallet.Wallet.title": "Cartera",
+  "climatecoins": {
+    "Buy": {
+      "description": "¿Sabes lo que valen tus CCs?\n\n¡Ayudarás con el cambio climático!",
+      "title": "Comprar Climatecoins",
+      "stepper": {
+        "SELECT": "Seleccione",
+        "CONDITIONS": "Condiciones",
+        "CONFIRMATION": "Confirmación"
+      }
+    }
+  }
 }

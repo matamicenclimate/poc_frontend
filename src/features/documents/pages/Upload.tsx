@@ -21,6 +21,8 @@ import { Link } from '@/componentes/Elements/Link/Link';
 import { ReactComponent as CheckIcon } from '@/assets/icons/bx-check-line.svg';
 import { ProjectPreview } from '../components/ProjectPreview';
 import { Switch } from '@/componentes/Form/Switch';
+import { PageTitle } from '@/componentes/Layout/PageTitle';
+import { Stepper } from '@/componentes/Stepper/Stepper';
 
 const formOptionToSelectOption = (options: FormOption[] | undefined): SelectOption[] => {
   if (options === undefined) return [];
@@ -30,7 +32,7 @@ const formOptionToSelectOption = (options: FormOption[] | undefined): SelectOpti
   }));
 };
 
-function useStepper(maxSteps: number) {
+export function useStepper(maxSteps: number) {
   const [currStep, setCurrStep] = useState(0);
   const nextStep = () => setCurrStep((old) => Math.min(old + 1, maxSteps - 1));
   const prevStep = () => setCurrStep((old) => Math.max(old - 1, 1));
@@ -97,52 +99,19 @@ export const Upload = () => {
 
   return (
     <MainLayout title={t('head.Upload.title')}>
-      <div className="flex items-center py-12">
-        <div className="flex-grow">
-          <Title size={2} as={1}>
-            {t('documents.Upload.title')}
-          </Title>
-        </div>
-        <div className="word-break max-w-[300px] text-sm text-neutral-4">
-          Do you have doubts about how projects are created or managed in Climatecoin?
-        </div>
-        <Link to="" className="text-bold">
-          More info {'>'}
-        </Link>
-      </div>
+      <PageTitle
+        title={t('documents.Upload.title')}
+        description={t('documents.Upload.description')}
+        linkTo=""
+      />
       <div className="grid md:grid-cols-3">
         <div id="left-column-wrapper" className="">
-          <div>
-            {Object.keys(UploadSteps)
-              .filter((val: any) => isNaN(val))
-              .map((title, index) => (
-                <div key={index}>
-                  {index !== 0 ? (
-                    <div>
-                      <div className="ml-6 h-6 w-px border-r-2 border-dashed"></div>
-                    </div>
-                  ) : null}
-                  <div
-                    key={index}
-                    onClick={() => setCurrStep(index)}
-                    className="flex w-60 cursor-pointer gap-4 rounded-full p-2 text-sm shadow-sm"
-                  >
-                    <div
-                      className={clsx(
-                        'flex h-7 w-7 items-center justify-center rounded-full border-2',
-                        currStep === index && 'border-green-600',
-                        currStep > index && 'border-green-600 bg-green-600 text-white'
-                      )}
-                    >
-                      {currStep > index ? <CheckIcon /> : index + 1}
-                    </div>
-                    <div className="flex items-center">
-                      {t(`documents.Upload.stepper.${title}`)}
-                    </div>
-                  </div>
-                </div>
-              ))}
-          </div>
+          <Stepper
+            stepsEnum={UploadSteps}
+            setCurrStep={setCurrStep}
+            currStep={currStep}
+            translationRoot="documents.Upload.stepper"
+          />
         </div>
         <div className="md:col-span-2">
           <form onSubmit={methods.handleSubmit(handleSubmit)}>
