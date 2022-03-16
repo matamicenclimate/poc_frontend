@@ -11,9 +11,10 @@ export const ProjectPreview = ({ values }: ProjectPreviewProps) => {
         <div
           className="col-span-1 flex justify-center rounded bg-neutral-7 bg-cover bg-center"
           style={{
-            backgroundImage: values.thumbnail[0]
-              ? `url(${URL.createObjectURL(values.thumbnail[0])}`
-              : '',
+            backgroundImage:
+              !!values.thumbnail && values.thumbnail.length > 0
+                ? `url(${URL.createObjectURL(values.thumbnail[0])}`
+                : '',
           }}
         />
         <div className="col-span-3 space-y-4 text-sm">

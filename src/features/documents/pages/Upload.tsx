@@ -17,9 +17,10 @@ import { Card } from '@/componentes/Card/Card';
 import useYupValidationResolver from '@/componentes/Form/useValidationResolver';
 import { useForm } from 'react-hook-form';
 import FileInput from '@/componentes/Form/FileInput';
-import { Link } from 'react-router-dom';
+import { Link } from '@/componentes/Elements/Link/Link';
 import { ReactComponent as CheckIcon } from '@/assets/icons/bx-check-line.svg';
 import { ProjectPreview } from '../components/ProjectPreview';
+import { Switch } from '@/componentes/Form/Switch';
 
 const formOptionToSelectOption = (options: FormOption[] | undefined): SelectOption[] => {
   if (options === undefined) return [];
@@ -79,7 +80,11 @@ export const Upload = () => {
         <div />
       )}
       {currStep === UploadSteps.CONFIRMATION ? (
-        <Button type="submit" size="md" disabled={uploadDocuments.isLoading}>
+        <Button
+          type="submit"
+          size="md"
+          disabled={uploadDocuments.isLoading || !methods.watch('confirmation')}
+        >
           {t('uploadDocuments.send.button')}
         </Button>
       ) : (
@@ -144,7 +149,7 @@ export const Upload = () => {
             {currStep === UploadSteps.INFO ? (
               <Card>
                 <Title size={5} as={2}>
-                  Project Info
+                  {t('documents.Upload.stepper.INFO')}
                 </Title>
                 <div className="mt-8 grid grid-cols-2 gap-4">
                   <Select
@@ -203,7 +208,7 @@ export const Upload = () => {
             {currStep === UploadSteps.DETAILS ? (
               <Card>
                 <Title size={5} as={2}>
-                  Project Details
+                  {t('documents.Upload.stepper.DETAILS')}
                 </Title>
                 <div className="mt-8 grid grid-cols-2 gap-4">
                   <Input
@@ -272,7 +277,7 @@ export const Upload = () => {
             {currStep === UploadSteps.CONFIG ? (
               <Card>
                 <Title size={5} as={2}>
-                  Project Details
+                  {t('documents.Upload.stepper.CONFIG')}
                 </Title>
                 <div className="mt-8 grid grid-cols-2 gap-4">
                   {' '}
@@ -360,7 +365,7 @@ export const Upload = () => {
             {currStep === UploadSteps.FILES ? (
               <Card>
                 <Title size={5} as={2}>
-                  Project Details
+                  {t('documents.Upload.stepper.FILES')}
                 </Title>
                 <div className="mt-8 grid grid-cols-2 gap-4">
                   <FileInput
@@ -406,11 +411,26 @@ export const Upload = () => {
             {currStep === UploadSteps.CONFIRMATION ? (
               <Card>
                 <Title size={5} as={2}>
-                  Project Details
+                  {t(`documents.Upload.stepper.CONFIRMATION`)}
                 </Title>
                 <div className="mt-8 grid grid-cols-2 gap-4">
                   <div className="col-span-2">
                     <ProjectPreview values={methods.getValues()} />
+                  </div>
+                  <div className="col-span-2 text-xs">
+                    <Switch
+                      control={methods.control}
+                      name="confirmation"
+                      label={
+                        <>
+                          {t('documents.Upload.confirmationTextPre')}{' '}
+                          <Link to="terms-conditions">
+                            {t('documents.Upload.confirmationTextLink')}
+                          </Link>{' '}
+                          {t('documents.Upload.confirmationTextPost')}
+                        </>
+                      }
+                    />
                   </div>
                   <StepperNavigation />
                 </div>

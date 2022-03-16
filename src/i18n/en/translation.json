@@ -10,7 +10,6 @@
     "Register.pageTitle": "Register",
     "Register.register": "Register"
   },
-
   "components": {
     "dialog.accept.button": "Accept",
     "dialog.cancel.button": "Cancel",
@@ -18,10 +17,8 @@
     "Navbar.i18n.french": "French",
     "Navbar.i18n.spanish": "Spanish"
   },
-
   "dialogs.base.accept": "Accept",
   "dialogs.base.cancel": "Cancel",
-
   "documents": {
     "List": {
       "breadcrumbTitle": "Documents",
@@ -34,26 +31,25 @@
       "stepper.DETAILS": "Project details",
       "stepper.FILES": "Upload files",
       "stepper.INFO": "Project info",
-      "title": "Transfer credits"
+      "title": "Transfer credits",
+      "confirmationText": "I confirm the creation of this project and the terms and conditions of Climatecoin.",
+      "confirmationTextPre": "I confirm the creation of this project and the",
+      "confirmationTextLink": "terms and conditions",
+      "confirmationTextPost": "of Climatecoin."
     }
   },
-
   "head": {
     "List.title": "List of documents",
     "Profile.pageTitle": "Profile",
     "Upload.title": "Upload carbon documents",
     "Wallet.title": "Wallet"
   },
-
   "login.heading": "Login Email",
-
   "misc": {
     "Dashboard.title": "Home",
     "Landing.title": "Welcome"
   },
-
   "profile.title": "Profile",
-
   "uploadDocuments": {
     "country": "Country",
     "credits.amount": "Amount of credits to be transferred",
@@ -94,7 +90,6 @@
     "validator": "Validator",
     "verification.report": "Verification report"
   },
-
   "validation": {
     "errors.format.document": "Required field. Required format: pdf",
     "errors.format.image": "Required field. Required format: png, jpg or jpeg",
@@ -102,6 +97,5 @@
     "errors.format": "Invalid format",
     "errors.required": "Required field"
   },
-
   "wallet.Wallet.title": "Wallet"
 }

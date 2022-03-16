@@ -37,7 +37,7 @@ export const Link = ({ as, size, variant, ...props }: RouterLinkProps | AnchorPr
         buttonStyles.variants[variant ?? 'primary']
       );
     }
-    return '';
+    return 'text-primary underline';
   };
 
   // anchor render
