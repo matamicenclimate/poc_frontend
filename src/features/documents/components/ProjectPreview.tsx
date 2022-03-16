@@ -35,7 +35,6 @@ export const ProjectPreview = ({ values }: ProjectPreviewProps) => {
         </div>
       </div>
       <div className="text-neutral-4">{values.description}</div>
-      {JSON.stringify(values, null, 2)}
     </div>
   );
 };

@@ -424,7 +424,7 @@ export const Upload = () => {
                       label={
                         <>
                           {t('documents.Upload.confirmationTextPre')}{' '}
-                          <Link to="terms-conditions">
+                          <Link to="/terms-conditions">
                             {t('documents.Upload.confirmationTextLink')}
                           </Link>{' '}
                           {t('documents.Upload.confirmationTextPost')}
