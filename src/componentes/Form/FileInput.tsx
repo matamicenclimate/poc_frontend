@@ -51,7 +51,6 @@ const FileInput = ({
     accept,
     multiple: isMulti,
     onDropAccepted: (file) => {
-      console.log({ isMulti, acceptedFiles, file });
       if (isMulti) {
         onChange([...acceptedFiles, ...file]);
       } else {
@@ -107,7 +106,11 @@ const FileInput = ({
                   </button>
                   <button
                     className="p-1"
-                    onClick={() => onChange((old: File[]) => old.filter((_, i) => i !== index))}
+                    onClick={() =>
+                      onChange((old: File[]) => {
+                        return old.filter((_, i) => i !== index);
+                      })
+                    }
                   >
                     <DeleteIcon />
                   </button>

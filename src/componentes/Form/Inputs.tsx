@@ -45,7 +45,7 @@ export function Input({
 
   return (
     <div className={`flex flex-col ${wrapperClassName}`}>
-      <Label {...{ labelClassName, name, required, label }} />
+      {type !== 'hidden' ? <Label {...{ labelClassName, name, required, label }} /> : null}
 
       <input
         type={type}
@@ -55,7 +55,7 @@ export function Input({
         {...register(name)}
         {...rest}
       />
-      {errors[name] && (
+      {errors[name] && type !== 'hidden' && (
         <FieldError errorClassName={errorClassName}>{t(errors[name].key)}</FieldError>
       )}
     </div>
@@ -84,8 +84,7 @@ export function Textarea({
 
   return (
     <div className={`flex flex-col ${wrapperClassName}`}>
-      <Label {...{ labelClassName, name, required, label }} />
-
+      {type !== 'hidden' ? <Label {...{ labelClassName, name, required, label }} /> : null}
       <textarea
         id={name}
         placeholder={placeholder}
@@ -93,7 +92,7 @@ export function Textarea({
         {...register(name)}
         {...rest}
       />
-      {errors[name] && (
+      {errors[name] && type !== 'hidden' && (
         <FieldError errorClassName={errorClassName}>{t(errors[name].key)}</FieldError>
       )}
     </div>

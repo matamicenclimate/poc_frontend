@@ -10,7 +10,7 @@ import { Select, SelectOption } from '@/componentes/Form/Select';
 
 import { uploadDocument } from '../api/uploadDocument';
 import { getFormOptions, FormOption } from '../api/getFormOptions';
-import { validationSchema } from '../validation/FormValidation';
+import { validationSchema } from '../validation/UploadValidation';
 import { Title } from '@/componentes/Elements/Title/Title';
 import clsx from 'clsx';
 import { Card } from '@/componentes/Card/Card';

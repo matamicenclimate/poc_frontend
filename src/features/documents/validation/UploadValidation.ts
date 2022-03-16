@@ -8,26 +8,18 @@ const dateValidation = yup
   .nullable()
   .transform((current, origin) => (origin === '' ? null : current));
 
-const documentValidation = yup
-  .mixed()
-  .nullable()
-  .test('format', 'validation.errors.format.document', (value) => {
-    console.log(value, value.length === 1 && DOCUMENTS_SUPPORTED_FORMATS.includes(value[0].type));
-
-    return value.length === 1 && DOCUMENTS_SUPPORTED_FORMATS.includes(value[0].type);
-  });
-
 const fileInputValidation = yup
   .array()
+  .nullable()
   .test('format', 'validation.errors.format.document', (value) => {
-    if (!value) return false;
+    if (!value) return true;
 
     const fileTypes = value.map((file) => file.type);
-    const includesErrors = fileTypes
+    const hasErrors = fileTypes
       .map((type) => DOCUMENTS_SUPPORTED_FORMATS.includes(type))
       .includes(false);
 
-    return !includesErrors;
+    return !hasErrors;
   });
 
 const imageValidation = yup.array().test('format', 'validation.errors.format.image', (value) => {
@@ -35,11 +27,11 @@ const imageValidation = yup.array().test('format', 'validation.errors.format.ima
   if (value.length === 0) return false;
 
   const fileTypes = value.map((file) => file.type);
-  const includesErrors = fileTypes
+  const hasErrors = fileTypes
     .map((type) => IMAGES_SUPPORTED_FORMATS.includes(type))
     .includes(false);
 
-  return !includesErrors;
+  return !hasErrors;
 });
 
 export const validationSchema = yup.object({
@@ -67,8 +59,8 @@ export const validationSchema = yup.object({
   credits: yup.string().required(),
   serial_number: yup.string().required(),
   registry_url: yup.string().required(),
-  pdd: documentValidation.required(),
-  validation_report: documentValidation,
-  monitoring_report: documentValidation,
+  pdd: fileInputValidation.required(),
+  validation_report: fileInputValidation,
+  monitoring_report: fileInputValidation,
   verification_report: fileInputValidation.required(),
 });
