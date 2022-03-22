@@ -9,8 +9,10 @@
       "pageTitle": "Access to Climatecoin",
       "safetyWarning": "Please make sure that you access from",
       "form": {
-        "email.placeholder": "Write your email...",
-        "email": "Email"
+        "email": {
+          "placeholder": "Write your email...",
+          "label": "Email"
+        }
       }
     },
     "Register": {
@@ -68,38 +70,52 @@
     }
   },
   "head": {
-    "List.title": "List of documents",
-    "Profile.pageTitle": "Profile",
-    "Upload.title": "Upload carbon documents",
-    "Wallet.title": "Wallet",
+    "List": { "title": "List of documents" },
+    "Profile": { "pageTitle": "Profile" },
+    "Upload": {
+      "title": "Upload carbon documents"
+    },
+    "Wallet": {
+      "title": "Wallet"
+    },
     "climatecoins": {
       "Buy": {
         "title": "Buy Climatecoins"
       }
     }
   },
-  "login.heading": "Login Email",
-  "misc": {
-    "Dashboard.title": "Home",
-    "Landing.title": "Welcome"
+  "login": {
+    "heading": "Login Email"
   },
-  "profile.title": "Profile",
+  "misc": {
+    "Dashboard": {
+      "title": "Home"
+    },
+    "Landing": {
+      "title": "Welcome"
+    }
+  },
+  "profile": {
+    "title": "Profile"
+  },
   "uploadDocuments": {
     "country": "Country",
-    "credits.amount": "Amount of credits to be transferred",
-    "description": "Description",
+    "credits": { "amount": "Credits available" },
+    "description": "Project description",
     "firstVerifier": "First Verifier",
     "link": "Upload documents",
     "methodology": "Methodology",
-    "modal.button.accept": "Got it, thanks!",
-    "modal.claim": "Message sent succesfully. We will contact you in the next few days.",
-    "modal.title": "Form submitted successfully",
-    "monitoring.report": "Monitoring report",
+    "modal": {
+      "claim": "Message sent succesfully. We will contact you in the next few days.",
+      "title": "Form submitted successfully",
+      "button": { "accept": "Got it, thanks!" }
+    },
+    "monitoring": { "report": "Monitoring report" },
     "PDD": "PDD",
-    "project.creditEnd": "Credit end",
-    "project.creditStart": "Credit start",
-    "project.registration": "Projects registration date",
-    "project.title": "Title of project",
+    "project.creditEnd": "Credits end",
+    "project.creditStart": "Credits start",
+    "project.registration": "Registration date",
+    "project.title": "Project Title",
     "project.type.options.carbon": "Carbon offset",
     "project.type.options.irecs": "Irecs",
     "project.type.options.nature": "Nature based solutions",
@@ -111,11 +127,11 @@
     "projectLocation": "Project location",
     "projectLongitude": "Longitude",
     "projectThumbnail": "Project images: thumbnail",
-    "registry.link": "Link (url) to the regisrty",
-    "registry.name": "Name of the registry you are transfering the credits from",
+    "registry.link": "Registry link",
+    "registry.name": "Name of the registry",
     "sdgs": "SDG's",
-    "send.button": "Send documents",
-    "serialNumber": "Serial number of credits to be transferred",
+    "send.button": "Yes, confirm",
+    "serialNumber": "Serial number of credits",
     "standard": "Standard",
     "subtype": "Subtype",
     "title": "Upload carbon documents",

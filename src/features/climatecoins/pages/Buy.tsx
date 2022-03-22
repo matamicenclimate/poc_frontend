@@ -2,8 +2,7 @@ import { Card } from '@/componentes/Card/Card';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
-import { Stepper } from '@/componentes/Stepper/Stepper';
-import { useStepper } from '@/features/documents/pages/Upload';
+import { Stepper, useStepper } from '@/componentes/Stepper/Stepper';
 import { useTranslation } from 'react-i18next';
 
 enum BuySteps {
@@ -14,7 +13,7 @@ enum BuySteps {
 
 export const Buy = () => {
   const { t } = useTranslation();
-  const { currStep, nextStep, prevStep, setCurrStep } = useStepper(Object.keys(BuySteps).length);
+  const { currStep, nextStep, prevStep, setCurrStep } = useStepper(BuySteps);
 
   return (
     <MainLayout title={t('head.climatecoins.Buy.title')}>

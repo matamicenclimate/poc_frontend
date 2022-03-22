@@ -11,7 +11,7 @@ export type InputProps = {
   label?: string;
   htmlFor?: string;
   register?: UseFormRegister<any>;
-  errors?: Record<string, Record<string, string>>;
+  errors?: any;
   required?: boolean;
   labelClassName?: string;
   errorClassName?: string;
@@ -51,7 +51,7 @@ export function Input({
         type={type}
         id={name}
         placeholder={placeholder}
-        className={`error:border-red-700 rounded-md border p-2 invalid:border-red-500 ${inputClassName}`}
+        className={clsx(`rounded-md border p-2`, inputClassName, errors[name] && 'border-red-500')}
         {...register(name)}
         {...rest}
       />
@@ -88,7 +88,7 @@ export function Textarea({
       <textarea
         id={name}
         placeholder={placeholder}
-        className={`error:border-red-700 rounded-md border p-2 invalid:border-red-500 ${inputClassName}`}
+        className={clsx(`rounded-md border p-2`, inputClassName, errors[name] && 'border-red-500')}
         {...register(name)}
         {...rest}
       />

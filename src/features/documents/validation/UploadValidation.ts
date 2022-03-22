@@ -34,7 +34,7 @@ const imageValidation = yup.array().test('format', 'validation.errors.format.ima
   return !hasErrors;
 });
 
-export const validationSchema = yup.object({
+export const documentUploadValidationSchema = yup.object({
   project_types: yup.object().nullable().required(),
   title: yup.string().required(),
   sdgs: yup.array().nullable(),
@@ -63,4 +63,7 @@ export const validationSchema = yup.object({
   validation_report: fileInputValidation,
   monitoring_report: fileInputValidation,
   verification_report: fileInputValidation.required(),
+  confirmation: yup.boolean().isTrue(),
 });
+
+export type UploadFormSchema = yup.InferType<typeof documentUploadValidationSchema>;

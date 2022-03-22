@@ -48,13 +48,11 @@ export const Button = ({
   return (
     <button
       onClick={onClick}
-      className={clsx(base, sizes[size], variants[variant])}
+      className={clsx('flex items-center justify-center', base, sizes[size], variants[variant])}
       disabled={disabled}
       {...props}
     >
-      {iconLeft}
-      {children}
-      {iconRight}
+      {iconLeft} {children} {iconRight}
     </button>
   );
 };

@@ -1,16 +1,14 @@
-import { useAuth } from '@/lib/auth';
-import { ReactComponent as IconArrowDown } from '@/assets/icons/bx-arrow-down-simple-line.svg';
-import { ReactComponent as IconShare } from '@/assets/icons/bx-share-square.svg';
-import { ReactComponent as IconLock } from '@/assets/icons/bx-lock-line.svg';
-import { ReactComponent as IconCog } from '@/assets/icons/bx-cog-line2.svg';
-import { ReactComponent as IconBrightness } from '@/assets/icons/bx-brightness-line.svg';
-import { ReactComponent as IconLogout } from '@/assets/icons/bx-logout.svg';
-import { ReactComponent as IconUser } from '@/assets/icons/bx-user-line.svg';
 import clsx from 'clsx';
-
+import { useAuth } from '@/lib/auth';
 import Popover from '@/componentes/Popover/Popover';
+import { ReactComponent as IconCog } from '@/assets/icons/bx-cog-line2.svg';
+import { ReactComponent as IconLogout } from '@/assets/icons/bx-logout.svg';
+import { ReactComponent as IconLock } from '@/assets/icons/bx-lock-line.svg';
+import { ReactComponent as IconUser } from '@/assets/icons/bx-user-line.svg';
+import { ReactComponent as IconShare } from '@/assets/icons/bx-share-square.svg';
+import { ReactComponent as IconBrightness } from '@/assets/icons/bx-brightness-line.svg';
 
-export const Profile = () => {
+export const ProfileNav = () => {
   const auth = useAuth();
 
   const handleLogout = () => {
@@ -64,12 +62,11 @@ export const Profile = () => {
                 data-holder-rendered="true"
               />
             </button>
-            <IconArrowDown />
           </div>
         </Popover.Button>
         <Popover.Panel>
           <div>
-            <div className="w-64 pr-4 text-sm text-neutral-4">
+            <div className="w-64 text-sm text-neutral-4">
               {profileOptions.map((option, i) => {
                 return (
                   <div key={i} className="border-b last:border-none">

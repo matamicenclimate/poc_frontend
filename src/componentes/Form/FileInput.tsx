@@ -15,7 +15,7 @@ export type FileInputProps = {
   label?: string;
   htmlFor?: string;
   control: any;
-  errors?: Record<string, Record<string, string>>;
+  errors?: any;
   required?: boolean;
   labelClassName?: string;
   errorClassName?: string;
@@ -72,7 +72,11 @@ const FileInput = ({
       >
         <input {...getInputProps()} />
         <div
-          className={clsx('w-full rounded border-2 border-dashed p-3', isDragActive && 'border-4')}
+          className={clsx(
+            'w-full rounded border-2 border-dashed p-3',
+            isDragActive && 'border-4',
+            errors[name] && 'border-red-500'
+          )}
         >
           {!value.length && (
             <div className="space-y-2 text-center">

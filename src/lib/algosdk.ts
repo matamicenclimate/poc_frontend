@@ -5,12 +5,11 @@ let client: null | algosdk.Algodv2 = null;
 
 export function setupClient() {
   if (client == null) {
-    const token = {
-      'x-api-key': '10f233c1b6dec945648e2ac830913549349a1742c865b940bd1fdf2fc6b98b60',
-    };
-    const server =
-      'https://hk.bsngate.com/api/1859c58d7f216e31dfb9b8ce95ca51f9e7672b1c0e11b2d76647b1b7d019292e/Algorand-Testnet/algodrest';
-    const port = '';
+    const token = process.env.REACT_APP_ALGORAND_RPC_TOKEN as string;
+    const server = process.env.REACT_APP_ALGORAND_RPC_URL;
+    const port = process.env.REACT_APP_ALGORAND_RPC_PORT;
+    console.log({ token, server, port });
+
     const algodClient = new algosdk.Algodv2(token, server, port);
     client = algodClient;
   } else {

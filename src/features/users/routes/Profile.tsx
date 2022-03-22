@@ -1,16 +1,16 @@
-import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
-import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { useAuth } from '@/lib/auth';
-import { magiclink } from '@/lib/magiclink';
 import storage from '@/utils/storage';
+import { magiclink } from '@/lib/magiclink';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Title } from '@/componentes/Elements/Title/Title';
+import { MainLayout } from '@/componentes/Layout/MainLayout';
+import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
 
 export const Profile = () => {
   const { user } = useAuth();
   const { t } = useTranslation();
-  const [toke, setToken] = useState<string>('');
+  const [token, setToken] = useState<string>('');
   const [wallet, setWallet] = useState<string>('');
   useEffect(() => {
     const onMount = async () => {
@@ -32,7 +32,7 @@ export const Profile = () => {
       <h2>Token</h2>
 
       <p className="break-all">{storage.getToken()}</p>
-      <p className="break-all">{toke}</p>
+      <p className="break-all">{token}</p>
     </MainLayout>
   );
 };

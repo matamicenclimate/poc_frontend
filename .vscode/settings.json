@@ -26,5 +26,8 @@
   },
   "i18n-ally.localesPaths": ["src/i18n"],
   "i18n-ally.keystyle": "nested",
-  "i18n-ally.editor.preferEditor": true
+  "i18n-ally.editor.preferEditor": true,
+  "tailwindCSS.experimental.classRegex": [
+    "clsx`([^`]*)" // cntl`...`
+  ]
 }

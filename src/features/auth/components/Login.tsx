@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { useState } from 'react';
 import { ReactComponent as LockIcon } from '@/assets/icons/bx-lock-alt.svg';
+import LogoMagic from '@/assets/icons/bx-magic-link.png';
 
 export const Login = () => {
   const auth = useAuth();
@@ -39,13 +40,15 @@ export const Login = () => {
           <Input
             name="email"
             type="email"
-            label={t('auth.Login.form.email')}
+            label={t('auth.Login.form.email.label')}
             placeholder={t('auth.Login.form.email.placeholder')}
             required
           />
 
           <Button type="submit" disabled={loading} size="sm">
-            {t('auth.Login.login')}
+            <div className="flex items-center justify-center">
+              <img src={LogoMagic} className="mr-3 h-6 w-5" /> {t('auth.Login.login')}
+            </div>
           </Button>
         </Form>
       </div>

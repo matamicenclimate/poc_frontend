@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { TFunction } from 'i18next';
-import { Controller } from 'react-hook-form';
+import { useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import ReactSelect from 'react-select';
 import { FieldError } from './FieldError';
@@ -23,6 +23,22 @@ type SelectProps = {
   wrapperClassName?: string;
 };
 
+const colourStyles = {
+  multiValueLabel: () => ({
+    backgroundColor: 'var(--color--secondary-blue)',
+    color: 'var(--color--primary-blue)',
+    paddingRight: 10,
+    paddingLeft: 8,
+    lineHeight: 1.8,
+  }),
+  multiValueRemove: () => ({
+    backgroundColor: 'var(--color--secondary-blue)',
+    color: 'var(--color--primary-blue)',
+    paddingRight: 8,
+    lineHeight: 1.8,
+  }),
+};
+
 export const Select = ({
   name,
   label,
@@ -36,31 +52,30 @@ export const Select = ({
   isMulti = false,
   control,
 }: SelectProps) => {
-  // const { control } = useForm();
   const { t } = useTranslation();
 
+  const { field } = useController({
+    name,
+    control,
+    rules: { required },
+    defaultValue: isMulti ? [] : '',
+  });
+
   return (
-    <Controller
-      name={name}
-      // this is inyected by the <Form /> component
-      control={control}
-      defaultValue={isMulti ? [] : ''}
-      render={({ field }) => (
-        <div className={clsx('flex flex-col', wrapperClassName)}>
-          <Label {...{ labelClassName, name, required, label }} />
-          <ReactSelect
-            {...field}
-            aria-labelledby={name}
-            inputId={name}
-            className={selectClassName}
-            options={options}
-            isMulti={isMulti}
-          />
-          {errors[name] && (
-            <FieldError errorClassName={errorClassName}>{t(errors[name].key)}</FieldError>
-          )}
-        </div>
+    <div className={clsx('flex flex-col', wrapperClassName)}>
+      <Label {...{ labelClassName, name, required, label }} />
+      <ReactSelect
+        {...field}
+        aria-labelledby={name}
+        inputId={name}
+        className={clsx(selectClassName, 'text-sm', errors[name] && 'border-red-500')}
+        options={options}
+        isMulti={isMulti}
+        styles={colourStyles}
+      />
+      {errors[name] && (
+        <FieldError errorClassName={errorClassName}>{t(errors[name].key)}</FieldError>
       )}
-    />
+    </div>
   );
 };

@@ -4,6 +4,10 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      backgroundImage: {
+        'login-image': "url('/src/assets/images/login.jpg')",
+        'overview-image': "url('/src/assets/images/overview.jpg')",
+      },
       colors: {
         primary: {
           DEFAULT: 'var(--color--primary-blue)',

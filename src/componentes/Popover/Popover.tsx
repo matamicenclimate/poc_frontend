@@ -1,6 +1,6 @@
 import React, {
-  SyntheticEvent,
   createContext,
+  SyntheticEvent,
   useCallback,
   useContext,
   useMemo,
@@ -199,28 +199,30 @@ const PopoverWallet = ({
       tabIndex={0}
       key={name}
       className={clsx(
-        'flex	min-w-fit items-center border-neutral-6  px-2 py-1 pt-3 pb-3 font-alt  transition duration-150 ease-in-out',
+        'flex	min-w-fit items-center justify-between border-neutral-6 py-1 pt-3 pb-3 font-alt  transition duration-150 ease-in-out',
         size === 'default' && '',
         !disabled && 'hover:bg-blue-100',
         ' cursor-pointer select-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50'
       )}
     >
-      {icon && icon}
-      <div className="flex flex-col px-4">
-        <div className="flex items-baseline py-1.5">
-          <p
-            className={clsx(
-              'text-md font-normal text-neutral-3 ',
-              isActive && 'text-black',
-              !disabled && [style === 'default' && 'text-neutral-4'],
-              disabled && 'text-black-500'
-            )}
-          >
-            {name}
-          </p>
-          <p className={clsx('pl-1 text-sm font-normal text-neutral-5 ')}>{account}</p>
+      <div className="flex flex-row pl-2">
+        {icon && icon}
+        <div className="flex flex-col px-4">
+          <div className="flex items-baseline py-1.5">
+            <p
+              className={clsx(
+                'text-md font-normal text-neutral-3 ',
+                isActive && 'text-black',
+                !disabled && [style === 'default' && 'text-neutral-4'],
+                disabled && 'text-black-500'
+              )}
+            >
+              {name}
+            </p>
+            <p className={clsx('pl-1 text-sm font-normal text-neutral-5 ')}>({account})</p>
+          </div>
+          <p className={clsx('text-md font-normal text-primary')}>{amount}</p>
         </div>
-        <p className={clsx('text-md font-normal text-primary')}>{amount}</p>
       </div>
       <button>
         <IconDots />

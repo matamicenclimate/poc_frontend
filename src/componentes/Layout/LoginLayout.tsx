@@ -13,7 +13,7 @@ export const LoginLayout = ({ title, children }: MainLayoutProps) => {
     <>
       <Head title={title} />
       <div className="grid min-h-screen grid-cols-5">
-        <div className="col-span-2 bg-gray-300 p-8">
+        <div className="col-span-2 bg-gray-300 bg-login-image bg-cover bg-no-repeat p-8">
           <Link to="/">
             <Logolight />
           </Link>

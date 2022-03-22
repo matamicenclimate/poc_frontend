@@ -10,19 +10,17 @@ import { Select, SelectOption } from '@/componentes/Form/Select';
 
 import { uploadDocument } from '../api/uploadDocument';
 import { getFormOptions, FormOption } from '../api/getFormOptions';
-import { validationSchema } from '../validation/UploadValidation';
+import { documentUploadValidationSchema, UploadFormSchema } from '../validation/UploadValidation';
 import { Title } from '@/componentes/Elements/Title/Title';
-import clsx from 'clsx';
 import { Card } from '@/componentes/Card/Card';
 import useYupValidationResolver from '@/componentes/Form/useValidationResolver';
 import { useForm } from 'react-hook-form';
 import FileInput from '@/componentes/Form/FileInput';
 import { Link } from '@/componentes/Elements/Link/Link';
-import { ReactComponent as CheckIcon } from '@/assets/icons/bx-check-line.svg';
 import { ProjectPreview } from '../components/ProjectPreview';
 import { Switch } from '@/componentes/Form/Switch';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
-import { Stepper } from '@/componentes/Stepper/Stepper';
+import { Stepper, useStepper } from '@/componentes/Stepper/Stepper';
 
 const formOptionToSelectOption = (options: FormOption[] | undefined): SelectOption[] => {
   if (options === undefined) return [];
@@ -31,14 +29,6 @@ const formOptionToSelectOption = (options: FormOption[] | undefined): SelectOpti
     label: option.name,
   }));
 };
-
-export function useStepper(maxSteps: number) {
-  const [currStep, setCurrStep] = useState(0);
-  const nextStep = () => setCurrStep((old) => Math.min(old + 1, maxSteps - 1));
-  const prevStep = () => setCurrStep((old) => Math.max(old - 1, 1));
-
-  return { currStep, nextStep, prevStep, setCurrStep };
-}
 
 enum UploadSteps {
   INFO = 0,
@@ -52,15 +42,18 @@ export const Upload = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const resolver = useYupValidationResolver(validationSchema);
-  const methods = useForm<any>({ resolver, mode: 'onBlur' });
+  const resolver = useYupValidationResolver(documentUploadValidationSchema);
+  const methods = useForm<UploadFormSchema>({
+    resolver,
+    mode: 'onBlur',
+  });
 
   const uploadDocuments = uploadDocument();
   const formOption = getFormOptions();
   const user = useAuth();
-  const { currStep, nextStep, prevStep, setCurrStep } = useStepper(Object.keys(UploadSteps).length);
+  const { currStep, nextStep, prevStep, setCurrStep } = useStepper(UploadSteps);
 
-  const handleSubmit = async (data: Record<string, any>) => {
+  const handleSubmit = async (data: UploadFormSchema) => {
     await uploadDocuments.mutateAsync(data);
     setIsOpen((old) => !old);
   };
@@ -72,8 +65,9 @@ export const Upload = () => {
     wrapperClassName: 'col-span-2',
   };
 
+  // Se podria memoizar
   const StepperNavigation = () => (
-    <>
+    <div className="col-span-2 grid grid-cols-3">
       {currStep !== 0 ? (
         <Button variant="light" type={undefined} onClick={prevStep}>
           Back
@@ -81,6 +75,7 @@ export const Upload = () => {
       ) : (
         <div />
       )}
+      <div />
       {currStep === UploadSteps.CONFIRMATION ? (
         <Button
           type="submit"
@@ -94,7 +89,7 @@ export const Upload = () => {
           Continue
         </Button>
       )}
-    </>
+    </div>
   );
 
   return (
