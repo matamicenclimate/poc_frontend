@@ -29,15 +29,20 @@ function toFormData(carbonDocument: CarbonDocumentDTO) {
     return isValid;
   }
 
-  function isFileList(object: Record<string, any>): object is File[] {
-    if (typeof object !== 'object') return false;
-    return !!object[0] && (!!object[0].name || !!object[0].size);
+  function isFileList(list: any[]): list is File[] {
+    if (typeof list !== 'object') return false;
+    let isValid = true;
+    list.forEach((value) => {
+      isValid = isValid && !!value.value && !!value.label;
+    });
+    return isValid;
   }
 
   function isDate(object: Record<string, any>): object is Date {
     if (typeof object !== 'object') return false;
     return object instanceof Date && !isNaN(object.valueOf());
   }
+  console.log(newDocument);
 
   // parse the object to formData
   Object.keys(newDocument).forEach((key) => {

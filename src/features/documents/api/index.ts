@@ -6,6 +6,7 @@ export const documentKeys = {
 };
 
 export interface CarbonDocument {
+  description?: string;
   minted_group_id?: string;
   minted_climate_asa_id: any;
   minted_climate_asa_txn_id?: string;

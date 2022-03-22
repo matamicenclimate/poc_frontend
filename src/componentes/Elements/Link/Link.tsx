@@ -32,6 +32,7 @@ export const Link = ({ as, size, variant, ...props }: RouterLinkProps | AnchorPr
   const getClassName = () => {
     if (as === 'button') {
       return clsx(
+        'inline-flex',
         buttonStyles.base,
         buttonStyles.sizes[size ?? 'md'],
         buttonStyles.variants[variant ?? 'primary']

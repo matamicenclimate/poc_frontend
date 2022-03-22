@@ -11,20 +11,23 @@ export const ProjectPreview = ({ values }: ProjectPreviewProps) => {
         <div
           className="col-span-1 flex justify-center rounded bg-neutral-7 bg-cover bg-center"
           style={{
-            backgroundImage:
-              !!values.thumbnail && values.thumbnail.length > 0
-                ? `url(${URL.createObjectURL(values.thumbnail[0])}`
-                : '',
+            backgroundImage: values.thumbnail?.url
+              ? `url(${values.thumbnail.url})`
+              : !!values.thumbnail && values.thumbnail.length > 0
+              ? `url(${URL.createObjectURL(values.thumbnail[0])}`
+              : '',
           }}
         />
         <div className="col-span-3 space-y-4 text-sm">
           <Title size={5} as={3}>
             {values.title}
           </Title>
+
           <p>
-            {values.project_types.label} - {values.country.label}
+            {values.project_type?.label ?? values.project_type?.name ?? ''} -{' '}
+            {values.country?.label ?? values.country?.name ?? ''}
           </p>
-          <p className="font-bold text-primary">{values.project_types.credits ?? 0} credits</p>
+          <p className="font-bold text-primary">{values.credits ?? 0} credits</p>
           <div className="flex gap-2">
             {values.sdgs.map((sdg: any) => (
               <Pill key={sdg.value} style="solid" variant="featured">

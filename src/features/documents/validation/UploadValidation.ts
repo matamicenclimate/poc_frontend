@@ -35,7 +35,7 @@ const imageValidation = yup.array().test('format', 'validation.errors.format.ima
 });
 
 export const documentUploadValidationSchema = yup.object({
-  project_types: yup.object().nullable().required(),
+  project_type: yup.object().nullable().required(),
   title: yup.string().required(),
   sdgs: yup.array().nullable(),
   description: yup.string().required(),

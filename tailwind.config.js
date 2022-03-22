@@ -37,12 +37,13 @@ module.exports = {
             DEFAULT: 'var(--color--primary-blue-accent)',
           },
         },
+        fontSize: {
+          xs: ['12px', '1,8'],
+          sm: ['0.875rem', '1rem'],
+          md: ['1rem', '0.712rem'],
+          lg: ['1.2rem', '1.8'],
+        },
       },
-    },
-    fontSize: {
-      xs: ['12px', '1,8'],
-      sm: ['0.875rem', '1rem'],
-      md: ['1rem', '0.712rem'],
     },
     fontFamily: {
       DEFAULT: ['Poppins'],

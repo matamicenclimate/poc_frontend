@@ -6,6 +6,10 @@ import { Link } from '@/componentes/Elements/Link/Link';
 import { getDocuments } from '../api/getDocuments';
 import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
 import { Title } from '@/componentes/Elements/Title/Title';
+import { Card } from '@/componentes/Card/Card';
+import { Pill } from '@/componentes/Elements/Pill/Pill';
+import { PageTitle } from '@/componentes/Layout/PageTitle';
+import { ProjectPreview } from '../components/ProjectPreview';
 
 export const DocumentList = () => {
   const { user } = useAuth();
@@ -16,14 +20,14 @@ export const DocumentList = () => {
       return (
         <ul className="flex flex-col gap-4">
           {documents.data.map((document) => (
-            <li key={document._id} className="flex flex-col border">
-              <div>{document._id}</div>
+            <Card key={document._id}>
+              <ProjectPreview values={document} />
               <div>
-                <Title size={3}>{document.title}</Title>
+                <Link to={`/documents/${document._id}`} as="button">
+                  {t('documents.List.viewDetails')}
+                </Link>
               </div>
-              <div>{document.status}</div>
-              <Link to={`/documents/${document._id}`}>{t('documents.List.viewDetails')}</Link>
-            </li>
+            </Card>
           ))}
         </ul>
       );
@@ -35,14 +39,15 @@ export const DocumentList = () => {
   };
   return (
     <MainLayout title={t('head.List.title')}>
-      <Breadcrumb links={[{ to: '/documents/list', label: t('documents.List.breadcrumbTitle') }]} />
-      <div className="flex items-center justify-between">
-        <Title size={1}>{t('documents.List.title')}</Title>
-        <Link to="/documents/upload" as="button">
-          {t('uploadDocuments.link')}
-        </Link>
-      </div>
-
+      <PageTitle
+        title={t('documents.List.title')}
+        description={t('documents.Upload.description')}
+        link={
+          <Link to="/documents/upload" as="button">
+            {t('uploadDocuments.link')}
+          </Link>
+        }
+      />
       {renderDocuments()}
     </MainLayout>
   );

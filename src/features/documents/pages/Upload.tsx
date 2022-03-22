@@ -30,7 +30,7 @@ const formOptionToSelectOption = (options: FormOption[] | undefined): SelectOpti
   }));
 };
 
-enum UploadSteps {
+export enum UploadSteps {
   INFO = 0,
   DETAILS = 1,
   CONFIG = 2,
@@ -99,7 +99,7 @@ export const Upload = () => {
       <PageTitle
         title={t('documents.Upload.title')}
         description={t('documents.Upload.description')}
-        linkTo=""
+        linkTo="/"
       />
       <div className="grid md:grid-cols-3">
         <div id="left-column-wrapper" className="">
@@ -121,7 +121,7 @@ export const Upload = () => {
                   <Select
                     {...{
                       ...baseInputProps,
-                      name: 'project_types',
+                      name: 'project_type',
                       options: formOptionToSelectOption(formOption.data?.['project-types']),
                       label: t('uploadDocuments.project.type'),
                       wrapperClassName: '',
