@@ -8,6 +8,7 @@ import { Alert } from '@/componentes/Elements/Alert/Alert';
 import { queryClient } from '@/lib/react-query';
 import { HelmetProvider } from 'react-helmet-async';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { WalletProvider } from './Wallet.context';
 
 const options = {
   // you can also just use 'bottom center'
@@ -21,7 +22,7 @@ const options = {
 const ErrorFallback = () => {
   return (
     <div
-      className="text-red-500 w-screen h-screen flex flex-col justify-center items-center"
+      className="flex h-screen w-screen flex-col items-center justify-center text-red-500"
       role="alert"
     >
       <h2 className="text-lg font-semibold">Ooops, something went wrong :( </h2>
@@ -39,7 +40,9 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         <AlertProvider template={Alert} {...options}>
           <QueryClientProvider client={queryClient}>
             {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}
-            <AuthProvider>{children}</AuthProvider>
+            <AuthProvider>
+              <WalletProvider>{children}</WalletProvider>
+            </AuthProvider>
           </QueryClientProvider>
         </AlertProvider>
       </HelmetProvider>

@@ -1,43 +1,39 @@
-import { magiclink } from '@/lib/magiclink';
-import { useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import Popover from '@/componentes/Popover/Popover';
 import { ReactComponent as IconWallet } from '@/assets/icons/bx-wallet-line.svg';
 import { ReactComponent as IconArrowDown } from '@/assets/icons/bx-arrow-down-simple-line.svg';
-import { getBalance } from '@/features/wallet/api/getBalance';
+import { useWalletContext } from '@/providers/Wallet.context';
 
 export const WalletNav = () => {
-  const [wallet, setWallet] = useState<string | null>(null);
-  const [currentAmount, setAmount] = useState<string>('');
-  const [walletName, setWalletName] = useState<string>('Wallet');
+  const { account } = useWalletContext();
 
-  const account = getBalance(wallet);
-
-  const totalUsdc = () => {
+  const totalUsdc = useCallback(() => {
     if (!account.data) return 0;
-    console.log({ account: account.data, assets: account.data.account.assets });
+    if (!account.data.account.assets) return 0;
 
     const usdcData = account.data.account.assets.filter(
       (asset: any) => asset['asset-id'] === Number(process.env.REACT_APP_USDC_ASA_ID)
-    )[0];
-    console.log({ usdcData });
-    return (usdcData.amount / 1000000).toFixed(2);
-  };
+    );
 
-  useEffect(() => {
-    const onMount = async () => {
-      const publicAddress = await magiclink.algorand.getWallet();
-      setWallet(publicAddress);
-    };
-    onMount();
-  }, []);
+    if (usdcData.length !== 1) return 0;
 
-  const walletOptions = () => [
-    {
-      name: 'Wallet',
-      account: `${wallet?.slice(0, 10)}...${wallet?.slice(-10)}`,
-      amount: `112,65 CC - ${totalUsdc()} USDC`,
-    },
-  ];
+    return (usdcData[0].amount / 1000000).toFixed(2);
+  }, [account.data]);
+
+  const walletOptions = useCallback(
+    () => [
+      {
+        name: 'Wallet',
+        account: account.data
+          ? `${account.data?.account.address?.slice(0, 10)}...${account.data.account.address?.slice(
+              -10
+            )}`
+          : '',
+        amount: `112,65 CC - ${totalUsdc()} USDC`,
+      },
+    ],
+    [account.data]
+  );
 
   return (
     <div className="flex items-center">
@@ -45,12 +41,10 @@ export const WalletNav = () => {
         <Popover.Button>
           <button className="flex rounded-full border-2 border-solid border-neutral-6 px-4 py-3 hover:bg-neutral-8">
             <div className="flex text-sm font-bold text-neutral-2 ">
-              <span className={'font-bold'}>{walletName}</span>
-              {currentAmount && (
-                <span
-                  className={'ml-1 text-sm font-normal text-primary'}
-                >{`(${currentAmount})`}</span>
-              )}
+              <span className={'font-bold'}>Wallet</span>
+              <span
+                className={'ml-1 text-sm font-normal text-primary'}
+              >{`(${totalUsdc()} USDC)`}</span>
             </div>
             <IconArrowDown />
           </button>
@@ -63,7 +57,7 @@ export const WalletNav = () => {
                   <Popover.Wallet
                     name={option.name}
                     isActive={true}
-                    account={option.account ?? ''}
+                    account={option.account}
                     amount={option.amount}
                     icon={
                       <div
@@ -74,10 +68,6 @@ export const WalletNav = () => {
                         <IconWallet />
                       </div>
                     }
-                    onClick={() => {
-                      setWalletName(option.name);
-                      setAmount(option.amount);
-                    }}
                   />
                 </div>
               );

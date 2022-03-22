@@ -30,7 +30,11 @@ export const Navbar = () => {
             <Link to="/sell" className={`text-neutral-4 ${linkStyle}`}>
               Sell
             </Link>
-            <Link to="/about-us" className={`text-neutral-4 ${linkStyle}`}>
+            <Link
+              href="https://climatetrade.com/es/inicio/"
+              target="_blank"
+              className={`text-neutral-4 ${linkStyle}`}
+            >
               About us
             </Link>
             {auth.user && (
