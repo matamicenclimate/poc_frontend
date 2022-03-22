@@ -33,7 +33,7 @@ function toFormData(carbonDocument: CarbonDocumentDTO) {
     if (typeof list !== 'object') return false;
     let isValid = true;
     list.forEach((value) => {
-      isValid = isValid && !!value.value && !!value.label;
+      isValid = isValid && !!value.size && !!value.type;
     });
     return isValid;
   }
@@ -75,6 +75,7 @@ export function uploadDocument() {
   return useMutation(
     (carbonDocument: CarbonDocumentDTO) => {
       const formData = toFormData(carbonDocument);
+      console.log(formData);
 
       return httpClient.post(`/carbon-documents`, formData, config);
     },

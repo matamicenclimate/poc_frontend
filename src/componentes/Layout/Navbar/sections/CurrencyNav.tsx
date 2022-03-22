@@ -1,24 +1,18 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Popover from '@/componentes/Popover/Popover';
 import { ReactComponent as IconArrowDown } from '@/assets/icons/bx-arrow-down-simple-line.svg';
+import { useCurrencyContext } from '@/providers/Currency.context';
+import clsx from 'clsx';
 
 export const CurrencyNav = () => {
   const { t, i18n } = useTranslation();
-  const [currency, setCurrency] = useState<string>('EUR');
+
+  const currency = useCurrencyContext();
 
   const languageOptions = [
     { name: `🇺🇸 ${t('components.Navbar.i18n.english')}`, key: 'en' },
     { name: `🇪🇸 ${t('components.Navbar.i18n.spanish')}`, key: 'es' },
     { name: `🇫🇷 ${t('components.Navbar.i18n.french')}`, key: 'fr' },
-  ];
-
-  const currencyOptions = [
-    { name: 'EUR' },
-    { name: 'USD' },
-    { name: 'GPB' },
-    { name: 'JPY' },
-    { name: 'BTC' },
   ];
 
   return (
@@ -27,7 +21,7 @@ export const CurrencyNav = () => {
         <Popover.Button>
           <div className="flex">
             <button className="text-sm font-bold uppercase hover:bg-blue-100">
-              {i18n.language} / {currency}
+              {i18n.language} / {currency.state.currency}
             </button>
             <IconArrowDown />
           </div>
@@ -52,15 +46,22 @@ export const CurrencyNav = () => {
             </div>
             <div className="w-36 pl-4 text-sm text-neutral-4">
               <p className="pb-1.5 text-xs">{t('components.Navbar.currency')}</p>
-              {currencyOptions.map((curr, i) => {
+              {Object.keys(currency.currencies).map((curr: any, i) => {
                 return (
                   <div key={i} className="border-b last:border-none">
                     <Popover.Option
-                      name={curr.name}
-                      isActive={currency === curr.name}
-                      icon={<div className={'h-2 w-2 rounded-full bg-neutral-4'}></div>}
+                      name={curr}
+                      isActive={currency.state.currency === curr}
+                      icon={
+                        <div
+                          className={clsx(
+                            'h-2 w-2 rounded-full',
+                            currency.state.currency === curr ? 'bg-neutral-2' : 'bg-neutral-4'
+                          )}
+                        ></div>
+                      }
                       onClick={() => {
-                        setCurrency(curr.name);
+                        currency.reducer.setCurrency(curr);
                       }}
                     />
                   </div>

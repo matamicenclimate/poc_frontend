@@ -44,8 +44,8 @@ export const useCurrencyContext = () => {
   const { state, setState } = ctx;
 
   const reducer = {
-    setCurency: (currency: ContextState['currency']) => setState((old) => ({ ...old, currency })),
+    setCurrency: (currency: ContextState['currency']) => setState((old) => ({ ...old, currency })),
   };
 
-  return { state, reducer };
+  return { state, reducer, currencies };
 };

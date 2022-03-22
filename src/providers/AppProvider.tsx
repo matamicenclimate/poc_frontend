@@ -9,6 +9,7 @@ import { queryClient } from '@/lib/react-query';
 import { HelmetProvider } from 'react-helmet-async';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { WalletProvider } from './Wallet.context';
+import { CurrencyProvider } from './Currency.context';
 
 const options = {
   // you can also just use 'bottom center'
@@ -41,7 +42,9 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
           <QueryClientProvider client={queryClient}>
             {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}
             <AuthProvider>
-              <WalletProvider>{children}</WalletProvider>
+              <CurrencyProvider>
+                <WalletProvider>{children}</WalletProvider>
+              </CurrencyProvider>
             </AuthProvider>
           </QueryClientProvider>
         </AlertProvider>

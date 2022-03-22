@@ -38,7 +38,7 @@ export const Navbar = () => {
               About us
             </Link>
             {auth.user && (
-              <Link to="/documents/upload" className={`text-primary ${linkStyle}`}>
+              <Link to="/documents/list" className={`text-primary ${linkStyle}`}>
                 Developer
               </Link>
             )}

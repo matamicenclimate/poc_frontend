@@ -184,6 +184,7 @@ export const Upload = () => {
                     name="project_latitude"
                     type="number"
                     step="any"
+                    defaultValue={0}
                   />
 
                   <Input
@@ -193,6 +194,7 @@ export const Upload = () => {
                     name="project_longitude"
                     type="number"
                     step="any"
+                    defaultValue={0}
                   />
                   <FileInput
                     {...baseInputProps}
