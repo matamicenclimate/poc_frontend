@@ -20,7 +20,16 @@ function toFormData(carbonDocument: CarbonDocumentDTO) {
     return !!object.value && !!object.label;
   }
 
-  function isFileList(object: Record<string, any>): object is FileList {
+  function isMultiSelectOption(object: Record<string, any>[]): object is SelectOption[] {
+    if (typeof object !== 'object') return false;
+    let isValid = true;
+    object.forEach((value) => {
+      isValid = isValid && !!value.value && !!value.label;
+    });
+    return isValid;
+  }
+
+  function isFileList(object: Record<string, any>): object is File[] {
     if (typeof object !== 'object') return false;
     return !!object[0] && (!!object[0].name || !!object[0].size);
   }
@@ -32,21 +41,20 @@ function toFormData(carbonDocument: CarbonDocumentDTO) {
 
   // parse the object to formData
   Object.keys(newDocument).forEach((key) => {
-    if (Array.isArray(newDocument[key])) {
-      newDocument[key].forEach((option: SelectOption) => {
-        formData.append(`${key}[]`, option.value);
-      });
-    } else if (isDate(newDocument[key])) {
+    if (isDate(newDocument[key])) {
       formData.append(key, format(newDocument[key], 'yyyy-MM-dd'));
     } else if (isSelectOption(newDocument[key])) {
       formData.append(key, newDocument[key].value);
     } else if (isFileList(newDocument[key])) {
       formData.append(key, newDocument[key][0]);
+    } else if (isMultiSelectOption(newDocument[key])) {
+      newDocument[key].forEach((option: SelectOption) => {
+        formData.append(`${key}[]`, option.value);
+      });
     } else {
       formData.append(key, newDocument[key]);
     }
   });
-
   return formData;
 }
 

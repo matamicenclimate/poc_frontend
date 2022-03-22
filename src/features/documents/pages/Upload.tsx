@@ -54,6 +54,8 @@ export const Upload = () => {
   const { currStep, nextStep, prevStep, setCurrStep } = useStepper(UploadSteps);
 
   const handleSubmit = async (data: UploadFormSchema) => {
+    console.log({ data });
+
     await uploadDocuments.mutateAsync(data);
     setIsOpen((old) => !old);
   };
