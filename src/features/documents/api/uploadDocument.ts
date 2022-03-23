@@ -42,20 +42,28 @@ function toFormData(carbonDocument: CarbonDocumentDTO) {
     if (typeof object !== 'object') return false;
     return object instanceof Date && !isNaN(object.valueOf());
   }
-  console.log(newDocument);
+
+  function isUndefined(value: any): value is undefined {
+    return value === undefined;
+  }
+
+  function isEmptyArray(array: any[]) {
+    return Array.isArray(array) && array.length === 0;
+  }
 
   // parse the object to formData
   Object.keys(newDocument).forEach((key) => {
-    if (isDate(newDocument[key])) {
+    if (isUndefined(newDocument[key]) || isEmptyArray(newDocument[key])) {
+      // do nothing
+    } else if (isDate(newDocument[key])) {
       formData.append(key, format(newDocument[key], 'yyyy-MM-dd'));
     } else if (isSelectOption(newDocument[key])) {
       formData.append(key, newDocument[key].value);
     } else if (isFileList(newDocument[key])) {
       formData.append(key, newDocument[key][0]);
     } else if (isMultiSelectOption(newDocument[key])) {
-      newDocument[key].forEach((option: SelectOption) => {
-        formData.append(`${key}[]`, option.value);
-      });
+      const ids = newDocument[key].map((entry: SelectOption) => entry.value);
+      formData.append(`${key}`, JSON.stringify(ids));
     } else {
       formData.append(key, newDocument[key]);
     }

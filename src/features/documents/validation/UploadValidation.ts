@@ -47,7 +47,7 @@ export const documentUploadValidationSchema = yup.object({
   cover: imageValidation.required(),
   project_registration: dateValidation.required(),
   project_video: yup.string(),
-  types: yup.object().nullable().required(),
+  type: yup.object().nullable().required(),
   sub_type: yup.object().nullable().required(),
   methodology: yup.object().nullable(),
   credit_start: dateValidation.required(),

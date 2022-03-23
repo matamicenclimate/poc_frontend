@@ -270,7 +270,7 @@ export const Upload = () => {
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.type')}
                     required
-                    name="types"
+                    name="type"
                     options={formOptionToSelectOption(formOption.data?.types)}
                   />
                   <Select
