@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/Dekalabs/climatecoin-frontend/compare/v0.2.0...v0.3.0) (2022-03-23)
+
+
+### Features
+
+* add fonts and colors ([#23](https://github.com/Dekalabs/climatecoin-frontend/issues/23)) ([e0f5069](https://github.com/Dekalabs/climatecoin-frontend/commit/e0f50699762168a97aa179ecbea023db40c30df2))
+* add popover and language ([#34](https://github.com/Dekalabs/climatecoin-frontend/issues/34)) ([f388105](https://github.com/Dekalabs/climatecoin-frontend/commit/f388105af6a1e25505ca45ad4c1ab3a322fcd6a5))
+* add wallet and currency context ([#38](https://github.com/Dekalabs/climatecoin-frontend/issues/38)) ([76709b9](https://github.com/Dekalabs/climatecoin-frontend/commit/76709b9c0e41faabd648f8f61663153077b85220))
+* added switch and fixed form validation ([2e9808b](https://github.com/Dekalabs/climatecoin-frontend/commit/2e9808b60707597a787adaed2ab0b9c1d5742ea0))
+* buy climatecoins page ([#35](https://github.com/Dekalabs/climatecoin-frontend/issues/35)) ([d6d9fe7](https://github.com/Dekalabs/climatecoin-frontend/commit/d6d9fe728d5523f01c107a2f5f3996d6ec09bbfc))
+* enhanced form ([#31](https://github.com/Dekalabs/climatecoin-frontend/issues/31)) ([2fc0fd1](https://github.com/Dekalabs/climatecoin-frontend/commit/2fc0fd139ffed9d4d67895291ffab28c94e24f65))
+* extra page styles ([#40](https://github.com/Dekalabs/climatecoin-frontend/issues/40)) ([805e419](https://github.com/Dekalabs/climatecoin-frontend/commit/805e4191e1adb54df7a33f6c9e445de637aa4245))
+* form steps ([#28](https://github.com/Dekalabs/climatecoin-frontend/issues/28)) ([9f900ee](https://github.com/Dekalabs/climatecoin-frontend/commit/9f900eec0f275c8402c4d5606b72164eca8e4403))
+* initial implementation of title component ([#26](https://github.com/Dekalabs/climatecoin-frontend/issues/26)) ([df92451](https://github.com/Dekalabs/climatecoin-frontend/commit/df924514ea3bc7184adf8fc9c15fa5c1052fddfe))
+* login page ([#32](https://github.com/Dekalabs/climatecoin-frontend/issues/32)) ([59ff14e](https://github.com/Dekalabs/climatecoin-frontend/commit/59ff14eada466a49e81106531c50736cf48c3d36))
+* navbar ([#30](https://github.com/Dekalabs/climatecoin-frontend/issues/30)) ([a562a1a](https://github.com/Dekalabs/climatecoin-frontend/commit/a562a1a963fde9764b5c33c68ae821539e9ab9b3))
+* navbar wallet ([#37](https://github.com/Dekalabs/climatecoin-frontend/issues/37)) ([46e4c27](https://github.com/Dekalabs/climatecoin-frontend/commit/46e4c27e439de60878cb392e92c92da0c276927f))
+
+
+### Bug Fixes
+
+* fixed file input validation ([#33](https://github.com/Dekalabs/climatecoin-frontend/issues/33)) ([8038fa8](https://github.com/Dekalabs/climatecoin-frontend/commit/8038fa8599d41dc6c893e0220231f04107777679))
+* fixed form binaries and currency context ([#41](https://github.com/Dekalabs/climatecoin-frontend/issues/41)) ([cae7ec3](https://github.com/Dekalabs/climatecoin-frontend/commit/cae7ec3a23d73e03ce877fb3aa445a85a28ea2be))
+* form keys ([#24](https://github.com/Dekalabs/climatecoin-frontend/issues/24)) ([7d852a6](https://github.com/Dekalabs/climatecoin-frontend/commit/7d852a6f01e69e07413b65fbcc688e837df69ba8))
+* form not including binaries ([#39](https://github.com/Dekalabs/climatecoin-frontend/issues/39)) ([499e8ca](https://github.com/Dekalabs/climatecoin-frontend/commit/499e8caaac8114ee2601169e87e5dfc943e2c1fb))
+* tailwind config colors ([#25](https://github.com/Dekalabs/climatecoin-frontend/issues/25)) ([3f59b2d](https://github.com/Dekalabs/climatecoin-frontend/commit/3f59b2d51834774edf2d65f19046b9163a41f75e))
+
 ## [0.2.0](https://github.com/Dekalabs/climatecoin-frontend/compare/v0.1.0...v0.2.0) (2022-03-09)
 
 
