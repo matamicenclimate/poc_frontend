@@ -31,7 +31,7 @@ export const ProjectPreview = ({ values }: ProjectPreviewProps) => {
           <div className="flex gap-2">
             {values.sdgs.map((sdg: any) => (
               <Pill key={sdg.value} style="solid" variant="featured">
-                {sdg.label}
+                {sdg.label ?? sdg.name}
               </Pill>
             ))}
           </div>

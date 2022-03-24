@@ -29,6 +29,26 @@
         "button": "Cancel"
       }
     },
+    "Overview": {
+      "all": "All",
+      "buy": "Buy",
+      "sell": "Sell",
+      "transfer": "Transfer",
+      "offset": "Offset",
+      "activity": "Activity",
+      "type": "Type",
+      "total": "Total",
+      "operationId": "ID Operation",
+      "date": "Date",
+      "totalBalance": "Total balance",
+      "footprint": "Offset CO2 footprint",
+      "buyClimatecoins": "Buy Climatecoins",
+      "viewMore": {
+        "title": "Your help against climate change.",
+        "subtitle": "Use your climatecoins to help in the fight against climate change.",
+        "link": "View more"
+      }
+    },
     "Navbar": {
       "i18n": {
         "title": "Language",
@@ -36,7 +56,12 @@
         "french": "French",
         "english": "English"
       },
-      "currency": "Currency"
+      "currency": "Currency",
+      "home": "Home",
+      "buy": "Buy",
+      "sell": "Sell",
+      "about": "About us",
+      "developer": "Developer"
     }
   },
   "dialogs": {
@@ -70,8 +95,12 @@
     }
   },
   "head": {
-    "List": { "title": "List of documents" },
-    "Profile": { "pageTitle": "Profile" },
+    "List": {
+      "title": "List of documents"
+    },
+    "Profile": {
+      "pageTitle": "Profile"
+    },
     "Upload": {
       "title": "Upload carbon documents"
     },
@@ -88,7 +117,7 @@
     "heading": "Login Email"
   },
   "misc": {
-    "Dashboard": {
+    "Overview": {
       "title": "Home"
     },
     "Landing": {
@@ -100,7 +129,9 @@
   },
   "uploadDocuments": {
     "country": "Country",
-    "credits": { "amount": "Credits available" },
+    "credits": {
+      "amount": "Credits available"
+    },
     "description": "Project description",
     "firstVerifier": "First Verifier",
     "link": "Upload documents",
@@ -108,9 +139,13 @@
     "modal": {
       "claim": "Message sent succesfully. We will contact you in the next few days.",
       "title": "Form submitted successfully",
-      "button": { "accept": "Got it, thanks!" }
+      "button": {
+        "accept": "Got it, thanks!"
+      }
     },
-    "monitoring": { "report": "Monitoring report" },
+    "monitoring": {
+      "report": "Monitoring report"
+    },
     "PDD": "PDD",
     "project.creditEnd": "Credits end",
     "project.creditStart": "Credits start",

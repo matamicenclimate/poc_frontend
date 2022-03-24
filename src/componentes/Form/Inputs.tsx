@@ -1,17 +1,18 @@
 import clsx from 'clsx';
-import { UseFormRegister } from 'react-hook-form';
+import { Path, UseFormRegister } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { FieldName, SchemaToErrors } from '.';
 import { FieldError } from './FieldError';
 import { Label } from './Label';
 
-export type InputProps = {
-  name: string;
+export type InputProps<FormSchema> = {
+  name: FieldName<FormSchema>;
   type: 'text' | 'email' | 'number' | 'file' | 'hidden' | 'date' | 'country';
   placeholder?: string;
   label?: string;
   htmlFor?: string;
-  register?: UseFormRegister<any>;
-  errors?: any;
+  register?: UseFormRegister<FormSchema>;
+  errors?: SchemaToErrors<FormSchema>;
   required?: boolean;
   labelClassName?: string;
   errorClassName?: string;
@@ -23,20 +24,20 @@ export type InputProps = {
   accept?: string;
 };
 
-export function Input({
+export function Input<FormSchema extends Record<string, any>>({
   name,
   type,
   label,
   placeholder,
   register,
-  errors = {},
+  errors = {} as any,
   required = false,
   labelClassName,
   errorClassName,
   inputClassName,
   wrapperClassName,
   ...rest
-}: InputProps) {
+}: InputProps<FormSchema>) {
   const { t } = useTranslation();
 
   if (!register) {
@@ -52,30 +53,30 @@ export function Input({
         id={name}
         placeholder={placeholder}
         className={clsx(`rounded-md border p-2`, inputClassName, errors[name] && 'border-red-500')}
-        {...register(name)}
+        {...register(name as Path<FormSchema>)}
         {...rest}
       />
-      {errors[name] && type !== 'hidden' && (
+      {!!errors[name] && type !== 'hidden' && (
         <FieldError errorClassName={errorClassName}>{t(errors[name].key)}</FieldError>
       )}
     </div>
   );
 }
 
-export function Textarea({
+export function Textarea<FormSchema>({
   name,
   type,
   label,
   placeholder,
   register,
-  errors = {},
+  errors = {} as any,
   required = false,
   labelClassName,
   errorClassName,
   inputClassName,
   wrapperClassName,
   ...rest
-}: InputProps) {
+}: InputProps<FormSchema>) {
   const { t } = useTranslation();
 
   if (!register) {

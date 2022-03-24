@@ -4,8 +4,8 @@ import { ButtonStyleProps, buttonStyles } from '../Button/Button';
 
 type BaseProps = {
   as?: string;
-  children: React.ReactNode;
   className?: string;
+  children?: React.ReactNode;
 } & ({
   as?: 'button';
 } & ButtonStyleProps);
@@ -17,7 +17,7 @@ type RouterLinkProps = {
 } & BaseProps;
 
 // Anchor props
-type AnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+type AnchorProps = {
   to?: undefined;
   href?: string;
   target?: string;
@@ -28,7 +28,15 @@ const hasHref = (props: RouterLinkProps | AnchorProps): props is AnchorProps => 
 
 // Component
 // la discriminacion de TS no funciona bien con la destructuración
-export const Link = ({ as, size, variant, ...props }: RouterLinkProps | AnchorProps) => {
+export const Link = ({
+  as,
+  size,
+  variant,
+  iconRight,
+  iconLeft,
+  children,
+  ...props
+}: RouterLinkProps | AnchorProps) => {
   const getClassName = () => {
     if (as === 'button') {
       return clsx(
@@ -43,9 +51,20 @@ export const Link = ({ as, size, variant, ...props }: RouterLinkProps | AnchorPr
 
   // anchor render
   if (hasHref(props)) {
-    return <a className={getClassName()} target={props.target ?? '_blank'} {...props} />;
+    return (
+      <a className={getClassName()} target={props.target ?? '_blank'} {...props}>
+        {iconLeft} {children} {iconRight}
+      </a>
+    );
   }
 
   // button render
-  return <RouterLink to={props.to as To} className={getClassName()} {...props} />;
+
+  return (
+    <RouterLink to={props.to as To} className={getClassName()} {...props}>
+      {iconLeft}
+      {children}
+      {iconRight}
+    </RouterLink>
+  );
 };

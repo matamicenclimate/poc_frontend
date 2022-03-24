@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { Dashboard } from '@/features/misc/routes/Dashboard';
+import { Overview } from '@/features/misc/routes/Overview';
 import { Profile } from '@/features/users/routes/Profile';
 import { DocumentRouter } from '@/features/documents/routes/DocumentRouter';
 import { Wallet } from '@/features/wallet/routes/Wallet';
@@ -19,8 +19,8 @@ export const protectedRoutes = [
       { path: '/coins/*', element: <ClimatecoinsRouter /> },
       { path: '/profile', element: <Profile /> },
       { path: '/wallet', element: <Wallet /> },
-      { path: '/home', element: <Dashboard /> },
-      { path: '/', element: <Dashboard /> },
+      { path: '/home', element: <Overview /> },
+      { path: '/', element: <Overview /> },
       { path: '*', element: <Navigate to="." /> },
     ],
   },

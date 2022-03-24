@@ -26,6 +26,21 @@
         "english": "Inglés"
       },
       "currency": "Moneda"
+    },
+    "Overview": {
+      "activity": "Actividad",
+      "type": "Tipo",
+      "total": "Total",
+      "operationId": "ID de la operación",
+      "date": "Fecha",
+      "totalBalance": "Balance total",
+      "footprint": "Huella de CO2 compensada",
+      "buyClimatecoins": "Comprar Climatecoins",
+      "viewMore": {
+        "title": "Tu ayuda contra el cambio climático.",
+        "subtitle": "Utiliza tus climatecoins para ayudar en la lucha contra el cambio climático.",
+        "link": "Ver más"
+      }
     }
   },
   "dialogs.base.accept": "Aceptar",
@@ -73,7 +88,7 @@
     "heading": "Login Email"
   },
   "misc": {
-    "Dashboard": {
+    "Overview": {
       "title": "Home"
     },
     "Landing": {

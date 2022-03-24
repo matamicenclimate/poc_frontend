@@ -1,21 +1,20 @@
 import clsx from 'clsx';
 import { TFunction } from 'i18next';
-import { useController } from 'react-hook-form';
+import { Control, Path, useController, UseControllerProps } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import ReactSelect from 'react-select';
+import { FieldName, SchemaToErrors, SelectOption } from '.';
 import { FieldError } from './FieldError';
 import { Label } from './Label';
 
-export type SelectOption = { value: any; label: string | TFunction };
-
-type SelectProps = {
-  name: string;
+type SelectProps<FormSchema> = {
+  name: FieldName<FormSchema>;
   label?: string;
   options: SelectOption[];
   isMulti?: boolean;
   // this should be inyected by the <Form />
-  control?: any;
-  errors?: Record<string, any>;
+  control: Control<FormSchema>;
+  errors?: SchemaToErrors<FormSchema>;
   required?: boolean;
   labelClassName?: string;
   errorClassName?: string;
@@ -39,7 +38,7 @@ const colourStyles = {
   }),
 };
 
-export const Select = ({
+export function Select<FormSchema>({
   name,
   label,
   errors = {},
@@ -51,14 +50,14 @@ export const Select = ({
   options,
   isMulti = false,
   control,
-}: SelectProps) => {
+}: SelectProps<FormSchema>) {
   const { t } = useTranslation();
 
   const { field } = useController({
     name,
     control,
     rules: { required },
-    defaultValue: isMulti ? [] : '',
+    defaultValue: isMulti ? [] : ('' as any),
   });
 
   return (
@@ -69,7 +68,7 @@ export const Select = ({
         aria-labelledby={name}
         inputId={name}
         className={clsx(selectClassName, 'text-sm', errors[name] && 'border-red-500')}
-        options={options}
+        options={options as any}
         isMulti={isMulti}
         styles={colourStyles}
       />
@@ -78,4 +77,4 @@ export const Select = ({
       )}
     </div>
   );
-};
+}

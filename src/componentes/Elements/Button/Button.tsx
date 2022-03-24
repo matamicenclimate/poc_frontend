@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-const base = 'rounded-full font-bold disabled:opacity-50';
+const base = 'flex items-center justify-center rounded-full font-bold disabled:opacity-50';
 
 const sizes = {
   sm: 'px-4 py-3 text-sm',
@@ -26,13 +26,13 @@ type ButtonProps = {
   children: React.ReactNode;
   type?: 'submit';
   disabled?: boolean;
-  iconLeft?: React.ReactNode;
-  iconRight?: React.ReactNode;
 } & ButtonStyleProps;
 
 export type ButtonStyleProps = {
   size?: keyof typeof sizes;
   variant?: keyof typeof variants;
+  iconLeft?: React.ReactNode;
+  iconRight?: React.ReactNode;
 };
 
 export const Button = ({
@@ -48,7 +48,7 @@ export const Button = ({
   return (
     <button
       onClick={onClick}
-      className={clsx('flex items-center justify-center', base, sizes[size], variants[variant])}
+      className={clsx(base, sizes[size], variants[variant])}
       disabled={disabled}
       {...props}
     >

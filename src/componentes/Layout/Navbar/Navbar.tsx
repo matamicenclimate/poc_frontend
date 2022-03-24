@@ -1,4 +1,5 @@
 import { useAuth } from '@/lib/auth';
+import { useTranslation } from 'react-i18next';
 import { WalletNav } from './sections/WalletNav';
 import { ProfileNav } from './sections/ProfileNav';
 import { Link } from '@/componentes/Elements/Link/Link';
@@ -10,6 +11,7 @@ const linkStyle = 'flex items-center text-sm';
 
 export const Navbar = () => {
   const auth = useAuth();
+  const { t } = useTranslation();
 
   return (
     <div className="mx-auto w-full border pb-5 pt-5">
@@ -22,24 +24,24 @@ export const Navbar = () => {
         <div className="flex w-full justify-between">
           <div className="flex gap-8 pl-10">
             <Link to="/home" className={`text-neutral-2 ${linkStyle}`}>
-              Home
+              {t('components.Navbar.home')}
             </Link>
             <Link to="/coins/buy" className={`text-neutral-4 ${linkStyle}`}>
-              Buy
+              {t('components.Navbar.buy')}
             </Link>
             <Link to="/sell" className={`text-neutral-4 ${linkStyle}`}>
-              Sell
+              {t('components.Navbar.sell')}
             </Link>
             <Link
               href="https://climatetrade.com/es/inicio/"
               target="_blank"
               className={`text-neutral-4 ${linkStyle}`}
             >
-              About us
+              {t('components.Navbar.about')}
             </Link>
             {auth.user && (
               <Link to="/documents/list" className={`text-primary ${linkStyle}`}>
-                Developer
+                {t('components.Navbar.developer')}
               </Link>
             )}
           </div>

@@ -1,28 +1,35 @@
 import { Switch as HLSwitch } from '@headlessui/react';
 import { Control, useController } from 'react-hook-form';
+import { FieldName, SchemaToErrors } from '.';
 
-type SwitchProps = {
-  control?: Control<any, object>;
-  name: string;
+type SwitchProps<FormSchema> = {
+  control: Control<FormSchema>;
+  errors?: SchemaToErrors<FormSchema>;
+  name: FieldName<FormSchema>;
   label: string | React.ReactNode;
   required?: boolean;
 };
 
-export function Switch({ control, name, label, required = false }: SwitchProps) {
+export function Switch<FormSchema>({
+  control,
+  name,
+  label,
+  required = false,
+}: SwitchProps<FormSchema>) {
   const {
     field: { onChange, onBlur, value },
   } = useController({
     name,
     control,
     rules: { required },
-    defaultValue: false,
+    defaultValue: false as any,
   });
 
   return (
     <HLSwitch.Group>
       <div className="flex items-center">
         <HLSwitch
-          checked={value ?? false}
+          checked={!!value ?? false}
           onChange={() => {
             onChange(!value);
             onBlur();

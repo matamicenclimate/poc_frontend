@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useDropzone } from 'react-dropzone';
-import { useController } from 'react-hook-form';
+import { Path, useController, UseControllerProps } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { ReactComponent as UploadIcon } from '@/assets/icons/bx-cloud-upload.svg';
 import { ReactComponent as FileIcon } from '@/assets/icons/bx-File_Document_Line.svg';
@@ -8,14 +8,14 @@ import { ReactComponent as ShowIcon } from '@/assets/icons/bx-show.svg';
 import { ReactComponent as DeleteIcon } from '@/assets/icons/bx-x.svg';
 import { Label } from './Label';
 import { FieldError } from './FieldError';
+import { FieldName, SchemaToErrors } from '.';
 
-export type FileInputProps = {
-  name: string;
+export type FileInputProps<FormSchema> = {
+  name: FieldName<FormSchema>;
   placeholder?: string;
   label?: string;
-  htmlFor?: string;
-  control: any;
-  errors?: any;
+  control: UseControllerProps<FormSchema>['control'];
+  errors?: SchemaToErrors<FormSchema>;
   required?: boolean;
   labelClassName?: string;
   errorClassName?: string;
@@ -27,7 +27,7 @@ export type FileInputProps = {
   accept?: string;
   isMulti?: boolean;
 };
-const FileInput = ({
+function FileInput<FormSchema>({
   name,
   label,
   control,
@@ -37,7 +37,7 @@ const FileInput = ({
   isMulti = false,
   errors = {},
   accept,
-}: FileInputProps) => {
+}: FileInputProps<FormSchema>) {
   const { t } = useTranslation();
   const {
     field: { onChange, onBlur, value },
@@ -45,7 +45,7 @@ const FileInput = ({
     name,
     control,
     rules: { required },
-    defaultValue: [],
+    defaultValue: [] as any,
   });
   const { acceptedFiles, getRootProps, getInputProps, isDragActive } = useDropzone({
     accept,
@@ -78,7 +78,7 @@ const FileInput = ({
             errors[name] && 'border-red-500'
           )}
         >
-          {!value.length && (
+          {!(value as any).length && (
             <div className="space-y-2 text-center">
               <div className="flex justify-center">
                 <UploadIcon />
@@ -88,7 +88,7 @@ const FileInput = ({
             </div>
           )}
           <div className="space-y-2">
-            {value.map((file: File, index: number) => {
+            {(value as File[]).map((file: File, index: number) => {
               return (
                 <div
                   key={file.name}
@@ -129,6 +129,6 @@ const FileInput = ({
       </div>
     </div>
   );
-};
+}
 
 export default FileInput;

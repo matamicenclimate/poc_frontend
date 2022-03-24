@@ -5,20 +5,7 @@ import { ReactComponent as IconArrowDown } from '@/assets/icons/bx-arrow-down-si
 import { useWalletContext } from '@/providers/Wallet.context';
 
 export const WalletNav = () => {
-  const { account } = useWalletContext();
-
-  const totalUsdc = useCallback(() => {
-    if (!account.data) return 0;
-    if (!account.data.account.assets) return 0;
-
-    const usdcData = account.data.account.assets.filter(
-      (asset: any) => asset['asset-id'] === Number(process.env.REACT_APP_USDC_ASA_ID)
-    );
-
-    if (usdcData.length !== 1) return 0;
-
-    return (usdcData[0].amount / 1000000).toFixed(2);
-  }, [account.data]);
+  const { account, totalUsdc } = useWalletContext();
 
   const walletOptions = useCallback(
     () => [

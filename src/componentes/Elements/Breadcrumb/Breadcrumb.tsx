@@ -12,7 +12,7 @@ export const Breadcrumb = ({ links = [] }: BreadcrumbProps) => {
   return (
     <ul className={clsx(baseStyle)}>
       <li>
-        <Link to="/">{t('misc.Dashboard.title')}</Link>
+        <Link to="/">{t('misc.Overview.title')}</Link>
       </li>
       {links.map((link, i) => (
         <li key={i} className="flex gap-4">

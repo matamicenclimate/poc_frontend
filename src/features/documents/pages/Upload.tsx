@@ -6,7 +6,7 @@ import { Button } from '@/componentes/Elements/Button/Button';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { Dialog } from '@/componentes/Dialog/Dialog';
 import { Input, Textarea } from '@/componentes/Form/Inputs';
-import { Select, SelectOption } from '@/componentes/Form/Select';
+import { Select } from '@/componentes/Form/Select';
 
 import { uploadDocument } from '../api/uploadDocument';
 import { getFormOptions, FormOption } from '../api/getFormOptions';
@@ -21,6 +21,7 @@ import { ProjectPreview } from '../components/ProjectPreview';
 import { Switch } from '@/componentes/Form/Switch';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
 import { Stepper, useStepper } from '@/componentes/Stepper/Stepper';
+import { SelectOption } from '@/componentes/Form';
 
 const formOptionToSelectOption = (options: FormOption[] | undefined): SelectOption[] => {
   if (options === undefined) return [];
@@ -118,7 +119,7 @@ export const Upload = () => {
                   {t('documents.Upload.stepper.INFO')}
                 </Title>
                 <div className="mt-8 grid grid-cols-2 gap-4">
-                  <Select
+                  <Select<UploadFormSchema>
                     {...{
                       ...baseInputProps,
                       name: 'project_type',
@@ -128,7 +129,7 @@ export const Upload = () => {
                     }}
                     required
                   />
-                  <Select
+                  <Select<UploadFormSchema>
                     {...{
                       ...baseInputProps,
                       options: formOptionToSelectOption(formOption.data?.countries),
@@ -138,28 +139,28 @@ export const Upload = () => {
                     }}
                     required
                   />
-                  <Select
-                    {...{ ...baseInputProps }}
+                  <Select<UploadFormSchema>
+                    {...baseInputProps}
                     label={t('uploadDocuments.sdgs')}
                     name="sdgs"
                     options={formOptionToSelectOption(formOption.data?.sdgs)}
                     isMulti
                   />
-                  <Input
-                    {...{ ...baseInputProps }}
+                  <Input<UploadFormSchema>
+                    {...baseInputProps}
                     label={t('uploadDocuments.project.title')}
                     required
                     name="title"
                     type="text"
                   />
-                  <Textarea
-                    {...{ ...baseInputProps }}
+                  <Textarea<UploadFormSchema>
+                    {...baseInputProps}
                     label={t('uploadDocuments.description')}
                     required
                     name="description"
                     type="text"
                   />
-                  <Input
+                  <Input<UploadFormSchema>
                     {...baseInputProps}
                     label={t('uploadDocuments.project.url')}
                     required
@@ -177,7 +178,7 @@ export const Upload = () => {
                   {t('documents.Upload.stepper.DETAILS')}
                 </Title>
                 <div className="mt-8 grid grid-cols-2 gap-4">
-                  <Input
+                  <Input<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.projectLatitude')}
@@ -186,8 +187,7 @@ export const Upload = () => {
                     step="any"
                     defaultValue={0}
                   />
-
-                  <Input
+                  <Input<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.projectLongitude')}
@@ -196,35 +196,35 @@ export const Upload = () => {
                     step="any"
                     defaultValue={0}
                   />
-                  <FileInput
+                  <FileInput<UploadFormSchema>
                     {...baseInputProps}
                     label={t('uploadDocuments.projectThumbnail')}
                     required
                     name="thumbnail"
                     accept={'.png, .jpg, .jpeg'}
                   />
-                  <FileInput
+                  <FileInput<UploadFormSchema>
                     {...baseInputProps}
                     label={t('uploadDocuments.projectCover')}
                     required
                     name="cover"
                     accept={'.png, .jpg, .jpeg'}
                   />
-                  <Input
+                  <Input<UploadFormSchema>
                     {...baseInputProps}
                     label={t('uploadDocuments.credits.amount')}
                     required
                     name="credits"
                     type="number"
                   />
-                  <Input
+                  <Input<UploadFormSchema>
                     {...baseInputProps}
                     label={t('uploadDocuments.serialNumber')}
                     required
                     name="serial_number"
                     type="text"
                   />
-                  <Input
+                  <Input<UploadFormSchema>
                     {...baseInputProps}
                     label={t('uploadDocuments.project.registration')}
                     required
@@ -232,7 +232,7 @@ export const Upload = () => {
                     type="date"
                   />
 
-                  <Input
+                  <Input<UploadFormSchema>
                     {...baseInputProps}
                     label={t('uploadDocuments.project.video')}
                     name="project_video"
@@ -249,7 +249,7 @@ export const Upload = () => {
                 </Title>
                 <div className="mt-8 grid grid-cols-2 gap-4">
                   {' '}
-                  <Input
+                  <Input<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.project.creditStart')}
@@ -257,7 +257,7 @@ export const Upload = () => {
                     name="credit_start"
                     type="date"
                   />
-                  <Input
+                  <Input<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.project.creditEnd')}
@@ -265,7 +265,7 @@ export const Upload = () => {
                     name="credit_end"
                     type="date"
                   />
-                  <Select
+                  <Select<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.type')}
@@ -273,7 +273,7 @@ export const Upload = () => {
                     name="type"
                     options={formOptionToSelectOption(formOption.data?.types)}
                   />
-                  <Select
+                  <Select<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.subtype')}
@@ -281,28 +281,28 @@ export const Upload = () => {
                     name="sub_type"
                     options={formOptionToSelectOption(formOption.data?.['sub-types'])}
                   />
-                  <Select
+                  <Select<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.methodology')}
                     name="methodology"
                     options={formOptionToSelectOption(formOption.data?.methodologies)}
                   />
-                  <Select
+                  <Select<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.validator')}
-                    name="validator"
+                    name="validators"
                     options={formOptionToSelectOption(formOption.data?.validators)}
                   />
-                  <Select
+                  <Select<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.firstVerifier')}
                     name="first_verifier"
                     options={formOptionToSelectOption(formOption.data?.['first-verifiers'])}
                   />
-                  <Select
+                  <Select<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.standard')}
@@ -310,7 +310,7 @@ export const Upload = () => {
                     name="standard"
                     options={formOptionToSelectOption(formOption.data?.standards)}
                   />
-                  <Select
+                  <Select<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.registry.name')}
@@ -318,7 +318,7 @@ export const Upload = () => {
                     name="registry"
                     options={formOptionToSelectOption(formOption.data?.registries)}
                   />
-                  <Input
+                  <Input<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-2"
                     label={t('uploadDocuments.registry.link')}
@@ -336,7 +336,7 @@ export const Upload = () => {
                   {t('documents.Upload.stepper.FILES')}
                 </Title>
                 <div className="mt-8 grid grid-cols-2 gap-4">
-                  <FileInput
+                  <FileInput<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-2"
                     label={t('uploadDocuments.PDD')}
@@ -344,28 +344,28 @@ export const Upload = () => {
                     name="pdd"
                     accept={'.pdf'}
                   />
-                  <FileInput
+                  <FileInput<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-2"
                     label={t('uploadDocuments.validation.report')}
                     name="validation_report"
                     accept={'.pdf'}
                   />
-                  <FileInput
+                  <FileInput<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-2"
                     label={t('uploadDocuments.monitoring.report')}
                     name="monitoring_report"
                     accept={'.pdf'}
                   />
-                  <FileInput
+                  <FileInput<UploadFormSchema>
                     {...baseInputProps}
                     label={t('uploadDocuments.verification.report')}
                     required
                     name="verification_report"
                     accept={'.pdf'}
                   />
-                  <Input
+                  <Input<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-2"
                     type="hidden"

@@ -1,10 +1,10 @@
 import { useAlert } from 'react-alert';
 import { documentKeys } from './index';
-import { SelectOption } from '@/componentes/Form/Select';
 import { AxiosRequestConfig } from 'axios';
 import { httpClient } from '@/lib/httpClient';
 import { useMutation, useQueryClient } from 'react-query';
 import { format } from 'date-fns';
+import { SelectOption } from '@/componentes/Form';
 
 export type CarbonDocumentDTO = Record<string, any>;
 
