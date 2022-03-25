@@ -8,30 +8,59 @@ import { ReactComponent as ArrowRight } from '@/assets/icons/bx-arrow-right.svg'
 import { Pill } from '@/componentes/Elements/Pill/Pill';
 import OverviewImage from '../../../assets/images/overview.jpg';
 import { Button } from '@/componentes/Elements/Button/Button';
-
-const tableData = [
-  {
-    type: 'buy',
-    total: '641,20 CC',
-    operationId: '3DkQyAdif6kQLPMBudsa23rfew',
-    date: '02-02-2022  21:12',
-  },
-  {
-    type: 'sell',
-    total: '332,12 CC',
-    operationId: '23fasfaDkQyAdif6kQLdsaPMBu',
-    date: '02-02-2022  21:12',
-  },
-  {
-    type: 'transfer',
-    total: '112,10 CC',
-    operationId: '3tr6uffgDkQygfeAdif6kQLPMBu',
-    date: '02-02-2022  21:12',
-  },
-];
+import { useEffect, useState } from 'react';
 
 export const Overview = () => {
   const { t } = useTranslation();
+
+  const tableData = [
+    {
+      type: t('components.Overview.buy'),
+      total: '641,20 CC',
+      operationId: '3DkQyAdif6kQLPMBudsa23rfew',
+      date: '02-02-2022  21:12',
+    },
+    {
+      type: t('components.Overview.sell'),
+      total: '332,12 CC',
+      operationId: '23fasfaDkQyAdif6kQLdsaPMBu',
+      date: '02-02-2022  21:12',
+    },
+    {
+      type: t('components.Overview.transfer'),
+      total: '112,10 CC',
+      operationId: '3tr6uffgDkQygfeAdif6kQLPMBu',
+      date: '02-02-2022  21:12',
+    },
+    {
+      type: t('components.Overview.offset'),
+      total: '112,10 CC',
+      operationId: '3tr6uffgDkQygfeAdif6kQLPMBu',
+      date: '02-02-2022  21:12',
+    },
+  ];
+
+  const [filterTable, setfilterTable] = useState(tableData);
+
+  useEffect(() => {
+    setfilterTable(tableData);
+  }, [t]);
+
+  const tabs = [
+    t('components.Overview.all'),
+    t('components.Overview.buy'),
+    t('components.Overview.sell'),
+    t('components.Overview.transfer'),
+    t('components.Overview.offset'),
+  ];
+
+  const filtredActivity = (type: string) => {
+    if (type !== t('components.Overview.all')) {
+      setfilterTable(tableData.filter((el) => el.type === type));
+    } else {
+      setfilterTable(tableData);
+    }
+  };
 
   return (
     <MainLayout title={t('misc.Overview.title')}>
@@ -94,21 +123,13 @@ export const Overview = () => {
         </div>
         <div id="activity-panel" className="flex flex-col space-y-7 md:col-span-2">
           <div id="activity-panel-tabs" className="flex gap-4 ">
-            <Button size="sm" key="all" variant="light">
-              {t('components.Overview.all')}
-            </Button>
-            <Button size="sm" key="buy" variant="light">
-              {t('components.Overview.buy')}
-            </Button>
-            <Button size="sm" key="sell" variant="light">
-              {t('components.Overview.sell')}
-            </Button>
-            <Button size="sm" key="transfer" variant="light">
-              {t('components.Overview.transfer')}
-            </Button>
-            <Button size="sm" key="offset" variant="light">
-              {t('components.Overview.offset')}
-            </Button>
+            {tabs.map((tab) => {
+              return (
+                <Button onClick={() => filtredActivity(tab)} size="sm" key={tab} variant="light">
+                  {tab}
+                </Button>
+              );
+            })}
           </div>
           <hr />
           <Title size={4} as={1}>
@@ -124,10 +145,26 @@ export const Overview = () => {
               </tr>
             </thead>
             <tbody>
-              {tableData.map((data, i) => {
+              {filterTable.map((data, i) => {
                 return (
                   <tr key={i}>
-                    <td key="type">{data.type}</td>
+                    <td className="inline-block" key="type">
+                      <Pill
+                        key={data.type}
+                        style="solid"
+                        variant={
+                          data.type === t('components.Overview.buy')
+                            ? 'featured'
+                            : data.type === t('components.Overview.sell')
+                            ? 'popular'
+                            : data.type === t('components.Overview.offset')
+                            ? 'comingSoon'
+                            : 'new'
+                        }
+                      >
+                        {data.type}
+                      </Pill>
+                    </td>
                     <td key="total">{data.total}</td>
                     <td key="operation">{data.operationId}</td>
                     <td className="text-right" key="date">

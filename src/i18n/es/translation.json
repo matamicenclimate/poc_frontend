@@ -28,6 +28,11 @@
       "currency": "Moneda"
     },
     "Overview": {
+      "all": "Todo",
+      "buy": "Comprar",
+      "sell": "Vender",
+      "transfer": "Transferir",
+      "offset": "Compensar",
       "activity": "Actividad",
       "type": "Tipo",
       "total": "Total",

@@ -69,17 +69,19 @@ export const ProfileNav = () => {
             <div className="w-64 text-sm text-neutral-4">
               {profileOptions.map((option, i) => {
                 return (
-                  <div key={i} className="border-b last:border-none">
-                    <Popover.Option
-                      icon={<div className={'pr-1'}>{option.icon}</div>}
-                      description={option.description}
-                      name={option.name}
-                      isActive
-                      onClick={() => {
-                        console.log('TO DO');
-                      }}
-                    />
-                  </div>
+                  <a key={option.name} href={option.href}>
+                    <div key={i} className="border-b last:border-none">
+                      <Popover.Option
+                        icon={<div className={'pr-1'}>{option.icon}</div>}
+                        description={option.description}
+                        name={option.name}
+                        isActive
+                        onClick={() => {
+                          console.log('TO DO');
+                        }}
+                      />
+                    </div>
+                  </a>
                 );
               })}
 
