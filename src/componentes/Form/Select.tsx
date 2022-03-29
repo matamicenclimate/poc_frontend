@@ -71,6 +71,7 @@ export function Select<FormSchema>({
         options={options as any}
         isMulti={isMulti}
         styles={colourStyles}
+        defaultValue={isMulti ? [] : ('' as any)}
       />
       {errors[name] && (
         <FieldError errorClassName={errorClassName}>{t(errors[name].key)}</FieldError>

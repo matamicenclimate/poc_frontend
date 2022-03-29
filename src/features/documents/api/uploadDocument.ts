@@ -44,7 +44,7 @@ function toFormData(carbonDocument: CarbonDocumentDTO) {
   }
 
   function isUndefined(value: any): value is undefined {
-    return value === undefined;
+    return value === undefined || value === null;
   }
 
   function isEmptyArray(array: any[]) {

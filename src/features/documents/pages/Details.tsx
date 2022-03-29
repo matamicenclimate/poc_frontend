@@ -15,6 +15,7 @@ import { ProjectPreview } from '../components/ProjectPreview';
 import { UploadSteps } from './Upload';
 import { claimNftFromDocument } from '@/features/documents/api/claimNftFromDocument';
 import { useAuth } from '@/lib/auth';
+import { SwapNft } from '@/features/documents/components/SwapNft';
 
 export const DocumentDetails = () => {
   const { documentId } = useParams();
@@ -33,16 +34,13 @@ export const DocumentDetails = () => {
         <div className="space-y-8">
           <Card>
             <ProjectPreview values={document.data} />
-            <div>
-              <Link href={document.data.document?.url}>preview</Link>
-            </div>
           </Card>
           <Card>
             <div>
               <Form onSubmit={handleLogin} className="flex flex-col gap-4 text-left">
                 <div className="mx-auto flex w-full max-w-sm items-center rounded bg-neutral-7 p-4 text-sm">
                   <div>
-                    Climatecoins <br />
+                    CO2 tokens <br />
                     to transfer
                   </div>
                   <div className="flex-grow" />
@@ -55,13 +53,13 @@ export const DocumentDetails = () => {
                   Address to send
                 </div>
                 <div className="mx-auto w-full max-w-sm text-sm text-neutral-4">
-                  You can only send CC to this address, please check that the network is correct.
+                  You can only send C02 to this address, please check that the network is correct.
                   More info
                 </div>
                 <Input
                   name="address"
                   type="text"
-                  defaultValue={account.data.account.address}
+                  defaultValue={account.data?.account?.address}
                   wrapperClassName="max-w-sm w-full mx-auto"
                   required
                   disabled
@@ -85,6 +83,13 @@ export const DocumentDetails = () => {
                 </div>
               </Form>
             </div>
+          </Card>
+          <Card>
+            <SwapNft
+              nftAsaId={Number(
+                document.data.nfts?.find((nft) => nft.txn_type === 'assetCreation')?.asa_id
+              )}
+            />
           </Card>
         </div>
       );

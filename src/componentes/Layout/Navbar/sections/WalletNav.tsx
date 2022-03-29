@@ -7,20 +7,17 @@ import { useWalletContext } from '@/providers/Wallet.context';
 export const WalletNav = () => {
   const { account, usdcBalance, climatecoinBalance } = useWalletContext();
 
-  const walletOptions = useCallback(
-    () => [
-      {
-        name: 'Wallet',
-        account: account.data
-          ? `${account.data?.account.address?.slice(0, 10)}...${account.data.account.address?.slice(
-              -10
-            )}`
-          : '',
-        amount: `${climatecoinBalance()} CC - ${usdcBalance()} USDC`,
-      },
-    ],
-    [account.data]
-  );
+  const walletOptions = [
+    {
+      name: 'Wallet',
+      account: account.data
+        ? `${account.data?.account.address?.slice(0, 10)}...${account.data.account.address?.slice(
+            -10
+          )}`
+        : '',
+      amount: `${climatecoinBalance()} CC - ${usdcBalance()} USDC`,
+    },
+  ];
 
   return (
     <div className="flex items-center">
@@ -38,7 +35,7 @@ export const WalletNav = () => {
         </Popover.Button>
         <Popover.Panel>
           <div className="text-sm text-neutral-4">
-            {walletOptions().map((option, i) => {
+            {walletOptions.map((option, i) => {
               return (
                 <div key={i} className="border-b last:border-none">
                   <Popover.Wallet

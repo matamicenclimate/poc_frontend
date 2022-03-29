@@ -9,6 +9,7 @@ import { Pill } from '@/componentes/Elements/Pill/Pill';
 import OverviewImage from '../../../assets/images/overview.jpg';
 import { Button } from '@/componentes/Elements/Button/Button';
 import { useEffect, useState } from 'react';
+import { useWalletContext } from '@/providers/Wallet.context';
 
 export const Overview = () => {
   const { t } = useTranslation();
@@ -62,6 +63,8 @@ export const Overview = () => {
     }
   };
 
+  const { climatecoinBalance } = useWalletContext();
+
   return (
     <MainLayout title={t('misc.Overview.title')}>
       <Head title="Overview" />
@@ -77,7 +80,7 @@ export const Overview = () => {
             </p>
             <div>
               <div className="flex items-center">
-                <p className="mr-2 text-6xl text-neutral-2">112,65</p>
+                <p className="mr-2 text-6xl text-neutral-2">{climatecoinBalance()}</p>
                 <div className="h-[1.625rem] w-[6.6875rem] text-center">
                   <Pill key="climatecoin" style="solid" variant="popular">
                     Climatecoins
