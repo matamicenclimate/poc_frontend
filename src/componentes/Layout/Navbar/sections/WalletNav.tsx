@@ -5,7 +5,7 @@ import { ReactComponent as IconArrowDown } from '@/assets/icons/bx-arrow-down-si
 import { useWalletContext } from '@/providers/Wallet.context';
 
 export const WalletNav = () => {
-  const { account, totalUsdc } = useWalletContext();
+  const { account, usdcBalance, climatecoinBalance } = useWalletContext();
 
   const walletOptions = useCallback(
     () => [
@@ -16,7 +16,7 @@ export const WalletNav = () => {
               -10
             )}`
           : '',
-        amount: `112,65 CC - ${totalUsdc()} USDC`,
+        amount: `${climatecoinBalance()} CC - ${usdcBalance()} USDC`,
       },
     ],
     [account.data]
@@ -31,7 +31,7 @@ export const WalletNav = () => {
               <span className={'font-bold'}>Wallet</span>
               <span
                 className={'ml-1 text-sm font-normal text-primary'}
-              >{`(${totalUsdc()} USDC)`}</span>
+              >{`(${climatecoinBalance()} CC - ${usdcBalance()} USDC)`}</span>
             </div>
             <IconArrowDown />
           </button>

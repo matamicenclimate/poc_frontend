@@ -22,6 +22,7 @@ export type InputProps<FormSchema> = {
   step?: string;
   defaultValue?: any;
   accept?: string;
+  disabled?: boolean;
 };
 
 export function Input<FormSchema extends Record<string, any>>({

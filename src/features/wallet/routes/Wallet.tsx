@@ -12,7 +12,8 @@ import { getBalance } from '../api/getBalance';
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { Buffer } from 'buffer/';
 import { Form } from '@/componentes/Form/Form';
-import { Input } from '@/componentes/Form/Inputs'; // note: the trailing slash is important!
+import { Input } from '@/componentes/Form/Inputs';
+import { Title } from '@/componentes/Elements/Title/Title'; // note: the trailing slash is important!
 
 export const Wallet = () => {
   const { t } = useTranslation();
@@ -64,29 +65,27 @@ export const Wallet = () => {
   const handleSubmit = async (data: any) => {
     console.log(data);
     await optinToAsset(Number(data.asaId))();
-    account.refetch();
+    await account.refetch();
   };
 
   return (
     <MainLayout title={t('head.Wallet.title')}>
       <Breadcrumb links={[{ to: '/wallet', label: t('head.Wallet.title') }]} />
 
-      <h1>{t('wallet.Wallet.title')}</h1>
-      <Button onClick={optinToAsset(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string))}>
-        opt in to climatecoin
-      </Button>
-      <Button onClick={optinToAsset(Number(process.env.REACT_APP_USDC_ASA_ID as string))}>
-        opt in to usdc
-      </Button>
-      <Form onSubmit={handleSubmit}>
+      <Title size={1}>{t('wallet.Wallet.title')}</Title>
+      <div className="flex space-x-4">
+        <Button onClick={optinToAsset(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string))}>
+          opt in to climatecoin
+        </Button>
+        <Button onClick={optinToAsset(Number(process.env.REACT_APP_USDC_ASA_ID as string))}>
+          opt in to usdc
+        </Button>
+      </div>
+      <Form onSubmit={handleSubmit} className="my-4 space-y-4 rounded border p-4">
+        <Title size={3}>Optin to asset</Title>
         <Input name="asaId" type="text" label="asset id" />
         <Button type="submit">Optin</Button>
       </Form>
-      <br />
-      {address}
-      <br />
-      {JSON.stringify(account.data, null, 2)}
-      <br />
       {process.env.NODE_ENV === 'development' ? (
         <>
           <Link href="https://bank.testnet.algorand.network/">get algo faucet </Link>
@@ -94,6 +93,11 @@ export const Wallet = () => {
           <Link href="https://dispenser.testnet.aws.algodev.network/">get usdc faucet </Link>
         </>
       ) : null}
+      <br />
+      {address}
+      <br />
+      <pre>{JSON.stringify(account.data, null, 2)}</pre>
+      <br />
     </MainLayout>
   );
 };

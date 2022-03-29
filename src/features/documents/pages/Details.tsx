@@ -1,9 +1,6 @@
 import { Card } from '@/componentes/Card/Card';
-import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
 import { Button } from '@/componentes/Elements/Button/Button';
 import { Link } from '@/componentes/Elements/Link/Link';
-import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
-import { Title } from '@/componentes/Elements/Title/Title';
 import { Form } from '@/componentes/Form/Form';
 import { Input } from '@/componentes/Form/Inputs';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
@@ -16,12 +13,15 @@ import { getDocument } from '../api/getDocument';
 import { mintNftDocument } from '../api/mintNftDocument';
 import { ProjectPreview } from '../components/ProjectPreview';
 import { UploadSteps } from './Upload';
+import { claimNftFromDocument } from '@/features/documents/api/claimNftFromDocument';
+import { useAuth } from '@/lib/auth';
 
 export const DocumentDetails = () => {
   const { documentId } = useParams();
   const { t } = useTranslation();
+  const auth = useAuth();
   const document = getDocument(documentId as string);
-  const mintDocument = mintNftDocument();
+  const claimNft = claimNftFromDocument();
   const handleLogin = async (data: { email: string }) => {
     console.log(data);
   };
@@ -30,7 +30,7 @@ export const DocumentDetails = () => {
   const renderDocument = () => {
     if (document.data) {
       return (
-        <>
+        <div className="space-y-8">
           <Card>
             <ProjectPreview values={document.data} />
             <div>
@@ -64,18 +64,29 @@ export const DocumentDetails = () => {
                   defaultValue={account.data.account.address}
                   wrapperClassName="max-w-sm w-full mx-auto"
                   required
+                  disabled
                 />
                 <div className="grid grid-cols-3">
                   <div />
                   <div />
-                  <Button type="submit" size="sm">
+                  <Button
+                    type="submit"
+                    size="sm"
+                    onClick={() =>
+                      claimNft.mutateAsync({
+                        documentId: documentId as string,
+                        email: auth.user?.email as string,
+                      })
+                    }
+                    disabled={claimNft.isLoading}
+                  >
                     Yes, confirm
                   </Button>
                 </div>
               </Form>
             </div>
           </Card>
-        </>
+        </div>
       );
     }
     if (document.error instanceof Error) {

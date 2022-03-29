@@ -36,8 +36,13 @@ export const useWalletContext = () => {
   }
   const { account } = ctx;
 
-  const totalUsdc = useCallback(
+  const usdcBalance = useCallback(
     () => getAssetBalance(Number(process.env.REACT_APP_USDC_ASA_ID)),
+    [account.data]
+  );
+
+  const climatecoinBalance = useCallback(
+    () => getAssetBalance(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID)),
     [account.data]
   );
 
@@ -54,5 +59,5 @@ export const useWalletContext = () => {
     return (usdcData[0].amount / 1000000).toFixed(2);
   };
 
-  return { account, totalUsdc };
+  return { account, usdcBalance, climatecoinBalance };
 };
