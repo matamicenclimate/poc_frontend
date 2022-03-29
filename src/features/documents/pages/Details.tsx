@@ -59,7 +59,7 @@ export const DocumentDetails = () => {
                 <Input
                   name="address"
                   type="text"
-                  defaultValue={account.data?.account?.address}
+                  defaultValue={account?.address}
                   wrapperClassName="max-w-sm w-full mx-auto"
                   required
                   disabled

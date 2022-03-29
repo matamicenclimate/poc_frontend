@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import Popover from '@/componentes/Popover/Popover';
 import { ReactComponent as IconWallet } from '@/assets/icons/bx-wallet-line.svg';
 import { ReactComponent as IconArrowDown } from '@/assets/icons/bx-arrow-down-simple-line.svg';
@@ -10,11 +9,7 @@ export const WalletNav = () => {
   const walletOptions = [
     {
       name: 'Wallet',
-      account: account.data
-        ? `${account.data?.account.address?.slice(0, 10)}...${account.data.account.address?.slice(
-            -10
-          )}`
-        : '',
+      account: account ? `${account.address?.slice(0, 10)}...${account.address?.slice(-10)}` : '',
       amount: `${climatecoinBalance()} CC - ${usdcBalance()} USDC`,
     },
   ];
@@ -44,11 +39,7 @@ export const WalletNav = () => {
                     account={option.account}
                     amount={option.amount}
                     icon={
-                      <div
-                        className={
-                          'flex h-10 w-10 items-center justify-center rounded-full bg-neutral-6'
-                        }
-                      >
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-6">
                         <IconWallet />
                       </div>
                     }

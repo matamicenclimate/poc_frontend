@@ -1,7 +1,8 @@
 import { algoIndexer } from '@/lib/algoIndexer';
 import { useQuery } from 'react-query';
+import { IndexerAccount } from '@/features/wallet/api/index';
 
-function getBalances(address: string): Promise<any> {
+function getBalances(address: string): Promise<IndexerAccount> {
   return algoIndexer.get(`/accounts/${address}`);
 }
 

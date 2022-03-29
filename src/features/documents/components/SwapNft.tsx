@@ -11,19 +11,19 @@ export function SwapNft({ nftAsaId }: { nftAsaId?: number }) {
   async function handleSwap() {
     console.log('swapping...');
 
-    if (!account.data) return;
+    if (!account) return;
     if (!nftAsaId) return;
     console.log('opting in...');
     const suggestedParams = await setupClient().getTransactionParams().do();
 
     console.log({
-      address: account.data.account.address,
+      address: account.address,
       nftAsaId,
       selector: getMethodByName('swap_nft_to_fungible').getSignature(),
     });
 
     const txn = algosdk.makeApplicationCallTxnFromObject({
-      from: account.data.account.address,
+      from: account.address,
       appIndex: vaultContract.networks['testnet'].appID,
       // the atc appends the assets to the foreignAssets and passes the index of the asses in the appArgs
       appArgs: [getMethodByName('swap_nft_to_fungible').getSelector(), algosdk.encodeUint64(1)],

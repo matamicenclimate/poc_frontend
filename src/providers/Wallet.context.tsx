@@ -2,9 +2,10 @@ import { getBalance } from '@/features/wallet/api/getBalance';
 import { magiclink } from '@/lib/magiclink';
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
 import { UseQueryResult } from 'react-query';
+import { IndexerAccount } from '@/features/wallet/api';
 
 interface Context {
-  account: UseQueryResult<any, any>;
+  account: UseQueryResult<IndexerAccount, any>;
 }
 
 const WalletContext = createContext<Context | null>(null);
@@ -36,7 +37,9 @@ export const useWalletContext = () => {
   }
   const { account } = ctx;
 
-  const usdcBalance = () => getAssetBalance(Number(process.env.REACT_APP_USDC_ASA_ID)) / 1000000;
+  const usdcDecimalPlaces = 1000000; // 6 decimal places
+  const usdcBalance = () =>
+    getAssetBalance(Number(process.env.REACT_APP_USDC_ASA_ID)) / usdcDecimalPlaces;
 
   const climatecoinBalance = () =>
     getAssetBalance(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID));
@@ -45,14 +48,14 @@ export const useWalletContext = () => {
     if (!account.data) return 0;
     if (!account.data.account.assets) return 0;
 
-    const usdcData = account.data.account.assets.filter(
+    const assetData = account.data.account.assets.filter(
       (asset: any) => asset['asset-id'] === assetId
     );
 
-    if (usdcData.length !== 1) return 0;
+    if (assetData.length !== 1) return 0;
 
-    return usdcData[0].amount;
+    return assetData[0].amount;
   };
 
-  return { account, usdcBalance, climatecoinBalance };
+  return { account: account.data?.account, usdcBalance, climatecoinBalance };
 };
