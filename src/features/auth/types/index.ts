@@ -23,6 +23,7 @@ export interface StrapiUser {
   __v?: number;
   role?: Role;
   id?: string;
+  type?: 'buyer' | 'developer';
 }
 
 interface Role {

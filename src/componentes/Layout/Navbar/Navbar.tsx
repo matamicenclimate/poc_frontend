@@ -39,7 +39,7 @@ export const Navbar = () => {
             >
               {t('components.Navbar.about')}
             </Link>
-            {auth.user && (
+            {auth.user && auth.user.type === 'developer' && (
               <Link to="/documents/list" className={`text-primary ${linkStyle}`}>
                 {t('components.Navbar.developer')}
               </Link>

@@ -5,7 +5,7 @@ import * as yup from 'yup';
 
 interface FormProps {
   defaultValues?: any;
-  children: React.ReactElement[];
+  children: React.ReactElement | React.ReactElement[];
   onSubmit: (data: any) => void;
   className?: string;
   validationSchema?: any;

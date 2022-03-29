@@ -3,7 +3,7 @@ import { Control, useController } from 'react-hook-form';
 import { FieldName, SchemaToErrors } from '.';
 
 type SwitchProps<FormSchema> = {
-  control: Control<FormSchema>;
+  control?: Control<FormSchema>;
   errors?: SchemaToErrors<FormSchema>;
   name: FieldName<FormSchema>;
   label: string | React.ReactNode;
