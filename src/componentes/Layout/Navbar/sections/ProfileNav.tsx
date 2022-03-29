@@ -12,6 +12,7 @@ import { Form } from '@/componentes/Form/Form';
 import { Switch as HLSwitch } from '@headlessui/react';
 import { updateUserType } from '@/componentes/Layout/Navbar/api/updateUserType';
 import { useState } from 'react';
+import { Link } from '@/componentes/Elements/Link/Link';
 
 export const ProfileNav = () => {
   const auth = useAuth();
@@ -80,19 +81,17 @@ export const ProfileNav = () => {
           <div>
             <div className="w-64 text-sm text-neutral-4">
               {profileOptions.map((option, i) => (
-                <a key={option.name} href={option.href}>
+                <Link key={option.name} to={option.href} className="no-underline">
                   <div key={i} className="border-b last:border-none">
                     <Popover.Option
                       icon={<div className={'pr-1'}>{option.icon}</div>}
                       description={option.description}
                       name={option.name}
                       isActive
-                      onClick={() => {
-                        console.log('TO DO');
-                      }}
+                      onClick={() => undefined}
                     />
                   </div>
-                </a>
+                </Link>
               ))}
 
               <div
@@ -100,7 +99,7 @@ export const ProfileNav = () => {
                 role="button"
                 tabIndex={0}
                 className={clsx(
-                  'flex items-center border-neutral-6 px-2 py-1 pt-3 pb-3 font-alt transition duration-150 ease-in-out'
+                  'flex items-center px-2 py-3 font-alt transition duration-150 ease-in-out hover:bg-blue-100'
                 )}
               >
                 <div className="pr-1">
@@ -142,15 +141,13 @@ export const ProfileNav = () => {
                 tabIndex={0}
                 key={'logout'}
                 className={clsx(
-                  'flex items-center border-neutral-6 px-2 py-1 pt-3 pb-3 font-alt  transition duration-150 ease-in-out'
+                  'flex items-center border-neutral-6 px-2 py-3 font-alt transition duration-150 ease-in-out hover:bg-blue-100'
                 )}
               >
                 <div className="pr-1">
                   <IconLogout className={'h-5 w-5'} />
                 </div>
-                <div className="pr-2">
-                  <p className={clsx('px-2 font-normal text-neutral-3')}>Log out</p>
-                </div>
+                <div className={clsx('px-2 font-normal text-neutral-3')}>Log out</div>
               </div>
             </div>
           </div>

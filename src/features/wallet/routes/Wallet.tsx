@@ -10,7 +10,9 @@ import { useTranslation } from 'react-i18next';
 import { getBalance } from '../api/getBalance';
 
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { Buffer } from 'buffer/'; // note: the trailing slash is important!
+import { Buffer } from 'buffer/';
+import { Form } from '@/componentes/Form/Form';
+import { Input } from '@/componentes/Form/Inputs'; // note: the trailing slash is important!
 
 export const Wallet = () => {
   const { t } = useTranslation();
@@ -31,7 +33,10 @@ export const Wallet = () => {
 
   const optinToAsset = (asaId: number) => async () => {
     // create the asset accept transaction
+    console.log('opting in...');
+
     if (!address) return;
+    console.log('opting in...');
     const suggestedParams = await setupClient().getTransactionParams().do();
 
     const transactionOptions = {
@@ -56,6 +61,12 @@ export const Wallet = () => {
     console.log({ result });
   };
 
+  const handleSubmit = async (data: any) => {
+    console.log(data);
+    await optinToAsset(Number(data.asaId))();
+    account.refetch();
+  };
+
   return (
     <MainLayout title={t('head.Wallet.title')}>
       <Breadcrumb links={[{ to: '/wallet', label: t('head.Wallet.title') }]} />
@@ -67,6 +78,10 @@ export const Wallet = () => {
       <Button onClick={optinToAsset(Number(process.env.REACT_APP_USDC_ASA_ID as string))}>
         opt in to usdc
       </Button>
+      <Form onSubmit={handleSubmit}>
+        <Input name="asaId" type="text" label="asset id" />
+        <Button type="submit">Optin</Button>
+      </Form>
       <br />
       {address}
       <br />
