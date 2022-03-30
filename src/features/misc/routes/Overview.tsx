@@ -10,6 +10,7 @@ import OverviewImage from '../../../assets/images/overview.jpg';
 import { Button } from '@/componentes/Elements/Button/Button';
 import { useEffect, useState } from 'react';
 import { useWalletContext } from '@/providers/Wallet.context';
+import { useCurrencyContext } from '@/providers/Currency.context';
 
 export const Overview = () => {
   const { t } = useTranslation();
@@ -64,7 +65,7 @@ export const Overview = () => {
   };
 
   const { climatecoinBalance } = useWalletContext();
-
+  const { formatter } = useCurrencyContext();
   return (
     <MainLayout title={t('misc.Overview.title')}>
       <Head title="Overview" />
@@ -80,14 +81,16 @@ export const Overview = () => {
             </p>
             <div>
               <div className="flex items-center">
-                <p className="mr-2 text-6xl text-neutral-2">{climatecoinBalance()}</p>
+                <p className="mr-2 text-6xl text-neutral-2">{climatecoinBalance().toFixed(2)}</p>
                 <div className="h-[1.625rem] w-[6.6875rem] text-center">
                   <Pill key="climatecoin" style="solid" variant="popular">
                     Climatecoins
                   </Pill>
                 </div>
               </div>
-              <p className="text-2xl text-neutral-4">185,36 € </p>
+              <p className="text-2xl text-neutral-4">
+                {formatter(climatecoinBalance() * (40 * 100))}
+              </p>
             </div>
             <div className="w-[17.8125rem] space-y-4">
               <Link size="sm" as="button" variant="primary" to="/">

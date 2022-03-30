@@ -1,7 +1,10 @@
 import React, { createContext, useContext, useState } from 'react';
+import { getCurrenciesExchangeRate } from '@/providers/api/getCurrenciesExchangeRate';
+import { UseQueryResult } from 'react-query';
 
 interface Context {
   state: ContextState;
+  exchangeRate: UseQueryResult<any>;
   setState: React.Dispatch<React.SetStateAction<ContextState>>;
 }
 
@@ -10,6 +13,13 @@ const currencies = {
   USD: 'USD',
   JPY: 'JPY',
   GBP: 'GBP',
+};
+
+const simbols = {
+  [currencies.EUR]: '€',
+  [currencies.USD]: '$',
+  [currencies.JPY]: '¥',
+  [currencies.GBP]: '£',
 };
 
 interface ContextState {
@@ -30,8 +40,12 @@ export const CurrencyProvider = ({ initialData, children }: ProviderProps) => {
     }
   );
 
+  const exchangeRate = getCurrenciesExchangeRate();
+
   return (
-    <CurrencyContext.Provider value={{ state, setState }}>{children}</CurrencyContext.Provider>
+    <CurrencyContext.Provider value={{ state, setState, exchangeRate }}>
+      {children}
+    </CurrencyContext.Provider>
   );
 };
 
@@ -41,11 +55,40 @@ export const useCurrencyContext = () => {
     throw new Error('useCurrencyContext must be used within a CurrencyContextProvider');
   }
 
-  const { state, setState } = ctx;
+  const { state, setState, exchangeRate } = ctx;
 
   const reducer = {
     setCurrency: (currency: ContextState['currency']) => setState((old) => ({ ...old, currency })),
   };
 
-  return { state, reducer, currencies };
+  const convertCurrency = (amountInCents: number) => {
+    return amountInCents * exchangeRate.data[`USD_${state.currency}`];
+  };
+
+  const centsToFixed = (amountInCents: number) => {
+    return (amountInCents / 100).toFixed(2);
+  };
+
+  const formatter = (amountInCents: number) => {
+    let prefix = '';
+    let suffix = '';
+
+    if ([currencies.USD, currencies.EUR].includes(state.currency)) {
+      suffix = simbols[state.currency];
+    } else {
+      prefix = simbols[state.currency];
+    }
+
+    return `${prefix}${centsToFixed(amountInCents)}${suffix}`.trim();
+  };
+
+  return {
+    state,
+    reducer,
+    currencies,
+    convertCurrency,
+    centsToFixed,
+    formatter,
+    currencySymbol: simbols[state.currency],
+  };
 };
