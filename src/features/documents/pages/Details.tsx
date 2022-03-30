@@ -85,11 +85,7 @@ export const DocumentDetails = () => {
             </div>
           </Card>
           <Card>
-            <SwapNft
-              nftAsaId={Number(
-                document.data.nfts?.find((nft) => nft.txn_type === 'assetCreation')?.asa_id
-              )}
-            />
+            <SwapNft nftAsaId={Number(document.data.developer_nft.asa_id)} />
           </Card>
         </div>
       );

@@ -4,6 +4,7 @@ const base = 'p-3 flex gap-2';
 
 const type: any = {
   error: 'bg-red-700 text-white',
+  success: 'bg-green-500 text-white',
 };
 
 export const Alert = ({ style, options, message, close }: any) => (

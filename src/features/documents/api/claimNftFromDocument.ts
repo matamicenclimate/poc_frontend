@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { useAlert } from 'react-alert';
 
 function claimFromDocument(documentId: string, email: string): Promise<any> {
-  return httpClient.post(`/utils/claim`, { carbonDocument: documentId, email });
+  return httpClient.post(`/carbon-documents/${documentId}/claim`, { email });
 }
 
 export function claimNftFromDocument() {
@@ -17,9 +17,10 @@ export function claimNftFromDocument() {
     {
       onSuccess: (data: CarbonDocument) => {
         queryClient.invalidateQueries(documentKeys.detail(data._id as string));
+        alert.success('Asset claimed succesfully');
       },
       onError: () => {
-        alert.error('Error uploading document');
+        alert.error('Error claimint nft');
       },
     }
   );

@@ -4,41 +4,38 @@ export const documentKeys = {
   detail: (id: string) => [...documentKeys.all, 'detail', id] as const,
   form: () => [...documentKeys.all, 'form'] as const,
 };
-
 export interface CarbonDocument {
   status: string;
   pdd: Cover[];
   sdgs: Country[];
   _id: string;
-  registry_url: string;
-  serial_number: string;
-  credits: string;
-  credit_end: Date;
-  credit_start: Date;
-  project_video: string;
-  project_registration: Date;
   project_longitude: string;
-  project_latitude: string;
   project_url: string;
-  description: string;
+  registry_url: string;
+  project_latitude: string;
+  serial_number: string;
+  credit_end: Date;
+  project_video: string;
+  __v: number;
   title: string;
+  credits: string;
   created_by_user: string;
+  credit_start: Date;
+  description: string;
+  project_registration: Date;
   createdAt: Date;
   updatedAt: Date;
-  __v: number;
   country: Country;
   cover: Cover;
-  first_verifier: Country;
-  methodology: Country;
   project_type: Country;
   registry: Country;
   standard: Country;
   sub_type: Country;
   thumbnail: Cover;
   type: Country;
-  validator: Country;
   verification_report: Cover;
-  nfts: Nft[];
+  developer_nft: Nft;
+  fee_nft: Nft;
   id: string;
 }
 
@@ -50,8 +47,8 @@ export interface Country {
   updatedAt: Date;
   __v: number;
   id: string;
-  description?: string;
   instructions?: string;
+  description?: string;
 }
 
 export interface Cover {
@@ -74,12 +71,10 @@ export interface Cover {
 }
 
 export interface Formats {
-  thumbnail: Medium;
-  medium: Medium;
-  small: Medium;
+  thumbnail: Thumbnail;
 }
 
-export interface Medium {
+export interface Thumbnail {
   name: string;
   hash: string;
   ext: string;
@@ -105,7 +100,6 @@ export interface Nft {
   createdAt: Date;
   updatedAt: Date;
   __v: number;
-  carbon_document: string;
   id: string;
 }
 
@@ -120,5 +114,4 @@ export interface Metadata {
 export interface Properties {
   Serial_Number: string;
   Provider: string;
-  Credits: number;
 }

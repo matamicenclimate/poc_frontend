@@ -5,9 +5,13 @@ import { magiclink } from '@/lib/magiclink';
 import { Buffer } from 'buffer/';
 import { useWalletContext } from '@/providers/Wallet.context';
 import { getMethodByName, vaultContract } from '@/contracts/vault';
+import { httpClient } from '@/lib/httpClient';
+import { useParams } from 'react-router-dom';
 
 export function SwapNft({ nftAsaId }: { nftAsaId?: number }) {
   const { account } = useWalletContext();
+  const { documentId } = useParams();
+
   async function handleSwap() {
     console.log('swapping...');
 
@@ -43,6 +47,9 @@ export function SwapNft({ nftAsaId }: { nftAsaId?: number }) {
     const result = await waitForConfirmation(setupClient(), txId, 3);
 
     console.log({ result });
+
+    const res = await httpClient.post(`/carbon-documents/${documentId}/swap`);
+    console.log(res);
   }
   return (
     <div>
