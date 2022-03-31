@@ -29,14 +29,10 @@ export const Navbar = () => {
             <Link to="/coins/buy" className={`text-neutral-4 ${linkStyle}`} navLink>
               {t('components.Navbar.buy')}
             </Link>
-            <Link to="/sell" className={`text-neutral-4 ${linkStyle}`}>
+            <Link to="/sell" className={`text-neutral-4 ${linkStyle}`} navLink>
               {t('components.Navbar.sell')}
             </Link>
-            <Link
-              href="https://climatetrade.com/es/inicio/"
-              target="_blank"
-              className={`text-neutral-4 ${linkStyle}`}
-            >
+            <Link to="/about-us" className={` text-neutral-4 ${linkStyle}`} navLink>
               {t('components.Navbar.about')}
             </Link>
             {auth.user && auth.user.type === 'developer' && (

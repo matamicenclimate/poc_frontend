@@ -52,7 +52,7 @@ export const Link = ({
         buttonStyles.variants[variant ?? 'primary']
       );
     }
-    return clsx(`text-primary`, className, isActive && 'underline', navLink ? '' : 'underline');
+    return clsx(`text-primary`, isActive && 'underline', navLink ? '' : 'underline', className);
   };
 
   // anchor render
