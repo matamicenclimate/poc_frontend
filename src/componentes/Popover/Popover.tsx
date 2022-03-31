@@ -18,7 +18,7 @@ type ICompoundComponent = {
   Option: React.FC<PopoverOptionsProps>;
   Wallet: React.FC<PopoverWalletProps>;
   Button: React.FC;
-  Panel: React.FC<PopoverPanelProps>;
+  Panel: typeof PopoverPanel;
 } & React.FC<PopoverProps>;
 
 type PopoverState = {
@@ -83,7 +83,7 @@ const PopoverPanel = ({ config = {}, children, className }: PopoverPanelProps) =
         static
         ref={setPopperElement}
         style={{ ...styles.popper }}
-        className={clsx('z-20', 'rounded bg-white p-4 shadow', className)}
+        className={clsx(className, 'z-20 rounded bg-white p-4 shadow')}
         {...attributes.popper}
       >
         {children}
@@ -118,7 +118,7 @@ const PopoverOption = ({
   const { setClose } = usePopoverContext();
   const handleClick = () => {
     if (disabled) return;
-    if (onClick) onClick();
+    onClick?.();
     setClose();
   };
   return (

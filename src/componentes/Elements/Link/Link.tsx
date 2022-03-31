@@ -1,11 +1,12 @@
 import clsx from 'clsx';
-import { Link as RouterLink, To } from 'react-router-dom';
+import { Link as RouterLink, NavLink, To } from 'react-router-dom';
 import { ButtonStyleProps, buttonStyles } from '../Button/Button';
 
 type BaseProps = {
   as?: string;
   className?: string;
   children?: React.ReactNode;
+  navLink?: boolean;
 } & ({
   as?: 'button';
 } & ButtonStyleProps);
@@ -14,6 +15,7 @@ type BaseProps = {
 type RouterLinkProps = {
   to?: string;
   href?: undefined;
+  navLink?: boolean;
 } & BaseProps;
 
 // Anchor props
@@ -21,6 +23,7 @@ type AnchorProps = {
   to?: undefined;
   href?: string;
   target?: string;
+  navLink?: undefined;
 } & BaseProps;
 
 // Guard to check if href exists in props
@@ -35,18 +38,21 @@ export const Link = ({
   iconRight,
   iconLeft,
   children,
+  navLink = false,
+  className,
   ...props
 }: RouterLinkProps | AnchorProps) => {
-  const getClassName = () => {
+  const getClassName = (isActive?: boolean) => {
     if (as === 'button') {
       return clsx(
         'inline-flex',
+        className,
         buttonStyles.base,
         buttonStyles.sizes[size ?? 'md'],
         buttonStyles.variants[variant ?? 'primary']
       );
     }
-    return 'text-primary underline';
+    return clsx(`text-primary`, className, isActive && 'underline', navLink ? '' : 'underline');
   };
 
   // anchor render
@@ -59,12 +65,20 @@ export const Link = ({
   }
 
   // button render
-
+  if (!navLink) {
+    return (
+      <RouterLink to={props.to as To} className={getClassName()} {...props}>
+        {iconLeft}
+        {children}
+        {iconRight}
+      </RouterLink>
+    );
+  }
   return (
-    <RouterLink to={props.to as To} className={getClassName()} {...props}>
+    <NavLink to={props.to as To} className={({ isActive }) => getClassName(isActive)} {...props}>
       {iconLeft}
       {children}
       {iconRight}
-    </RouterLink>
+    </NavLink>
   );
 };

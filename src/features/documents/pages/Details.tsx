@@ -16,6 +16,7 @@ import { UploadSteps } from './Upload';
 import { claimNftFromDocument } from '@/features/documents/api/claimNftFromDocument';
 import { useAuth } from '@/lib/auth';
 import { SwapNft } from '@/features/documents/components/SwapNft';
+import { Title } from '@/componentes/Elements/Title/Title';
 
 export const DocumentDetails = () => {
   const { documentId } = useParams();
@@ -23,7 +24,7 @@ export const DocumentDetails = () => {
   const auth = useAuth();
   const document = getDocument(documentId as string);
   const claimNft = claimNftFromDocument();
-  const handleLogin = async (data: { email: string }) => {
+  const handleClaim = async (data: { email: string }) => {
     console.log(data);
   };
 
@@ -33,60 +34,82 @@ export const DocumentDetails = () => {
       return (
         <div className="space-y-8">
           <Card>
-            <ProjectPreview values={document.data} />
-          </Card>
-          <Card>
-            <div>
-              <Form onSubmit={handleLogin} className="flex flex-col gap-4 text-left">
-                <div className="mx-auto flex w-full max-w-sm items-center rounded bg-neutral-7 p-4 text-sm">
-                  <div>
-                    CO2 tokens <br />
-                    to transfer
-                  </div>
-                  <div className="flex-grow" />
-                  <div className="text-right">
-                    <div className="text-lg">{document.data.credits} CC</div>
-                    <div>400 €</div>
-                  </div>
-                </div>
-                <div className="mx-auto w-full max-w-sm text-center text-primary">
-                  Address to send
-                </div>
-                <div className="mx-auto w-full max-w-sm text-sm text-neutral-4">
-                  You can only send C02 to this address, please check that the network is correct.
-                  More info
-                </div>
-                <Input
-                  name="address"
-                  type="text"
-                  defaultValue={account?.address}
-                  wrapperClassName="max-w-sm w-full mx-auto"
-                  required
-                  disabled
-                />
-                <div className="grid grid-cols-3">
-                  <div />
-                  <div />
-                  <Button
-                    type="submit"
-                    size="sm"
-                    onClick={() =>
-                      claimNft.mutateAsync({
-                        documentId: documentId as string,
-                        email: auth.user?.email as string,
-                      })
-                    }
-                    disabled={claimNft.isLoading}
-                  >
-                    Yes, confirm
-                  </Button>
-                </div>
-              </Form>
+            <div className="space-y-4 ">
+              <Title size={5} as={2}>
+                👏🏼 Thanks for submitting your credits!
+              </Title>
+              <p className="text-neutral-4">
+                We have received your request correctly, an administrator will review it in detail
+                before making the transfer.
+              </p>
+              <p className="text-primary-green">You will receive an email with the confirmation.</p>
+              <div className="p-12">
+                <ProjectPreview values={document.data} noDescription />
+              </div>
             </div>
           </Card>
-          <Card>
-            <SwapNft nftAsaId={Number(document.data.developer_nft.asa_id)} />
-          </Card>
+          {document.data.status === 'minted' && (
+            <Card>
+              <div className="space-y-8">
+                <Title size={5} as={2}>
+                  Claim your NFT
+                </Title>
+                <Form onSubmit={handleClaim} className="flex flex-col gap-4 text-left">
+                  <div className="mx-auto flex w-full max-w-sm items-center rounded bg-neutral-7 p-4 text-sm">
+                    <div>
+                      CO2 tokens <br />
+                      to transfer
+                    </div>
+                    <div className="flex-grow" />
+                    <div className="text-right">
+                      <div className="text-lg">{document.data.credits} CC</div>
+                      <div>400 €</div>
+                    </div>
+                  </div>
+                  <div className="mx-auto w-full max-w-sm text-center text-primary">
+                    Address to send
+                  </div>
+                  <div className="mx-auto w-full max-w-sm text-sm text-neutral-4">
+                    You can only send C02 to this address, please check that the network is correct.
+                    More info
+                  </div>
+                  <Input
+                    name="address"
+                    type="text"
+                    defaultValue={account?.address}
+                    wrapperClassName="max-w-sm w-full mx-auto"
+                    required
+                    disabled
+                  />
+                  <div className="grid grid-cols-3">
+                    <div />
+                    <div />
+                    <Button
+                      type="submit"
+                      size="sm"
+                      onClick={() =>
+                        claimNft.mutateAsync({
+                          documentId: documentId as string,
+                          email: auth.user?.email as string,
+                        })
+                      }
+                      disabled={claimNft.isLoading}
+                    >
+                      Yes, confirm
+                    </Button>
+                  </div>
+                </Form>
+              </div>
+            </Card>
+          )}
+          {!!document.data.developer_nft && (
+            <Card>
+              <Title size={5} as={2}>
+                Swap you NFT for Climatecoins
+              </Title>
+              <SwapNft nftAsaId={Number(document.data.developer_nft?.asa_id)} />
+            </Card>
+          )}
         </div>
       );
     }

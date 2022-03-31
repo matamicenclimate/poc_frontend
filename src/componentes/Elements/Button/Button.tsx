@@ -1,8 +1,10 @@
 import clsx from 'clsx';
+import React from 'react';
 
 const base = 'flex items-center justify-center rounded-full font-bold disabled:opacity-50';
 
 const sizes = {
+  xs: 'px-3 py-2 text-xs',
   sm: 'px-4 py-3 text-sm',
   md: 'px-6 py-4 text-md',
 };
@@ -24,8 +26,9 @@ export const buttonStyles = { base, sizes, variants };
 type ButtonProps = {
   onClick?: () => void;
   children: React.ReactNode;
-  type?: 'submit';
+  type?: 'submit' | 'button' | undefined;
   disabled?: boolean;
+  ref?: any;
 } & ButtonStyleProps;
 
 export type ButtonStyleProps = {
@@ -35,24 +38,31 @@ export type ButtonStyleProps = {
   iconRight?: React.ReactNode;
 };
 
-export const Button = ({
-  onClick,
-  size = 'md',
-  variant = 'primary',
-  disabled = false,
-  iconLeft,
-  iconRight,
-  children,
-  ...props
-}: ButtonProps) => {
-  return (
-    <button
-      onClick={onClick}
-      className={clsx(base, sizes[size], variants[variant])}
-      disabled={disabled}
-      {...props}
-    >
-      {iconLeft} {children} {iconRight}
-    </button>
-  );
-};
+// eslint-disable-next-line react/display-name
+export const Button = React.forwardRef(
+  (
+    {
+      onClick,
+      size = 'md',
+      variant = 'primary',
+      disabled = false,
+      iconLeft,
+      iconRight,
+      children,
+      ...props
+    }: ButtonProps,
+    ref
+  ) => {
+    return (
+      <button
+        onClick={onClick}
+        className={clsx(base, sizes[size], variants[variant])}
+        disabled={disabled}
+        ref={ref}
+        {...props}
+      >
+        {iconLeft} {children} {iconRight}
+      </button>
+    );
+  }
+);

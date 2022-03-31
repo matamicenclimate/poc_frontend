@@ -13,6 +13,7 @@ const currencies = {
   USD: 'USD',
   JPY: 'JPY',
   GBP: 'GBP',
+  BTC: 'BTC',
 };
 
 const simbols = {
@@ -20,6 +21,7 @@ const simbols = {
   [currencies.USD]: '$',
   [currencies.JPY]: '¥',
   [currencies.GBP]: '£',
+  [currencies.BTC]: '₿',
 };
 
 interface ContextState {
@@ -36,7 +38,7 @@ interface ProviderProps {
 export const CurrencyProvider = ({ initialData, children }: ProviderProps) => {
   const [state, setState] = useState<ContextState>(
     initialData ?? {
-      currency: 'EUR',
+      currency: 'USD',
     }
   );
 
@@ -62,7 +64,8 @@ export const useCurrencyContext = () => {
   };
 
   const convertCurrency = (amountInCents: number) => {
-    return amountInCents * exchangeRate.data[`USD_${state.currency}`];
+    if (state.currency === 'USD') return amountInCents;
+    return amountInCents * exchangeRate.data[`USD_${state.currency}`.toLowerCase()];
   };
 
   const centsToFixed = (amountInCents: number) => {
@@ -73,13 +76,13 @@ export const useCurrencyContext = () => {
     let prefix = '';
     let suffix = '';
 
-    if ([currencies.USD, currencies.EUR].includes(state.currency)) {
+    if ([currencies.USD, currencies.EUR, currencies.BTC].includes(state.currency)) {
       suffix = simbols[state.currency];
     } else {
       prefix = simbols[state.currency];
     }
 
-    return `${prefix}${centsToFixed(amountInCents)}${suffix}`.trim();
+    return `${prefix}${centsToFixed(convertCurrency(amountInCents))}${suffix}`.trim();
   };
 
   return {

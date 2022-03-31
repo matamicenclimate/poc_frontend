@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import '@/lib/yup';
+import 'react-day-picker/dist/style.css';
 
 ReactDOM.render(
   <React.StrictMode>

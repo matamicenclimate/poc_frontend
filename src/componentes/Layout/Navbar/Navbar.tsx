@@ -23,10 +23,10 @@ export const Navbar = () => {
         </div>
         <div className="flex w-full justify-between">
           <div className="flex gap-8 pl-10">
-            <Link to="/home" className={`text-neutral-2 ${linkStyle}`}>
+            <Link to="/home" className={`text-neutral-2 ${linkStyle}`} navLink>
               {t('components.Navbar.home')}
             </Link>
-            <Link to="/coins/buy" className={`text-neutral-4 ${linkStyle}`}>
+            <Link to="/coins/buy" className={`text-neutral-4 ${linkStyle}`} navLink>
               {t('components.Navbar.buy')}
             </Link>
             <Link to="/sell" className={`text-neutral-4 ${linkStyle}`}>
@@ -40,7 +40,7 @@ export const Navbar = () => {
               {t('components.Navbar.about')}
             </Link>
             {auth.user && auth.user.type === 'developer' && (
-              <Link to="/documents/list" className={`text-primary ${linkStyle}`}>
+              <Link to="/documents/list" className={`text-primary ${linkStyle}`} navLink>
                 {t('components.Navbar.developer')}
               </Link>
             )}

@@ -20,6 +20,7 @@ export function SwapNft({ nftAsaId }: { nftAsaId?: number }) {
     console.log('opting in...');
     const suggestedParams = await setupClient().getTransactionParams().do();
 
+    suggestedParams.fee = suggestedParams.fee * 2;
     console.log({
       address: account.address,
       nftAsaId,

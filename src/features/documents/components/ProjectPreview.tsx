@@ -3,8 +3,9 @@ import { Title } from '@/componentes/Elements/Title/Title';
 
 type ProjectPreviewProps = {
   values: Record<string, any>;
+  noDescription?: boolean;
 };
-export const ProjectPreview = ({ values }: ProjectPreviewProps) => {
+export const ProjectPreview = ({ values, noDescription = false }: ProjectPreviewProps) => {
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-4 gap-4">
@@ -37,7 +38,7 @@ export const ProjectPreview = ({ values }: ProjectPreviewProps) => {
           </div>
         </div>
       </div>
-      <div className="text-neutral-4">{values.description}</div>
+      {!noDescription && <div className="text-neutral-4">{values.description}</div>}
     </div>
   );
 };
