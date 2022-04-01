@@ -2,6 +2,7 @@ import Popover from '@/componentes/Popover/Popover';
 import { ReactComponent as IconWallet } from '@/assets/icons/bx-wallet-line.svg';
 import { ReactComponent as IconArrowDown } from '@/assets/icons/bx-arrow-down-simple-line.svg';
 import { useWalletContext } from '@/providers/Wallet.context';
+import { useNavigate } from 'react-router-dom';
 
 export const WalletNav = () => {
   const { account, usdcBalance, climatecoinBalance } = useWalletContext();
@@ -10,9 +11,12 @@ export const WalletNav = () => {
     {
       name: 'Wallet',
       account: account ? `${account.address?.slice(0, 10)}...${account.address?.slice(-10)}` : '',
+      address: account?.address,
       amount: `${climatecoinBalance()} CC - ${usdcBalance()} USDC`,
     },
   ];
+
+  const navigate = useNavigate();
 
   return (
     <div className="flex items-center">
@@ -38,6 +42,9 @@ export const WalletNav = () => {
                     isActive={true}
                     account={option.account}
                     amount={option.amount}
+                    onClick={() => {
+                      navigate(`/wallet/${option.address}`);
+                    }}
                     icon={
                       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-6">
                         <IconWallet />

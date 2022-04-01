@@ -1,5 +1,5 @@
 import { useAlert } from 'react-alert';
-import { documentKeys } from './index';
+import { CarbonDocument, documentKeys } from './index';
 import { AxiosRequestConfig } from 'axios';
 import { httpClient } from '@/lib/httpClient';
 import { useMutation, useQueryClient } from 'react-query';
@@ -7,6 +7,15 @@ import { format } from 'date-fns';
 import { SelectOption } from '@/componentes/Form';
 
 export type CarbonDocumentDTO = Record<string, any>;
+
+function createCarbonDocument(formData: FormData): Promise<CarbonDocument> {
+  const config: AxiosRequestConfig<FormData> = {
+    headers: {
+      'content-type': 'application/form-data',
+    },
+  };
+  return httpClient.post(`/carbon-documents`, formData, config);
+}
 
 function toFormData(carbonDocument: CarbonDocumentDTO) {
   const formData = new FormData();
@@ -74,18 +83,10 @@ function toFormData(carbonDocument: CarbonDocumentDTO) {
 export function uploadDocument() {
   const queryClient = useQueryClient();
   const alert = useAlert();
-
-  const config: AxiosRequestConfig<FormData> = {
-    headers: {
-      'content-type': 'application/form-data',
-    },
-  };
   return useMutation(
     (carbonDocument: CarbonDocumentDTO) => {
       const formData = toFormData(carbonDocument);
-      console.log(formData);
-
-      return httpClient.post(`/carbon-documents`, formData, config);
+      return createCarbonDocument(formData);
     },
     {
       onSuccess: () => {

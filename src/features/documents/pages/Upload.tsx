@@ -22,6 +22,7 @@ import { Switch } from '@/componentes/Form/Switch';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
 import { Stepper, useStepper } from '@/componentes/Stepper/Stepper';
 import { SelectOption } from '@/componentes/Form';
+import { useNavigate } from 'react-router-dom';
 
 const formOptionToSelectOption = (options: FormOption[] | undefined): SelectOption[] => {
   if (options === undefined) return [];
@@ -42,7 +43,6 @@ export enum UploadSteps {
 export const Upload = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
-
   const resolver = useYupValidationResolver(documentUploadValidationSchema);
   const methods = useForm<UploadFormSchema>({
     resolver,
@@ -53,12 +53,14 @@ export const Upload = () => {
   const formOption = getFormOptions();
   const user = useAuth();
   const { currStep, nextStep, prevStep, setCurrStep } = useStepper(UploadSteps);
-
+  const navigate = useNavigate();
   const handleSubmit = async (data: UploadFormSchema) => {
     console.log({ data });
 
-    await uploadDocuments.mutateAsync(data);
-    setIsOpen((old) => !old);
+    const res = await uploadDocuments.mutateAsync(data);
+    // setIsOpen((old) => !old);
+    // but you can use a location instead
+    navigate(`/documents/${res._id}`);
   };
 
   const baseInputProps = {

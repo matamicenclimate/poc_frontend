@@ -29,7 +29,7 @@ export const ProjectPreview = ({ values, noDescription = false }: ProjectPreview
             {values.country?.label ?? values.country?.name ?? ''}
           </p>
           <p className="font-bold text-primary">{values.credits ?? 0} credits</p>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {values.sdgs.map((sdg: any) => (
               <Pill key={sdg.value ?? sdg.label ?? sdg.name} style="solid" variant="featured">
                 {sdg.label ?? sdg.name}

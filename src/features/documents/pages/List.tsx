@@ -12,6 +12,7 @@ import { Title } from '@/componentes/Elements/Title/Title';
 import Popover from '@/componentes/Popover/Popover';
 import { Button } from '@/componentes/Elements/Button/Button';
 import { DayPickerRange } from '@/componentes/Form/DayPickerRange';
+import { ReactComponent as UpDownArrow } from '@/assets/icons/bx-up-down-arrow.svg';
 
 export const DocumentList = () => {
   const { user } = useAuth();
@@ -105,9 +106,24 @@ export const DocumentList = () => {
           </form>
           <table className="w-full">
             <thead>
-              <th>Status</th>
-              <th>Project name</th>
-              <th>ID Operation</th>
+              <th>
+                <div className="flex">
+                  Status
+                  <UpDownArrow />
+                </div>
+              </th>
+              <th>
+                <div className="flex">
+                  Project name
+                  <UpDownArrow />
+                </div>
+              </th>
+              <th className="flex">
+                <div className="flex">
+                  ID Operation
+                  <UpDownArrow />
+                </div>
+              </th>
               <th>Actions</th>
             </thead>
             <tbody>{renderDocuments()}</tbody>

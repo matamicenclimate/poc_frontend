@@ -18,7 +18,7 @@ export const protectedRoutes = [
       { path: '/documents/*', element: <DocumentRouter /> },
       { path: '/coins/*', element: <ClimatecoinsRouter /> },
       { path: '/profile', element: <Profile /> },
-      { path: '/wallet', element: <Wallet /> },
+      { path: '/wallet/*', element: <Wallet /> },
       { path: '/home', element: <Overview /> },
       { path: '/', element: <Overview /> },
       { path: '*', element: <Navigate to="." /> },

@@ -1,6 +1,5 @@
 import { Card } from '@/componentes/Card/Card';
 import { Button } from '@/componentes/Elements/Button/Button';
-import { Link } from '@/componentes/Elements/Link/Link';
 import { Form } from '@/componentes/Form/Form';
 import { Input } from '@/componentes/Form/Inputs';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
@@ -10,22 +9,29 @@ import { useWalletContext } from '@/providers/Wallet.context';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { getDocument } from '../api/getDocument';
-import { mintNftDocument } from '../api/mintNftDocument';
 import { ProjectPreview } from '../components/ProjectPreview';
 import { UploadSteps } from './Upload';
 import { claimNftFromDocument } from '@/features/documents/api/claimNftFromDocument';
 import { useAuth } from '@/lib/auth';
 import { SwapNft } from '@/features/documents/components/SwapNft';
 import { Title } from '@/componentes/Elements/Title/Title';
+import { useAlert } from 'react-alert';
+import { Link } from '@/componentes/Elements/Link/Link';
 
 export const DocumentDetails = () => {
   const { documentId } = useParams();
   const { t } = useTranslation();
   const auth = useAuth();
+  const alert = useAlert();
   const document = getDocument(documentId as string);
   const claimNft = claimNftFromDocument();
-  const handleClaim = async (data: { email: string }) => {
-    console.log(data);
+
+  const handleClaim = async () => {
+    await claimNft.mutateAsync({
+      documentId: documentId as string,
+      email: auth.user?.email as string,
+    });
+    alert.success('NFT Claimed Succesfully');
   };
 
   const { account } = useWalletContext();
@@ -62,8 +68,16 @@ export const DocumentDetails = () => {
                     </div>
                     <div className="flex-grow" />
                     <div className="text-right">
-                      <div className="text-lg">{document.data.credits} CC</div>
-                      <div>400 €</div>
+                      <div className="text-lg">
+                        <Link
+                          href={`${process.env.REACT_APP_ALGORAND_EXPLORER_URL}asset/${Number(
+                            document.data.developer_nft?.asa_id
+                          )}`}
+                        >
+                          {Number(document.data.developer_nft?.asa_id)}
+                        </Link>{' '}
+                      </div>
+                      <div>{document.data.credits} C02</div>
                     </div>
                   </div>
                   <div className="mx-auto w-full max-w-sm text-center text-primary">
@@ -84,17 +98,7 @@ export const DocumentDetails = () => {
                   <div className="grid grid-cols-3">
                     <div />
                     <div />
-                    <Button
-                      type="submit"
-                      size="sm"
-                      onClick={() =>
-                        claimNft.mutateAsync({
-                          documentId: documentId as string,
-                          email: auth.user?.email as string,
-                        })
-                      }
-                      disabled={claimNft.isLoading}
-                    >
+                    <Button type="submit" size="sm" disabled={claimNft.isLoading}>
                       Yes, confirm
                     </Button>
                   </div>

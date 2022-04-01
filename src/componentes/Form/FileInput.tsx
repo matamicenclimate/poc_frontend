@@ -99,7 +99,7 @@ function FileInput<FormSchema>({
                   <div className="flex-grow space-y-2">
                     <div className="font-bold">{file.name}</div>
                     <div className="text-xs">
-                      {file.type} - {(file.size / 100000).toFixed(2)} MB
+                      {file.type} - {(file.size / 10000).toFixed(2)} MB
                     </div>
                   </div>
                   <button

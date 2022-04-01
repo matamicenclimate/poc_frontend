@@ -21,11 +21,6 @@ export function SwapNft({ nftAsaId }: { nftAsaId?: number }) {
     const suggestedParams = await setupClient().getTransactionParams().do();
 
     suggestedParams.fee = suggestedParams.fee * 2;
-    console.log({
-      address: account.address,
-      nftAsaId,
-      selector: getMethodByName('swap_nft_to_fungible').getSignature(),
-    });
 
     const txn = algosdk.makeApplicationCallTxnFromObject({
       from: account.address,
