@@ -3,21 +3,14 @@ import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { useAuth } from '@/lib/auth';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { getDocuments } from '../api/getDocuments';
-import { Card } from '@/componentes/Card/Card';
 import { Pill } from '@/componentes/Elements/Pill/Pill';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
-import { ProjectPreview } from '../components/ProjectPreview';
 import { useTranslation } from 'react-i18next';
-import { getFormOptions } from '@/features/documents/api/getFormOptions';
-import { useStepper } from '@/componentes/Stepper/Stepper';
-import { UploadFormSchema } from '@/features/documents/validation/UploadValidation';
-import { UploadSteps } from '@/features/documents/pages/Upload';
 import { useForm } from 'react-hook-form';
 import { Input } from '@/componentes/Form/Inputs';
 import { Title } from '@/componentes/Elements/Title/Title';
 import Popover from '@/componentes/Popover/Popover';
 import { Button } from '@/componentes/Elements/Button/Button';
-import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 import { DayPickerRange } from '@/componentes/Form/DayPickerRange';
 
 export const DocumentList = () => {
@@ -76,10 +69,10 @@ export const DocumentList = () => {
           <img src={`https://robohash.org/${user?.email}`} className="h-36 rounded-full" />
           <div>Hi, {user?.username}</div>
           <hr />
-          <ul>
-            <li>My buys</li>
-            <li>My solds</li>
-            <li>My projects</li>
+          <ul className="my-2 space-y-1">
+            <li className="px-6 py-2">My buys</li>
+            <li className="px-6 py-2">My solds</li>
+            <li className="px-6 py-2">My projects</li>
           </ul>
           <hr />
           <ul>
@@ -98,7 +91,9 @@ export const DocumentList = () => {
             <div>
               <Popover>
                 <Popover.Button>
-                  <Button type="button">Today</Button>
+                  <Button type="button" variant="light" size="sm">
+                    Today
+                  </Button>
                 </Popover.Button>
                 <Popover.Panel config={{ placement: 'bottom-end' }}>
                   <div className="p-4">

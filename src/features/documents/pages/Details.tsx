@@ -102,7 +102,7 @@ export const DocumentDetails = () => {
               </div>
             </Card>
           )}
-          {!!document.data.developer_nft && (
+          {!!document.data.developer_nft && document.data.status === 'claimed' && (
             <Card>
               <Title size={5} as={2}>
                 Swap you NFT for Climatecoins

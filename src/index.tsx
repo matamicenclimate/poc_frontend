@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './styles/main.css';
+import 'react-day-picker/dist/style.css';
+import './styles/datepicker.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
 import '@/lib/yup';
-import 'react-day-picker/dist/style.css';
 
 ReactDOM.render(
   <React.StrictMode>

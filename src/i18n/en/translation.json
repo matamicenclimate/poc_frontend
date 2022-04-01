@@ -62,6 +62,16 @@
       "sell": "Sell",
       "about": "About us",
       "developer": "Developer"
+    },
+    "DayPickerRange": {
+      "ranges": {
+        "custom": "Custom range",
+        "day": "One day",
+        "week": "One week",
+        "month": "One month",
+        "year": "One year",
+        "all": "All time"
+      }
     }
   },
   "dialogs": {

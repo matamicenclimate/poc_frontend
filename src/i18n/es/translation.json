@@ -46,6 +46,16 @@
         "subtitle": "Utiliza tus climatecoins para ayudar en la lucha contra el cambio climático.",
         "link": "Ver más"
       }
+    },
+    "DayPickerRange": {
+      "ranges": {
+        "custom": "Rango personalizado",
+        "day": "Un día",
+        "week": "Una semana",
+        "month": "Un mes",
+        "year": "Un año",
+        "all": "Desde siempre"
+      }
     }
   },
   "dialogs.base.accept": "Aceptar",
