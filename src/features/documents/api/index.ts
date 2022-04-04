@@ -89,6 +89,7 @@ export interface Thumbnail {
 }
 
 export interface Nft {
+  supply: string;
   txn_type: string;
   is_holded: boolean;
   _id: string;

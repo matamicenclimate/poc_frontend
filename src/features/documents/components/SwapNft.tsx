@@ -8,7 +8,7 @@ import { getMethodByName, vaultContract } from '@/contracts/vault';
 import { httpClient } from '@/lib/httpClient';
 import { useParams } from 'react-router-dom';
 
-export function SwapNft({ nftAsaId }: { nftAsaId?: number }) {
+export function SwapNft({ nftAsaId, nftSupply }: { nftAsaId?: number; nftSupply?: number }) {
   const { account } = useWalletContext();
   const { documentId } = useParams();
 
@@ -17,12 +17,33 @@ export function SwapNft({ nftAsaId }: { nftAsaId?: number }) {
 
     if (!account) return;
     if (!nftAsaId) return;
+    if (!nftSupply) return;
+
     console.log('opting in...');
     const suggestedParams = await setupClient().getTransactionParams().do();
 
     suggestedParams.fee = suggestedParams.fee * 2;
 
-    const txn = algosdk.makeApplicationCallTxnFromObject({
+    const unfreezeTxn = algosdk.makeApplicationCallTxnFromObject({
+      from: account.address,
+      appIndex: vaultContract.networks['testnet'].appID,
+      // the atc appends the assets to the foreignAssets and passes the index of the asses in the appArgs
+      appArgs: [getMethodByName('unfreeze_nft').getSelector(), algosdk.encodeUint64(0)],
+      foreignAssets: [nftAsaId],
+      onComplete: OnApplicationComplete.NoOpOC,
+      suggestedParams,
+    });
+
+    const transferTxn = algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject({
+      from: account.address,
+      // the atc appends the assets to the foreignAssets and passes the index of the asses in the appArgs
+      assetIndex: nftAsaId,
+      to: algosdk.getApplicationAddress(vaultContract.networks['testnet'].appID),
+      amount: nftSupply,
+      suggestedParams,
+    });
+
+    const swapTxn = algosdk.makeApplicationCallTxnFromObject({
       from: account.address,
       appIndex: vaultContract.networks['testnet'].appID,
       // the atc appends the assets to the foreignAssets and passes the index of the asses in the appArgs
@@ -31,14 +52,16 @@ export function SwapNft({ nftAsaId }: { nftAsaId?: number }) {
       onComplete: OnApplicationComplete.NoOpOC,
       suggestedParams,
     });
-    console.log({ txn });
+    console.log({ txn: swapTxn });
+    algosdk.assignGroupID([unfreezeTxn, transferTxn, swapTxn]);
 
     const signedTxn = await magiclink.algorand.signGroupTransactionV2([
-      { txn: Buffer.from(txn.toByte()).toString('base64') },
+      { txn: Buffer.from(unfreezeTxn.toByte()).toString('base64') },
+      { txn: Buffer.from(transferTxn.toByte()).toString('base64') },
+      { txn: Buffer.from(swapTxn.toByte()).toString('base64') },
     ]);
 
     const blob = signedTxn.map((txn: string) => new Uint8Array(Buffer.from(txn, 'base64')));
-    console.log(blob);
     const { txId } = await setupClient().sendRawTransaction(blob).do();
     const result = await waitForConfirmation(setupClient(), txId, 3);
 

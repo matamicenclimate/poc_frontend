@@ -77,7 +77,7 @@ export const DocumentDetails = () => {
                           {Number(document.data.developer_nft?.asa_id)}
                         </Link>{' '}
                       </div>
-                      <div>{document.data.credits} C02</div>
+                      <div>{document.data.developer_nft?.supply} C02</div>
                     </div>
                   </div>
                   <div className="mx-auto w-full max-w-sm text-center text-primary">
@@ -111,7 +111,10 @@ export const DocumentDetails = () => {
               <Title size={5} as={2}>
                 Swap you NFT for Climatecoins
               </Title>
-              <SwapNft nftAsaId={Number(document.data.developer_nft?.asa_id)} />
+              <SwapNft
+                nftAsaId={Number(document.data.developer_nft?.asa_id)}
+                nftSupply={Number(document.data.developer_nft?.supply)}
+              />
             </Card>
           )}
         </div>
