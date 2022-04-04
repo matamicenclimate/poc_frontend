@@ -101,7 +101,13 @@
       "confirmationTextPre": "I confirm the creation of this project and the",
       "confirmationTextLink": "terms and conditions",
       "confirmationTextPost": "of Climatecoin.",
-      "description": "Do you have doubts about how projects are created or managed in Climatecoin?\n"
+      "description": "Do you have doubts about how projects are created or managed in Climatecoin?\n",
+      "buys": "My buys",
+      "sold": "My solds",
+      "projects": "My projects",
+      "profile": "Edit profile",
+      "notifications": "Notifications",
+      "wallet": "My Wallet"
     }
   },
   "head": {

@@ -1,18 +1,24 @@
-import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
-import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { useAuth } from '@/lib/auth';
-import { Link } from '@/componentes/Elements/Link/Link';
+import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { getDocuments } from '../api/getDocuments';
+import { Input } from '@/componentes/Form/Inputs';
+import Popover from '@/componentes/Popover/Popover';
+import { Link } from '@/componentes/Elements/Link/Link';
 import { Pill } from '@/componentes/Elements/Pill/Pill';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
-import { useTranslation } from 'react-i18next';
-import { useForm } from 'react-hook-form';
-import { Input } from '@/componentes/Form/Inputs';
 import { Title } from '@/componentes/Elements/Title/Title';
-import Popover from '@/componentes/Popover/Popover';
+import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { Button } from '@/componentes/Elements/Button/Button';
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { DayPickerRange } from '@/componentes/Form/DayPickerRange';
+
+import { ReactComponent as EmailIcon } from '@/assets/icons/bx-email-line.svg';
+import { ReactComponent as IconUser } from '@/assets/icons/bx-user-line.svg';
+import { ReactComponent as RightArrow } from '@/assets/icons/bx-arrow-right-line.svg';
+import { ReactComponent as ShoppingBag } from '@/assets/icons/bx-shopping-bag.svg';
 import { ReactComponent as UpDownArrow } from '@/assets/icons/bx-up-down-arrow.svg';
+import { ReactComponent as WalletIcon } from '@/assets/icons/bx-wallet-line.svg';
 
 export const DocumentList = () => {
   const { user } = useAuth();
@@ -71,15 +77,33 @@ export const DocumentList = () => {
           <div>Hi, {user?.username}</div>
           <hr />
           <ul className="my-2 space-y-1">
-            <li className="px-6 py-2">My buys</li>
-            <li className="px-6 py-2">My solds</li>
-            <li className="px-6 py-2">My projects</li>
+            <li className="flex px-6 py-2">
+              <RightArrow className="mr-3" />
+              {t('documents.Upload.buys')}
+            </li>
+            <li className="flex px-6 py-2">
+              <RightArrow className="mr-3" />
+              {t('documents.Upload.sold')}
+            </li>
+            <li className="flex px-6 py-2 text-primary">
+              <ShoppingBag className="mr-3 h-6 w-6 fill-primary" />
+              {t('documents.Upload.projects')}
+            </li>
           </ul>
           <hr />
-          <ul>
-            <li>Edit profile</li>
-            <li>Notifications</li>
-            <li>My wallet</li>
+          <ul className="my-2 space-y-1">
+            <li className="flex px-6 py-2">
+              <IconUser className="mr-3" />
+              {t('documents.Upload.profile')}
+            </li>
+            <li className="flex px-6 py-2">
+              <EmailIcon className="mr-3" />
+              {t('documents.Upload.notifications')}
+            </li>
+            <li className="flex px-6 py-2">
+              <WalletIcon className="mr-3 " />
+              {t('documents.Upload.wallet')}
+            </li>
           </ul>
         </aside>
         <main className="md:col-span-3">
