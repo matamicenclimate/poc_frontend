@@ -1,5 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import './styles/main.css';
 import 'react-day-picker/dist/style.css';
@@ -8,13 +10,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import '@/lib/yup';
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
