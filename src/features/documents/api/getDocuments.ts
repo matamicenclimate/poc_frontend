@@ -2,6 +2,7 @@ import { CarbonDocument, documentKeys } from './index';
 import { httpClient } from '@/lib/httpClient';
 import { useQuery } from 'react-query';
 import { format } from 'date-fns';
+import { SortState } from '@/hooks/useSort';
 
 function fetchDocuments(filter: Record<any, any>): Promise<CarbonDocument[]> {
   const newFilter: any = {};
@@ -20,13 +21,14 @@ function fetchDocuments(filter: Record<any, any>): Promise<CarbonDocument[]> {
   return httpClient.get(`/carbon-documents?${params}`);
 }
 
-export function getDocuments(userEmail: string, filter: Record<any, any>) {
+export function getDocuments(userEmail: string, filter: Record<any, any>, sort: SortState) {
   const { dates, ...newFilter } = filter;
   const parsed = {
     ...newFilter,
     credit_start_lte: dates?.from ? format(dates.from, 'yyyy-MM-dd') : undefined,
     credit_end_gte: dates?.to ? format(dates.to, 'yyyy-MM-dd') : undefined,
     created_by_user: userEmail,
+    _sort: !!sort.field && !!sort.order ? `${sort.field}:${sort.order}` : undefined,
   };
   return useQuery(documentKeys.search(parsed), () => fetchDocuments(parsed));
 }

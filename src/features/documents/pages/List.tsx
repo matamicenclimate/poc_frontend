@@ -17,8 +17,9 @@ import { ReactComponent as EmailIcon } from '@/assets/icons/bx-email-line.svg';
 import { ReactComponent as IconUser } from '@/assets/icons/bx-user-line.svg';
 import { ReactComponent as RightArrow } from '@/assets/icons/bx-arrow-right-line.svg';
 import { ReactComponent as ShoppingBag } from '@/assets/icons/bx-shopping-bag.svg';
-import { ReactComponent as UpDownArrow } from '@/assets/icons/bx-up-down-arrow.svg';
 import { ReactComponent as WalletIcon } from '@/assets/icons/bx-wallet-line.svg';
+import clsx from 'clsx';
+import { useSort } from '@/hooks/useSort';
 
 export const DocumentList = () => {
   const { user } = useAuth();
@@ -34,8 +35,8 @@ export const DocumentList = () => {
     wrapperClassName: 'col-span-2',
   };
 
-  const documents = getDocuments(user?.email as string, methods.watch());
-
+  const { sort, toggleSort, isActiveSort, renderArrow } = useSort();
+  const documents = getDocuments(user?.email as string, methods.watch(), sort);
   const renderDocuments = () => {
     if (documents.data) {
       return (
@@ -129,23 +130,26 @@ export const DocumentList = () => {
             </div>
           </form>
           <table className="w-full">
-            <thead>
+            <thead className="text-xs text-neutral-4">
               <th>
-                <div className="flex">
+                <div className={clsx('flex cursor-pointer')} onClick={() => toggleSort('status')}>
                   Status
-                  <UpDownArrow />
+                  {renderArrow('status')}
                 </div>
               </th>
               <th>
-                <div className="flex">
+                <div className={clsx('flex cursor-pointer')} onClick={() => toggleSort('title')}>
                   Project name
-                  <UpDownArrow />
+                  {renderArrow('title')}
                 </div>
               </th>
               <th className="flex">
-                <div className="flex">
+                <div
+                  className={clsx('flex cursor-pointer')}
+                  onClick={() => toggleSort('serial_number')}
+                >
                   ID Operation
-                  <UpDownArrow />
+                  {renderArrow('serial_number')}
                 </div>
               </th>
               <th>Actions</th>
