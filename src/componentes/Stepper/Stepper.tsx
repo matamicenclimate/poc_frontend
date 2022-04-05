@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 import { ReactComponent as CheckIcon } from '@/assets/icons/bx-check-line.svg';
+import { ReactComponent as CloseIcon } from '@/assets/icons/bx-close.svg';
+
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 
@@ -13,24 +15,25 @@ export function useStepper<Obj>(someEnum: Obj) {
   return { currStep, nextStep, prevStep, setCurrStep };
 }
 
-function enumToKeys<Obj>(someEnum: Obj) {
+export function enumToKeys<Obj extends Record<string, any>>(someEnum: Obj): (keyof Obj)[] {
   return Object.keys(someEnum).filter((val: any) => isNaN(val));
 }
 
-type StepperProps<Obj> = {
+type StepperProps<Obj extends Record<any, any>> = {
   stepsEnum: Obj;
+  errors?: Record<keyof Obj, boolean>;
   setCurrStep: React.Dispatch<React.SetStateAction<number>>;
   currStep: number;
   translationRoot: string;
 };
 export function Stepper<Obj>({
   stepsEnum,
+  errors,
   setCurrStep,
   currStep,
   translationRoot,
 }: StepperProps<Obj>) {
   const { t } = useTranslation();
-
   return (
     <div>
       {enumToKeys(stepsEnum).map((title, index) => (
@@ -49,10 +52,18 @@ export function Stepper<Obj>({
               className={clsx(
                 'flex h-7 w-7 items-center justify-center rounded-full border-2',
                 currStep === index && 'border-primary-green',
-                currStep > index && 'border-primary-green bg-primary-green text-white'
+
+                currStep > index && 'border-primary-green bg-primary-green text-white',
+                errors?.[title] && 'border-red-400 bg-red-400 text-white'
               )}
             >
-              {currStep > index ? <CheckIcon /> : index + 1}
+              {errors?.[title] ? (
+                <CloseIcon className="h-4 w-4 fill-white" />
+              ) : currStep > index ? (
+                <CheckIcon />
+              ) : (
+                index + 1
+              )}
             </div>
             <div className="flex items-center">{t(`${translationRoot}.${title}`)}</div>
           </div>

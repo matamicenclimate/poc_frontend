@@ -20,7 +20,7 @@ import { Link } from '@/componentes/Elements/Link/Link';
 import { ProjectPreview } from '../components/ProjectPreview';
 import { Switch } from '@/componentes/Form/Switch';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
-import { Stepper, useStepper } from '@/componentes/Stepper/Stepper';
+import { enumToKeys, Stepper, useStepper } from '@/componentes/Stepper/Stepper';
 import { SelectOption } from '@/componentes/Form';
 import { useNavigate } from 'react-router-dom';
 
@@ -97,6 +97,14 @@ export const Upload = () => {
     </div>
   );
 
+  function getErrorFromKeys<FormSchema extends Record<string, unknown>>(
+    array: (keyof FormSchema)[]
+  ) {
+    return array.reduce((acc, key) => {
+      return acc || Object.keys(methods.formState.errors).includes(key as string);
+    }, false as boolean);
+  }
+
   return (
     <MainLayout title={t('head.Upload.title')}>
       <PageTitle
@@ -108,6 +116,45 @@ export const Upload = () => {
         <div id="left-column-wrapper" className="">
           <Stepper
             stepsEnum={UploadSteps}
+            errors={{
+              INFO: getErrorFromKeys<UploadFormSchema>([
+                'title',
+                'country',
+                'sdgs',
+                'title',
+                'description',
+                'project_url',
+              ]),
+              CONFIG: getErrorFromKeys<UploadFormSchema>([
+                'credit_start',
+                'credit_end',
+                'type',
+                'sub_type',
+                'methodology',
+                'validators',
+                'first_verifier',
+                'standard',
+                'registry',
+                'registry_url',
+              ]),
+              DETAILS: getErrorFromKeys<UploadFormSchema>([
+                'project_latitude',
+                'project_longitude',
+                'thumbnail',
+                'cover',
+                'credits',
+                'serial_number',
+                'project_registration',
+                'project_video',
+              ]),
+              FILES: getErrorFromKeys<UploadFormSchema>([
+                'pdd',
+                'validation_report',
+                'monitoring_report',
+                'verification_report',
+              ]),
+              CONFIRMATION: false,
+            }}
             setCurrStep={setCurrStep}
             currStep={currStep}
             translationRoot="documents.Upload.stepper"
