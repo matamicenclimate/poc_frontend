@@ -52,7 +52,7 @@ export const documentUploadValidationSchema = yup.object({
   methodology: yup.object().nullable(),
   credit_start: dateValidation.required(),
   credit_end: dateValidation.required(),
-  validators: yup.object().nullable(),
+  validator: yup.object().nullable(),
   first_verifier: yup.object().nullable(),
   standard: yup.object().nullable().required(),
   registry: yup.object().nullable().required(),

@@ -131,7 +131,7 @@ export const Upload = () => {
                 'type',
                 'sub_type',
                 'methodology',
-                'validators',
+                'validator',
                 'first_verifier',
                 'standard',
                 'registry',
@@ -341,8 +341,8 @@ export const Upload = () => {
                     {...baseInputProps}
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.validator')}
-                    name="validators"
-                    options={formOptionToSelectOption(formOption.data?.validators)}
+                    name="validator"
+                    options={formOptionToSelectOption(formOption.data?.validator)}
                   />
                   <Select<UploadFormSchema>
                     {...baseInputProps}
