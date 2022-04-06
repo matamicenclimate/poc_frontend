@@ -1,4 +1,228 @@
 {
   "intlNumber": "{{val, number}}",
-  "intlNumberWithOptions": "{{val, number(minimumFractionDigits: 2)}}"
+  "intlNumberWithOptions": "{{val, number(minimumFractionDigits: 2)}}",
+  "auth": {
+    "Callback": {
+      "error": "Identifiant invalide",
+      "logingIn": "Connectez-vous avec Magic Link..."
+    },
+    "Login": {
+      "form": {
+        "email": {
+          "label": "E-mail",
+          "placeholder": "Écrivez votre e-mail..."
+        }
+      },
+      "login": "Accès avec Magiclink",
+      "pageTitle": "Accès au Climatecoin",
+      "pageTitlev": "",
+      "safetyWarning": "Veuillez vous assurer que vous accédez à partir de"
+    },
+    "Register": {
+      "pageTitle": "S'inscrire",
+      "register": "S'inscrire"
+    }
+  },
+  "climatecoins": {
+    "Buy": {
+      "description": "Savez-vous ce que valent vos CC ?\n\n\nVous contribuerez au changement climatique !",
+      "stepper": {
+        "CONDITIONS": "Conditions",
+        "CONFIRMATION": "Confirmation",
+        "SELECT": "Sélectionner"
+      },
+      "title": "Acheter des Climatecoins"
+    }
+  },
+  "components": {
+    "DayPickerRange": {
+      "ranges": {
+        "all": "Tout le temps",
+        "custom": "Gamme personnalisée",
+        "day": "Un jour",
+        "month": "Un mois",
+        "week": "Une semaine",
+        "year": "Un ans"
+      }
+    },
+    "Navbar": {
+      "about": "À propos de nous",
+      "buy": "Acheter",
+      "currency": "Monnaie",
+      "developer": "Développeur",
+      "home": "Maison",
+      "i18n": {
+        "english": "Anglais",
+        "french": "français",
+        "spanish": "Espagnol",
+        "title": "Langue"
+      },
+      "sell": "Vendre"
+    },
+    "Overview": {
+      "activity": "Activité",
+      "all": "Tous",
+      "buy": "Acheter",
+      "buyClimatecoins": "Acheter des Climatecoins",
+      "date": "Date",
+      "footprint": "Compenser l'empreinte CO2",
+      "offset": "Décalage",
+      "operationId": "Opération d'identification",
+      "sell": "Vendre",
+      "total": "Total",
+      "totalBalance": "Solde total",
+      "transfer": "Transfert",
+      "type": "Taper",
+      "viewMore": {
+        "link": "Voir plus",
+        "subtitle": "Utilisez vos climatecoins pour contribuer à la lutte contre le changement climatique.",
+        "title": "Votre aide contre le changement climatique."
+      }
+    },
+    "dialog": {
+      "accept": {
+        "button": "J'accepte"
+      },
+      "cancel": {
+        "button": "Annuler"
+      }
+    }
+  },
+  "dialogs": {
+    "__i18n_ally_root__": {
+      "base": {
+        "accept": "J'accepte",
+        "cancel": "Annuler"
+      }
+    },
+    "base": {
+      "accept": "J'accepte",
+      "cancel": "Annuler"
+    }
+  },
+  "documents": {
+    "List": {
+      "breadcrumbTitle": "Documents",
+      "table": {
+        "actions": "Actions",
+        "idOperation": "Opération d'identification",
+        "projectName": "Nom du projet",
+        "search": "Rechercher...",
+        "status": "Statut",
+        "title": "Mes projets"
+      },
+      "title": "Développeur",
+      "viewDetails": "Voir les détails"
+    },
+    "Upload": {
+      "buys": "Mes achats",
+      "confirmationText": "Je confirme la création de ce projet et les termes et conditions de Climatecoin.",
+      "confirmationTextLink": "termes et conditions",
+      "confirmationTextPost": "de Climatecoin.",
+      "confirmationTextPre": "Je confirme la création de ce projet et la",
+      "description": "Vous avez des doutes sur la manière dont les projets sont créés ou gérés dans Climatecoin ?",
+      "hi": "salut",
+      "notifications": "Avis",
+      "profile": "Editer le profil",
+      "projects": "Mes projets",
+      "sold": "Mes ventes",
+      "stepper": {
+        "CONFIG": "Configuration",
+        "CONFIRMATION": "Confidentialité",
+        "DETAILS": "Détails du projet",
+        "FILES": "Télécharger des fichiers",
+        "INFO": "Informations sur le projet"
+      },
+      "title": "Crédits de transfert",
+      "wallet": "Mon portefeuille"
+    }
+  },
+  "head": {
+    "List": {
+      "title": "Développeur"
+    },
+    "Profile": {
+      "pageTitle": "Profil"
+    },
+    "Upload": {
+      "title": "Télécharger des documents carbone"
+    },
+    "Wallet": {
+      "title": "Portefeuille"
+    },
+    "climatecoins": {
+      "Buy": {
+        "title": "Acheter des Climatecoins"
+      }
+    }
+  },
+  "login": {
+    "heading": "Pseudo (email"
+  },
+  "misc": {
+    "Landing": {
+      "title": "Bienvenue"
+    },
+    "Overview": {
+      "title": "Maison"
+    }
+  },
+  "profile": {
+    "title": "Profil"
+  },
+  "uploadDocuments": {
+    "PDD": "PDD",
+    "country": "De campagne",
+    "credits": {
+      "amount": "Crédits disponibles"
+    },
+    "description": "Description du projet",
+    "firstVerifier": "Premier vérificateur",
+    "link": "Télécharger des documents",
+    "methodology": "Méthodologie",
+    "modal": {
+      "button": {
+        "accept": "Je l'ai Merci!"
+      },
+      "claim": "Message envoyé avec succès. \nNous vous contacterons dans les prochains jours.",
+      "title": "Formulaire envoyé avec succès"
+    },
+    "monitoring": {
+      "report": "Rapport de suivi"
+    },
+    "project": {
+      "url": "",
+      "video": ""
+    },
+    "projectCover": "Images du projet : couverture",
+    "projectLatitude": "Latitude",
+    "projectLocation": "Emplacement du projet",
+    "projectLongitude": "Longitude",
+    "projectThumbnail": "Images du projet : vignette",
+    "registry": {
+      "link": "",
+      "name": ""
+    },
+    "sdgs": "ODD",
+    "send": {
+      "button": ""
+    },
+    "serialNumber": "Numéro de série des crédits",
+    "standard": "Standard",
+    "subtype": "Sous-type",
+    "title": "Télécharger des documents carbone",
+    "type": "Taper",
+    "validation": {
+      "report": ""
+    },
+    "validator": "Validateur",
+    "verification": {
+      "report": ""
+    }
+  },
+  "validation": {
+    "errors": {
+      "format": ""
+    }
+  }
 }
