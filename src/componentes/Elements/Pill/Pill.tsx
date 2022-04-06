@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-type PillProps = {
+export type PillProps = {
   children: React.ReactNode;
   style?: keyof typeof styles;
   variant?: keyof typeof variants;

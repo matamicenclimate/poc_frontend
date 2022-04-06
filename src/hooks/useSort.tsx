@@ -38,5 +38,6 @@ export function useSort() {
     }
     return <Icon id="up-down-arrow" className="h-4 w-4" />;
   }
+
   return { sort, toggleSort, isActiveSort, renderArrow };
 }

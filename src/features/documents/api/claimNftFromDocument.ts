@@ -2,8 +2,40 @@ import { documentKeys, CarbonDocument } from './index';
 import { httpClient } from '@/lib/httpClient';
 import { useMutation, useQueryClient } from 'react-query';
 import { useAlert } from 'react-alert';
+import { setupClient } from '@/lib/algosdk';
+import algosdk, { waitForConfirmation } from 'algosdk';
+import { magiclink } from '@/lib/magiclink';
+import { Buffer } from 'buffer';
 
-function claimFromDocument(documentId: string, email: string): Promise<any> {
+async function claimFromDocument(
+  documentId: string,
+  email: string,
+  address: string,
+  assetId: number
+): Promise<any> {
+  if (!address) return;
+  console.log('opting in...');
+  const suggestedParams = await setupClient().getTransactionParams().do();
+
+  const transactionOptions = {
+    from: address,
+    to: address,
+    assetIndex: assetId,
+    amount: 0, // this is an optinTxn so amount has to be 0
+    suggestedParams,
+  };
+
+  const txn = algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject(transactionOptions);
+
+  const signedTxn = await magiclink.algorand.signGroupTransactionV2([
+    { txn: Buffer.from(txn.toByte()).toString('base64') },
+  ]);
+
+  const blob = signedTxn.map((txn: string) => new Uint8Array(Buffer.from(txn, 'base64')));
+  const { txId } = await setupClient().sendRawTransaction(blob).do();
+  const result = await waitForConfirmation(setupClient(), txId, 3);
+
+  console.log({ result });
   return httpClient.post(`/carbon-documents/${documentId}/claim`, { email });
 }
 
@@ -12,15 +44,24 @@ export function claimNftFromDocument() {
   const alert = useAlert();
 
   return useMutation(
-    ({ email, documentId }: { documentId: string; email: string }) =>
-      claimFromDocument(documentId, email),
+    ({
+      email,
+      documentId,
+      assetId,
+      address,
+    }: {
+      documentId: string;
+      email: string;
+      assetId: number;
+      address: string;
+    }) => claimFromDocument(documentId, email, address, assetId),
     {
       onSuccess: (data: CarbonDocument) => {
         queryClient.invalidateQueries(documentKeys.detail(data._id as string));
         alert.success('Asset claimed succesfully');
       },
       onError: () => {
-        alert.error('Error claimint nft');
+        alert.error('Error claiming nft');
       },
     }
   );

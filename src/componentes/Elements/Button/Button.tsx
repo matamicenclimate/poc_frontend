@@ -10,7 +10,7 @@ const sizes = {
 };
 
 const variants = {
-  primary: clsx('text-neutral-8 bg-primary', 'hover:bg-accent-primary'),
+  primary: clsx('text-neutral-8 bg-primary border-2 border-transparent', 'hover:bg-accent-primary'),
   light: clsx(
     'text-neutral-2 bg-neutral-8 border-solid border-2 border-neutral-6',
     'hover:text-neutral-8 hover:bg-neutral-2 disabled:text-neutral-8 disabled:bg-neutral-2'

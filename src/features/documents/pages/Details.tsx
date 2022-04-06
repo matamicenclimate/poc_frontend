@@ -25,16 +25,18 @@ export const DocumentDetails = () => {
   const alert = useAlert();
   const document = getDocument(documentId as string);
   const claimNft = claimNftFromDocument();
+  const { account } = useWalletContext();
 
   const handleClaim = async () => {
+    if (!document.data || !account?.address || !document.data.developer_nft.asa_id) return;
     await claimNft.mutateAsync({
       documentId: documentId as string,
       email: auth.user?.email as string,
+      address: account?.address,
+      assetId: Number(document.data.developer_nft?.asa_id),
     });
-    alert.success('NFT Claimed Succesfully');
   };
 
-  const { account } = useWalletContext();
   const renderDocument = () => {
     if (document.data) {
       return (

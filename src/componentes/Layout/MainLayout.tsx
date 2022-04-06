@@ -8,7 +8,11 @@ interface MainLayoutProps {
 }
 
 export const Footer = () => {
-  return <footer>footer</footer>;
+  return (
+    <footer className="animate-pulse">
+      <div className="m-4 rounded bg-gray-200 p-2">aqui va el footer</div>
+    </footer>
+  );
 };
 
 export const MainLayout = ({ title, children }: MainLayoutProps) => {

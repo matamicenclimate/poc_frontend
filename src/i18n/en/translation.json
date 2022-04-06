@@ -85,7 +85,7 @@
   "documents": {
     "List": {
       "breadcrumbTitle": "Documents",
-      "title": "List of documents",
+      "title": "Developer",
       "viewDetails": "View details",
       "table": {
         "title": "My projects",
@@ -121,7 +121,7 @@
   },
   "head": {
     "List": {
-      "title": "List of documents"
+      "title": "Developer"
     },
     "Profile": {
       "pageTitle": "Profile"
@@ -218,5 +218,7 @@
         "CONFIRMATION": "Confirmation"
       }
     }
-  }
+  },
+  "intlNumber": "{{val, number}}",
+  "intlNumberWithOptions": "{{val, number(minimumFractionDigits: 2)}}"
 }

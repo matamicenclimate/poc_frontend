@@ -1,0 +1,4 @@
+{
+  "intlNumber": "{{val, number}}",
+  "intlNumberWithOptions": "{{val, number(minimumFractionDigits: 2)}}"
+}
