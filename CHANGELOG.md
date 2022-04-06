@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.4.0](https://github.com/Dekalabs/climatecoin-frontend/compare/v0.3.0...v0.4.0) (2022-04-06)
+
+
+### Features
+
+* add overview ([#43](https://github.com/Dekalabs/climatecoin-frontend/issues/43)) ([bf522c8](https://github.com/Dekalabs/climatecoin-frontend/commit/bf522c8f9182b01e8666cdbab8fe433c479b9f79))
+* added optin form in wallet ([#45](https://github.com/Dekalabs/climatecoin-frontend/issues/45)) ([85d0d4e](https://github.com/Dekalabs/climatecoin-frontend/commit/85d0d4e6df3e00e60b1662c126b6e42dd34214bc))
+* added switch to toggle the developer mode ([#44](https://github.com/Dekalabs/climatecoin-frontend/issues/44)) ([5548aed](https://github.com/Dekalabs/climatecoin-frontend/commit/5548aed321653d0cd880027b04c0ffa9608f3652))
+* **contracts:** initial integration with climatetrade contract ([#47](https://github.com/Dekalabs/climatecoin-frontend/issues/47)) ([9e04a13](https://github.com/Dekalabs/climatecoin-frontend/commit/9e04a13d2d9c3051d03060b52c188e1efb151876))
+* currency conversion ([#49](https://github.com/Dekalabs/climatecoin-frontend/issues/49)) ([c677bda](https://github.com/Dekalabs/climatecoin-frontend/commit/c677bda200098889f8e19fa81226e7e26d5c1a05))
+* date picker initial implementation ([#51](https://github.com/Dekalabs/climatecoin-frontend/issues/51)) ([08d6625](https://github.com/Dekalabs/climatecoin-frontend/commit/08d66256ab4d8acce3a9a57e5c937a4b81853b6b))
+* developer page ([#50](https://github.com/Dekalabs/climatecoin-frontend/issues/50)) ([18861a8](https://github.com/Dekalabs/climatecoin-frontend/commit/18861a8525c216b94e544dcff98c7a2e4f2fe9b7))
+* document sort ([#57](https://github.com/Dekalabs/climatecoin-frontend/issues/57)) ([f88b1e3](https://github.com/Dekalabs/climatecoin-frontend/commit/f88b1e38bd733cac6273307e3cbf3bdb97f15198))
+* extended suppor for climatecoin. added claim button ([#46](https://github.com/Dekalabs/climatecoin-frontend/issues/46)) ([ecb9488](https://github.com/Dekalabs/climatecoin-frontend/commit/ecb9488c7ed1f03241511578aab5678421205936))
+* improved document upload form ([#52](https://github.com/Dekalabs/climatecoin-frontend/issues/52)) ([70780ba](https://github.com/Dekalabs/climatecoin-frontend/commit/70780ba74070fe9e5c42772474e9680aad945619))
+* react 18 ([#55](https://github.com/Dekalabs/climatecoin-frontend/issues/55)) ([ce0d112](https://github.com/Dekalabs/climatecoin-frontend/commit/ce0d1125b3d4231a98482b9df4168d58393673cf))
+* stepper errors ([#53](https://github.com/Dekalabs/climatecoin-frontend/issues/53)) ([e5d1087](https://github.com/Dekalabs/climatecoin-frontend/commit/e5d10879d4611aeca1cf9aa0bd4ec749c7db71a2))
+* swap nfts for climatecoin. added climatecoin balances to UI ([#48](https://github.com/Dekalabs/climatecoin-frontend/issues/48)) ([02c0176](https://github.com/Dekalabs/climatecoin-frontend/commit/02c017690367971bced347ac83d8323b6756f909))
+* ts support in form ([#42](https://github.com/Dekalabs/climatecoin-frontend/issues/42)) ([dd3c2d8](https://github.com/Dekalabs/climatecoin-frontend/commit/dd3c2d8367b737def3e22db5ec3d018c2768c5e6))
+* updated contract calls ([#54](https://github.com/Dekalabs/climatecoin-frontend/issues/54)) ([f48a566](https://github.com/Dekalabs/climatecoin-frontend/commit/f48a56648caaac9136190081f8937a336770de0b))
+
+
+### Bug Fixes
+
+* add icons and fix some styles ([#56](https://github.com/Dekalabs/climatecoin-frontend/issues/56)) ([d82a7d7](https://github.com/Dekalabs/climatecoin-frontend/commit/d82a7d7b49341c7fc1daec09f4bc897c034c081e))
+* document validator field ([5cd949c](https://github.com/Dekalabs/climatecoin-frontend/commit/5cd949c52178565eeefe6956b286cf6736df2743))
+* form validation and missing fields ([d4862b1](https://github.com/Dekalabs/climatecoin-frontend/commit/d4862b18667b539e5c30845e9171ad228b713f3e))
+* icons and inputs ([#58](https://github.com/Dekalabs/climatecoin-frontend/issues/58)) ([d99af37](https://github.com/Dekalabs/climatecoin-frontend/commit/d99af37de078cea505704248d5312aa333c3f8ae))
+* navbar ([f91f7ed](https://github.com/Dekalabs/climatecoin-frontend/commit/f91f7ed9caa6c0caaabdb0d173a5a4769abdd3f4))
+* updated contract interactions ([6db959c](https://github.com/Dekalabs/climatecoin-frontend/commit/6db959cbbd32b0fb8d2c0c828df9ef576136360a))
+
 ## [0.3.0](https://github.com/Dekalabs/climatecoin-frontend/compare/v0.2.0...v0.3.0) (2022-03-23)
 
 
