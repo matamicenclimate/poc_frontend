@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState } from 'react';
 import { getCurrenciesExchangeRate } from '@/providers/api/getCurrenciesExchangeRate';
 import { UseQueryResult } from 'react-query';
+import { useAuth } from '@/lib/auth';
+import { useTranslation } from 'react-i18next';
 
 interface Context {
   state: ContextState;
@@ -53,6 +55,7 @@ export const CurrencyProvider = ({ initialData, children }: ProviderProps) => {
 
 export const useCurrencyContext = () => {
   const ctx = useContext(CurrencyContext);
+  const { i18n } = useTranslation();
   if (!ctx) {
     throw new Error('useCurrencyContext must be used within a CurrencyContextProvider');
   }
@@ -73,16 +76,10 @@ export const useCurrencyContext = () => {
   };
 
   const formatter = (amountInCents: number) => {
-    let prefix = '';
-    let suffix = '';
-
-    if ([currencies.USD, currencies.EUR, currencies.BTC].includes(state.currency)) {
-      suffix = simbols[state.currency];
-    } else {
-      prefix = simbols[state.currency];
-    }
-
-    return `${prefix}${centsToFixed(convertCurrency(amountInCents))}${suffix}`.trim();
+    return new Intl.NumberFormat(i18n.language, {
+      style: 'currency',
+      currency: state.currency,
+    }).format(convertCurrency(amountInCents));
   };
 
   return {
