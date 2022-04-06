@@ -1,9 +1,8 @@
 import clsx from 'clsx';
 import { ReactComponent as CheckIcon } from '@/assets/icons/bx-check-line.svg';
-import { ReactComponent as CloseIcon } from '@/assets/icons/bx-close.svg';
-
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import { Icon } from '../Icon/Icon';
 
 export function useStepper<Obj>(someEnum: Obj) {
   const [currStep, setCurrStep] = useState<number>(0);
@@ -58,7 +57,7 @@ export function Stepper<Obj>({
               )}
             >
               {errors?.[title] ? (
-                <CloseIcon className="h-4 w-4 fill-white" />
+                <Icon id="x-close-neutral-9" className="h-4 w-4" />
               ) : currStep > index ? (
                 <CheckIcon />
               ) : (

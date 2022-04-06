@@ -4,7 +4,6 @@ import Popover from '@/componentes/Popover/Popover';
 import { ReactComponent as IconCog } from '@/assets/icons/bx-cog-line2.svg';
 import { ReactComponent as IconLogout } from '@/assets/icons/bx-logout.svg';
 import { ReactComponent as IconLock } from '@/assets/icons/bx-lock-line.svg';
-import { ReactComponent as IconUser } from '@/assets/icons/bx-user-line.svg';
 import { ReactComponent as IconShare } from '@/assets/icons/bx-share-square.svg';
 import { ReactComponent as IconBrightness } from '@/assets/icons/bx-brightness-line.svg';
 import { Switch } from '@/componentes/Form/Switch';
@@ -13,6 +12,7 @@ import { Switch as HLSwitch } from '@headlessui/react';
 import { updateUserType } from '@/componentes/Layout/Navbar/api/updateUserType';
 import { useState } from 'react';
 import { Link } from '@/componentes/Elements/Link/Link';
+import { Icon } from '@/componentes/Icon/Icon';
 
 export const ProfileNav = () => {
   const auth = useAuth();
@@ -25,7 +25,7 @@ export const ProfileNav = () => {
   const profileOptions = [
     {
       name: 'Profile',
-      icon: <IconUser className={'h-5 w-5'} />,
+      icon: <Icon id="user-line" className="h-5 w-5" />,
       href: '/profile',
       description: 'Manage your profile',
     },

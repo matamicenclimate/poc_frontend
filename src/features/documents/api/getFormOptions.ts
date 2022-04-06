@@ -8,7 +8,7 @@ export interface FormInfo {
   types: FormOption[];
   ['sub-types']: FormOption[];
   methodologies: FormOption[];
-  validator: FormOption[];
+  validators: FormOption[];
   ['first-verifiers']: FormOption[];
   standards: FormOption[];
   registries: FormOption[];

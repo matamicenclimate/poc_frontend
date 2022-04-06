@@ -17,7 +17,7 @@ import clsx from 'clsx';
 type ICompoundComponent = {
   Option: React.FC<PopoverOptionsProps>;
   Wallet: React.FC<PopoverWalletProps>;
-  Button: React.FC;
+  Button: React.FC<PopoverButtonOptions>;
   Panel: typeof PopoverPanel;
 } & React.FC<PopoverProps>;
 
@@ -231,9 +231,17 @@ const PopoverWallet = ({
   );
 };
 
-const PopoverButton = ({ children }: any) => {
-  const { toggle, setReferenceElement } = usePopoverContext();
-  return React.cloneElement(children, {
+interface PopoverButtonOptions {
+  children?: React.ReactElement;
+  render?: (isOpen: boolean) => React.ReactElement;
+}
+
+const PopoverButton = ({ children, render }: PopoverButtonOptions) => {
+  const { toggle, setReferenceElement, open } = usePopoverContext();
+
+  if (!render && !children) throw new Error('Render or Children prop must be passed');
+
+  return React.cloneElement(render ? render(open) : (children as React.ReactElement), {
     ref: setReferenceElement,
     onClick: toggle,
   });

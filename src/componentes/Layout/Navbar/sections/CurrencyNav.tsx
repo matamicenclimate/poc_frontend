@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import Popover from '@/componentes/Popover/Popover';
-import { ReactComponent as IconArrowDown } from '@/assets/icons/bx-arrow-down-simple-line.svg';
 import { useCurrencyContext } from '@/providers/Currency.context';
 import clsx from 'clsx';
+import { Icon } from '@/componentes/Icon/Icon';
 
 export const CurrencyNav = () => {
   const { t, i18n } = useTranslation();
@@ -23,7 +23,7 @@ export const CurrencyNav = () => {
             <button className="text-sm font-bold uppercase hover:bg-blue-100">
               {i18n.language} / {currency.state.currency}
             </button>
-            <IconArrowDown />
+            <Icon id="arrow-down-simple-line" className="h-6 w-6" />
           </div>
         </Popover.Button>
         <Popover.Panel>

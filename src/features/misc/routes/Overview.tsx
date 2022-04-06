@@ -4,13 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
 import { Head } from '@/componentes/Layout/Head';
 import { Title } from '@/componentes/Elements/Title/Title';
-import { ReactComponent as ArrowRight } from '@/assets/icons/bx-arrow-right.svg';
 import { Pill } from '@/componentes/Elements/Pill/Pill';
 import OverviewImage from '../../../assets/images/overview.jpg';
 import { Button } from '@/componentes/Elements/Button/Button';
 import { useEffect, useState } from 'react';
 import { useWalletContext } from '@/providers/Wallet.context';
 import { useCurrencyContext } from '@/providers/Currency.context';
+import { Icon } from '@/componentes/Icon/Icon';
 
 export const Overview = () => {
   const { t } = useTranslation();
@@ -118,7 +118,7 @@ export const Overview = () => {
           <div className="mt-8 h-[3rem] w-[9.0625rem]">
             <Link
               size="sm"
-              iconRight={<ArrowRight className="ml-1" />}
+              iconRight={<Icon id="arrow-right" className="ml-1 h-4 w-4" />}
               variant="light"
               to="/"
               as="button"

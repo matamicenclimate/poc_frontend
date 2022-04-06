@@ -2,13 +2,11 @@ import clsx from 'clsx';
 import { useDropzone } from 'react-dropzone';
 import { Path, useController, UseControllerProps } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { ReactComponent as UploadIcon } from '@/assets/icons/bx-cloud-upload.svg';
-import { ReactComponent as FileIcon } from '@/assets/icons/bx-File_Document_Line.svg';
-import { ReactComponent as ShowIcon } from '@/assets/icons/bx-show.svg';
-import { ReactComponent as DeleteIcon } from '@/assets/icons/bx-x.svg';
 import { Label } from './Label';
 import { FieldError } from './FieldError';
 import { FieldName, SchemaToErrors } from '.';
+import { Icon } from '../Icon/Icon';
+import { ElementFlags } from 'typescript';
 
 export type FileInputProps<FormSchema> = {
   name: FieldName<FormSchema>;
@@ -81,7 +79,7 @@ function FileInput<FormSchema>({
           {!(value as any).length && (
             <div className="space-y-2 text-center">
               <div className="flex justify-center">
-                <UploadIcon />
+                <Icon id="cloud-upload" className="h-9 w-9" />
               </div>
               <div className="text-sm font-bold text-primary">Drag and drop</div>
               <div className="text-xs text-neutral-4">Select files ({accept} - Max 10Mb/file)</div>
@@ -95,7 +93,7 @@ function FileInput<FormSchema>({
                   className="flex cursor-default items-center space-x-2 rounded bg-neutral-7 p-4 text-sm"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  <FileIcon />
+                  <Icon id="file-document-line" className="h-8 w-8 text-neutral-6" />
                   <div className="flex-grow space-y-2">
                     <div className="font-bold">{file.name}</div>
                     <div className="text-xs">
@@ -106,7 +104,7 @@ function FileInput<FormSchema>({
                     className="p-1"
                     onClick={() => window.open(URL.createObjectURL(file), '_blank')?.focus()}
                   >
-                    <ShowIcon />
+                    <Icon id="show" className="h-6 w-6 fill-neutral-4" />
                   </button>
                   <button
                     className="p-1"
@@ -116,7 +114,7 @@ function FileInput<FormSchema>({
                       })
                     }
                   >
-                    <DeleteIcon />
+                    <Icon id="x-close-neutral-4" className="h-6 w-6" />
                   </button>
                 </div>
               );

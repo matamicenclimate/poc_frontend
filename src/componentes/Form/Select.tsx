@@ -1,8 +1,7 @@
 import clsx from 'clsx';
-import { TFunction } from 'i18next';
-import { Control, Path, useController, UseControllerProps } from 'react-hook-form';
+import { Control, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import ReactSelect from 'react-select';
+import ReactSelect, { OptionsOrGroups, StylesConfig } from 'react-select';
 import { FieldName, SchemaToErrors, SelectOption } from '.';
 import { FieldError } from './FieldError';
 import { Label } from './Label';
@@ -16,13 +15,15 @@ type SelectProps<FormSchema> = {
   control: Control<FormSchema>;
   errors?: SchemaToErrors<FormSchema>;
   required?: boolean;
+  // style
   labelClassName?: string;
   errorClassName?: string;
   selectClassName?: string;
   wrapperClassName?: string;
+  iconLeft?: React.ReactElement;
 };
 
-const colourStyles = {
+const colourStyles = (iconLeft: boolean): StylesConfig => ({
   multiValueLabel: () => ({
     backgroundColor: 'var(--color--secondary-blue)',
     color: 'var(--color--primary-blue)',
@@ -36,7 +37,11 @@ const colourStyles = {
     paddingRight: 8,
     lineHeight: 1.8,
   }),
-};
+  valueContainer: (base) => ({
+    ...base,
+    paddingLeft: iconLeft ? '2rem' : base.paddingLeft,
+  }),
+});
 
 export function Select<FormSchema>({
   name,
@@ -50,6 +55,7 @@ export function Select<FormSchema>({
   options,
   isMulti = false,
   control,
+  iconLeft,
 }: SelectProps<FormSchema>) {
   const { t } = useTranslation();
 
@@ -61,18 +67,22 @@ export function Select<FormSchema>({
   });
 
   return (
-    <div className={clsx('flex flex-col', wrapperClassName)}>
+    <div className={clsx('relative flex flex-col', wrapperClassName)}>
       <Label {...{ labelClassName, name, required, label }} />
-      <ReactSelect
-        {...field}
-        aria-labelledby={name}
-        inputId={name}
-        className={clsx(selectClassName, 'text-sm', errors[name] && 'border-red-500')}
-        options={options as any}
-        isMulti={isMulti}
-        styles={colourStyles}
-        defaultValue={isMulti ? [] : ('' as any)}
-      />
+      <div className="flex items-center">
+        {!!iconLeft && <div className="absolute left-2 z-10">{iconLeft}</div>}
+        <ReactSelect
+          {...field}
+          aria-labelledby={name}
+          inputId={name}
+          className={clsx(selectClassName, 'flex-grow text-sm', errors[name] && 'border-red-500')}
+          options={options as OptionsOrGroups<any, any>}
+          isMulti={isMulti}
+          styles={colourStyles(!!iconLeft)}
+          defaultValue={isMulti ? [] : ('' as any)}
+        />
+      </div>
+
       {errors[name] && (
         <FieldError errorClassName={errorClassName}>{t(errors[name].key)}</FieldError>
       )}

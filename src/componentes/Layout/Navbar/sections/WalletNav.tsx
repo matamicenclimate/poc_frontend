@@ -1,8 +1,7 @@
 import Popover from '@/componentes/Popover/Popover';
-import { ReactComponent as IconWallet } from '@/assets/icons/bx-wallet-line.svg';
-import { ReactComponent as IconArrowDown } from '@/assets/icons/bx-arrow-down-simple-line.svg';
 import { useWalletContext } from '@/providers/Wallet.context';
 import { useNavigate } from 'react-router-dom';
+import { Icon } from '@/componentes/Icon/Icon';
 
 export const WalletNav = () => {
   const { account, usdcBalance, climatecoinBalance } = useWalletContext();
@@ -22,14 +21,14 @@ export const WalletNav = () => {
     <div className="flex items-center">
       <Popover>
         <Popover.Button>
-          <button className="flex rounded-full border-2 border-solid border-neutral-6 px-4 py-3 hover:bg-neutral-8">
+          <button className="flex items-center rounded-full border-2 border-solid border-neutral-6 px-4 py-3 hover:bg-neutral-8">
             <div className="flex text-sm font-bold text-neutral-2 ">
               <span className={'font-bold'}>Wallet</span>
               <span
                 className={'ml-1 text-sm font-normal text-primary'}
               >{`(${climatecoinBalance()} CC - ${usdcBalance()} USDC)`}</span>
             </div>
-            <IconArrowDown />
+            <Icon id="arrow-down-simple-line" className="h-6 w-6" />
           </button>
         </Popover.Button>
         <Popover.Panel>
@@ -47,7 +46,7 @@ export const WalletNav = () => {
                     }}
                     icon={
                       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-6">
-                        <IconWallet />
+                        <Icon id="wallet-line" className="h-6 w-6" />
                       </div>
                     }
                   />

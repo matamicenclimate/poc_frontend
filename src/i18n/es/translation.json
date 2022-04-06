@@ -64,7 +64,15 @@
     "List": {
       "breadcrumbTitle": "Documents",
       "title": "Lista de documentos",
-      "viewDetails": "Ver detalles"
+      "viewDetails": "Ver detalles",
+      "table": {
+        "title": "Mis proyectos",
+        "search": "Buscar...",
+        "status": "Estado",
+        "projectName": "Nombre del projecto",
+        "idOperation": "Numero de serie",
+        "actions": "Acciones"
+      }
     },
     "Upload": {
       "stepper.CONFIG": "Configuración",
@@ -83,7 +91,8 @@
       "projects": "Mis proyectos",
       "profile": "Editar perfil",
       "notifications": "Notificaciones",
-      "wallet": "Mi Cartera"
+      "wallet": "Mi Cartera",
+      "hi": "Hola "
     }
   },
   "head": {

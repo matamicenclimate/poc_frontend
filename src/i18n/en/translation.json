@@ -86,7 +86,15 @@
     "List": {
       "breadcrumbTitle": "Documents",
       "title": "List of documents",
-      "viewDetails": "View details"
+      "viewDetails": "View details",
+      "table": {
+        "title": "My projects",
+        "search": "Search...",
+        "status": "Status",
+        "projectName": "Project name",
+        "idOperation": "ID Operation",
+        "actions": "Actions"
+      }
     },
     "Upload": {
       "title": "Transfer credits",
@@ -107,7 +115,8 @@
       "projects": "My projects",
       "profile": "Edit profile",
       "notifications": "Notifications",
-      "wallet": "My Wallet"
+      "wallet": "My Wallet",
+      "hi": "Hi "
     }
   },
   "head": {

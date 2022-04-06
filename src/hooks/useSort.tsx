@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { ReactComponent as UpDownArrow } from '@/assets/icons/bx-up-down-arrow.svg';
 import { Icon } from '@/componentes/Icon/Icon';
 
 export interface SortState {

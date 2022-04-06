@@ -4,8 +4,8 @@ import { WalletNav } from './sections/WalletNav';
 import { ProfileNav } from './sections/ProfileNav';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { ReactComponent as LogoDark } from '@/assets/logo-dark.svg';
-import { ReactComponent as IconBell } from '@/assets/icons/bx-bell-line.svg';
 import { CurrencyNav } from './sections/CurrencyNav';
+import { Icon } from '@/componentes/Icon/Icon';
 
 const linkStyle = 'flex items-center text-sm';
 
@@ -46,7 +46,7 @@ export const Navbar = () => {
               <CurrencyNav />
 
               <Link to="/notifications" className={`text-neutral-4 ${linkStyle}`}>
-                <IconBell />
+                <Icon id="bell-line" className="h-7 w-7" />
               </Link>
 
               <WalletNav />

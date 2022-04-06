@@ -23,6 +23,7 @@ import { PageTitle } from '@/componentes/Layout/PageTitle';
 import { enumToKeys, Stepper, useStepper } from '@/componentes/Stepper/Stepper';
 import { SelectOption } from '@/componentes/Form';
 import { useNavigate } from 'react-router-dom';
+import { Icon } from '@/componentes/Icon/Icon';
 
 const formOptionToSelectOption = (options: FormOption[] | undefined): SelectOption[] => {
   if (options === undefined) return [];
@@ -208,6 +209,7 @@ export const Upload = () => {
                     required
                     name="description"
                     type="text"
+                    placeholder="Write description here..."
                   />
                   <Input<UploadFormSchema>
                     {...baseInputProps}
@@ -215,6 +217,7 @@ export const Upload = () => {
                     required
                     name="project_url"
                     type="text"
+                    placeholder="https://"
                   />
                   <StepperNavigation />
                 </div>
@@ -265,6 +268,8 @@ export const Upload = () => {
                     required
                     name="credits"
                     type="number"
+                    iconLeft={<Icon id="cube" />}
+                    placeholder="Eg: 10000"
                   />
                   <Input<UploadFormSchema>
                     {...baseInputProps}
@@ -272,6 +277,8 @@ export const Upload = () => {
                     required
                     name="serial_number"
                     type="text"
+                    iconLeft={<Icon id="key" />}
+                    placeholder="0x0043254it34537564"
                   />
                   <Input<UploadFormSchema>
                     {...baseInputProps}
@@ -286,6 +293,7 @@ export const Upload = () => {
                     label={t('uploadDocuments.project.video')}
                     name="project_video"
                     type="text"
+                    placeholder="Eg: https://youtube.com?v=32jmfdskj3kr3"
                   />
                   <StepperNavigation />
                 </div>
@@ -342,7 +350,7 @@ export const Upload = () => {
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.validator')}
                     name="validator"
-                    options={formOptionToSelectOption(formOption.data?.validator)}
+                    options={formOptionToSelectOption(formOption.data?.validators)}
                   />
                   <Select<UploadFormSchema>
                     {...baseInputProps}
@@ -374,6 +382,7 @@ export const Upload = () => {
                     required
                     name="registry_url"
                     type="text"
+                    placeholder="https://"
                   />
                   <StepperNavigation />
                 </div>
