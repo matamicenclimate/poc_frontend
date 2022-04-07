@@ -13,6 +13,7 @@ export const CurrencyNav = () => {
     { name: `🇺🇸 ${t('components.Navbar.i18n.english')}`, key: 'en' },
     { name: `🇪🇸 ${t('components.Navbar.i18n.spanish')}`, key: 'es' },
     { name: `🇫🇷 ${t('components.Navbar.i18n.french')}`, key: 'fr' },
+    { name: `🇰🇷 ${t('components.Navbar.i18n.korean')}`, key: 'ko' },
   ];
 
   return (

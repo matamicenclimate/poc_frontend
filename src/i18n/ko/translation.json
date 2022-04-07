@@ -1,0 +1,207 @@
+{
+  "intlNumber": "{{val, number}}",
+  "intlNumberWithOptions": "{{val, number(minimumFractionDigits: 2)}}",
+  "auth": {
+    "Callback": {
+      "error": "로그인 오류",
+      "logingIn": "매직링크로 로그인..."
+    },
+    "Login": {
+      "form": {
+        "email": {
+          "label": "이메일",
+          "placeholder": "이메일을 쓰세요..."
+        }
+      },
+      "login": "Magiclink로 액세스",
+      "pageTitle": "클라이밋코인 접근",
+      "pageTitlev": "",
+      "safetyWarning": "에서 액세스하는지 확인하십시오."
+    },
+    "Register": {
+      "pageTitle": "등록하다",
+      "register": "등록하다"
+    }
+  },
+  "climatecoins": {
+    "Buy": {
+      "description": "CC의 가치가 무엇인지 아십니까?\n\n\n당신은 기후 변화에 도움이 될 것입니다!",
+      "stepper": {
+        "CONDITIONS": "정황",
+        "CONFIRMATION": "확인",
+        "SELECT": "고르다"
+      },
+      "title": "클라이밋코인 구매"
+    }
+  },
+  "components": {
+    "DayPickerRange": {
+      "ranges": {
+        "all": "항상",
+        "custom": "사용자 정의 범위",
+        "day": "어느 날",
+        "month": "한달",
+        "week": "일주일",
+        "year": "1년"
+      }
+    },
+    "Navbar": {
+      "about": "회사 소개",
+      "buy": "구입하다",
+      "currency": "통화",
+      "developer": "개발자",
+      "home": "집",
+      "i18n": {
+        "english": "영어",
+        "french": "프랑스 국민",
+        "korean": "한국어",
+        "spanish": "스페인의",
+        "title": "언어"
+      },
+      "notifications": {
+        "title": "알림"
+      },
+      "sell": "팔다"
+    },
+    "Overview": {
+      "activity": "활동",
+      "all": "모두",
+      "buy": "구입하다",
+      "buyClimatecoins": "클라이밋코인 구매",
+      "date": "날짜",
+      "footprint": "오프셋 CO2 발자국",
+      "offset": "오프셋",
+      "operationId": "아이디 조작",
+      "sell": "팔다",
+      "total": "총",
+      "totalBalance": "전체 균형",
+      "transfer": "옮기다",
+      "type": "유형",
+      "viewMore": {
+        "link": "더보기",
+        "subtitle": "기후 변화에 맞서 싸우는 데 기후 코인을 사용하십시오.",
+        "title": "기후 변화에 대한 귀하의 도움."
+      }
+    },
+    "dialog": {
+      "accept": {
+        "button": "수용하다"
+      },
+      "cancel": {
+        "button": "취소"
+      }
+    }
+  },
+  "dialogs": {
+    "__i18n_ally_root__": {
+      "base": {
+        "accept": "수용하다",
+        "cancel": "취소"
+      }
+    },
+    "base": {
+      "accept": "수용하다",
+      "cancel": "취소"
+    }
+  },
+  "documents": {
+    "List": {
+      "breadcrumbTitle": "서류",
+      "table": {
+        "actions": "행위",
+        "idOperation": "아이디 조작",
+        "projectName": "프로젝트 이름",
+        "search": "검색...",
+        "status": "상태",
+        "title": "내 프로젝트"
+      },
+      "title": "개발자",
+      "viewDetails": "세부 정보보기"
+    },
+    "Upload": {
+      "buys": "내 구매",
+      "confirmationText": "나는 이 프로젝트의 생성과 Climatecoin의 이용약관을 확인합니다.",
+      "confirmationTextLink": "이용약관",
+      "confirmationTextPost": "클라이밋코인.",
+      "confirmationTextPre": "나는 이 프로젝트의 생성과",
+      "description": "클라이밋코인에서 프로젝트를 생성하거나 관리하는 방법이 의심스럽습니까?",
+      "hi": "안녕",
+      "notifications": "알림",
+      "profile": "프로필 수정",
+      "projects": "내 프로젝트",
+      "sold": "내 판매",
+      "stepper": {
+        "CONFIG": "구성",
+        "CONFIRMATION": "확인",
+        "DETAILS": "프로젝트 세부정보",
+        "FILES": "파일 업로드하다",
+        "INFO": "프로젝트 정보"
+      },
+      "title": "크레딧 이전",
+      "wallet": "내 지갑"
+    }
+  },
+  "head": {
+    "List": {
+      "title": "개발자"
+    },
+    "Profile": {
+      "pageTitle": "프로필"
+    },
+    "Upload": {
+      "title": "탄소 문서 업로드"
+    },
+    "Wallet": {
+      "title": "지갑"
+    },
+    "climatecoins": {
+      "Buy": {
+        "title": "클라이밋코인 구매"
+      }
+    }
+  },
+  "login": {
+    "heading": "로그인 이메일"
+  },
+  "misc": {
+    "Landing": {
+      "title": "어서 오십시오"
+    },
+    "Overview": {
+      "title": "집"
+    }
+  },
+  "profile": {
+    "title": "프로필"
+  },
+  "uploadDocuments": {
+    "PDD": "PDD",
+    "country": "국가",
+    "credits": {
+      "amount": "사용 가능한 크레딧"
+    },
+    "description": "프로젝트 설명",
+    "firstVerifier": "첫 번째 검증자",
+    "link": "문서 업로드",
+    "methodology": "방법론",
+    "modal": {
+      "button": {
+        "accept": "알겠습니다. 감사합니다!"
+      },
+      "claim": "메시지가 성공적으로 전송되었습니다. \n며칠 내로 연락드리겠습니다."
+    },
+    "project": {
+      "project": {
+        "video": ""
+      },
+      "registration": "",
+      "title": "",
+      "type": {
+        "options": {
+          "carbon": "",
+          "irecs": ""
+        }
+      }
+    }
+  }
+}
