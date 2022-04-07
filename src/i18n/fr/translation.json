@@ -61,6 +61,9 @@
       "sell": "Vendre",
       "notifications": {
         "title": "Avis"
+      },
+      "wallet": {
+        "wallet": "Portefeuille"
       }
     },
     "Overview": {
@@ -95,6 +98,31 @@
       "PageTitle": {
         "viewMore": "Plus d'informations"
       }
+    },
+    "FileInput": {
+      "dragAndDrop": "Glisser déposer",
+      "selectFiles": "Sélectionnez les fichiers"
+    },
+    "ProfileNav": {
+      "profile": {
+        "title": "Profil",
+        "description": "Gérer votre profil"
+      },
+      "payment": {
+        "title": "Méthodes de payement",
+        "description": "Gérez vos moyens de paiement"
+      },
+      "security": {
+        "title": "Sécurité",
+        "description": "Gérer la sécurité de votre compte"
+      },
+      "configuration": {
+        "description": "Configurez votre compte et vos alertes",
+        "title": "Configuration"
+      },
+      "promoter": "Mode promoteur",
+      "createYouCredits": "Créez vos propres crédits",
+      "logout": "Se déconnecter"
     }
   },
   "dialogs": {
@@ -146,7 +174,10 @@
         "CONFIRMATION": "Confidentialité",
         "DETAILS": "Détails du projet",
         "FILES": "Télécharger des fichiers",
-        "INFO": "Informations sur le projet"
+        "INFO": "Informations sur le projet",
+        "send": "Envoyer",
+        "continue": "Continuez",
+        "back": "Arrière"
       },
       "title": "Crédits de transfert",
       "wallet": "Mon portefeuille"
@@ -220,12 +251,7 @@
       "video": "Vidéo",
       "title": "Titre",
       "creditEnd": "Fin des crédits",
-      "creditStart": "",
-      "type": {
-        "options": {
-          "irecs": "Taper"
-        }
-      }
+      "creditStart": "Début du crédit"
     },
     "projectCover": "Images du projet : couverture",
     "projectLatitude": "Latitude",

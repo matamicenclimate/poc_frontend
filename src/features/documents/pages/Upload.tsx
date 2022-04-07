@@ -76,7 +76,7 @@ export const Upload = () => {
     <div className="col-span-2 grid grid-cols-3">
       {currStep !== 0 ? (
         <Button variant="light" type={undefined} onClick={prevStep}>
-          Back
+          {t('documents.Upload.stepper.back')}
         </Button>
       ) : (
         <div />
@@ -88,11 +88,11 @@ export const Upload = () => {
           size="md"
           disabled={uploadDocuments.isLoading || !methods.watch('confirmation')}
         >
-          {t('uploadDocuments.send.button')}
+          {t('documents.Upload.stepper.send')}
         </Button>
       ) : (
         <Button type={undefined} onClick={nextStep}>
-          Continue
+          {t('documents.Upload.stepper.continue')}
         </Button>
       )}
     </div>

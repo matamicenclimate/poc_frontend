@@ -2,16 +2,20 @@ import Popover from '@/componentes/Popover/Popover';
 import { useWalletContext } from '@/providers/Wallet.context';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '@/componentes/Icon/Icon';
+import { useTranslation } from 'react-i18next';
 
 export const WalletNav = () => {
   const { account, usdcBalance, climatecoinBalance } = useWalletContext();
+  const { t } = useTranslation();
 
   const walletOptions = [
     {
-      name: 'Wallet',
+      name: t('components.Navbar.wallet.wallet'),
       account: account ? `${account.address?.slice(0, 10)}...${account.address?.slice(-10)}` : '',
       address: account?.address,
-      amount: `${climatecoinBalance()} CC - ${usdcBalance()} USDC`,
+      amount: `${t('intlNumber', { val: climatecoinBalance() })} CC - ${t('intlNumber', {
+        val: usdcBalance(),
+      })} USDC`,
     },
   ];
 
@@ -23,10 +27,10 @@ export const WalletNav = () => {
         <Popover.Button>
           <button className="flex items-center rounded-full border-2 border-solid border-neutral-6 px-4 py-3 hover:bg-neutral-8">
             <div className="flex text-sm font-bold text-neutral-2 ">
-              <span className={'font-bold'}>Wallet</span>
-              <span
-                className={'ml-1 text-sm font-normal text-primary'}
-              >{`(${climatecoinBalance()} CC - ${usdcBalance()} USDC)`}</span>
+              <span className={'font-bold'}>{t('components.Navbar.wallet.wallet')}</span>
+              <span className={'ml-1 text-sm font-normal text-primary'}>{`(${t('intlNumber', {
+                val: climatecoinBalance(),
+              })} CC)`}</span>
             </div>
             <Icon id="arrow-down-simple-line" className="h-6 w-6" />
           </button>

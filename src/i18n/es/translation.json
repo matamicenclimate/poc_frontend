@@ -46,7 +46,10 @@
       "about": "Sobre nosotros",
       "developer": "Desarrollador",
       "home": "Casa",
-      "sell": "Vender"
+      "sell": "Vender",
+      "wallet": {
+        "wallet": "Billetera"
+      }
     },
     "Overview": {
       "all": "Todo",
@@ -90,6 +93,31 @@
       "PageTitle": {
         "viewMore": "Más información"
       }
+    },
+    "FileInput": {
+      "dragAndDrop": "Arrastrar y soltar",
+      "selectFiles": "Selecciona archivos"
+    },
+    "ProfileNav": {
+      "profile": {
+        "title": "Perfil",
+        "description": "Administra tu perfil"
+      },
+      "payment": {
+        "title": "Métodos de pago",
+        "description": "Administra tus métodos de pago"
+      },
+      "security": {
+        "title": "Seguridad",
+        "description": "Administra la seguridad de tu cuenta"
+      },
+      "configuration": {
+        "description": "Configura tu cuenta y alertas",
+        "title": "Configuración"
+      },
+      "promoter": "Modo promotor",
+      "createYouCredits": "Crea tus propios créditos",
+      "logout": "Cerrar sesión"
     }
   },
   "dialogs.base.accept": "Aceptar",
@@ -132,7 +160,10 @@
         "CONFIG": "Configuración",
         "CONFIRMATION": "Confirmación",
         "DETAILS": "Detalles del proyecto",
-        "INFO": "información del proyecto"
+        "INFO": "información del proyecto",
+        "send": "Enviar",
+        "continue": "Continuar",
+        "back": "Atrás"
       }
     },
     "Details": {
@@ -203,9 +234,6 @@
       "creditEnd": "Fin de los créditos",
       "creditStart": "Inicio de los créditos",
       "project.title": "Título del proyecto",
-      "project.type.options.carbon": "Compensación de carbono",
-      "project.type.options.irecs": "Irecs",
-      "project.type.options.nature": "Soluciones basadas en la naturaleza",
       "project.type": "Tipo de proyecto",
       "project.url": "URL del proyecto",
       "project.video": "Video del proyecto",
@@ -213,12 +241,7 @@
       "project": {
         "video": ""
       },
-      "type": {
-        "options": {
-          "carbon": "",
-          "irecs": "Escribe"
-        }
-      },
+      "type": "Tipo",
       "video": "Video"
     },
     "projectCover": "Imágenes del proyecto: cover",

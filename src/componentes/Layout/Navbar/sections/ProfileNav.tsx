@@ -6,46 +6,45 @@ import { ReactComponent as IconLogout } from '@/assets/icons/bx-logout.svg';
 import { ReactComponent as IconLock } from '@/assets/icons/bx-lock-line.svg';
 import { ReactComponent as IconShare } from '@/assets/icons/bx-share-square.svg';
 import { ReactComponent as IconBrightness } from '@/assets/icons/bx-brightness-line.svg';
-import { Switch } from '@/componentes/Form/Switch';
-import { Form } from '@/componentes/Form/Form';
 import { Switch as HLSwitch } from '@headlessui/react';
 import { updateUserType } from '@/componentes/Layout/Navbar/api/updateUserType';
 import { useState } from 'react';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Icon } from '@/componentes/Icon/Icon';
+import { useTranslation } from 'react-i18next';
 
 export const ProfileNav = () => {
   const auth = useAuth();
   const updateType = updateUserType();
-
+  const { t } = useTranslation();
   const handleLogout = () => {
     auth.logout();
   };
 
   const profileOptions = [
     {
-      name: 'Profile',
+      name: t('components.ProfileNav.profile.title'),
       icon: <Icon id="user-line" className="h-5 w-5" />,
       href: '/profile',
-      description: 'Manage your profile',
+      description: t('components.ProfileNav.profile.description'),
     },
     {
-      name: 'Payment methods',
+      name: t('components.ProfileNav.payment.title'),
       href: '/payment-methods',
       icon: <IconShare className={'h-5 w-5'} />,
-      description: 'Manage your payment methods',
+      description: t('components.ProfileNav.payment.description'),
     },
     {
-      name: 'Security',
+      name: t('components.ProfileNav.security.title'),
       icon: <IconLock className={'h-5 w-5'} />,
       href: '/security',
-      description: 'Manage your account security',
+      description: t('components.ProfileNav.security.description'),
     },
     {
-      name: 'Configuration',
+      name: t('components.ProfileNav.configuration.title'),
       icon: <IconCog className={'h-5 w-5'} />,
       href: '/configuration',
-      description: 'Set up your account and alerts',
+      description: t('components.ProfileNav.configuration.description'),
     },
   ];
 
@@ -107,9 +106,11 @@ export const ProfileNav = () => {
                 </div>
                 <div className="flex w-full items-center">
                   <div>
-                    <p className={clsx('px-2 font-normal text-neutral-3')}>Promoter mode</p>
+                    <p className={clsx('px-2 font-normal text-neutral-3')}>
+                      {t('components.ProfileNav.promoter')}
+                    </p>
                     <p className={clsx('px-2 text-[10px] font-normal text-neutral-4')}>
-                      Create your own credits
+                      {t('components.ProfileNav.createYouCredits')}
                     </p>
                   </div>
                   <div className="flex-grow" />
@@ -147,7 +148,9 @@ export const ProfileNav = () => {
                 <div className="pr-1">
                   <IconLogout className={'h-5 w-5'} />
                 </div>
-                <div className={clsx('px-2 font-normal text-neutral-3')}>Log out</div>
+                <div className={clsx('px-2 font-normal text-neutral-3')}>
+                  {t('components.ProfileNav.logout')}
+                </div>
               </div>
             </div>
           </div>

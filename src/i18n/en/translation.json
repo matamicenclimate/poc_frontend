@@ -65,6 +65,9 @@
       "developer": "Developer",
       "notifications": {
         "title": "Notifications"
+      },
+      "wallet": {
+        "wallet": "Wallet"
       }
     },
     "DayPickerRange": {
@@ -81,6 +84,32 @@
       "PageTitle": {
         "viewMore": "More info"
       }
+    },
+    "FileInput": {
+      "dragAndDrop": "Drag and drop",
+      "ariaLabel": "File Upload",
+      "selectFiles": "Select files"
+    },
+    "ProfileNav": {
+      "profile": {
+        "title": "Profile",
+        "description": "Manage your profile"
+      },
+      "payment": {
+        "title": "Payment methods",
+        "description": "Manage your payment methods"
+      },
+      "security": {
+        "title": "Security",
+        "description": "Manage your account security"
+      },
+      "configuration": {
+        "title": "Configuration",
+        "description": "Set up your account and alerts"
+      },
+      "promoter": "Promoter mode",
+      "createYouCredits": "Create your own credits",
+      "logout": "Log out"
     }
   },
   "dialogs": {
@@ -112,7 +141,10 @@
         "CONFIRMATION": "Confimation",
         "DETAILS": "Project details",
         "FILES": "Upload files",
-        "INFO": "Project info"
+        "INFO": "Project info",
+        "back": "Back",
+        "continue": "Continue",
+        "send": "Send"
       },
       "confirmationText": "I confirm the creation of this project and the terms and conditions of Climatecoin.",
       "confirmationTextPre": "I confirm the creation of this project and the",
@@ -222,11 +254,8 @@
       "title": "Title",
       "creditEnd": "Credits end",
       "video": "Video",
-      "type": {
-        "options": {
-          "irecs": "Type"
-        }
-      }
+      "type": "Type",
+      "creditStart": "Credit start"
     }
   },
   "validation": {

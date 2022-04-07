@@ -63,7 +63,7 @@ function FileInput<FormSchema>({
       <div
         {...getRootProps()}
         role="button"
-        aria-label="File Upload"
+        aria-label={t('components.FileInput.ariaLabel')}
         id={name}
         className="w-full"
         onBlur={onBlur}
@@ -81,8 +81,12 @@ function FileInput<FormSchema>({
               <div className="flex justify-center">
                 <Icon id="cloud-upload" className="h-9 w-9" />
               </div>
-              <div className="text-sm font-bold text-primary">Drag and drop</div>
-              <div className="text-xs text-neutral-4">Select files ({accept} - Max 10Mb/file)</div>
+              <div className="text-sm font-bold text-primary">
+                {t('components.FileInput.dragAndDrop')}
+              </div>
+              <div className="text-xs text-neutral-4">
+                {t('components.FileInput.selectFiles')} ({accept} - Max 10Mb/file)
+              </div>
             </div>
           )}
           <div className="space-y-2">

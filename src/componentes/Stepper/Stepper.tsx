@@ -6,10 +6,9 @@ import { Icon } from '../Icon/Icon';
 
 export function useStepper<Obj>(someEnum: Obj) {
   const [currStep, setCurrStep] = useState<number>(0);
-  const [stepEnum] = useState<Obj>(someEnum);
   const maxSteps = enumToKeys(someEnum).length;
   const nextStep = () => setCurrStep((old) => Math.min(old + 1, maxSteps - 1));
-  const prevStep = () => setCurrStep((old) => Math.max(old - 1, 1));
+  const prevStep = () => setCurrStep((old) => Math.max(old - 1, 0));
 
   return { currStep, nextStep, prevStep, setCurrStep };
 }

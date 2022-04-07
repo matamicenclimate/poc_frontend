@@ -61,7 +61,10 @@
       "notifications": {
         "title": "알림"
       },
-      "sell": "팔다"
+      "sell": "팔다",
+      "wallet": {
+        "wallet": "지갑"
+      }
     },
     "Overview": {
       "activity": "활동",
@@ -95,6 +98,31 @@
       "PageTitle": {
         "viewMore": "더 많은 정보"
       }
+    },
+    "FileInput": {
+      "dragAndDrop": "끌어서 놓기",
+      "selectFiles": "파일 선택"
+    },
+    "ProfileNav": {
+      "profile": {
+        "title": "프로필",
+        "description": "프로필 관리"
+      },
+      "payment": {
+        "title": "지불 방법",
+        "description": "결제 수단 관리"
+      },
+      "security": {
+        "title": "보안",
+        "description": "계정 보안 관리"
+      },
+      "configuration": {
+        "description": "계정 및 알림 설정",
+        "title": "구성"
+      },
+      "promoter": "프로모터 모드",
+      "createYouCredits": "나만의 크레딧 만들기",
+      "logout": "로그 아웃"
     }
   },
   "dialogs": {
@@ -145,7 +173,10 @@
         "CONFIRMATION": "확인",
         "DETAILS": "프로젝트 세부정보",
         "FILES": "파일 업로드하다",
-        "INFO": "프로젝트 정보"
+        "INFO": "프로젝트 정보",
+        "send": "보내다",
+        "continue": "계속하다",
+        "back": "뒤"
       },
       "title": "크레딧 이전",
       "wallet": "내 지갑"
@@ -210,19 +241,11 @@
       "claim": "메시지가 성공적으로 전송되었습니다. \n며칠 내로 연락드리겠습니다."
     },
     "project": {
-      "project": {
-        "video": ""
-      },
       "registration": "",
       "title": "제목",
-      "type": {
-        "options": {
-          "carbon": "",
-          "irecs": "유형"
-        }
-      },
       "creditEnd": "크레딧 종료",
-      "video": "동영상"
+      "video": "동영상",
+      "creditStart": "크레딧 시작"
     }
   }
 }
