@@ -7,6 +7,7 @@ import { differenceInDays, differenceInHours, differenceInMinutes, parseJSON } f
 import { Link } from '@/componentes/Elements/Link/Link';
 import clsx from 'clsx';
 import { Button } from '@/componentes/Elements/Button/Button';
+import { markNotificationsAsRead } from '@/componentes/Layout/Navbar/api/markNotificationsAsRead';
 
 const modelToUrl: Record<string, string> = {
   'carbon-documents': 'documents',
@@ -24,12 +25,13 @@ const ConditionalWrapper = ({
 
 export const NotificationNav = () => {
   const notifications = getNotifications();
+  const markAsRead = markNotificationsAsRead();
   const { t } = useTranslation();
   const renderNotifications = () => {
     if (notifications.data) {
       return (
         <div>
-          <ul className="space-y-2">
+          <ul className="">
             {notifications.data.map((notification) => {
               const getDate = () => {
                 if (Math.abs(differenceInDays(parseJSON(notification.createdAt), new Date())) > 0) {
@@ -49,7 +51,10 @@ export const NotificationNav = () => {
               };
 
               return (
-                <li key={notification._id} className="flex items-center space-x-2 text-sm">
+                <li
+                  key={notification._id}
+                  className="flex items-center space-x-2 border-b py-3 text-sm last:border-b-0"
+                >
                   <ConditionalWrapper
                     condition={!!notification.model}
                     wrapper={(children) => (
@@ -112,7 +117,13 @@ export const NotificationNav = () => {
             <div className="flex justify-between text-xs text-neutral-4">
               <div>{t('components.Navbar.notifications.title')}</div>
               <div>
-                <button className="text-neutral-5">clear</button>
+                <button
+                  className="text-neutral-5"
+                  onClick={() => markAsRead.mutateAsync()}
+                  disabled={markAsRead.isLoading}
+                >
+                  clear
+                </button>
               </div>
             </div>
             {renderNotifications()}

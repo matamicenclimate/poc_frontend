@@ -90,6 +90,11 @@
       "cancel": {
         "button": "취소"
       }
+    },
+    "layout": {
+      "PageTitle": {
+        "viewMore": "더 많은 정보"
+      }
     }
   },
   "dialogs": {
@@ -97,6 +102,11 @@
       "base": {
         "accept": "수용하다",
         "cancel": "취소"
+      },
+      "__i18n_ally_root__": {
+        "base": {
+          "cancel": ""
+        }
       }
     },
     "base": {
@@ -139,6 +149,15 @@
       },
       "title": "크레딧 이전",
       "wallet": "내 지갑"
+    },
+    "Details": {
+      "waitMessage": "귀하의 요청이 올바르게 접수되었습니다. 관리자가 이전하기 전에 자세히 검토할 것입니다.",
+      "willSendEmail": "확인 이메일을 받게 됩니다.",
+      "claim": {
+        "title": "NFT 청구",
+        "viewMore": "더 많은 정보",
+        "alert": "이 주소로 C02만 보내드립니다. 네트워크가 올바른지 확인하십시오."
+      }
     }
   },
   "head": {
@@ -195,13 +214,15 @@
         "video": ""
       },
       "registration": "",
-      "title": "",
+      "title": "제목",
       "type": {
         "options": {
           "carbon": "",
-          "irecs": ""
+          "irecs": "유형"
         }
-      }
+      },
+      "creditEnd": "크레딧 종료",
+      "video": "동영상"
     }
   }
 }

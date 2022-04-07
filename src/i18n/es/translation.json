@@ -12,7 +12,19 @@
           "placeholder": "Escribe tu correo...",
           "label": "Correo"
         }
-      }
+      },
+      "pageTitle": "Acceso a Climatecoin",
+      "safetyWarning": "Por favor, asegúrese de acceder desde",
+      "pageTitlev": "",
+      "login": "Acceso con Magiclink"
+    },
+    "Register": {
+      "pageTitle": "Registrarse",
+      "register": "Registrarse"
+    },
+    "Callback": {
+      "error": "Ingreso invalido",
+      "logingIn": "Inicie sesión con Magic Link..."
     }
   },
   "components": {
@@ -29,7 +41,12 @@
       "currency": "Moneda",
       "notifications": {
         "title": "Notificaciones"
-      }
+      },
+      "buy": "Comprar",
+      "about": "Sobre nosotros",
+      "developer": "Desarrollador",
+      "home": "Casa",
+      "sell": "Vender"
     },
     "Overview": {
       "all": "Todo",
@@ -59,6 +76,19 @@
         "month": "Un mes",
         "year": "Un año",
         "all": "Desde siempre"
+      }
+    },
+    "dialog": {
+      "accept": {
+        "button": "Aceptar"
+      },
+      "cancel": {
+        "button": "Cancelar"
+      }
+    },
+    "layout": {
+      "PageTitle": {
+        "viewMore": "Más información"
       }
     }
   },
@@ -96,7 +126,24 @@
       "profile": "Editar perfil",
       "notifications": "Notificaciones",
       "wallet": "Mi Cartera",
-      "hi": "Hola "
+      "hi": "Hola ",
+      "stepper": {
+        "FILES": "Subir archivos",
+        "CONFIG": "Configuración",
+        "CONFIRMATION": "Confirmación",
+        "DETAILS": "Detalles del proyecto",
+        "INFO": "información del proyecto"
+      }
+    },
+    "Details": {
+      "thanks": "¡Gracias por enviar sus créditos!",
+      "waitMessage": "Hemos recibido tu solicitud correctamente, un administrador la revisará en detalle antes de realizar la transferencia.",
+      "willSendEmail": "Recibirás un correo electrónico con la confirmación.",
+      "claim": {
+        "title": "Reclama tu NFT",
+        "viewMore": "Más información",
+        "alert": "Solo enviaremos C02 a esta dirección, verifique que la red sea correcta."
+      }
     }
   },
   "head": {
@@ -161,7 +208,18 @@
       "project.type.options.nature": "Soluciones basadas en la naturaleza",
       "project.type": "Tipo de proyecto",
       "project.url": "URL del proyecto",
-      "project.video": "Video del proyecto"
+      "project.video": "Video del proyecto",
+      "title": "Título",
+      "project": {
+        "video": ""
+      },
+      "type": {
+        "options": {
+          "carbon": "",
+          "irecs": "Escribe"
+        }
+      },
+      "video": "Video"
     },
     "projectCover": "Imágenes del proyecto: cover",
     "projectLatitude": "Latitud",
@@ -179,14 +237,30 @@
     "type": "Tipo",
     "validation.report": "Informe de validación",
     "validator": "Validador",
-    "verification.report": "Informe de verificación"
+    "verification.report": "Informe de verificación",
+    "registry": {
+      "name": ""
+    },
+    "send": {
+      "button": ""
+    },
+    "validation": {
+      "report": ""
+    },
+    "verification": {
+      "report": ""
+    },
+    "country": "País"
   },
   "validation": {
     "errors.format.document": "Campo requerido. Formato: pdf",
     "errors.format.image": "Campo requerido. Formato: png, jpg o jpeg",
     "errors.format.pdf": "Formato inválido. Formato requerido: pdf",
     "errors.format": "Formato inválido",
-    "errors.required": "Campo requerido"
+    "errors.required": "Campo requerido",
+    "errors": {
+      "format": ""
+    }
   },
   "wallet.Wallet.title": "Cartera",
   "climatecoins": {
@@ -201,5 +275,13 @@
     }
   },
   "intlNumber": "{{val, number}}",
-  "intlNumberWithOptions": "{{val, number(minimumFractionDigits: 2)}}"
+  "intlNumberWithOptions": "{{val, number(minimumFractionDigits: 2)}}",
+  "dialogs": {
+    "__i18n_ally_root__": {
+      "base": {
+        "accept": "Aceptar",
+        "cancel": "Cancelar"
+      }
+    }
+  }
 }

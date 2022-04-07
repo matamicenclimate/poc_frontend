@@ -44,13 +44,10 @@ export const DocumentDetails = () => {
           <Card>
             <div className="space-y-4 ">
               <Title size={5} as={2}>
-                👏🏼 Thanks for submitting your credits!
+                👏🏼 {t('documents.Details.thanks')}
               </Title>
-              <p className="text-neutral-4">
-                We have received your request correctly, an administrator will review it in detail
-                before making the transfer.
-              </p>
-              <p className="text-primary-green">You will receive an email with the confirmation.</p>
+              <p className="text-neutral-4">{t('documents.Details.waitMessage')}</p>
+              <p className="text-primary-green">{t('documents.Details.willSendEmail')}</p>
               <div className="p-12">
                 <ProjectPreview values={document.data} noDescription />
               </div>
@@ -60,7 +57,7 @@ export const DocumentDetails = () => {
             <Card>
               <div className="space-y-8">
                 <Title size={5} as={2}>
-                  Claim your NFT
+                  {t('documents.Details.claim.title')}
                 </Title>
                 <Form onSubmit={handleClaim} className="flex flex-col gap-4 text-left">
                   <div className="mx-auto flex w-full max-w-sm items-center rounded bg-neutral-7 p-4 text-sm">
@@ -86,8 +83,8 @@ export const DocumentDetails = () => {
                     Address to send
                   </div>
                   <div className="mx-auto w-full max-w-sm text-sm text-neutral-4">
-                    You can only send C02 to this address, please check that the network is correct.
-                    More info
+                    {t('documents.Details.claim.alert')}{' '}
+                    <Link to="/">{t('documents.Details.claim.viewMore')}</Link>
                   </div>
                   <Input
                     name="address"

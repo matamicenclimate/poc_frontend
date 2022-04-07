@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import { httpClient } from '@/lib/httpClient';
 
 function fetchNotifications(): Promise<any[]> {
-  return httpClient.get(`/notifications`);
+  return httpClient.get(`/notifications/me`);
 }
 export function getNotifications() {
   return useQuery(['notifications'], fetchNotifications, {

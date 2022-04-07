@@ -76,6 +76,11 @@
         "year": "One year",
         "all": "All time"
       }
+    },
+    "layout": {
+      "PageTitle": {
+        "viewMore": "More info"
+      }
     }
   },
   "dialogs": {
@@ -121,6 +126,16 @@
       "notifications": "Notifications",
       "wallet": "My Wallet",
       "hi": "Hi "
+    },
+    "Details": {
+      "thanks": "Thanks for submitting your credits!",
+      "waitMessage": "We have received your request correctly, an administrator will review it in detail before making the transfer.",
+      "willSendEmail": "You will receive an email with the confirmation.",
+      "claim": {
+        "title": "Claim your NFT",
+        "alert": "We will only send C02 to this address, please check that the network is correct.",
+        "viewMore": "More info"
+      }
     }
   },
   "head": {
@@ -147,7 +162,7 @@
   },
   "misc": {
     "Overview": {
-      "title": "Home"
+      "title": "Overview"
     },
     "Landing": {
       "title": "Welcome"
@@ -202,7 +217,17 @@
     "type": "Type",
     "validation.report": "Validation report",
     "validator": "Validator",
-    "verification.report": "Verification report"
+    "verification.report": "Verification report",
+    "project": {
+      "title": "Title",
+      "creditEnd": "Credits end",
+      "video": "Video",
+      "type": {
+        "options": {
+          "irecs": "Type"
+        }
+      }
+    }
   },
   "validation": {
     "errors.format.document": "Required field. Required format: pdf",

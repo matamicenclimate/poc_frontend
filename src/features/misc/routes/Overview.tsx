@@ -68,13 +68,13 @@ export const Overview = () => {
   const { formatter } = useCurrencyContext();
   return (
     <MainLayout title={t('misc.Overview.title')}>
-      <Head title="Overview" />
+      <Head title={t('misc.Overview.title')} />
 
       <div id="top-row" className="flex flex-col p-8">
         <div className="mt-5 grid md:grid-cols-3">
           <div id="price-panel" className="flex flex-col gap-6">
             <Title size={4} as={1}>
-              Overview
+              {t('misc.Overview.title')}
             </Title>
             <p className="text-sm font-medium text-neutral-3">
               {t('components.Overview.totalBalance')}
@@ -184,20 +184,6 @@ export const Overview = () => {
             </tbody>
           </table>
         </div>
-      </div>
-      <div className="mt-12 flex flex-col justify-items-start border-2 border-black">
-        <Link className="mb-2 mt-2 bg-secondary" to="/wallet">
-          Wallet / 0 CLIMATE
-        </Link>
-        <Link className="mb-2 mt-2 bg-secondary" to="/documents/upload">
-          {t('uploadDocuments.link')}
-        </Link>
-        <Link className="mb-2 mt-2 bg-secondary" to="/documents/list">
-          documents
-        </Link>
-        <Link className="mb-2 mt-2 bg-secondary" to="/profile">
-          profile
-        </Link>
       </div>
     </MainLayout>
   );

@@ -90,6 +90,11 @@
       "cancel": {
         "button": "Annuler"
       }
+    },
+    "layout": {
+      "PageTitle": {
+        "viewMore": "Plus d'informations"
+      }
     }
   },
   "dialogs": {
@@ -97,6 +102,12 @@
       "base": {
         "accept": "J'accepte",
         "cancel": "Annuler"
+      },
+      "__i18n_ally_root__": {
+        "base": {
+          "accept": "",
+          "cancel": ""
+        }
       }
     },
     "base": {
@@ -139,6 +150,16 @@
       },
       "title": "Crédits de transfert",
       "wallet": "Mon portefeuille"
+    },
+    "Details": {
+      "thanks": "Merci d'avoir soumis vos crédits !",
+      "waitMessage": "Nous avons bien reçu votre demande, un administrateur l'examinera en détail avant d'effectuer le transfert.",
+      "willSendEmail": "Vous recevrez un email avec la confirmation.",
+      "claim": {
+        "title": "Réclamez votre NFT",
+        "viewMore": "Plus d'informations",
+        "alert": "Nous n'enverrons que du C02 à cette adresse, veuillez vérifier que le réseau est correct."
+      }
     }
   },
   "head": {
@@ -196,7 +217,15 @@
     },
     "project": {
       "url": "",
-      "video": ""
+      "video": "Vidéo",
+      "title": "Titre",
+      "creditEnd": "Fin des crédits",
+      "creditStart": "",
+      "type": {
+        "options": {
+          "irecs": "Taper"
+        }
+      }
     },
     "projectCover": "Images du projet : couverture",
     "projectLatitude": "Latitude",
