@@ -59,10 +59,10 @@ export const documentUploadValidationSchema = yup.object({
   credits: yup.string().required(),
   serial_number: yup.string().required(),
   registry_url: yup.string().required(),
-  pdd: fileInputValidation.required(),
+  pdd: fileInputValidation.min(1),
   validation_report: fileInputValidation,
   monitoring_report: fileInputValidation,
-  verification_report: fileInputValidation.required(),
+  verification_report: fileInputValidation.min(1),
   confirmation: yup.boolean().isTrue(),
   created_by_user: yup.string().required(),
 });

@@ -81,7 +81,9 @@ export const Overview = () => {
             </p>
             <div>
               <div className="flex items-center">
-                <p className="mr-2 text-6xl text-neutral-2">{climatecoinBalance().toFixed(2)}</p>
+                <p className="mr-2 text-6xl text-neutral-2">
+                  {t('intlNumber', { val: climatecoinBalance().toFixed(2) })}
+                </p>
                 <div className="h-[1.625rem] w-[6.6875rem] text-center">
                   <Pill key="climatecoin" style="solid" variant="popular">
                     Climatecoins

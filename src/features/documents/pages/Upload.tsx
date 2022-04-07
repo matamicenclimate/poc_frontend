@@ -20,7 +20,7 @@ import { Link } from '@/componentes/Elements/Link/Link';
 import { ProjectPreview } from '../components/ProjectPreview';
 import { Switch } from '@/componentes/Form/Switch';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
-import { enumToKeys, Stepper, useStepper } from '@/componentes/Stepper/Stepper';
+import { Stepper, useStepper } from '@/componentes/Stepper/Stepper';
 import { SelectOption } from '@/componentes/Form';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '@/componentes/Icon/Icon';
@@ -43,7 +43,7 @@ export enum UploadSteps {
 
 export const Upload = () => {
   const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const resolver = useYupValidationResolver(documentUploadValidationSchema);
   const methods = useForm<UploadFormSchema>({
     resolver,
@@ -103,7 +103,7 @@ export const Upload = () => {
   ) {
     return array.reduce((acc, key) => {
       return acc || Object.keys(methods.formState.errors).includes(key as string);
-    }, false as boolean);
+    }, false);
   }
 
   return (
@@ -287,7 +287,6 @@ export const Upload = () => {
                     name="project_registration"
                     type="date"
                   />
-
                   <Input<UploadFormSchema>
                     {...baseInputProps}
                     label={t('uploadDocuments.project.video')}
@@ -463,14 +462,6 @@ export const Upload = () => {
               </Card>
             ) : null}
           </form>
-
-          <Dialog
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            title={t('uploadDocuments.modal.title')}
-            claim={t('uploadDocuments.modal.claim')}
-            acceptLabel={t('uploadDocuments.modal.button.accept')}
-          />
         </div>
       </div>
     </MainLayout>

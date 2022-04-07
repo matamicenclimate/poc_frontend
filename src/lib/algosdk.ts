@@ -3,7 +3,7 @@ import algosdk from 'algosdk';
 
 let client: null | algosdk.Algodv2 = null;
 
-export function setupClient() {
+export function getClient() {
   if (client == null) {
     const token = process.env.REACT_APP_ALGORAND_RPC_TOKEN as string;
     const server = process.env.REACT_APP_ALGORAND_RPC_URL;
@@ -21,7 +21,7 @@ export function setupClient() {
 // https://codesandbox.io/s/github/MagicLabs/example-algorand?file=/src/App.js
 
 const handleSignGroupTransaction = async (publicAddress: string) => {
-  const algodClient = await setupClient();
+  const algodClient = await getClient();
 
   const params = await algodClient.getTransactionParams().do();
 
@@ -50,7 +50,7 @@ const handleSignGroupTransaction = async (publicAddress: string) => {
 };
 
 const handleSignGroupTransactionV2 = async (publicAddress: string) => {
-  const algodClient = await setupClient();
+  const algodClient = await getClient();
 
   const suggestedParams = await algodClient.getTransactionParams().do();
 

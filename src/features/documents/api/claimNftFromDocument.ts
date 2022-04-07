@@ -2,7 +2,7 @@ import { documentKeys, CarbonDocument } from './index';
 import { httpClient } from '@/lib/httpClient';
 import { useMutation, useQueryClient } from 'react-query';
 import { useAlert } from 'react-alert';
-import { setupClient } from '@/lib/algosdk';
+import { getClient } from '@/lib/algosdk';
 import algosdk, { waitForConfirmation } from 'algosdk';
 import { magiclink } from '@/lib/magiclink';
 import { Buffer } from 'buffer';
@@ -15,7 +15,7 @@ async function claimFromDocument(
 ): Promise<any> {
   if (!address) return;
   console.log('opting in...');
-  const suggestedParams = await setupClient().getTransactionParams().do();
+  const suggestedParams = await getClient().getTransactionParams().do();
 
   const transactionOptions = {
     from: address,
@@ -32,8 +32,8 @@ async function claimFromDocument(
   ]);
 
   const blob = signedTxn.map((txn: string) => new Uint8Array(Buffer.from(txn, 'base64')));
-  const { txId } = await setupClient().sendRawTransaction(blob).do();
-  const result = await waitForConfirmation(setupClient(), txId, 3);
+  const { txId } = await getClient().sendRawTransaction(blob).do();
+  const result = await waitForConfirmation(getClient(), txId, 3);
 
   console.log({ result });
   return httpClient.post(`/carbon-documents/${documentId}/claim`, { email });

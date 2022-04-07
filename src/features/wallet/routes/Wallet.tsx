@@ -2,7 +2,7 @@ import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
 import { Button } from '@/componentes/Elements/Button/Button';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
-import { setupClient } from '@/lib/algosdk';
+import { getClient } from '@/lib/algosdk';
 import { magiclink } from '@/lib/magiclink';
 import algosdk, { waitForConfirmation } from 'algosdk';
 import { useEffect, useState } from 'react';
@@ -38,7 +38,7 @@ export const Wallet = () => {
 
     if (!address) return;
     console.log('opting in...');
-    const suggestedParams = await setupClient().getTransactionParams().do();
+    const suggestedParams = await getClient().getTransactionParams().do();
 
     const transactionOptions = {
       from: address,
@@ -56,8 +56,8 @@ export const Wallet = () => {
     ]);
 
     const blob = signedTxn.map((txn: string) => new Uint8Array(Buffer.from(txn, 'base64')));
-    const { txId } = await setupClient().sendRawTransaction(blob).do();
-    const result = await waitForConfirmation(setupClient(), txId, 3);
+    const { txId } = await getClient().sendRawTransaction(blob).do();
+    const result = await waitForConfirmation(getClient(), txId, 3);
 
     console.log({ result });
   };
