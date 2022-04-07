@@ -61,7 +61,10 @@
       "buy": "Buy",
       "sell": "Sell",
       "about": "About us",
-      "developer": "Developer"
+      "developer": "Developer",
+      "notifications": {
+        "title": "Notifications"
+      }
     },
     "DayPickerRange": {
       "ranges": {

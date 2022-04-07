@@ -25,7 +25,10 @@
         "french": "Francés",
         "english": "Inglés"
       },
-      "currency": "Moneda"
+      "currency": "Moneda",
+      "notifications": {
+        "title": "Notificaciones"
+      }
     },
     "Overview": {
       "all": "Todo",

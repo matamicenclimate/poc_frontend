@@ -6,6 +6,7 @@ import { Link } from '@/componentes/Elements/Link/Link';
 import { ReactComponent as LogoDark } from '@/assets/logo-dark.svg';
 import { CurrencyNav } from './sections/CurrencyNav';
 import { Icon } from '@/componentes/Icon/Icon';
+import { NotificationNav } from '@/componentes/Layout/Navbar/sections/NotificationNav';
 
 const linkStyle = 'flex items-center text-sm';
 
@@ -42,12 +43,10 @@ export const Navbar = () => {
             )}
           </div>
           {auth.user && (
-            <div className="flex gap-8">
+            <div className="flex gap-6">
               <CurrencyNav />
 
-              <Link to="/notifications" className={`text-neutral-4 ${linkStyle}`}>
-                <Icon id="bell-line" className="h-7 w-7" />
-              </Link>
+              <NotificationNav />
 
               <WalletNav />
 

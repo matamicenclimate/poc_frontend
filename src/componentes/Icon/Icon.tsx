@@ -1,4 +1,3 @@
-import styles from './Icon.module.css';
 import clsx from 'clsx';
 
 interface IconProps {

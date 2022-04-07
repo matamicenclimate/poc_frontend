@@ -95,7 +95,7 @@ export const DocumentList = () => {
               src={`https://robohash.org/${user?.email}`}
               className="mx-auto h-36 rounded-full"
             />
-            <div className="text-center">
+            <div className="my-4 text-center">
               {t('documents.Upload.hi')}
               {user?.username?.split('@')[0]} 👋🏻
             </div>
