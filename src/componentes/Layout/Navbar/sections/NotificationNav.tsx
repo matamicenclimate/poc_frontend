@@ -3,7 +3,13 @@ import Popover from '@/componentes/Popover/Popover';
 import { Icon } from '@/componentes/Icon/Icon';
 import { getNotifications } from '@/componentes/Layout/Navbar/api/getNotifications';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
-import { differenceInDays, differenceInHours, differenceInMinutes, parseJSON } from 'date-fns';
+import {
+  differenceInDays,
+  differenceInHours,
+  differenceInMinutes,
+  differenceInWeeks,
+  parseJSON,
+} from 'date-fns';
 import { Link } from '@/componentes/Elements/Link/Link';
 import clsx from 'clsx';
 import { Button } from '@/componentes/Elements/Button/Button';
@@ -34,20 +40,14 @@ export const NotificationNav = () => {
           <ul className="">
             {notifications.data.map((notification) => {
               const getDate = () => {
-                if (Math.abs(differenceInDays(parseJSON(notification.createdAt), new Date())) > 0) {
-                  return `${Math.abs(
-                    differenceInDays(parseJSON(notification.createdAt), new Date())
-                  )} days`;
-                } else if (
-                  Math.abs(differenceInHours(parseJSON(notification.createdAt), new Date())) > 0
-                ) {
-                  return `${Math.abs(
-                    differenceInHours(parseJSON(notification.createdAt), new Date())
-                  )} hours`;
+                if (differenceInWeeks(new Date(), parseJSON(notification.createdAt)) > 0) {
+                  return `${differenceInWeeks(new Date(), parseJSON(notification.createdAt))}w`;
+                } else if (differenceInDays(new Date(), parseJSON(notification.createdAt)) > 0) {
+                  return `${differenceInDays(new Date(), parseJSON(notification.createdAt))}d`;
+                } else if (differenceInHours(new Date(), parseJSON(notification.createdAt)) > 0) {
+                  return `${differenceInHours(new Date(), parseJSON(notification.createdAt))}h`;
                 }
-                return `${Math.abs(
-                  differenceInMinutes(parseJSON(notification.createdAt), new Date())
-                )} min`;
+                return `${differenceInMinutes(new Date(), parseJSON(notification.createdAt))}m`;
               };
 
               return (

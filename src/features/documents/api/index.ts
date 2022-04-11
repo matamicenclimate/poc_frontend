@@ -6,6 +6,7 @@ export const documentKeys = {
   detail: (id: string) => [...documentKeys.all, 'detail', id] as const,
   form: () => [...documentKeys.all, 'form'] as const,
 };
+
 export interface CarbonDocument {
   status: string;
   pdd: Cover[];
