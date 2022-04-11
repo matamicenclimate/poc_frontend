@@ -78,7 +78,7 @@ export function Input<FormSchema extends Record<string, any>>({
       </div>
 
       {!!errors[name] && type !== 'hidden' && (
-        <FieldError errorClassName={errorClassName}>{t(errors[name].key)}</FieldError>
+        <FieldError errorClassName={errorClassName}>{t<string>(errors[name].key)}</FieldError>
       )}
     </div>
   );
@@ -115,7 +115,7 @@ export function Textarea<FormSchema>({
         {...rest}
       />
       {errors[name] && type !== 'hidden' && (
-        <FieldError errorClassName={errorClassName}>{t(errors[name].key)}</FieldError>
+        <FieldError errorClassName={errorClassName}>{t<string>(errors[name].key)}</FieldError>
       )}
     </div>
   );

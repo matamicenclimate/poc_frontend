@@ -32,9 +32,9 @@ export const Callback = () => {
 
   return (
     <MainLayout>
-      <div className="h-[400px] flex flex-col gap-4 justify-center items-center">
+      <div className="flex h-[400px] flex-col items-center justify-center gap-4">
         <Spinner />
-        <p>{t('auth.Callback.logingIn')}</p>
+        <p>{t<string>('auth.Callback.logingIn')}</p>
       </div>
     </MainLayout>
   );

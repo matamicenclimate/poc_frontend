@@ -1,14 +1,18 @@
 import { httpClient } from '@/lib/httpClient';
 import { useQuery } from 'react-query';
 
-function fetchCurenciesExchangeRate(): Promise<any> {
-  // return Promise.resolve({
-  //   USD_USD: 1,
-  //   USD_EUR: 1.2,
-  //   USD_JPY: 121.99,
-  //   USD_GBP: 0.76,
-  //   USD_BTC: 0.0000000001,
-  // });
+export interface CurrencyInfo {
+  _id: string;
+  usd_eur: number;
+  usd_jpy: number;
+  usd_gbp: number;
+  usd_btc: number;
+  createdAt: Date;
+  updatedAt: Date;
+  usd_usd: number;
+}
+
+function fetchCurenciesExchangeRate(): Promise<CurrencyInfo> {
   return httpClient.get(`/currency`);
 }
 

@@ -30,7 +30,7 @@ export const CurrencyNav = () => {
         <Popover.Panel>
           <div className="grid grid-cols-2 place-content-center ">
             <div className="border-r pr-4 text-sm text-neutral-4">
-              <p className="pb-1.5 text-xs">{t('components.Navbar.i18n.title')}</p>
+              <p className="pb-1.5 text-xs">{t<string>('components.Navbar.i18n.title')}</p>
               {languageOptions.map((lang, i) => {
                 return (
                   <div key={i} className="border-b last:border-none">
@@ -46,7 +46,7 @@ export const CurrencyNav = () => {
               })}
             </div>
             <div className="w-36 pl-4 text-sm text-neutral-4">
-              <p className="pb-1.5 text-xs">{t('components.Navbar.currency')}</p>
+              <p className="pb-1.5 text-xs">{t<string>('components.Navbar.currency')}</p>
               {Object.keys(currency.currencies).map((curr: any, i) => {
                 return (
                   <div key={i} className="border-b last:border-none">

@@ -46,8 +46,8 @@ export const DocumentDetails = () => {
               <Title size={5} as={2}>
                 👏🏼 {t('documents.Details.thanks')}
               </Title>
-              <p className="text-neutral-4">{t('documents.Details.waitMessage')}</p>
-              <p className="text-primary-green">{t('documents.Details.willSendEmail')}</p>
+              <p className="text-neutral-4">{t<string>('documents.Details.waitMessage')}</p>
+              <p className="text-primary-green">{t<string>('documents.Details.willSendEmail')}</p>
               <div className="p-12">
                 <ProjectPreview values={document.data} noDescription />
               </div>
@@ -73,7 +73,7 @@ export const DocumentDetails = () => {
                             document.data.developer_nft?.asa_id
                           )}`}
                         >
-                          {Number(document.data.developer_nft?.asa_id)}
+                          {document.data.developer_nft?.asa_id}
                         </Link>{' '}
                       </div>
                       <div>{document.data.developer_nft?.supply} C02</div>
@@ -83,8 +83,10 @@ export const DocumentDetails = () => {
                     Address to send
                   </div>
                   <div className="mx-auto w-full max-w-sm text-sm text-neutral-4">
-                    {t('documents.Details.claim.alert')}{' '}
-                    <Link to="/">{t('documents.Details.claim.viewMore')}</Link>
+                    <>
+                      {t('documents.Details.claim.alert')}{' '}
+                      <Link to="/">{t('documents.Details.claim.viewMore')}</Link>
+                    </>
                   </div>
                   <Input
                     name="address"

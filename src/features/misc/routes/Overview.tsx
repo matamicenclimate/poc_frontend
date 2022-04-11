@@ -1,7 +1,6 @@
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { useTranslation } from 'react-i18next';
-import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
 import { Head } from '@/componentes/Layout/Head';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { Pill } from '@/componentes/Elements/Pill/Pill';
@@ -77,12 +76,12 @@ export const Overview = () => {
               {t('misc.Overview.title')}
             </Title>
             <p className="text-sm font-medium text-neutral-3">
-              {t('components.Overview.totalBalance')}
+              {t<string>('components.Overview.totalBalance')}
             </p>
             <div>
               <div className="flex items-center">
                 <p className="mr-2 text-6xl text-neutral-2">
-                  {t('intlNumber', { val: climatecoinBalance().toFixed(2) })}
+                  {t<string>('intlNumber', { val: climatecoinBalance().toFixed(2) })}
                 </p>
                 <div className="h-[1.625rem] w-[6.6875rem] text-center">
                   <Pill key="climatecoin" style="solid" variant="popular">
@@ -116,7 +115,9 @@ export const Overview = () => {
           <Title size={4} as={3}>
             {t('components.Overview.viewMore.title')}
           </Title>
-          <p className="text-sm text-neutral-6">{t('components.Overview.viewMore.subtitle')}</p>
+          <p className="text-sm text-neutral-6">
+            {t<string>('components.Overview.viewMore.subtitle')}
+          </p>
           <div className="mt-8 h-[3rem] w-[9.0625rem]">
             <Link
               size="sm"
@@ -146,10 +147,10 @@ export const Overview = () => {
           <table className="w-full border-separate [border-spacing:1rem]">
             <thead>
               <tr className="mb-5 border-b">
-                <th className="text-left"> {t('components.Overview.type')}</th>
-                <th className="text-left"> {t('components.Overview.total')}</th>
-                <th className="text-left"> {t('components.Overview.operationId')}</th>
-                <th className="text-right"> {t('components.Overview.date')}</th>
+                <th className="text-left">{t<string>('components.Overview.type')}</th>
+                <th className="text-left">{t<string>('components.Overview.total')}</th>
+                <th className="text-left">{t<string>('components.Overview.operationId')}</th>
+                <th className="text-right">{t<string>('components.Overview.date')}</th>
               </tr>
             </thead>
             <tbody>

@@ -96,8 +96,10 @@ export const DocumentList = () => {
               className="mx-auto h-36 rounded-full"
             />
             <div className="my-4 text-center">
-              {t('documents.Upload.hi')}
-              {user?.username?.split('@')[0]} 👋🏻
+              <>
+                {t('documents.Upload.hi')}
+                {user?.username?.split('@')[0]} 👋🏻
+              </>
             </div>
             <hr />
             <ul className="my-2 space-y-1">
@@ -108,13 +110,15 @@ export const DocumentList = () => {
                 )}
                 onClick={() => methods.setValue('status', 'accepted')}
               >
-                <Icon
-                  id={`arrow-right-line${
-                    methods.getValues('status') === 'accepted' ? '-primary' : ''
-                  }`}
-                  className="mr-3 h-6 w-6 fill-primary"
-                />{' '}
-                {t('documents.Upload.buys')}
+                <>
+                  <Icon
+                    id={`arrow-right-line${
+                      methods.getValues('status') === 'accepted' ? '-primary' : ''
+                    }`}
+                    className="mr-3 h-6 w-6 fill-primary"
+                  />{' '}
+                  {t('documents.Upload.buys')}
+                </>
               </li>
               <li
                 className={clsx(
@@ -123,13 +127,15 @@ export const DocumentList = () => {
                 )}
                 onClick={() => methods.setValue('status', 'completed')}
               >
-                <Icon
-                  id={`arrow-right-line${
-                    methods.getValues('status') === 'completed' ? '-primary' : ''
-                  }`}
-                  className="mr-3 h-6 w-6 fill-primary"
-                />{' '}
-                {t('documents.Upload.sold')}
+                <>
+                  <Icon
+                    id={`arrow-right-line${
+                      methods.getValues('status') === 'completed' ? '-primary' : ''
+                    }`}
+                    className="mr-3 h-6 w-6 fill-primary"
+                  />{' '}
+                  {t('documents.Upload.sold')}
+                </>
               </li>
               <li
                 className={clsx(
@@ -138,26 +144,36 @@ export const DocumentList = () => {
                 )}
                 onClick={() => methods.setValue('status', undefined)}
               >
-                <Icon
-                  id={`shopping-bag${methods.getValues('status') === undefined ? '-primary' : ''}`}
-                  className="mr-3 h-6 w-6 fill-primary"
-                />
-                {t('documents.Upload.projects')}
+                <>
+                  <Icon
+                    id={`shopping-bag${
+                      methods.getValues('status') === undefined ? '-primary' : ''
+                    }`}
+                    className="mr-3 h-6 w-6 fill-primary"
+                  />
+                  {t('documents.Upload.projects')}
+                </>
               </li>
             </ul>
             <hr />
             <ul className="my-2 space-y-1">
               <li className={baseAsideLiStyles}>
-                <Icon id="user-line" className="mr-3 h-6 w-6" />
-                {t('documents.Upload.profile')}
+                <>
+                  <Icon id="user-line" className="mr-3 h-6 w-6" />
+                  {t('documents.Upload.profile')}
+                </>
               </li>
               <li className={baseAsideLiStyles}>
-                <Icon id="email-line" className="mr-3 h-6 w-6" />
-                {t('documents.Upload.notifications')}
+                <>
+                  <Icon id="email-line" className="mr-3 h-6 w-6" />
+                  {t('documents.Upload.notifications')}
+                </>
               </li>
               <li className={baseAsideLiStyles}>
-                <Icon id="wallet-line" className="mr-3 h-6 w-6" />
-                {t('documents.Upload.wallet')}
+                <>
+                  <Icon id="wallet-line" className="mr-3 h-6 w-6" />
+                  {t('documents.Upload.wallet')}
+                </>
               </li>
             </ul>
           </aside>
@@ -203,8 +219,10 @@ export const DocumentList = () => {
                     className={clsx('flex cursor-pointer p-4')}
                     onClick={() => toggleSort('status')}
                   >
-                    {t('documents.List.table.status')}
-                    {renderArrow('status')}
+                    <>
+                      {t('documents.List.table.status')}
+                      {renderArrow('status')}
+                    </>
                   </div>
                 </th>
                 <th>
@@ -212,8 +230,10 @@ export const DocumentList = () => {
                     className={clsx('flex cursor-pointer  p-4')}
                     onClick={() => toggleSort('title')}
                   >
-                    {t('documents.List.table.projectName')}
-                    {renderArrow('title')}
+                    <>
+                      {t('documents.List.table.projectName')}
+                      {renderArrow('title')}
+                    </>
                   </div>
                 </th>
                 <th className="flex">
@@ -221,12 +241,14 @@ export const DocumentList = () => {
                     className={clsx('flex cursor-pointer  p-4')}
                     onClick={() => toggleSort('serial_number')}
                   >
-                    {t('documents.List.table.idOperation')}
-                    {renderArrow('serial_number')}
+                    <>
+                      {t('documents.List.table.idOperation')}
+                      {renderArrow('serial_number')}
+                    </>
                   </div>
                 </th>
                 <th>
-                  <div className=" p-4">{t('documents.List.table.actions')}</div>
+                  <div className=" p-4">{t<string>('documents.List.table.actions')}</div>
                 </th>
               </thead>
               <tbody>{renderDocuments()}</tbody>

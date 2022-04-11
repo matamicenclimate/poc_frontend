@@ -84,7 +84,7 @@ export function Select<FormSchema>({
       </div>
 
       {errors[name] && (
-        <FieldError errorClassName={errorClassName}>{t(errors[name].key)}</FieldError>
+        <FieldError errorClassName={errorClassName}>{t<string>(errors[name].key)}</FieldError>
       )}
     </div>
   );

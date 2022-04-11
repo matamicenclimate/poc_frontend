@@ -31,7 +31,7 @@ export const ProjectPreview = ({ values, noDescription = false }: ProjectPreview
             {values.country?.label ?? values.country?.name ?? ''}
           </p>
           <p className="font-bold text-primary">
-            {t('intlNumber', { val: values.credits }) ?? 0} credits
+            <>{t('intlNumber', { val: values.credits }) ?? 0} credits</>
           </p>
           <div className="flex flex-wrap gap-2">
             {values.sdgs.map((sdg: any) => (

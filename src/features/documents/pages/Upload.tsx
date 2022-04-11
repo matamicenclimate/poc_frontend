@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '@/lib/auth';
 
 import { Button } from '@/componentes/Elements/Button/Button';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
-import { Dialog } from '@/componentes/Dialog/Dialog';
 import { Input, Textarea } from '@/componentes/Form/Inputs';
 import { Select } from '@/componentes/Form/Select';
 
@@ -76,7 +74,7 @@ export const Upload = () => {
     <div className="col-span-2 grid grid-cols-3">
       {currStep !== 0 ? (
         <Button variant="light" type={undefined} onClick={prevStep}>
-          {t('documents.Upload.stepper.back')}
+          {t<string>('documents.Upload.stepper.back')}
         </Button>
       ) : (
         <div />
@@ -88,11 +86,11 @@ export const Upload = () => {
           size="md"
           disabled={uploadDocuments.isLoading || !methods.watch('confirmation')}
         >
-          {t('documents.Upload.stepper.send')}
+          {t<string>('documents.Upload.stepper.send')}
         </Button>
       ) : (
         <Button type={undefined} onClick={nextStep}>
-          {t('documents.Upload.stepper.continue')}
+          {t<string>('documents.Upload.stepper.continue')}
         </Button>
       )}
     </div>

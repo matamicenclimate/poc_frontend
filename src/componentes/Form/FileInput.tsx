@@ -1,12 +1,11 @@
 import clsx from 'clsx';
 import { useDropzone } from 'react-dropzone';
-import { Path, useController, UseControllerProps } from 'react-hook-form';
+import { useController, UseControllerProps } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Label } from './Label';
 import { FieldError } from './FieldError';
 import { FieldName, SchemaToErrors } from '.';
 import { Icon } from '../Icon/Icon';
-import { ElementFlags } from 'typescript';
 
 export type FileInputProps<FormSchema> = {
   name: FieldName<FormSchema>;
@@ -82,10 +81,10 @@ function FileInput<FormSchema>({
                 <Icon id="cloud-upload" className="h-9 w-9" />
               </div>
               <div className="text-sm font-bold text-primary">
-                {t('components.FileInput.dragAndDrop')}
+                {t<string>('components.FileInput.dragAndDrop')}
               </div>
               <div className="text-xs text-neutral-4">
-                {t('components.FileInput.selectFiles')} ({accept} - Max 10Mb/file)
+                {t<string>('components.FileInput.selectFiles')} ({accept} - Max 10Mb/file)
               </div>
             </div>
           )}
@@ -126,7 +125,7 @@ function FileInput<FormSchema>({
           </div>
         </div>
         {errors[name] && (
-          <FieldError errorClassName={errorClassName}>{t(errors[name].key)}</FieldError>
+          <FieldError errorClassName={errorClassName}>{t<string>(errors[name].key)}</FieldError>
         )}
       </div>
     </div>

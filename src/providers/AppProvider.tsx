@@ -34,14 +34,16 @@ const ErrorFallback = () => {
   );
 };
 
-export const AppProvider = ({ children }: { children: React.ReactNode }) => {
+export const AppProvider = ({ children }: { children: React.ReactElement }) => {
   return (
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <HelmetProvider>
         <AlertProvider template={Alert} {...options}>
+          {/** // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore */}
           <QueryClientProvider client={queryClient}>
-            {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}
             <AuthProvider>
+              {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}
               <CurrencyProvider>
                 <WalletProvider>{children}</WalletProvider>
               </CurrencyProvider>

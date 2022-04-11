@@ -27,7 +27,7 @@ export const Login = () => {
           {t('auth.Login.pageTitle')}
         </Title>
         <div>
-          <p className="mb-4 text-sm text-neutral-4">{t('auth.Login.safetyWarning')}</p>
+          <p className="mb-4 text-sm text-neutral-4">{t<string>('auth.Login.safetyWarning')}</p>
           <div className="flex items-center justify-center rounded-full bg-neutral-7 p-2 px-4 text-sm font-medium">
             <LockIcon />
             <p>
@@ -47,7 +47,9 @@ export const Login = () => {
 
           <Button type="submit" disabled={loading} size="sm">
             <div className="flex items-center justify-center">
-              <img src={LogoMagic} className="mr-3 h-6 w-5" /> {t('auth.Login.login')}
+              <>
+                <img src={LogoMagic} className="mr-3 h-6 w-5" /> {t('auth.Login.login')}
+              </>
             </div>
           </Button>
         </Form>

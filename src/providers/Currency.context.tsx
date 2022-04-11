@@ -1,12 +1,11 @@
 import React, { createContext, useContext, useState } from 'react';
-import { getCurrenciesExchangeRate } from '@/providers/api/getCurrenciesExchangeRate';
+import { CurrencyInfo, getCurrenciesExchangeRate } from '@/providers/api/getCurrenciesExchangeRate';
 import { UseQueryResult } from 'react-query';
-import { useAuth } from '@/lib/auth';
 import { useTranslation } from 'react-i18next';
 
 interface Context {
   state: ContextState;
-  exchangeRate: UseQueryResult<any>;
+  exchangeRate: UseQueryResult<CurrencyInfo>;
   setState: React.Dispatch<React.SetStateAction<ContextState>>;
 }
 
@@ -68,7 +67,10 @@ export const useCurrencyContext = () => {
 
   const convertCurrency = (amountInCents: number) => {
     if (state.currency === 'USD') return amountInCents;
-    return amountInCents * exchangeRate.data[`USD_${state.currency}`.toLowerCase()];
+    const key = `USD_${state.currency}`.toLowerCase();
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return amountInCents * exchangeRate.data[key];
   };
 
   const centsToFixed = (amountInCents: number) => {

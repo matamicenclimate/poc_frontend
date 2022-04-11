@@ -107,10 +107,10 @@ export const ProfileNav = () => {
                 <div className="flex w-full items-center">
                   <div>
                     <p className={clsx('px-2 font-normal text-neutral-3')}>
-                      {t('components.ProfileNav.promoter')}
+                      {t<string>('components.ProfileNav.promoter')}
                     </p>
                     <p className={clsx('px-2 text-[10px] font-normal text-neutral-4')}>
-                      {t('components.ProfileNav.createYouCredits')}
+                      {t<string>('components.ProfileNav.createYouCredits')}
                     </p>
                   </div>
                   <div className="flex-grow" />
@@ -149,7 +149,7 @@ export const ProfileNav = () => {
                   <IconLogout className={'h-5 w-5'} />
                 </div>
                 <div className={clsx('px-2 font-normal text-neutral-3')}>
-                  {t('components.ProfileNav.logout')}
+                  {t<string>('components.ProfileNav.logout')}
                 </div>
               </div>
             </div>

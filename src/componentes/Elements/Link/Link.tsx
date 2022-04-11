@@ -1,11 +1,12 @@
 import clsx from 'clsx';
 import { Link as RouterLink, NavLink, To } from 'react-router-dom';
 import { ButtonStyleProps, buttonStyles } from '../Button/Button';
+import { TFunctionResult } from 'i18next';
 
 type BaseProps = {
   as?: string;
   className?: string;
-  children?: React.ReactNode;
+  children?: React.ReactElement | string | TFunctionResult;
   navLink?: boolean;
 } & ({
   as?: 'button';
@@ -59,7 +60,9 @@ export const Link = ({
   if (hasHref(props)) {
     return (
       <a className={getClassName()} target={props.target ?? '_blank'} {...props}>
-        {iconLeft} {children} {iconRight}
+        <>
+          {iconLeft} {children} {iconRight}
+        </>
       </a>
     );
   }
@@ -68,17 +71,21 @@ export const Link = ({
   if (!navLink) {
     return (
       <RouterLink to={props.to as To} className={getClassName()} {...props}>
-        {iconLeft}
-        {children}
-        {iconRight}
+        <>
+          {iconLeft}
+          {children}
+          {iconRight}
+        </>
       </RouterLink>
     );
   }
   return (
     <NavLink to={props.to as To} className={({ isActive }) => getClassName(isActive)} {...props}>
-      {iconLeft}
-      {children}
-      {iconRight}
+      <>
+        {iconLeft}
+        {children}
+        {iconRight}
+      </>
     </NavLink>
   );
 };

@@ -1,17 +1,17 @@
 import { getBalance } from '@/features/wallet/api/getBalance';
 import { magiclink } from '@/lib/magiclink';
-import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, ReactElement } from 'react';
 import { UseQueryResult } from 'react-query';
 import { IndexerAccount } from '@/features/wallet/api';
 
 interface Context {
-  account: UseQueryResult<IndexerAccount, any>;
+  account: UseQueryResult<IndexerAccount, unknown>;
 }
 
 const WalletContext = createContext<Context | null>(null);
 
 interface ProviderProps {
-  children: React.ReactNode;
+  children: ReactElement;
 }
 
 export const WalletProvider = ({ children }: ProviderProps) => {
@@ -48,9 +48,7 @@ export const useWalletContext = () => {
     if (!account.data) return 0;
     if (!account.data.account.assets) return 0;
 
-    const assetData = account.data.account.assets.filter(
-      (asset: any) => asset['asset-id'] === assetId
-    );
+    const assetData = account.data.account.assets.filter((asset) => asset['asset-id'] === assetId);
 
     if (assetData.length !== 1) return 0;
 

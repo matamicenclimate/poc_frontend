@@ -27,7 +27,7 @@ export const WalletNav = () => {
         <Popover.Button>
           <button className="flex items-center rounded-full border-2 border-solid border-neutral-6 px-4 py-3 hover:bg-neutral-8">
             <div className="flex text-sm font-bold text-neutral-2 ">
-              <span className={'font-bold'}>{t('components.Navbar.wallet.wallet')}</span>
+              <span className={'font-bold'}>{t<string>('components.Navbar.wallet.wallet')}</span>
               <span className={'ml-1 text-sm font-normal text-primary'}>{`(${t('intlNumber', {
                 val: climatecoinBalance(),
               })} CC)`}</span>

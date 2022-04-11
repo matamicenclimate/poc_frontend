@@ -1,9 +1,10 @@
 import clsx from 'clsx';
+import { TFunctionResult } from 'i18next';
 
 type TitleProps = {
   size: 1 | 2 | 3 | 4 | 5;
   as?: 1 | 2 | 3 | 4 | 5;
-  children: React.ReactNode;
+  children: React.ReactNode | TFunctionResult;
   className?: string;
 };
 

@@ -15,11 +15,11 @@ import * as PopperJS from '@popperjs/core';
 import clsx from 'clsx';
 
 type ICompoundComponent = {
-  Option: React.FC<PopoverOptionsProps>;
-  Wallet: React.FC<PopoverWalletProps>;
-  Button: React.FC<PopoverButtonOptions>;
+  Option: React.FC<React.PropsWithChildren<PopoverOptionsProps>>;
+  Wallet: React.FC<React.PropsWithChildren<PopoverWalletProps>>;
+  Button: React.FC<React.PropsWithChildren<PopoverButtonOptions>>;
   Panel: typeof PopoverPanel;
-} & React.FC<PopoverProps>;
+} & React.FC<React.PropsWithChildren<PopoverProps>>;
 
 type PopoverState = {
   open: boolean;
