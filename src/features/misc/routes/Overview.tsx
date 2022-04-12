@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { useWalletContext } from '@/providers/Wallet.context';
 import { useCurrencyContext } from '@/providers/Currency.context';
 import { Icon } from '@/componentes/Icon/Icon';
+import { BalanceChart } from '@/features/misc/components/BalanceChart';
 
 export const Overview = () => {
   const { t } = useTranslation();
@@ -65,20 +66,21 @@ export const Overview = () => {
 
   const { climatecoinBalance } = useWalletContext();
   const { formatter } = useCurrencyContext();
+
   return (
     <MainLayout title={t('misc.Overview.title')}>
       <Head title={t('misc.Overview.title')} />
 
       <div id="top-row" className="flex flex-col p-8">
-        <div className="mt-5 grid md:grid-cols-3">
-          <div id="price-panel" className="flex flex-col gap-6">
-            <Title size={4} as={1}>
-              {t('misc.Overview.title')}
-            </Title>
+        <Title size={4} as={1}>
+          {t('misc.Overview.title')}
+        </Title>
+        <div className="mt-5 grid gap-16 md:grid-cols-3">
+          <div id="price-panel" className="flex flex-col gap-3">
             <p className="text-sm font-medium text-neutral-3">
               {t<string>('components.Overview.totalBalance')}
             </p>
-            <div>
+            <div className="leading-tight">
               <div className="flex items-center">
                 <p className="mr-2 text-6xl text-neutral-2">
                   {t<string>('intlNumber', { val: climatecoinBalance().toFixed(2) })}
@@ -93,7 +95,7 @@ export const Overview = () => {
                 {formatter(climatecoinBalance() * (40 * 100))}
               </p>
             </div>
-            <div className="w-[17.8125rem] space-y-4">
+            <div className="flex flex-col space-y-3">
               <Link size="sm" as="button" variant="primary" to="/">
                 {t('components.Overview.footprint')}
               </Link>
@@ -102,7 +104,15 @@ export const Overview = () => {
               </Link>
             </div>
           </div>
-          <div id="graphic-panel" className="col-span-2" />
+          <div id="graphic-panel" className="col-span-2 flex flex-col text-sm">
+            <div className="flex-grow" />
+            <div>
+              <BalanceChart width={500} />
+            </div>
+            <p className="py-4 pt-8 text-right">
+              🌱 You have enough climatecoins to clean <Link to="#">a football stadium</Link>
+            </p>
+          </div>
         </div>
       </div>
 

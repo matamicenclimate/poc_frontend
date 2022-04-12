@@ -8,16 +8,23 @@ import { Title } from '@/componentes/Elements/Title/Title';
 import { useState } from 'react';
 import { ReactComponent as LockIcon } from '@/assets/icons/bx-lock-alt.svg';
 import LogoMagic from '@/assets/icons/bx-magic-link.png';
+import { useAlert } from 'react-alert';
 
 export const Login = () => {
   const auth = useAuth();
   const { t } = useTranslation();
-  const [loading, setLoading] = useState(false);
+  const alert = useAlert();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleLogin = async (data: { email: string }) => {
-    setLoading(true);
-    await auth.login({ email: data.email });
-    setLoading(false);
+    setIsLoading(true);
+    try {
+      await auth.login({ email: data.email });
+    } catch (e) {
+      alert.error('Error loging in');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -45,7 +52,7 @@ export const Login = () => {
             required
           />
 
-          <Button type="submit" disabled={loading} size="sm">
+          <Button type="submit" disabled={isLoading} size="sm">
             <div className="flex items-center justify-center">
               <>
                 <img src={LogoMagic} className="mr-3 h-6 w-5" /> {t('auth.Login.login')}
