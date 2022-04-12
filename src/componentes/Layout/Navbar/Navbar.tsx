@@ -3,9 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { WalletNav } from './sections/WalletNav';
 import { ProfileNav } from './sections/ProfileNav';
 import { Link } from '@/componentes/Elements/Link/Link';
-import { ReactComponent as LogoDark } from '@/assets/logo-dark.svg';
+import LogoDark from '@/assets/logo-dark.png';
 import { CurrencyNav } from './sections/CurrencyNav';
-import { Icon } from '@/componentes/Icon/Icon';
 import { NotificationNav } from '@/componentes/Layout/Navbar/sections/NotificationNav';
 
 const linkStyle = 'flex items-center text-sm';
@@ -19,7 +18,7 @@ export const Navbar = () => {
       <div className="mx-auto flex w-full max-w-screen-xl">
         <div className="border-r pr-10">
           <Link to="/">
-            <LogoDark className="w-44" />
+            <img className="h-auto w-48" src={`${LogoDark}`} />
           </Link>
         </div>
         <div className="flex w-full justify-between">

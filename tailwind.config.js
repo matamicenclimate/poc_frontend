@@ -10,13 +10,13 @@ module.exports = {
       },
       colors: {
         primary: {
-          DEFAULT: 'var(--color--primary-blue)',
+          DEFAULT: 'var(--color--primary-dark-green)',
           purple: 'var(--color--primary-purple)',
           orange: 'var(--color--primary-orange)',
           green: 'var(--color--primary-green)',
         },
         secondary: {
-          DEFAULT: 'var(--color--secondary-blue)',
+          DEFAULT: 'var(--color--primary-cold-green)',
           purple: 'var(--color--secondary-purple)',
           yellow: 'var(--color--secondary-yellow)',
           green: 'var(--color--secondary-green)',
@@ -34,7 +34,7 @@ module.exports = {
         },
         accent: {
           primary: {
-            DEFAULT: 'var(--color--primary-blue-accent)',
+            DEFAULT: 'var(--color--primary-cold-green)',
           },
         },
         fontSize: {

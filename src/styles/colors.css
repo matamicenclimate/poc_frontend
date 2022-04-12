@@ -1,5 +1,10 @@
 :root {
   /* Primary */
+  --color--primary-calm-green: #768970;
+  --color--primary-dark-green: #364237;
+  --color--primary-cold-green: #1e1c20;
+  --color--primary-bright-green: #00db7d;
+
   --color--primary-blue: #3772ff;
   --color--primary-purple: #9757d7;
   --color--primary-orange: #ff6838;

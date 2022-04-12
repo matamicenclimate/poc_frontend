@@ -19,7 +19,7 @@ export const LoginLayout = ({ title, children }: MainLayoutProps) => {
           style={{ backgroundImage: `url(${LoginImage})` }}
         >
           <Link to="/">
-            <Logolight />
+            <Logolight className="h-auto w-64" />
           </Link>
         </div>
         <div className="col-span-3 flex flex-col justify-around p-4">{children}</div>
