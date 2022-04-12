@@ -256,7 +256,19 @@
       "creditEnd": "Credits end",
       "video": "Video",
       "type": "Type",
-      "creditStart": "Credit start"
+      "creditStart": "Credit start",
+      "url": "Project URL",
+      "registration": "Registration date"
+    },
+    "registry": {
+      "name": "Name of registry",
+      "link": "Registry link"
+    },
+    "verification": {
+      "report": "Verification report"
+    },
+    "validation": {
+      "report": "Validation report"
     }
   },
   "validation": {

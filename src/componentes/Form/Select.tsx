@@ -5,12 +5,14 @@ import ReactSelect, { OptionsOrGroups, StylesConfig } from 'react-select';
 import { FieldName, SchemaToErrors, SelectOption } from '.';
 import { FieldError } from './FieldError';
 import { Label } from './Label';
+import { Tooltip } from './Tooltip';
 
 type SelectProps<FormSchema> = {
   name: FieldName<FormSchema>;
   label?: string;
   options: SelectOption[];
   isMulti?: boolean;
+  tooltipInfo?: string;
   // this should be inyected by the <Form />
   control: Control<FormSchema>;
   errors?: SchemaToErrors<FormSchema>;
@@ -41,6 +43,10 @@ const colourStyles = (iconLeft: boolean): StylesConfig => ({
     ...base,
     paddingLeft: iconLeft ? '2rem' : base.paddingLeft,
   }),
+  control: (base) => ({
+    ...base,
+    border: 'solid 2px var(--color--neutral-6)',
+  }),
 });
 
 export function Select<FormSchema>({
@@ -48,6 +54,7 @@ export function Select<FormSchema>({
   label,
   errors = {},
   required = false,
+  tooltipInfo,
   labelClassName,
   errorClassName,
   selectClassName,
@@ -68,7 +75,10 @@ export function Select<FormSchema>({
 
   return (
     <div className={clsx('relative flex flex-col', wrapperClassName)}>
-      <Label {...{ labelClassName, name, required, label }} />
+      <div className="flex items-center">
+        {tooltipInfo && <Tooltip className="mr-2 mb-1" info={tooltipInfo} />}
+        <Label {...{ labelClassName, name, required, label }} />
+      </div>
       <div className="flex items-center">
         {!!iconLeft && <div className="absolute left-2 z-10">{iconLeft}</div>}
         <ReactSelect

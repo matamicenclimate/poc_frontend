@@ -1,5 +1,4 @@
 import clsx from 'clsx';
-import { IconLeft } from 'react-day-picker';
 import { Path, UseFormRegister } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { FieldName, SchemaToErrors } from '.';
@@ -65,7 +64,7 @@ export function Input<FormSchema extends Record<string, any>>({
           id={name}
           placeholder={placeholder}
           className={clsx(
-            `flex-grow rounded-md border p-2`,
+            `flex-grow rounded-md border-2 p-2 text-sm`,
             !!iconRight && 'pr-10',
             !!iconLeft && 'pl-10',
             inputClassName,
@@ -110,7 +109,11 @@ export function Textarea<FormSchema>({
       <textarea
         id={name}
         placeholder={placeholder}
-        className={clsx(`rounded-md border p-2`, inputClassName, errors[name] && 'border-red-500')}
+        className={clsx(
+          `rounded-md border-2 p-2 text-sm`,
+          inputClassName,
+          errors[name] && 'border-red-500'
+        )}
         {...register(name)}
         {...rest}
       />

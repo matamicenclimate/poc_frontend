@@ -243,7 +243,8 @@
         "video": ""
       },
       "type": "Tipo",
-      "video": "Video"
+      "video": "Video",
+      "url": "URL del proyecto"
     },
     "projectCover": "Imágenes del proyecto: cover",
     "projectLatitude": "Latitud",
@@ -263,16 +264,17 @@
     "validator": "Validador",
     "verification.report": "Informe de verificación",
     "registry": {
-      "name": ""
+      "name": "Nombre del registro",
+      "link": "Link del registro"
     },
     "send": {
       "button": ""
     },
     "validation": {
-      "report": ""
+      "report": "Informe de validación"
     },
     "verification": {
-      "report": ""
+      "report": "Informe de verificación"
     },
     "country": "País"
   },

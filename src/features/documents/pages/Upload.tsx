@@ -190,6 +190,7 @@ export const Upload = () => {
                   <Select<UploadFormSchema>
                     {...baseInputProps}
                     label={t('uploadDocuments.sdgs')}
+                    tooltipInfo={t('uploadDocuments.sdgs')}
                     name="sdgs"
                     options={formOptionToSelectOption(formOption.data?.sdgs)}
                     isMulti
@@ -340,6 +341,7 @@ export const Upload = () => {
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.methodology')}
                     name="methodology"
+                    tooltipInfo={t('uploadDocuments.methodology')}
                     options={formOptionToSelectOption(formOption.data?.methodologies)}
                   />
                   <Select<UploadFormSchema>
@@ -347,6 +349,7 @@ export const Upload = () => {
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.validator')}
                     name="validator"
+                    tooltipInfo={t('uploadDocuments.validator')}
                     options={formOptionToSelectOption(formOption.data?.validators)}
                   />
                   <Select<UploadFormSchema>
@@ -354,6 +357,7 @@ export const Upload = () => {
                     wrapperClassName="col-span-1"
                     label={t('uploadDocuments.firstVerifier')}
                     name="first_verifier"
+                    tooltipInfo={t('uploadDocuments.firstVerifier')}
                     options={formOptionToSelectOption(formOption.data?.['first-verifiers'])}
                   />
                   <Select<UploadFormSchema>
@@ -362,6 +366,7 @@ export const Upload = () => {
                     label={t('uploadDocuments.standard')}
                     required
                     name="standard"
+                    tooltipInfo={t('uploadDocuments.standard')}
                     options={formOptionToSelectOption(formOption.data?.standards)}
                   />
                   <Select<UploadFormSchema>
@@ -370,6 +375,7 @@ export const Upload = () => {
                     label={t('uploadDocuments.registry.name')}
                     required
                     name="registry"
+                    tooltipInfo={t('uploadDocuments.registry.name')}
                     options={formOptionToSelectOption(formOption.data?.registries)}
                   />
                   <Input<UploadFormSchema>
