@@ -31,13 +31,16 @@ type PopoverState = {
 
 const PopoverContext = createContext<PopoverState | null>(null);
 
-type PopoverProps = { children: React.ReactNode };
-const Popover = ({ children }: PopoverProps) => {
+type PopoverProps = { children: React.ReactNode; onClose?: () => void };
+const Popover = ({ children, onClose }: PopoverProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const [referenceElement, setReferenceElement] = useState();
 
   const toggle = useCallback(() => setOpen((open) => !open), [setOpen]);
-  const setClose = useCallback(() => setOpen(false), [setOpen]);
+  const setClose = useCallback(() => {
+    setOpen(false);
+    onClose?.();
+  }, [setOpen]);
 
   const value = useMemo<PopoverState>(
     () => ({ open, toggle, setClose, referenceElement, setReferenceElement }),
@@ -67,7 +70,7 @@ type PopoverPanelProps = {
   className?: string;
 };
 const PopoverPanel = ({ config = {}, children, className }: PopoverPanelProps) => {
-  const { open, toggle, referenceElement } = usePopoverContext();
+  const { open, setClose, referenceElement } = usePopoverContext();
 
   const [popperElement, setPopperElement] = useState<any>(null);
   const { styles, attributes } = usePopper(referenceElement, popperElement, config);
@@ -77,7 +80,7 @@ const PopoverPanel = ({ config = {}, children, className }: PopoverPanelProps) =
     <>
       <div
         className="fixed inset-0 z-10 h-screen w-screen bg-black bg-opacity-10"
-        onClick={toggle}
+        onClick={setClose}
       />
       <HLPopover.Panel
         static

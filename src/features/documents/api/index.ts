@@ -1,7 +1,7 @@
 export const documentKeys = {
   all: ['document'] as const,
   lists: () => [...documentKeys.all, 'list'] as const,
-  search: (filter: Record<any, any>) =>
+  search: (filter: Record<string, unknown>) =>
     [...documentKeys.all, 'list', JSON.stringify(filter)] as const,
   detail: (id: string) => [...documentKeys.all, 'detail', id] as const,
   form: () => [...documentKeys.all, 'form'] as const,

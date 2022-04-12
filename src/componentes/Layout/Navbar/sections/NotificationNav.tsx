@@ -12,8 +12,8 @@ import {
 } from 'date-fns';
 import { Link } from '@/componentes/Elements/Link/Link';
 import clsx from 'clsx';
-import { Button } from '@/componentes/Elements/Button/Button';
 import { markNotificationsAsRead } from '@/componentes/Layout/Navbar/api/markNotificationsAsRead';
+import React from 'react';
 
 const modelToUrl: Record<string, string> = {
   'carbon-documents': 'documents',
@@ -101,7 +101,7 @@ export const NotificationNav = () => {
 
   return (
     <div className="flex items-center">
-      <Popover>
+      <Popover onClose={markAsRead.mutateAsync}>
         <Popover.Button>
           <button className="relative flex p-1">
             <Icon id="bell-line" className="h-7 w-7" />
@@ -122,7 +122,7 @@ export const NotificationNav = () => {
                   onClick={() => markAsRead.mutateAsync()}
                   disabled={markAsRead.isLoading}
                 >
-                  clear
+                  {t('components.Navbar.notifications.clear')}
                 </button>
               </div>
             </div>
