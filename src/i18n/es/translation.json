@@ -40,7 +40,8 @@
       },
       "currency": "Moneda",
       "notifications": {
-        "title": "Notificaciones"
+        "title": "Notificaciones",
+        "clear": "Limpiar"
       },
       "buy": "Comprar",
       "about": "Sobre nosotros",

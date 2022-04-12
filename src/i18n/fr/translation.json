@@ -60,7 +60,8 @@
       },
       "sell": "Vendre",
       "notifications": {
-        "title": "Avis"
+        "title": "Avis",
+        "clear": "Dégager"
       },
       "wallet": {
         "wallet": "Portefeuille"

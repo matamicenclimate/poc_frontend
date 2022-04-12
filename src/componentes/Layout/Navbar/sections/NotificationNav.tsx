@@ -53,14 +53,14 @@ export const NotificationNav = () => {
               return (
                 <li
                   key={notification._id}
-                  className="flex items-center space-x-2 border-b py-3 text-sm last:border-b-0"
+                  className="flex items-center space-x-2 border-b py-1 text-sm last:border-b-0"
                 >
                   <ConditionalWrapper
                     condition={!!notification.model}
                     wrapper={(children) => (
                       <Link
                         to={`/${modelToUrl[notification.model as string]}/${notification.model_id}`}
-                        className="flex w-full items-center space-x-2 text-neutral-4 no-underline hover:underline"
+                        className="flex w-full items-center space-x-2 rounded py-2 px-1 text-neutral-4 no-underline hover:bg-neutral-7"
                       >
                         {children}
                       </Link>
@@ -74,7 +74,7 @@ export const NotificationNav = () => {
                         )}
                       />
                     </div>
-                    <div className="flex-grow space-y-1">
+                    <div className="flex-grow space-y-1 pl-1">
                       <div className="flex w-full justify-between">
                         <div className="font-medium">{notification.title}</div>
                         <div className="break-normal text-xs">{getDate()}</div>
@@ -113,7 +113,7 @@ export const NotificationNav = () => {
           </button>
         </Popover.Button>
         <Popover.Panel>
-          <div className="w-80 space-y-3">
+          <div className="w-96 space-y-3">
             <div className="flex justify-between text-xs text-neutral-4">
               <div>{t('components.Navbar.notifications.title')}</div>
               <div>

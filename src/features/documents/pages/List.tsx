@@ -19,6 +19,12 @@ import { Icon } from '@/componentes/Icon/Icon';
 const baseAsideLiStyles =
   'flex cursor-pointer items-center px-6 py-2 transition hover:bg-neutral-7';
 
+const pillVariants: Record<string, PillProps['variant']> = {
+  pending: 'new',
+  minted: 'featured',
+  swapped: 'comingSoon',
+};
+
 export const DocumentList = () => {
   const { user } = useAuth();
   const { t } = useTranslation();
@@ -33,14 +39,9 @@ export const DocumentList = () => {
     wrapperClassName: 'col-span-2',
   };
 
-  const { sort, toggleSort, isActiveSort, renderArrow } = useSort();
+  const { sort, toggleSort, renderArrow } = useSort();
   const documents = getDocuments(user?.email as string, methods.watch(), sort);
 
-  const pillVariants: Record<string, PillProps['variant']> = {
-    pending: 'new',
-    minted: 'featured',
-    swapped: 'comingSoon',
-  };
   const renderDocuments = () => {
     if (documents.data) {
       return (

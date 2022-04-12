@@ -17,6 +17,8 @@ export interface Notification {
 function fetchNotifications(): Promise<Notification[]> {
   const params = new URLSearchParams({
     _sort: 'createdAt:desc',
+    _start: '0',
+    _limit: '7',
   });
   return httpClient.get(`/notifications/me?${params}`);
 }

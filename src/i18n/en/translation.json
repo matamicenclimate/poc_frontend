@@ -64,7 +64,8 @@
       "about": "About us",
       "developer": "Developer",
       "notifications": {
-        "title": "Notifications"
+        "title": "Notifications",
+        "clear": "Clear"
       },
       "wallet": {
         "wallet": "Wallet"
