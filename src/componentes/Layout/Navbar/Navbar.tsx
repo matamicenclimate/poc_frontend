@@ -16,7 +16,7 @@ export const Navbar = () => {
   return (
     <div className="mx-auto w-full border pb-5 pt-5">
       <div className="mx-auto flex w-full max-w-screen-xl">
-        <div className="border-r pr-10">
+        <div className="flex items-center justify-center border-r pr-10">
           <Link to="/">
             <img className="h-auto w-48" src={`${LogoDark}`} />
           </Link>

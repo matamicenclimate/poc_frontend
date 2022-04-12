@@ -64,7 +64,7 @@ export function Input<FormSchema extends Record<string, any>>({
           id={name}
           placeholder={placeholder}
           className={clsx(
-            `flex-grow rounded-md border-2 p-2 text-sm`,
+            `flex-grow rounded-md border-2 p-2 text-sm leading-normal`,
             !!iconRight && 'pr-10',
             !!iconLeft && 'pl-10',
             inputClassName,

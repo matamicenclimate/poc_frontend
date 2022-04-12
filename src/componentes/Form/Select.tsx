@@ -46,6 +46,7 @@ const colourStyles = (iconLeft: boolean): StylesConfig => ({
   control: (base) => ({
     ...base,
     border: 'solid 2px var(--color--neutral-6)',
+    borderRadius: '0.375rem',
   }),
 });
 

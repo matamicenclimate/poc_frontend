@@ -22,6 +22,7 @@ import { Stepper, useStepper } from '@/componentes/Stepper/Stepper';
 import { SelectOption } from '@/componentes/Form';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '@/componentes/Icon/Icon';
+import { FormMap } from '@/features/documents/components/Map';
 
 const formOptionToSelectOption = (options: FormOption[] | undefined): SelectOption[] => {
   if (options === undefined) return [];
@@ -247,6 +248,20 @@ export const Upload = () => {
                     step="any"
                     defaultValue={0}
                   />
+                  <div className="md:col-span-2">
+                    <FormMap
+                      lat={
+                        methods.watch('project_latitude')
+                          ? Number(methods.watch('project_latitude'))
+                          : 0
+                      }
+                      lng={
+                        methods.watch('project_longitude')
+                          ? Number(methods.watch('project_longitude'))
+                          : 0
+                      }
+                    />
+                  </div>
                   <FileInput<UploadFormSchema>
                     {...baseInputProps}
                     label={t('uploadDocuments.projectThumbnail')}
