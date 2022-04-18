@@ -5,6 +5,6 @@ import { nftKeys } from '.';
 function fetchNFTs(): Promise<any[]> {
   return httpClient.get(`/nfts`);
 }
-export function getNFTs() {
+export function useGetNFTs() {
   return useQuery(nftKeys.lists(), () => fetchNFTs());
 }

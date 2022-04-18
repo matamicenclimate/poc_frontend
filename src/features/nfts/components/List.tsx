@@ -4,10 +4,10 @@ import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { useTranslation } from 'react-i18next';
-import { getNFTs } from '../api/getNFTs';
+import { useGetNFTs } from '../api/useGetNFTs';
 
 export const NFTList = () => {
-  const nfts = getNFTs();
+  const nfts = useGetNFTs();
   const { t } = useTranslation();
 
   const renderNfts = () => {

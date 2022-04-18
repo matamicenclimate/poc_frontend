@@ -6,8 +6,8 @@ import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { Input, Textarea } from '@/componentes/Form/Inputs';
 import { Select } from '@/componentes/Form/Select';
 
-import { uploadDocument } from '../api/uploadDocument';
-import { getFormOptions, FormOption } from '../api/getFormOptions';
+import { useUploadDocument } from '../api/useUploadDocument';
+import { useGetFormOptions, FormOption } from '../api/useGetFormOptions';
 import { documentUploadValidationSchema, UploadFormSchema } from '../validation/UploadValidation';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { Card } from '@/componentes/Card/Card';
@@ -49,8 +49,8 @@ export const Upload = () => {
     mode: 'onBlur',
   });
 
-  const uploadDocuments = uploadDocument();
-  const formOption = getFormOptions();
+  const uploadDocuments = useUploadDocument();
+  const formOption = useGetFormOptions();
   const user = useAuth();
   const { currStep, nextStep, prevStep, setCurrStep } = useStepper(UploadSteps);
   const navigate = useNavigate();

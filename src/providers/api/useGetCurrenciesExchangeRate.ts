@@ -16,7 +16,7 @@ function fetchCurenciesExchangeRate(): Promise<CurrencyInfo> {
   return httpClient.get(`/currency`);
 }
 
-export function getCurrenciesExchangeRate() {
+export function useGetCurrenciesExchangeRate() {
   return useQuery(['currencies'], fetchCurenciesExchangeRate, {
     staleTime: 60 * 60,
     refetchOnWindowFocus: false,

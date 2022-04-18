@@ -1,7 +1,7 @@
 import { useAuth } from '@/lib/auth';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { getDocuments } from '../api/getDocuments';
+import { useGetDocuments } from '../api/useGetDocuments';
 import { Input } from '@/componentes/Form/Inputs';
 import Popover from '@/componentes/Popover/Popover';
 import { Link } from '@/componentes/Elements/Link/Link';
@@ -40,7 +40,7 @@ export const DocumentList = () => {
   };
 
   const { sort, toggleSort, renderArrow } = useSort();
-  const documents = getDocuments(user?.email as string, methods.watch(), sort);
+  const documents = useGetDocuments(user?.email as string, methods.watch(), sort);
 
   const renderDocuments = () => {
     if (documents.data) {
@@ -73,7 +73,9 @@ export const DocumentList = () => {
     return (
       <tr>
         <td colSpan={4}>
-          <Spinner />
+          <div className="flex justify-center p-8">
+            <Spinner />
+          </div>
         </td>
       </tr>
     );

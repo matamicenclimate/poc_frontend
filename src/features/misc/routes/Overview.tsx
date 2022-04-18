@@ -11,6 +11,7 @@ import { useWalletContext } from '@/providers/Wallet.context';
 import { useCurrencyContext } from '@/providers/Currency.context';
 import { Icon } from '@/componentes/Icon/Icon';
 import { BalanceChart } from '@/features/misc/components/BalanceChart';
+import {useGetChartData} from "@/features/misc/api/useGetChartData";
 
 export const Overview = () => {
   const { t } = useTranslation();
@@ -66,6 +67,7 @@ export const Overview = () => {
 
   const { climatecoinBalance } = useWalletContext();
   const { formatter } = useCurrencyContext();
+  const chartBalance = useGetChartData()
 
   return (
     <MainLayout title={t('misc.Overview.title')}>

@@ -9,7 +9,7 @@ function mintNft(documentId: string): Promise<CarbonDocument> {
   return httpClient.post(`/carbon-documents/${documentId}/mint`);
 }
 
-export function mintNftDocument() {
+export function useMintNftDocument() {
   const queryClient = useQueryClient();
   const alert = useAlert();
 

@@ -39,7 +39,7 @@ async function claimFromDocument(
   return httpClient.post(`/carbon-documents/${documentId}/claim`, { email });
 }
 
-export function claimNftFromDocument() {
+export function useClaimNftFromDocument() {
   const queryClient = useQueryClient();
   const alert = useAlert();
 

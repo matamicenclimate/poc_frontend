@@ -21,7 +21,7 @@ function fetchDocuments(filter: Record<any, any>): Promise<CarbonDocument[]> {
   return httpClient.get(`/carbon-documents?${params}`);
 }
 
-export function getDocuments(userEmail: string, filter: Record<any, any>, sort: SortState) {
+export function useGetDocuments(userEmail: string, filter: Record<any, any>, sort: SortState) {
   const { dates, ...newFilter } = filter;
   const parsed = {
     ...newFilter,

@@ -1,5 +1,8 @@
 import React, { createContext, useContext, useState } from 'react';
-import { CurrencyInfo, getCurrenciesExchangeRate } from '@/providers/api/getCurrenciesExchangeRate';
+import {
+  CurrencyInfo,
+  useGetCurrenciesExchangeRate,
+} from '@/providers/api/useGetCurrenciesExchangeRate';
 import { UseQueryResult } from 'react-query';
 import { useTranslation } from 'react-i18next';
 
@@ -43,7 +46,7 @@ export const CurrencyProvider = ({ initialData, children }: ProviderProps) => {
     }
   );
 
-  const exchangeRate = getCurrenciesExchangeRate();
+  const exchangeRate = useGetCurrenciesExchangeRate();
 
   return (
     <CurrencyContext.Provider value={{ state, setState, exchangeRate }}>

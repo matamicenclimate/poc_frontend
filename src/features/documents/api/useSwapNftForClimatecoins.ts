@@ -71,7 +71,7 @@ async function handleSwap(
   return httpClient.post(`/carbon-documents/${documentId}/swap`);
 }
 
-export function swapNftForClimatecoins() {
+export function useSwapNftForClimatecoins() {
   const queryClient = useQueryClient();
   const alert = useAlert();
 

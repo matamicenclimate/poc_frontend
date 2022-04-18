@@ -1,4 +1,4 @@
-import { getBalance } from '@/features/wallet/api/getBalance';
+import { useGetBalance } from '@/features/wallet/api/useGetBalance';
 import { magiclink } from '@/lib/magiclink';
 import { createContext, useContext, useEffect, useState, ReactElement } from 'react';
 import { UseQueryResult } from 'react-query';
@@ -17,7 +17,7 @@ interface ProviderProps {
 export const WalletProvider = ({ children }: ProviderProps) => {
   const [wallet, setWallet] = useState<string | null>(null);
 
-  const account = getBalance(wallet);
+  const account = useGetBalance(wallet);
 
   useEffect(() => {
     const onMount = async () => {

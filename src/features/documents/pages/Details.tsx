@@ -8,10 +8,10 @@ import { Stepper } from '@/componentes/Stepper/Stepper';
 import { useWalletContext } from '@/providers/Wallet.context';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
-import { getDocument } from '../api/getDocument';
+import { useGetDocument } from '../api/useGetDocument';
 import { ProjectPreview } from '../components/ProjectPreview';
 import { UploadSteps } from './Upload';
-import { claimNftFromDocument } from '@/features/documents/api/claimNftFromDocument';
+import { useClaimNftFromDocument } from '@/features/documents/api/useClaimNftFromDocument';
 import { useAuth } from '@/lib/auth';
 import { SwapNft } from '@/features/documents/components/SwapNft';
 import { Title } from '@/componentes/Elements/Title/Title';
@@ -23,8 +23,8 @@ export const DocumentDetails = () => {
   const { t } = useTranslation();
   const auth = useAuth();
   const alert = useAlert();
-  const document = getDocument(documentId as string);
-  const claimNft = claimNftFromDocument();
+  const document = useGetDocument(documentId as string);
+  const claimNft = useClaimNftFromDocument();
   const { account } = useWalletContext();
 
   const handleClaim = async () => {

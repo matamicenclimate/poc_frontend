@@ -80,7 +80,7 @@ function toFormData(carbonDocument: CarbonDocumentDTO) {
   return formData;
 }
 
-export function uploadDocument() {
+export function useUploadDocument() {
   const queryClient = useQueryClient();
   const alert = useAlert();
   return useMutation(

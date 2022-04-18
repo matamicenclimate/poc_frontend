@@ -7,7 +7,7 @@ import { magiclink } from '@/lib/magiclink';
 import algosdk, { waitForConfirmation } from 'algosdk';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { getBalance } from '../api/getBalance';
+import { useGetBalance } from '../api/useGetBalance';
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { Buffer } from 'buffer/';
@@ -30,7 +30,7 @@ export const Wallet = () => {
     onMount();
   }, []);
 
-  const account = getBalance(address);
+  const account = useGetBalance(address);
 
   const optinToAsset = (asaId: number) => async () => {
     // create the asset accept transaction
