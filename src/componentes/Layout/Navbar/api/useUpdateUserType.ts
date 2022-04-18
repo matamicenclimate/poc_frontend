@@ -8,7 +8,7 @@ function putUserType(userId: string, type: string): Promise<StrapiUser> {
   return httpClient.put(`/users/${userId}`, { type });
 }
 
-export function updateUserType() {
+export function useUpdateUserType() {
   const alert = useAlert();
   const auth = useAuth();
 

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import Popover from '@/componentes/Popover/Popover';
 import { Icon } from '@/componentes/Icon/Icon';
-import { getNotifications } from '@/componentes/Layout/Navbar/api/getNotifications';
+import { useGetNotifications } from '@/componentes/Layout/Navbar/api/useGetNotifications';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import {
   differenceInDays,
@@ -12,7 +12,7 @@ import {
 } from 'date-fns';
 import { Link } from '@/componentes/Elements/Link/Link';
 import clsx from 'clsx';
-import { markNotificationsAsRead } from '@/componentes/Layout/Navbar/api/markNotificationsAsRead';
+import { useMarkNotificationsAsRead } from '@/componentes/Layout/Navbar/api/useMarkNotificationsAsRead';
 import React from 'react';
 
 const modelToUrl: Record<string, string> = {
@@ -30,8 +30,8 @@ const ConditionalWrapper = ({
 }) => (condition ? wrapper(children) : children);
 
 export const NotificationNav = () => {
-  const notifications = getNotifications();
-  const markAsRead = markNotificationsAsRead();
+  const notifications = useGetNotifications();
+  const markAsRead = useMarkNotificationsAsRead();
   const { t } = useTranslation();
   const renderNotifications = () => {
     if (notifications.data) {

@@ -23,7 +23,7 @@ function fetchNotifications(): Promise<Notification[]> {
   return httpClient.get(`/notifications/me?${params}`);
 }
 
-export function getNotifications() {
+export function useGetNotifications() {
   return useQuery(['notifications'], fetchNotifications, {
     staleTime: 60,
     refetchOnWindowFocus: true,

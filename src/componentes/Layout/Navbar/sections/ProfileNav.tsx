@@ -7,7 +7,7 @@ import { ReactComponent as IconLock } from '@/assets/icons/bx-lock-line.svg';
 import { ReactComponent as IconShare } from '@/assets/icons/bx-share-square.svg';
 import { ReactComponent as IconBrightness } from '@/assets/icons/bx-brightness-line.svg';
 import { Switch as HLSwitch } from '@headlessui/react';
-import { updateUserType } from '@/componentes/Layout/Navbar/api/updateUserType';
+import { useUpdateUserType } from '@/componentes/Layout/Navbar/api/useUpdateUserType';
 import { useState } from 'react';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Icon } from '@/componentes/Icon/Icon';
@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 
 export const ProfileNav = () => {
   const auth = useAuth();
-  const updateType = updateUserType();
+  const updateType = useUpdateUserType();
   const { t } = useTranslation();
   const handleLogout = () => {
     auth.logout();

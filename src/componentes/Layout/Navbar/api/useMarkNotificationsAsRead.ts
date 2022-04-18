@@ -6,7 +6,7 @@ function markAsRead(): Promise<any> {
   return httpClient.put(`/notifications/me/read`);
 }
 
-export function markNotificationsAsRead() {
+export function useMarkNotificationsAsRead() {
   const queryClient = useQueryClient();
   const alert = useAlert();
 
