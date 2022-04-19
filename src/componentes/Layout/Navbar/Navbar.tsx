@@ -7,7 +7,7 @@ import LogoDark from '@/assets/logo-dark.png';
 import { CurrencyNav } from './sections/CurrencyNav';
 import { NotificationNav } from '@/componentes/Layout/Navbar/sections/NotificationNav';
 
-const linkStyle = 'flex items-center text-sm';
+const linkStyle = 'flex items-center text-sm hover:underline';
 
 export const Navbar = () => {
   const auth = useAuth();
@@ -42,7 +42,7 @@ export const Navbar = () => {
             )}
           </div>
           {auth.user && (
-            <div className="flex gap-6">
+            <div className="flex gap-4">
               <CurrencyNav />
 
               <NotificationNav />

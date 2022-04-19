@@ -3,6 +3,8 @@ import { magiclink } from '@/lib/magiclink';
 import { createContext, useContext, useEffect, useState, ReactElement } from 'react';
 import { UseQueryResult } from 'react-query';
 import { IndexerAccount } from '@/features/wallet/api';
+import { useGetWallet } from '@/componentes/Layout/Navbar/api/useGetWallet';
+import { useAuth } from '@/lib/auth';
 
 interface Context {
   account: UseQueryResult<IndexerAccount, unknown>;
@@ -15,17 +17,8 @@ interface ProviderProps {
 }
 
 export const WalletProvider = ({ children }: ProviderProps) => {
-  const [wallet, setWallet] = useState<string | null>(null);
-
-  const account = useGetBalance(wallet);
-
-  useEffect(() => {
-    const onMount = async () => {
-      const publicAddress = await magiclink.algorand.getWallet();
-      setWallet(publicAddress);
-    };
-    onMount();
-  }, []);
+  const auth = useAuth();
+  const account = useGetBalance(auth?.user?.magic_user.publicAddress ?? null);
 
   return <WalletContext.Provider value={{ account }}>{children}</WalletContext.Provider>;
 };

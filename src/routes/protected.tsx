@@ -20,7 +20,7 @@ export const protectedRoutes = [
       { path: '/profile', element: <Profile /> },
       { path: '/wallet/*', element: <Wallet /> },
       { path: '/home', element: <Overview /> },
-      { path: '/', element: <Overview /> },
+      { path: '/', element: <Navigate to="/home" /> },
       { path: '*', element: <Navigate to="." /> },
     ],
   },

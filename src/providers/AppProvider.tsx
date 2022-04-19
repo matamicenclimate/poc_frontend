@@ -39,8 +39,6 @@ export const AppProvider = ({ children }: { children: React.ReactElement }) => {
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <HelmetProvider>
         <AlertProvider template={Alert} {...options}>
-          {/** // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore */}
           <QueryClientProvider client={queryClient}>
             <AuthProvider>
               {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}

@@ -1,5 +1,5 @@
 import storage from '@/utils/storage';
-import { initReactQueryAuth } from 'react-query-auth';
+import { AuthProviderConfig, initReactQueryAuth } from 'react-query-auth';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { LoginCredentialsDTO } from '@/features/auth/api/login';
 import { RegisterCredentialsDTO, registerWithEmailAndPassword } from '@/features/auth/api/register';
@@ -62,7 +62,7 @@ async function logoutFn() {
   window.location.assign(window.location.origin as unknown as string);
 }
 
-const authConfig = {
+const authConfig: AuthProviderConfig<AuthUser | null, unknown> = {
   loadUser,
   loginFn,
   registerFn,
@@ -74,6 +74,7 @@ const authConfig = {
       </div>
     );
   },
+  waitInitial: false,
 };
 
 export const { AuthProvider, useAuth } = initReactQueryAuth<

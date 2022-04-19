@@ -3,7 +3,7 @@ import Popover from '@/componentes/Popover/Popover';
 import { useCurrencyContext } from '@/providers/Currency.context';
 import clsx from 'clsx';
 import { Icon } from '@/componentes/Icon/Icon';
-
+import styles from './shared.module.css';
 export const CurrencyNav = () => {
   const { t, i18n } = useTranslation();
 
@@ -20,36 +20,38 @@ export const CurrencyNav = () => {
     <div className="flex items-center">
       <Popover>
         <Popover.Button>
-          <div className="flex">
-            <button className="text-sm font-bold uppercase hover:bg-blue-100">
+          <div className={clsx(styles.button)}>
+            <div>
               {i18n.language} / {currency.state.currency}
-            </button>
+            </div>
             <Icon id="arrow-down-simple-line" className="h-6 w-6" />
           </div>
         </Popover.Button>
         <Popover.Panel>
-          <div className="grid grid-cols-2 place-content-center ">
-            <div className="border-r pr-4 text-sm text-neutral-4">
+          <div className="flex text-sm text-neutral-4">
+            <div className="languageColumn w-32">
               <p className="pb-1.5 text-xs">{t<string>('components.Navbar.i18n.title')}</p>
-              {languageOptions.map((lang, i) => {
-                return (
-                  <div key={i} className="border-b last:border-none">
+              <div className="divide-y">
+                {languageOptions.map((lang, i) => {
+                  return (
                     <Popover.Option
                       isActive={i18n.language === lang.key}
                       name={lang.name}
                       onClick={() => {
                         i18n.changeLanguage(lang.key);
                       }}
+                      key={i}
                     />
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-            <div className="w-36 pl-4 text-sm text-neutral-4">
+            <div className="mx-4 w-[1px] bg-neutral-7"></div>
+            <div className="currencyColumn w-32">
               <p className="pb-1.5 text-xs">{t<string>('components.Navbar.currency')}</p>
-              {Object.keys(currency.currencies).map((curr: any, i) => {
-                return (
-                  <div key={i} className="border-b last:border-none">
+              <div className="divide-y">
+                {Object.keys(currency.currencies).map((curr, i) => {
+                  return (
                     <Popover.Option
                       name={curr}
                       isActive={currency.state.currency === curr}
@@ -57,17 +59,18 @@ export const CurrencyNav = () => {
                         <div
                           className={clsx(
                             'h-2 w-2 rounded-full',
-                            currency.state.currency === curr ? 'bg-neutral-2' : 'bg-neutral-4'
+                            currency.state.currency === curr ? 'bg-primary-green' : 'bg-neutral-4'
                           )}
-                        ></div>
+                        />
                       }
+                      key={i}
                       onClick={() => {
-                        currency.reducer.setCurrency(curr);
+                        currency.reducer.setCurrency(curr as any);
                       }}
                     />
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
         </Popover.Panel>

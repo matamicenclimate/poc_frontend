@@ -13,6 +13,7 @@ import { ReactComponent as IconDots } from '@/assets/icons/bx-dots-vertical.svg'
 
 import * as PopperJS from '@popperjs/core';
 import clsx from 'clsx';
+import styles from '@/componentes/Layout/Navbar/sections/shared.module.css';
 
 type ICompoundComponent = {
   Option: React.FC<React.PropsWithChildren<PopoverOptionsProps>>;
@@ -72,8 +73,22 @@ type PopoverPanelProps = {
 const PopoverPanel = ({ config = {}, children, className }: PopoverPanelProps) => {
   const { open, setClose, referenceElement } = usePopoverContext();
 
-  const [popperElement, setPopperElement] = useState<any>(null);
-  const { styles, attributes } = usePopper(referenceElement, popperElement, config);
+  const [popperElement, setPopperElement] = useState<HTMLDivElement | null>(null);
+  const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
+  const { styles, attributes } = usePopper(referenceElement, popperElement, {
+    ...config,
+    modifiers: [
+      { name: 'arrow', options: { element: arrowElement } },
+      {
+        name: 'preventOverflow',
+        options: {
+          altAxis: true,
+          padding: 32,
+        },
+      },
+      ...(config.modifiers ? config.modifiers : []),
+    ],
+  });
 
   if (!open) return null;
   return (
@@ -82,13 +97,18 @@ const PopoverPanel = ({ config = {}, children, className }: PopoverPanelProps) =
         className="fixed inset-0 z-10 h-screen w-screen bg-black bg-opacity-10"
         onClick={setClose}
       />
+
       <HLPopover.Panel
         static
         ref={setPopperElement}
-        style={{ ...styles.popper }}
-        className={clsx(className, 'z-20 rounded bg-white p-4 shadow')}
+        style={styles.popper}
+        className={clsx(className, 'z-20 mt-2 rounded bg-white p-4 shadow')}
         {...attributes.popper}
       >
+        <div ref={setArrowElement} style={styles.arrow} className="-top-2 z-30 ">
+          <div className="h-4 w-4 rotate-45 bg-white" />
+        </div>
+
         {children}
       </HLPopover.Panel>
     </>
@@ -135,12 +155,7 @@ const PopoverOption = ({
       role="button"
       tabIndex={0}
       key={name}
-      className={clsx(
-        'flex items-center border-neutral-6  px-2 py-1 pt-3 pb-3 font-alt  transition duration-150 ease-in-out',
-        size === 'default' && '',
-        !disabled && 'hover:bg-blue-100',
-        ' cursor-pointer select-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50'
-      )}
+      className={clsx(size === 'default' && '', styles.popover__option)}
     >
       {icon && icon}
       <div>
@@ -202,10 +217,9 @@ const PopoverWallet = ({
       tabIndex={0}
       key={name}
       className={clsx(
-        'flex	min-w-fit items-center justify-between border-neutral-6 py-1 pt-3 pb-3 font-alt  transition duration-150 ease-in-out',
         size === 'default' && '',
-        !disabled && 'hover:bg-blue-100',
-        ' cursor-pointer select-none focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50'
+        !disabled && 'hover:bg-neutral-7',
+        styles.popover__option
       )}
     >
       <div className="flex flex-row pl-2">

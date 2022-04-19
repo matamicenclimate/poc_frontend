@@ -1,0 +1,11 @@
+.button {
+  @apply flex cursor-pointer items-center rounded-full p-3;
+  @apply text-sm font-bold uppercase;
+  @apply transition-colors hover:bg-neutral-7;
+}
+
+.popover__option {
+  @apply flex cursor-pointer select-none items-center border-neutral-6 px-2 py-3 font-alt;
+  @apply transition-colors duration-150 hover:bg-neutral-7;
+  @apply focus-visible:ring focus-visible:ring-orange-500 focus-visible:ring-opacity-50;
+}

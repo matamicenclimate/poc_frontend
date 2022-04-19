@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Icon } from '@/componentes/Icon/Icon';
 import { useTranslation } from 'react-i18next';
+import styles from './shared.module.css';
 
 export const ProfileNav = () => {
   const auth = useAuth();
@@ -65,92 +66,82 @@ export const ProfileNav = () => {
     <div className="flex items-center">
       <Popover>
         <Popover.Button>
-          <div className="flex">
-            <button className="text-sm font-bold uppercase hover:bg-blue-100">
-              <img
-                className="h-10 w-10 rounded-full"
-                alt="100x100"
-                src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg"
-                data-holder-rendered="true"
-              />
-            </button>
-          </div>
+          <button className={clsx(styles.button)} style={{ padding: '6px' }}>
+            <img
+              className="h-10 w-10 rounded-full"
+              alt="100x100"
+              src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg"
+              data-holder-rendered="true"
+            />
+          </button>
         </Popover.Button>
-        <Popover.Panel>
-          <div>
-            <div className="w-64 text-sm text-neutral-4">
-              {profileOptions.map((option, i) => (
-                <Link key={option.name} to={option.href} className="no-underline">
-                  <div key={i} className="border-b last:border-none">
-                    <Popover.Option
-                      icon={<div className={'pr-1'}>{option.icon}</div>}
-                      description={option.description}
-                      name={option.name}
-                      isActive
-                      onClick={() => undefined}
-                    />
-                  </div>
-                </Link>
-              ))}
+        <Popover.Panel className="p-2">
+          <div className="w-64 divide-y text-sm text-neutral-4">
+            {profileOptions.map((option) => (
+              <Link key={option.name} to={option.href} className="block no-underline">
+                <Popover.Option
+                  icon={<div className={'flex h-full pr-1'}>{option.icon}</div>}
+                  description={option.description}
+                  name={option.name}
+                  isActive
+                  onClick={() => undefined}
+                />
+              </Link>
+            ))}
 
-              <div
-                onClick={handleChange}
-                role="button"
-                tabIndex={0}
-                className={clsx(
-                  'flex items-center px-2 py-3 font-alt transition duration-150 ease-in-out hover:bg-blue-100'
-                )}
-              >
-                <div className="pr-1">
-                  <IconBrightness className={'h-5 w-5'} />
+            <div
+              onClick={handleChange}
+              role="button"
+              tabIndex={0}
+              className={clsx(styles.popover__option)}
+            >
+              <div className="pr-1">
+                <IconBrightness className={'h-5 w-5'} />
+              </div>
+              <div className="flex w-full items-center">
+                <div>
+                  <p className={clsx('px-2 font-normal text-neutral-3')}>
+                    {t<string>('components.ProfileNav.promoter')}
+                  </p>
+                  <p className={clsx('px-2 text-[10px] font-normal text-neutral-4')}>
+                    {t<string>('components.ProfileNav.createYouCredits')}
+                  </p>
                 </div>
-                <div className="flex w-full items-center">
-                  <div>
-                    <p className={clsx('px-2 font-normal text-neutral-3')}>
-                      {t<string>('components.ProfileNav.promoter')}
-                    </p>
-                    <p className={clsx('px-2 text-[10px] font-normal text-neutral-4')}>
-                      {t<string>('components.ProfileNav.createYouCredits')}
-                    </p>
-                  </div>
-                  <div className="flex-grow" />
-                  <div>
-                    <HLSwitch.Group>
-                      <div className="flex items-center">
-                        <HLSwitch
-                          checked={isDeveloper}
-                          onChange={() => null}
+                <div className="flex-grow" />
+                <div>
+                  <HLSwitch.Group>
+                    <div className="flex items-center">
+                      <HLSwitch
+                        checked={isDeveloper}
+                        onChange={() => null}
+                        className={`${
+                          isDeveloper ? 'bg-blue-600' : 'bg-gray-200'
+                        } relative inline-flex h-5 w-8 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
+                      >
+                        <span
                           className={`${
-                            isDeveloper ? 'bg-blue-600' : 'bg-gray-200'
-                          } relative inline-flex h-5 w-8 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
-                        >
-                          <span
-                            className={`${
-                              isDeveloper ? 'translate-x-4' : 'translate-x-1'
-                            } inline-block h-3 w-3 transform rounded-full bg-white transition-transform`}
-                          />
-                        </HLSwitch>
-                      </div>
-                    </HLSwitch.Group>
-                  </div>
+                            isDeveloper ? 'translate-x-4' : 'translate-x-1'
+                          } inline-block h-3 w-3 transform rounded-full bg-white transition-transform`}
+                        />
+                      </HLSwitch>
+                    </div>
+                  </HLSwitch.Group>
                 </div>
               </div>
+            </div>
 
-              <div
-                onClick={handleLogout}
-                role="button"
-                tabIndex={0}
-                key={'logout'}
-                className={clsx(
-                  'flex items-center border-neutral-6 px-2 py-3 font-alt transition duration-150 ease-in-out hover:bg-blue-100'
-                )}
-              >
-                <div className="pr-1">
-                  <IconLogout className={'h-5 w-5'} />
-                </div>
-                <div className={clsx('px-2 font-normal text-neutral-3')}>
-                  {t<string>('components.ProfileNav.logout')}
-                </div>
+            <div
+              onClick={handleLogout}
+              role="button"
+              tabIndex={0}
+              key={'logout'}
+              className={clsx(styles.popover__option)}
+            >
+              <div className="pr-1">
+                <IconLogout className={'h-5 w-5'} />
+              </div>
+              <div className={clsx('px-2 font-normal text-neutral-3')}>
+                {t<string>('components.ProfileNav.logout')}
               </div>
             </div>
           </div>

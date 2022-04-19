@@ -5,12 +5,13 @@ import { useAuth } from '@/lib/auth';
 import { NFTRouter } from '@/features/nfts/routes/NFTRouter';
 import { Login } from '@/features/auth/components/Login';
 import { TermsAndConditions } from '@/features/misc/routes/TermsAndConditions';
+import { Overview } from '@/features/misc/routes/Overview';
 
 export const AppRouter = () => {
   const auth = useAuth();
 
   const commonRoutes = [
-    { path: '/', element: <Login /> },
+    { path: '/', element: <Overview /> },
     { path: '/nfts/*', element: <NFTRouter /> },
     { path: '/terms-conditions', element: <TermsAndConditions /> },
   ];

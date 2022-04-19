@@ -3,6 +3,8 @@ import { useWalletContext } from '@/providers/Wallet.context';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '@/componentes/Icon/Icon';
 import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
+import styles from '@/componentes/Layout/Navbar/sections/shared.module.css';
 
 export const WalletNav = () => {
   const { account, usdcBalance, climatecoinBalance } = useWalletContext();
@@ -25,36 +27,37 @@ export const WalletNav = () => {
     <div className="flex items-center">
       <Popover>
         <Popover.Button>
-          <button className="flex items-center rounded-full border-2 border-solid border-neutral-6 px-4 py-3 hover:bg-neutral-8">
-            <div className="flex text-sm font-bold text-neutral-2 ">
-              <span className={'font-bold'}>{t<string>('components.Navbar.wallet.wallet')}</span>
-              <span className={'ml-1 text-sm font-normal text-primary'}>{`(${t('intlNumber', {
+          <button
+            className={clsx(styles.button, 'border-2 border-solid border-neutral-6 px-3.5 pl-5')}
+          >
+            <div className="flex space-x-1 text-sm font-bold text-neutral-2">
+              <span>{t<string>('components.Navbar.wallet.wallet')}</span>
+              <span className="font-normal text-primary">{`(${t('intlNumber', {
                 val: climatecoinBalance(),
               })} CC)`}</span>
             </div>
             <Icon id="arrow-down-simple-line" className="h-6 w-6" />
           </button>
         </Popover.Button>
-        <Popover.Panel>
-          <div className="text-sm text-neutral-4">
+        <Popover.Panel className="p-2">
+          <div className="divide-x text-sm text-neutral-4">
             {walletOptions.map((option, i) => {
               return (
-                <div key={i} className="border-b last:border-none">
-                  <Popover.Wallet
-                    name={option.name}
-                    isActive={true}
-                    account={option.account}
-                    amount={option.amount}
-                    onClick={() => {
-                      navigate(`/wallet/${option.address}`);
-                    }}
-                    icon={
-                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-6">
-                        <Icon id="wallet-line" className="h-6 w-6" />
-                      </div>
-                    }
-                  />
-                </div>
+                <Popover.Wallet
+                  name={option.name}
+                  isActive={true}
+                  account={option.account}
+                  amount={option.amount}
+                  onClick={() => {
+                    navigate(`/wallet/${option.address}`);
+                  }}
+                  key={i}
+                  icon={
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-6">
+                      <Icon id="wallet-line" className="h-6 w-6" />
+                    </div>
+                  }
+                />
               );
             })}
           </div>

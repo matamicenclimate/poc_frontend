@@ -14,6 +14,7 @@ import { Link } from '@/componentes/Elements/Link/Link';
 import clsx from 'clsx';
 import { useMarkNotificationsAsRead } from '@/componentes/Layout/Navbar/api/useMarkNotificationsAsRead';
 import React from 'react';
+import styles from './shared.module.css';
 
 const modelToUrl: Record<string, string> = {
   'carbon-documents': 'documents',
@@ -37,30 +38,36 @@ export const NotificationNav = () => {
     if (notifications.data) {
       return (
         <div>
-          <ul className="">
+          <ul className="divide-y">
             {notifications.data.map((notification) => {
               const getDate = () => {
-                if (differenceInWeeks(new Date(), parseJSON(notification.createdAt)) > 0) {
-                  return `${differenceInWeeks(new Date(), parseJSON(notification.createdAt))}w`;
-                } else if (differenceInDays(new Date(), parseJSON(notification.createdAt)) > 0) {
-                  return `${differenceInDays(new Date(), parseJSON(notification.createdAt))}d`;
-                } else if (differenceInHours(new Date(), parseJSON(notification.createdAt)) > 0) {
-                  return `${differenceInHours(new Date(), parseJSON(notification.createdAt))}h`;
+                let data = differenceInWeeks(new Date(), parseJSON(notification.createdAt));
+                if (data > 0) {
+                  return `${data}w`;
                 }
-                return `${differenceInMinutes(new Date(), parseJSON(notification.createdAt))}m`;
+                data = differenceInDays(new Date(), parseJSON(notification.createdAt));
+                if (data > 0) {
+                  return `${data}d`;
+                }
+                data = differenceInHours(new Date(), parseJSON(notification.createdAt));
+                if (data > 0) {
+                  return `${data}h`;
+                }
+                data = differenceInMinutes(new Date(), parseJSON(notification.createdAt));
+                return `${data}m`;
               };
 
               return (
-                <li
-                  key={notification._id}
-                  className="flex items-center space-x-2 border-b py-1 text-sm last:border-b-0"
-                >
+                <li key={notification._id} className="flex items-center space-x-2 text-sm ">
                   <ConditionalWrapper
                     condition={!!notification.model}
                     wrapper={(children) => (
                       <Link
                         to={`/${modelToUrl[notification.model as string]}/${notification.model_id}`}
-                        className="flex w-full items-center space-x-2 rounded py-2 px-1 text-neutral-4 no-underline hover:bg-neutral-7"
+                        className={clsx(
+                          'flex w-full items-center no-underline',
+                          styles.popover__option
+                        )}
                       >
                         {children}
                       </Link>
@@ -103,11 +110,11 @@ export const NotificationNav = () => {
     <div className="flex items-center">
       <Popover onClose={markAsRead.mutateAsync}>
         <Popover.Button>
-          <button className="relative flex p-1">
+          <button className={clsx(styles.button, 'relative')}>
             <Icon id="bell-line" className="h-7 w-7" />
             {notifications?.data
               ? notifications?.data?.filter((i) => !i.is_read).length > 0 && (
-                  <div className="absolute right-0 top-0 h-3 w-3 rounded-full bg-primary-green" />
+                  <div className="absolute right-3 top-3 h-3 w-3 rounded-full bg-primary-green" />
                 )
               : null}
           </button>

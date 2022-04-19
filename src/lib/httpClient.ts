@@ -34,11 +34,6 @@ httpClient.interceptors.response.use(
 
       return httpClient.request(error.config);
     }
-    // useNotificationStore.getState().addNotification({
-    //   type: 'error',
-    //   title: 'Error',
-    //   message,
-    // });
 
     return Promise.reject(new Error(message as string));
   }
