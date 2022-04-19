@@ -14,6 +14,7 @@ export interface Activity {
   updated_by: object;
   user: object;
   id: string;
+  supply: string;
 }
 
 function fetchActivities(type: string | null): Promise<Activity[]> {

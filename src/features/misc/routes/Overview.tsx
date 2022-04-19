@@ -72,7 +72,7 @@ export const Overview = () => {
                     {data.type}
                   </Pill>
                 </td>
-                <td className="text-sm">{data.nft.supply}</td>
+                <td className="text-sm">{data.supply}</td>
                 <td key="operation" className="text-sm">
                   {data.nft.asa_txn_id}
                 </td>
