@@ -3,71 +3,101 @@ import { Link } from '@/componentes/Elements/Link/Link';
 import { useTranslation } from 'react-i18next';
 import { Head } from '@/componentes/Layout/Head';
 import { Title } from '@/componentes/Elements/Title/Title';
-import { Pill } from '@/componentes/Elements/Pill/Pill';
+import { Pill, PillProps } from '@/componentes/Elements/Pill/Pill';
 import OverviewImage from '../../../assets/images/overview.jpg';
 import { Button } from '@/componentes/Elements/Button/Button';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useWalletContext } from '@/providers/Wallet.context';
 import { useCurrencyContext } from '@/providers/Currency.context';
 import { Icon } from '@/componentes/Icon/Icon';
 import { BalanceChart } from '@/features/misc/components/BalanceChart';
-import {useGetChartData} from "@/features/misc/api/useGetChartData";
+import { useGetChartData } from '@/features/misc/api/useGetChartData';
+import { useGetActivities } from '../api/getActivity';
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
+import { format } from 'date-fns';
 
 export const Overview = () => {
   const { t } = useTranslation();
+  const [tabSelected, setTabSelected] = useState<string | null>(null);
 
-  const tableData = [
-    {
-      type: t('components.Overview.buy'),
-      total: '641,20 CC',
-      operationId: '3DkQyAdif6kQLPMBudsa23rfew',
-      date: '02-02-2022  21:12',
-    },
-    {
-      type: t('components.Overview.sell'),
-      total: '332,12 CC',
-      operationId: '23fasfaDkQyAdif6kQLdsaPMBu',
-      date: '02-02-2022  21:12',
-    },
-    {
-      type: t('components.Overview.transfer'),
-      total: '112,10 CC',
-      operationId: '3tr6uffgDkQygfeAdif6kQLPMBu',
-      date: '02-02-2022  21:12',
-    },
-    {
-      type: t('components.Overview.offset'),
-      total: '112,10 CC',
-      operationId: '3tr6uffgDkQygfeAdif6kQLPMBu',
-      date: '02-02-2022  21:12',
-    },
-  ];
-
-  const [filterTable, setfilterTable] = useState(tableData);
-
-  useEffect(() => {
-    setfilterTable(tableData);
-  }, [t]);
+  const activities = useGetActivities(tabSelected);
 
   const tabs = [
-    t('components.Overview.all'),
-    t('components.Overview.buy'),
-    t('components.Overview.sell'),
-    t('components.Overview.transfer'),
-    t('components.Overview.offset'),
+    {
+      label: t('components.Overview.all'),
+      value: null,
+    },
+    {
+      label: t('components.Overview.swap'),
+      value: 'swap',
+    },
+    {
+      label: t('components.Overview.buy'),
+      value: 'buy',
+    },
+    {
+      label: t('components.Overview.sell'),
+      value: 'sell',
+    },
+    {
+      label: t('components.Overview.transfer'),
+      value: 'transfer',
+    },
   ];
 
-  const filtredActivity = (type: string) => {
-    if (type !== t('components.Overview.all')) {
-      setfilterTable(tableData.filter((el) => el.type === type));
-    } else {
-      setfilterTable(tableData);
-    }
+  const pillVariants: Record<string, PillProps['variant']> = {
+    swap: 'swap',
+    buy: 'featured',
+    sell: 'popular',
+    offset: 'comingSoon',
   };
 
   const { climatecoinBalance } = useWalletContext();
   const { formatter } = useCurrencyContext();
-  const chartBalance = useGetChartData()
+  const chartBalance = useGetChartData();
+
+  const renderActivity = () => {
+    if (activities?.data) {
+      return (
+        <tbody>
+          {activities.data.map((data) => {
+            return (
+              <tr key={data.id}>
+                <td className="inline-block">
+                  <Pill
+                    style="solid"
+                    className="text-xs"
+                    variant={data.type ? pillVariants[data.type] : 'new'}
+                  >
+                    {data.type}
+                  </Pill>
+                </td>
+                <td className="text-sm">{data.nft.supply}</td>
+                <td key="operation" className="text-sm">
+                  {data.nft.asa_txn_id}
+                </td>
+                <td className="text-right text-sm">
+                  {format(new Date(data.createdAt), 'dd/MM/yyyy')}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      );
+    }
+    if (activities.error instanceof Error) {
+      return (
+        <tr>
+          <td colSpan={4}>{('An error has occurred: ' + activities.error.message) as string}</td>
+        </tr>
+      );
+    }
+    return (
+      <tr>
+        <Spinner />
+      </tr>
+    );
+  };
 
   return (
     <MainLayout title={t('misc.Overview.title')}>
@@ -88,7 +118,7 @@ export const Overview = () => {
                   {t<string>('intlNumber', { val: climatecoinBalance().toFixed(2) })}
                 </p>
                 <div className="h-[1.625rem] w-[6.6875rem] text-center">
-                  <Pill key="climatecoin" style="solid" variant="popular">
+                  <Pill style="solid" variant="popular">
                     Climatecoins
                   </Pill>
                 </div>
@@ -118,7 +148,7 @@ export const Overview = () => {
         </div>
       </div>
 
-      <div id="bottom-row" className="grid gap-7 md:grid-cols-3">
+      <div id="bottom-row" className="grid gap-7 p-8 md:grid-cols-3">
         <div
           id="view-more-panel"
           className="flex h-[27.25rem] flex-col justify-end rounded-xl bg-cover bg-center px-8 pb-6 text-neutral-9 "
@@ -146,8 +176,13 @@ export const Overview = () => {
           <div id="activity-panel-tabs" className="flex gap-4 ">
             {tabs.map((tab) => {
               return (
-                <Button onClick={() => filtredActivity(tab)} size="sm" key={tab} variant="light">
-                  {tab}
+                <Button
+                  onClick={() => setTabSelected(tab.value)}
+                  size="xs"
+                  key={tab.label}
+                  variant="light"
+                >
+                  {tab.label}
                 </Button>
               );
             })}
@@ -156,45 +191,18 @@ export const Overview = () => {
           <Title size={4} as={1}>
             {t('components.Overview.activity')}
           </Title>
-          <table className="w-full border-separate [border-spacing:1rem]">
+          <table className=" border-separate [border-spacing:1rem] md:col-span-2 ">
             <thead>
               <tr className="mb-5 border-b">
-                <th className="text-left">{t<string>('components.Overview.type')}</th>
-                <th className="text-left">{t<string>('components.Overview.total')}</th>
-                <th className="text-left">{t<string>('components.Overview.operationId')}</th>
-                <th className="text-right">{t<string>('components.Overview.date')}</th>
+                <th className="text-left text-xs">{t<string>('components.Overview.type')}</th>
+                <th className="text-left text-xs">{t<string>('components.Overview.total')}</th>
+                <th className="text-left text-xs">
+                  {t<string>('components.Overview.operationId')}
+                </th>
+                <th className="text-right text-xs">{t<string>('components.Overview.date')}</th>
               </tr>
             </thead>
-            <tbody>
-              {filterTable.map((data, i) => {
-                return (
-                  <tr key={i}>
-                    <td className="inline-block" key="type">
-                      <Pill
-                        key={data.type}
-                        style="solid"
-                        variant={
-                          data.type === t('components.Overview.buy')
-                            ? 'featured'
-                            : data.type === t('components.Overview.sell')
-                            ? 'popular'
-                            : data.type === t('components.Overview.offset')
-                            ? 'comingSoon'
-                            : 'new'
-                        }
-                      >
-                        {data.type}
-                      </Pill>
-                    </td>
-                    <td key="total">{data.total}</td>
-                    <td key="operation">{data.operationId}</td>
-                    <td className="text-right" key="date">
-                      {data.date}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
+            {renderActivity()}
           </table>
         </div>
       </div>

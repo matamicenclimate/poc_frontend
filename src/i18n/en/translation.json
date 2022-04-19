@@ -47,7 +47,8 @@
         "title": "Your help against climate change.",
         "subtitle": "Use your climatecoins to help in the fight against climate change.",
         "link": "View more"
-      }
+      },
+      "swap": "Swap"
     },
     "Navbar": {
       "i18n": {

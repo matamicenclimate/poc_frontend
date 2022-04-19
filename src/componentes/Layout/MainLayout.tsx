@@ -7,22 +7,13 @@ interface MainLayoutProps {
   children: React.ReactNode;
 }
 
-export const Footer = () => {
-  return (
-    <footer className="animate-pulse">
-      <div className="m-4 rounded bg-gray-200 p-2">aqui va el footer</div>
-    </footer>
-  );
-};
-
 export const MainLayout = ({ title, children }: MainLayoutProps) => {
   return (
     <>
       <Head title={title} />
-      <div className="flex min-h-screen flex-col">
+      <div className="flex min-h-screen flex-col pb-12">
         <Navbar />
         <div className="mx-auto w-full max-w-screen-lg flex-grow">{children}</div>
-        <Footer />
       </div>
     </>
   );

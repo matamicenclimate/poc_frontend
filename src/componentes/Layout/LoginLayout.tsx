@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Head } from './Head';
-import { ReactComponent as Logolight } from '@/assets/logo-light.svg';
+import Logolight from '@/assets/logo-light.png';
 import LoginImage from '../../assets/images/login.jpg';
 
 interface MainLayoutProps {
@@ -19,7 +19,7 @@ export const LoginLayout = ({ title, children }: MainLayoutProps) => {
           style={{ backgroundImage: `url(${LoginImage})` }}
         >
           <Link to="/">
-            <Logolight className="h-auto w-64" />
+            <img className="h-auto w-64" src={`${Logolight}`} />
           </Link>
         </div>
         <div className="col-span-3 flex flex-col justify-around p-4">{children}</div>

@@ -118,4 +118,5 @@ export interface Metadata {
 export interface Properties {
   Serial_Number: string;
   Provider: string;
+  Credits: number;
 }
