@@ -68,7 +68,7 @@ async function handleSwap(
 
   console.log({ result });
 
-  return httpClient.post(`/carbon-documents/${documentId}/swap`);
+  return httpClient.post(`/carbon-documents/${documentId}/swap`, { txnId: txId });
 }
 
 export function useSwapNftForClimatecoins() {

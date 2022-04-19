@@ -12,15 +12,26 @@ import { useCurrencyContext } from '@/providers/Currency.context';
 import { Icon } from '@/componentes/Icon/Icon';
 import { BalanceChart } from '@/features/misc/components/BalanceChart';
 import { useGetChartData } from '@/features/misc/api/useGetChartData';
-import { useGetActivities } from '../api/getActivity';
+import { useGetActivities } from '../api/useGetActivity';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { format } from 'date-fns';
+
+const pillVariants: Record<string, PillProps['variant']> = {
+  swap: 'swap',
+  buy: 'featured',
+  sell: 'popular',
+  offset: 'comingSoon',
+};
 
 export const Overview = () => {
   const { t } = useTranslation();
   const [tabSelected, setTabSelected] = useState<string | null>(null);
 
   const activities = useGetActivities(tabSelected);
+
+  const { climatecoinBalance } = useWalletContext();
+  const { formatter } = useCurrencyContext();
+  const chartBalance = useGetChartData();
 
   const tabs = [
     {
@@ -45,25 +56,14 @@ export const Overview = () => {
     },
   ];
 
-  const pillVariants: Record<string, PillProps['variant']> = {
-    swap: 'swap',
-    buy: 'featured',
-    sell: 'popular',
-    offset: 'comingSoon',
-  };
-
-  const { climatecoinBalance } = useWalletContext();
-  const { formatter } = useCurrencyContext();
-  const chartBalance = useGetChartData();
-
   const renderActivity = () => {
     if (activities?.data) {
       return (
-        <tbody>
+        <tbody className="text-sm">
           {activities.data.map((data) => {
             return (
               <tr key={data.id}>
-                <td className="inline-block">
+                <td>
                   <Pill
                     style="solid"
                     className="text-xs"
@@ -72,13 +72,23 @@ export const Overview = () => {
                     {data.type}
                   </Pill>
                 </td>
-                <td className="text-sm">{data.supply}</td>
-                <td key="operation" className="text-sm">
-                  {data.nft.asa_txn_id}
+                <td>{data.supply}</td>
+                <td>
+                  {data.nft.metadata.description}
+                  <Link
+                    href={`${process.env.REACT_APP_ALGORAND_EXPLORER_URL}asset/${data.nft.asa_id}`}
+                    className="inline-flex items-center text-xs"
+                  >
+                    View asset <img src="icons/algoexplorer.png" className="h-3 w-3 rounded-full" />
+                  </Link>{' '}
+                  <Link
+                    href={`${process.env.REACT_APP_ALGORAND_EXPLORER_URL}tx/${data.nft.asa_txn_id}`}
+                    className="inline-flex items-center text-xs"
+                  >
+                    View txn <img src="icons/algoexplorer.png" className="h-3 w-3 rounded-full" />
+                  </Link>
                 </td>
-                <td className="text-right text-sm">
-                  {format(new Date(data.createdAt), 'dd/MM/yyyy')}
-                </td>
+                <td className="text-right">{format(new Date(data.date), 'dd/MM/yyyy')}</td>
               </tr>
             );
           })}
@@ -139,7 +149,11 @@ export const Overview = () => {
           <div id="graphic-panel" className="col-span-2 flex flex-col text-sm">
             <div className="flex-grow" />
             <div>
-              <BalanceChart width={500} />
+              <BalanceChart
+                data={chartBalance.data?.data}
+                labels={chartBalance.data?.labels}
+                width={500}
+              />
             </div>
             <p className="py-4 pt-8 text-right">
               🌱 You have enough climatecoins to clean <Link to="#">a football stadium</Link>
@@ -157,10 +171,8 @@ export const Overview = () => {
           <Title size={4} as={3}>
             {t('components.Overview.viewMore.title')}
           </Title>
-          <p className="text-sm text-neutral-6">
-            {t<string>('components.Overview.viewMore.subtitle')}
-          </p>
-          <div className="mt-8 h-[3rem] w-[9.0625rem]">
+          <p className="text-sm text-neutral-6">{t('components.Overview.viewMore.subtitle')}</p>
+          <div className="mt-8 ">
             <Link
               size="sm"
               iconRight={<Icon id="arrow-right" className="ml-1 h-4 w-4" />}
@@ -193,13 +205,11 @@ export const Overview = () => {
           </Title>
           <table className=" border-separate [border-spacing:1rem] md:col-span-2 ">
             <thead>
-              <tr className="mb-5 border-b">
-                <th className="text-left text-xs">{t<string>('components.Overview.type')}</th>
-                <th className="text-left text-xs">{t<string>('components.Overview.total')}</th>
-                <th className="text-left text-xs">
-                  {t<string>('components.Overview.operationId')}
-                </th>
-                <th className="text-right text-xs">{t<string>('components.Overview.date')}</th>
+              <tr className="mb-5 border-b text-left text-xs">
+                <th>{t('components.Overview.type')}</th>
+                <th>{t('components.Overview.total')}</th>
+                <th>{t('components.Overview.operationId')}</th>
+                <th className="text-right ">{t('components.Overview.date')}</th>
               </tr>
             </thead>
             {renderActivity()}

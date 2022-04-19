@@ -18,7 +18,7 @@ export interface Activity {
 }
 
 function fetchActivities(type: string | null): Promise<Activity[]> {
-  const params = new URLSearchParams({ ...(type ? { type } : {}) });
+  const params = new URLSearchParams({ ...(type ? { type } : {}), _sort: 'date:asc' });
   return httpClient.get(`/activities/me?${params}`);
 }
 

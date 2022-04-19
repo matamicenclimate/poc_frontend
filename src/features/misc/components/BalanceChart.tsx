@@ -22,15 +22,13 @@ ChartJS.register(
   Filler,
   Legend
 );
-export function BalanceChart({ width }: any) {
-  const labels = ['ENE', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL'];
-
+export function BalanceChart({ width, labels, data: chartData }: any) {
   const data = () => ({
     labels,
     datasets: [
       {
         label: 'Climatecoin Balance',
-        data: [0, 100, 400, 300, 700, 500, 350],
+        data: chartData,
         borderColor: '#00db7d',
         fill: 'start',
         backgroundColor: (context: ScriptableContext<'line'>) => {
