@@ -3,6 +3,7 @@ import { httpClient } from '@/lib/httpClient';
 import { useQuery } from 'react-query';
 
 export interface Activity {
+  txn_id?: string;
   type: string;
   _id: string;
   date: Date;

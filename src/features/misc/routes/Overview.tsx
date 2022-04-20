@@ -75,6 +75,7 @@ export const Overview = () => {
                 <td>{data.supply}</td>
                 <td>
                   {data.nft.metadata.description}
+                  <br />
                   <Link
                     href={`${process.env.REACT_APP_ALGORAND_EXPLORER_URL}asset/${data.nft.asa_id}`}
                     className="inline-flex items-center text-xs"
@@ -82,7 +83,7 @@ export const Overview = () => {
                     View asset <img src="icons/algoexplorer.png" className="h-3 w-3 rounded-full" />
                   </Link>{' '}
                   <Link
-                    href={`${process.env.REACT_APP_ALGORAND_EXPLORER_URL}tx/${data.nft.asa_txn_id}`}
+                    href={`${process.env.REACT_APP_ALGORAND_EXPLORER_URL}tx/${data.txn_id}`}
                     className="inline-flex items-center text-xs"
                   >
                     View txn <img src="icons/algoexplorer.png" className="h-3 w-3 rounded-full" />

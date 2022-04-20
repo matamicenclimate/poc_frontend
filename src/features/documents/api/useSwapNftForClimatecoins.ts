@@ -1,5 +1,4 @@
 import { documentKeys, CarbonDocument } from './index';
-import { httpClient } from '@/lib/httpClient';
 import { useMutation, useQueryClient } from 'react-query';
 import { useAlert } from 'react-alert';
 import { getClient } from '@/lib/algosdk';
@@ -7,6 +6,7 @@ import algosdk, { OnApplicationComplete, waitForConfirmation } from 'algosdk';
 import { magiclink } from '@/lib/magiclink';
 import { Buffer } from 'buffer';
 import { getMethodByName, vaultContract } from '@/contracts/vault';
+import { httpClient } from '@/lib/httpClient';
 
 async function handleSwap(
   address: string,
@@ -54,21 +54,37 @@ async function handleSwap(
     suggestedParams,
   });
   console.log({ txn: swapTxn });
+  console.log([unfreezeTxn, transferTxn, swapTxn]);
   algosdk.assignGroupID([unfreezeTxn, transferTxn, swapTxn]);
+
+  console.log(algosdk.computeGroupID([unfreezeTxn, transferTxn, swapTxn]));
 
   const signedTxn = await magiclink.algorand.signGroupTransactionV2([
     { txn: Buffer.from(unfreezeTxn.toByte()).toString('base64') },
     { txn: Buffer.from(transferTxn.toByte()).toString('base64') },
     { txn: Buffer.from(swapTxn.toByte()).toString('base64') },
   ]);
-
+  console.log(signedTxn);
   const blob = signedTxn.map((txn: string) => new Uint8Array(Buffer.from(txn, 'base64')));
-  const { txId } = await getClient().sendRawTransaction(blob).do();
+  const { txId, ...rest } = await getClient().sendRawTransaction(blob).do();
+  console.log({ txId, rest });
   const result = await waitForConfirmation(getClient(), txId, 3);
 
   console.log({ result });
 
-  return httpClient.post(`/carbon-documents/${documentId}/swap`, { txnId: txId });
+  const {
+    txn: {
+      txn: { grp },
+    },
+  } = result;
+
+  console.log(grp, grp.toString());
+
+  return httpClient.post(`/carbon-documents/${documentId}/swap`, {
+    txnId: txId,
+    isGroup: true,
+    groupId: grp.toString(),
+  });
 }
 
 export function useSwapNftForClimatecoins() {

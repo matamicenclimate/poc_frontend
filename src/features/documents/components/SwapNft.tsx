@@ -20,6 +20,7 @@ export function SwapNft({ nftAsaId, nftSupply }: { nftAsaId?: number; nftSupply?
             documentId: documentId as string,
           })
         }
+        disabled={swapNft.isLoading}
       >
         Swap
       </Button>
