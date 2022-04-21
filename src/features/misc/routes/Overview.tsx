@@ -12,7 +12,7 @@ import { useCurrencyContext } from '@/providers/Currency.context';
 import { Icon } from '@/componentes/Icon/Icon';
 import { BalanceChart } from '@/features/misc/components/BalanceChart';
 import { useGetChartData } from '@/features/misc/api/useGetChartData';
-import { useGetActivities } from '../api/useGetActivity';
+import { useGetActivities } from '../api/useGetActivities';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { format } from 'date-fns';
 
@@ -83,7 +83,13 @@ export const Overview = () => {
                     View asset <img src="icons/algoexplorer.png" className="h-3 w-3 rounded-full" />
                   </Link>{' '}
                   <Link
-                    href={`${process.env.REACT_APP_ALGORAND_EXPLORER_URL}tx/${data.txn_id}`}
+                    href={
+                      data.is_group
+                        ? `${
+                            process.env.REACT_APP_ALGORAND_EXPLORER_URL
+                          }tx/group/${encodeURIComponent(data.group_id as string)}`
+                        : `${process.env.REACT_APP_ALGORAND_EXPLORER_URL}tx/${data.txn_id}`
+                    }
                     className="inline-flex items-center text-xs"
                   >
                     View txn <img src="icons/algoexplorer.png" className="h-3 w-3 rounded-full" />
@@ -134,9 +140,7 @@ export const Overview = () => {
                   </Pill>
                 </div>
               </div>
-              <p className="text-2xl text-neutral-4">
-                {formatter(climatecoinBalance() * (40 * 100))}
-              </p>
+              <p className="text-2xl text-neutral-4">{formatter(climatecoinBalance() * 10)}</p>
             </div>
             <div className="flex flex-col space-y-3">
               <Link size="sm" as="button" variant="primary" to="/">
@@ -185,7 +189,7 @@ export const Overview = () => {
             </Link>
           </div>
         </div>
-        <div id="activity-panel" className="flex flex-col space-y-7 md:col-span-2">
+        <div id="activity-panel" className="flex flex-col space-y-4 md:col-span-2">
           <div id="activity-panel-tabs" className="flex gap-4 ">
             {tabs.map((tab) => {
               return (
@@ -204,17 +208,22 @@ export const Overview = () => {
           <Title size={4} as={1}>
             {t('components.Overview.activity')}
           </Title>
-          <table className=" border-separate [border-spacing:1rem] md:col-span-2 ">
-            <thead>
-              <tr className="mb-5 border-b text-left text-xs">
-                <th>{t('components.Overview.type')}</th>
-                <th>{t('components.Overview.total')}</th>
-                <th>{t('components.Overview.operationId')}</th>
-                <th className="text-right ">{t('components.Overview.date')}</th>
-              </tr>
-            </thead>
-            {renderActivity()}
-          </table>
+          <div>
+            <table className=" border-separate [border-spacing:1rem] md:col-span-2 ">
+              <thead>
+                <tr className="mb-5 border-b text-left text-xs">
+                  <th>{t('components.Overview.type')}</th>
+                  <th>{t('components.Overview.total')}</th>
+                  <th>{t('components.Overview.operationId')}</th>
+                  <th className="text-right ">{t('components.Overview.date')}</th>
+                </tr>
+              </thead>
+              {renderActivity()}
+            </table>
+            <div className="px-4">
+              <Link to={'/'}>View all activity</Link>
+            </div>
+          </div>
         </div>
       </div>
     </MainLayout>

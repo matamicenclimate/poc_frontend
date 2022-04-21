@@ -81,7 +81,7 @@ export const NotificationNav = () => {
                         )}
                       />
                     </div>
-                    <div className="flex-grow space-y-1 pl-1">
+                    <div className="flex-grow space-y-1 pl-3">
                       <div className="flex w-full justify-between">
                         <div className="font-medium">{notification.title}</div>
                         <div className="break-normal text-xs">{getDate()}</div>

@@ -7,7 +7,7 @@ export interface ChartBalance {
 }
 
 function fetchChartBalance(): Promise<ChartBalance> {
-  return httpClient.get(`/chart/balance/me`);
+  return httpClient.get(`/chart/balance/me?type=weekly`);
 }
 
 export function useGetChartData() {

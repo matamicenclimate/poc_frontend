@@ -162,7 +162,7 @@ const PopoverOption = ({
         <p
           className={clsx(
             'px-2 text-sm font-normal ',
-            isActive && 'text-neutral-3',
+            isActive && 'text-neutral-3 underline',
             !disabled && [style === 'default' && 'text-neutral-4'],
             disabled && 'text-black-500'
           )}

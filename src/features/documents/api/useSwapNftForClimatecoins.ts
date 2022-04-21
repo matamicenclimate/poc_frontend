@@ -57,12 +57,16 @@ async function handleSwap(
   algosdk.assignGroupID([unfreezeTxn, transferTxn, swapTxn]);
 
   const groupId = algosdk.computeGroupID([unfreezeTxn, transferTxn, swapTxn]).toString('base64');
+  console.log(groupId);
   /** this is silly because magiclink doest support the atomic transaction composer **/
   const signedTxn = await magiclink.algorand.signGroupTransactionV2([
     { txn: Buffer.from(unfreezeTxn.toByte()).toString('base64') },
     { txn: Buffer.from(transferTxn.toByte()).toString('base64') },
     { txn: Buffer.from(swapTxn.toByte()).toString('base64') },
   ]);
+  console.log(signedTxn);
+  // const groupId2 = algosdk.computeGroupID([unfreezeTxn, transferTxn, swapTxn]).toString('base64');
+  // console.log(groupId2);
   /** convert it back to a buffer so we can send it **/
   const blob = signedTxn.map((txn: string) => new Uint8Array(Buffer.from(txn, 'base64')));
   const { txId } = await getClient().sendRawTransaction(blob).do();

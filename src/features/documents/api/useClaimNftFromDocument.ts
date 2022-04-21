@@ -13,7 +13,6 @@ async function claimFromDocument(
   address: string,
   assetId: number
 ): Promise<any> {
-  if (!address) return;
   console.log('opting in...');
   const suggestedParams = await getClient().getTransactionParams().do();
 

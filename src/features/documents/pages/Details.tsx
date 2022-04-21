@@ -18,6 +18,7 @@ import { Title } from '@/componentes/Elements/Title/Title';
 import { useAlert } from 'react-alert';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { useOptinToAsset } from '@/features/wallet/api/useOptinToAsset';
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 
 export const DocumentDetails = () => {
   const { documentId } = useParams();
@@ -102,10 +103,16 @@ export const DocumentDetails = () => {
                     required
                     disabled
                   />
-                  <div className="grid grid-cols-3">
+                  <div className="grid grid-cols-3 gap-4">
                     <div />
-                    <div />
-                    <Button type="submit" size="sm" disabled={claimNft.isLoading}>
+                    <div className="flex items-center justify-end">
+                      {claimNft.isLoading && <Spinner />}
+                    </div>
+                    <Button
+                      type="submit"
+                      size="sm"
+                      disabled={!account?.address || claimNft.isLoading}
+                    >
                       Yes, confirm
                     </Button>
                   </div>

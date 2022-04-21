@@ -406,7 +406,7 @@ export const Upload = () => {
                 </div>
               </Card>
             ) : null}
-            {currStep === UploadSteps.FILES ? (
+            <div className={currStep === UploadSteps.FILES ? 'block' : 'hidden'}>
               <Card>
                 <Title size={5} as={2}>
                   {t('documents.Upload.stepper.FILES')}
@@ -451,7 +451,7 @@ export const Upload = () => {
                   <StepperNavigation />
                 </div>
               </Card>
-            ) : null}
+            </div>
             {currStep === UploadSteps.CONFIRMATION ? (
               <Card>
                 <Title size={5} as={2}>

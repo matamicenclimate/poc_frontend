@@ -83,7 +83,6 @@ export const ProfileNav = () => {
                   icon={<div className={'flex h-full pr-1'}>{option.icon}</div>}
                   description={option.description}
                   name={option.name}
-                  isActive
                   onClick={() => undefined}
                 />
               </Link>

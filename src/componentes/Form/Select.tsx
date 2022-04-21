@@ -13,7 +13,7 @@ type SelectProps<FormSchema> = {
   options: SelectOption[];
   isMulti?: boolean;
   tooltipInfo?: string;
-  // this should be inyected by the <Form />
+  // this should be injected by the <Form />
   control: Control<FormSchema>;
   errors?: SchemaToErrors<FormSchema>;
   required?: boolean;
@@ -25,7 +25,7 @@ type SelectProps<FormSchema> = {
   iconLeft?: React.ReactElement;
 };
 
-const colourStyles = (iconLeft: boolean): StylesConfig => ({
+const colourStyles = (iconLeft: boolean, hasErrors: boolean): StylesConfig => ({
   multiValueLabel: () => ({
     backgroundColor: 'var(--color--secondary-blue)',
     color: 'var(--color--primary-blue)',
@@ -45,7 +45,7 @@ const colourStyles = (iconLeft: boolean): StylesConfig => ({
   }),
   control: (base) => ({
     ...base,
-    border: 'solid 2px var(--color--neutral-6)',
+    border: hasErrors ? 'solid 2px var(--color--error)' : 'solid 2px var(--color--neutral-6)',
     borderRadius: '0.375rem',
   }),
 });
@@ -86,10 +86,10 @@ export function Select<FormSchema>({
           {...field}
           aria-labelledby={name}
           inputId={name}
-          className={clsx(selectClassName, 'flex-grow text-sm', errors[name] && 'border-red-500')}
+          className={clsx(selectClassName, 'flex-grow text-sm')}
           options={options as OptionsOrGroups<any, any>}
           isMulti={isMulti}
-          styles={colourStyles(!!iconLeft)}
+          styles={colourStyles(!!iconLeft, !!errors[name])}
           defaultValue={isMulti ? [] : ('' as any)}
         />
       </div>
