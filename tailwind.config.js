@@ -58,10 +58,6 @@ module.exports = {
       '6xl': '4rem',
       '7xl': '5rem',
     },
-    fontFamily: {
-      DEFAULT: ['Poppins'],
-      alt: ['DMSans'],
-    },
-  },
+   },
   plugins: [],
 };
