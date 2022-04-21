@@ -4,7 +4,7 @@ import { Navbar } from './Navbar/Navbar';
 
 interface MainLayoutProps {
   title?: string;
-  children: React.ReactNode;
+  children: any;
 }
 
 export const MainLayout = ({ title, children }: MainLayoutProps) => {

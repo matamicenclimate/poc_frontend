@@ -13,59 +13,20 @@ import { useGetBalance } from '../api/useGetBalance';
 import { Buffer } from 'buffer/';
 import { Form } from '@/componentes/Form/Form';
 import { Input } from '@/componentes/Form/Inputs';
-import { Title } from '@/componentes/Elements/Title/Title'; // note: the trailing slash is important!
+import { Title } from '@/componentes/Elements/Title/Title';
+import { useWalletContext } from '@/providers/Wallet.context';
+import { Card } from '@/componentes/Card/Card';
+import { useOptinToAsset } from '@/features/wallet/api/useOptinToAsset'; // note: the trailing slash is important!
 
 export const Wallet = () => {
   const { t } = useTranslation();
 
-  const [address, setAdress] = useState<string | null>(null);
-
-  useEffect(() => {
-    const onMount = async () => {
-      // Get user's Algorand public address
-      const publicAddress = await magiclink.algorand.getWallet();
-
-      setAdress(publicAddress);
-    };
-    onMount();
-  }, []);
-
-  const account = useGetBalance(address);
-
-  const optinToAsset = (asaId: number) => async () => {
-    // create the asset accept transaction
-    console.log('opting in...');
-
-    if (!address) return;
-    console.log('opting in...');
-    const suggestedParams = await getClient().getTransactionParams().do();
-
-    const transactionOptions = {
-      from: address,
-      to: address,
-      assetIndex: asaId,
-      amount: 0, // this is an optinTxn so amount has to be 0
-      suggestedParams,
-    };
-
-    const txn = algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject(transactionOptions);
-    console.log({ txn });
-
-    const signedTxn = await magiclink.algorand.signGroupTransactionV2([
-      { txn: Buffer.from(txn.toByte()).toString('base64') },
-    ]);
-
-    const blob = signedTxn.map((txn: string) => new Uint8Array(Buffer.from(txn, 'base64')));
-    const { txId } = await getClient().sendRawTransaction(blob).do();
-    const result = await waitForConfirmation(getClient(), txId, 3);
-
-    console.log({ result });
-  };
+  const { account, hasOptedIn } = useWalletContext();
+  const optinToAsset = useOptinToAsset();
 
   const handleSubmit = async (data: any) => {
     console.log(data);
-    await optinToAsset(Number(data.asaId))();
-    await account.refetch();
+    await optinToAsset.mutateAsync(Number(data.asaId));
   };
 
   return (
@@ -73,14 +34,37 @@ export const Wallet = () => {
       <Breadcrumb links={[{ to: '/wallet', label: t('head.Wallet.title') }]} />
 
       <Title size={1}>{t('wallet.Wallet.title')}</Title>
-      <div className="flex space-x-4">
-        <Button onClick={optinToAsset(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string))}>
-          opt in to climatecoin
-        </Button>
-        <Button onClick={optinToAsset(Number(process.env.REACT_APP_USDC_ASA_ID as string))}>
-          opt in to usdc
-        </Button>
-      </div>
+      {!hasOptedIn(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)) && (
+        <Card padding="sm">
+          <div className="flex items-center justify-between">
+            <div>You have to opt-in to receive Climatecoins in order to continue</div>
+            <Button
+              onClick={() =>
+                optinToAsset.mutateAsync(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string))
+              }
+              size="xs"
+            >
+              opt in to climatecoin
+            </Button>
+          </div>
+        </Card>
+      )}
+      {!hasOptedIn(Number(process.env.REACT_APP_USDC_ASA_ID as string)) && (
+        <Card padding="sm">
+          <div className="flex items-center justify-between">
+            <div>You have to opt-in to receive usdc in order to continue</div>
+            <Button
+              onClick={() =>
+                optinToAsset.mutateAsync(Number(process.env.REACT_APP_USDC_ASA_ID as string))
+              }
+              size="xs"
+            >
+              opt in to usdc
+            </Button>
+          </div>
+        </Card>
+      )}
+
       <Form onSubmit={handleSubmit} className="my-4 space-y-4 rounded border p-4">
         <Title size={3}>Optin to asset</Title>
         <Input name="asaId" type="text" label="asset id" />
@@ -94,9 +78,9 @@ export const Wallet = () => {
         </>
       ) : null}
       <br />
-      {address}
+      {account?.address}
       <br />
-      <pre>{JSON.stringify(account.data, null, 2)}</pre>
+      <pre>{JSON.stringify(account, null, 2)}</pre>
       <br />
     </MainLayout>
   );

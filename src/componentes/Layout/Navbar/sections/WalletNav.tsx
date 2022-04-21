@@ -7,7 +7,7 @@ import clsx from 'clsx';
 import styles from '@/componentes/Layout/Navbar/sections/shared.module.css';
 
 export const WalletNav = () => {
-  const { account, usdcBalance, climatecoinBalance } = useWalletContext();
+  const { account, usdcBalance, climatecoinBalance, algoBalance } = useWalletContext();
   const { t } = useTranslation();
 
   const walletOptions = [
@@ -15,7 +15,11 @@ export const WalletNav = () => {
       name: t('components.Navbar.wallet.wallet'),
       account: account ? `${account.address?.slice(0, 10)}...${account.address?.slice(-10)}` : '',
       address: account?.address,
-      amount: `${t('intlNumber', { val: climatecoinBalance() })} CC - ${t('intlNumber', {
+      amount: `${t('intlNumber', {
+        val: climatecoinBalance(),
+      })} CC - ${t('intlNumber', {
+        val: algoBalance(),
+      })} algo - ${t('intlNumber', {
         val: usdcBalance(),
       })} USDC`,
     },
@@ -30,11 +34,15 @@ export const WalletNav = () => {
           <button
             className={clsx(styles.button, 'border-2 border-solid border-neutral-6 px-3.5 pl-5')}
           >
-            <div className="flex space-x-1 text-sm font-bold text-neutral-2">
+            <div className="flex items-center space-x-1 text-sm font-bold text-neutral-2">
               <span>{t<string>('components.Navbar.wallet.wallet')}</span>
-              <span className="font-normal text-primary">{`(${t('intlNumber', {
-                val: climatecoinBalance(),
-              })} CC)`}</span>
+              <span className="flex items-center font-normal text-primary">
+                ({algoBalance()} <Icon id="algorand" className="h-6 w-6" /> -{' '}
+                {t('intlNumber', {
+                  val: climatecoinBalance(),
+                })}{' '}
+                CC)
+              </span>
             </div>
             <Icon id="arrow-down-simple-line" className="h-6 w-6" />
           </button>

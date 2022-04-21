@@ -72,7 +72,7 @@ export const Overview = () => {
                     {data.type}
                   </Pill>
                 </td>
-                <td>{data.supply}</td>
+                <td>{t('intlNumber', { val: data.supply }) ?? 0}</td>
                 <td>
                   {data.nft.metadata.description}
                   <br />

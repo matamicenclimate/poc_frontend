@@ -37,6 +37,10 @@ export const useWalletContext = () => {
   const climatecoinBalance = () =>
     getAssetBalance(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID));
 
+  const algoDecimalPlaces = 1000000; // 6 decimal places
+  const algoBalance = () =>
+    account.data?.account.amount ? account.data?.account.amount / algoDecimalPlaces : 0;
+
   const getAssetBalance = (assetId: number) => {
     if (!account.data) return 0;
     if (!account.data.account.assets) return 0;
@@ -48,5 +52,20 @@ export const useWalletContext = () => {
     return assetData[0].amount;
   };
 
-  return { account: account.data?.account, usdcBalance, climatecoinBalance };
+  const hasOptedIn = (assetId: number) => {
+    if (!account.data) return false;
+    if (!account.data.account.assets) return false;
+
+    const assetData = account.data.account.assets.filter((asset) => asset['asset-id'] === assetId);
+
+    return assetData.length === 1;
+  };
+
+  return {
+    account: account.data?.account,
+    usdcBalance,
+    climatecoinBalance,
+    algoBalance,
+    hasOptedIn,
+  };
 };

@@ -2,6 +2,7 @@ import { Button } from '@/componentes/Elements/Button/Button';
 import { useWalletContext } from '@/providers/Wallet.context';
 import { useParams } from 'react-router-dom';
 import { useSwapNftForClimatecoins } from '@/features/documents/api/useSwapNftForClimatecoins';
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 
 export function SwapNft({ nftAsaId, nftSupply }: { nftAsaId?: number; nftSupply?: number }) {
   const { account } = useWalletContext();
@@ -11,6 +12,7 @@ export function SwapNft({ nftAsaId, nftSupply }: { nftAsaId?: number; nftSupply?
   return (
     <div>
       asset id: {nftAsaId}
+      {swapNft.isLoading && <Spinner />}
       <Button
         onClick={() =>
           swapNft.mutateAsync({

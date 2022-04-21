@@ -53,37 +53,25 @@ async function handleSwap(
     onComplete: OnApplicationComplete.NoOpOC,
     suggestedParams,
   });
-  console.log({ txn: swapTxn });
-  console.log([unfreezeTxn, transferTxn, swapTxn]);
+
   algosdk.assignGroupID([unfreezeTxn, transferTxn, swapTxn]);
 
-  console.log(algosdk.computeGroupID([unfreezeTxn, transferTxn, swapTxn]));
-
+  const groupId = algosdk.computeGroupID([unfreezeTxn, transferTxn, swapTxn]).toString('base64');
+  /** this is silly because magiclink doest support the atomic transaction composer **/
   const signedTxn = await magiclink.algorand.signGroupTransactionV2([
     { txn: Buffer.from(unfreezeTxn.toByte()).toString('base64') },
     { txn: Buffer.from(transferTxn.toByte()).toString('base64') },
     { txn: Buffer.from(swapTxn.toByte()).toString('base64') },
   ]);
-  console.log(signedTxn);
+  /** convert it back to a buffer so we can send it **/
   const blob = signedTxn.map((txn: string) => new Uint8Array(Buffer.from(txn, 'base64')));
-  const { txId, ...rest } = await getClient().sendRawTransaction(blob).do();
-  console.log({ txId, rest });
+  const { txId } = await getClient().sendRawTransaction(blob).do();
   const result = await waitForConfirmation(getClient(), txId, 3);
-
-  console.log({ result });
-
-  const {
-    txn: {
-      txn: { grp },
-    },
-  } = result;
-
-  console.log(grp, grp.toString());
 
   return httpClient.post(`/carbon-documents/${documentId}/swap`, {
     txnId: txId,
     isGroup: true,
-    groupId: grp.toString(),
+    groupId: groupId,
   });
 }
 
@@ -108,8 +96,9 @@ export function useSwapNftForClimatecoins() {
         queryClient.invalidateQueries(documentKeys.detail(data._id as string));
         alert.success('Asset swapped succesfully');
       },
-      onError: () => {
+      onError: (e: Error) => {
         alert.error('Error claiming nft');
+        console.error(e.message);
       },
     }
   );

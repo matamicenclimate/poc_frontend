@@ -17,6 +17,7 @@ import { SwapNft } from '@/features/documents/components/SwapNft';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { useAlert } from 'react-alert';
 import { Link } from '@/componentes/Elements/Link/Link';
+import { useOptinToAsset } from '@/features/wallet/api/useOptinToAsset';
 
 export const DocumentDetails = () => {
   const { documentId } = useParams();
@@ -25,7 +26,8 @@ export const DocumentDetails = () => {
   const alert = useAlert();
   const document = useGetDocument(documentId as string);
   const claimNft = useClaimNftFromDocument();
-  const { account } = useWalletContext();
+  const { account, hasOptedIn } = useWalletContext();
+  const optinToAsset = useOptinToAsset();
 
   const handleClaim = async () => {
     if (!document.data || !account?.address || !document.data.developer_nft.asa_id) return;
@@ -67,16 +69,20 @@ export const DocumentDetails = () => {
                     </div>
                     <div className="flex-grow" />
                     <div className="text-right">
-                      <div className="text-lg">
-                        <Link
-                          href={`${process.env.REACT_APP_ALGORAND_EXPLORER_URL}asset/${Number(
-                            document.data.developer_nft?.asa_id
-                          )}`}
-                        >
-                          {document.data.developer_nft?.asa_id}
-                        </Link>{' '}
-                      </div>
-                      <div>{document.data.developer_nft?.supply} C02</div>
+                      <div className="text-lg">{document.data.developer_nft?.supply} CO2</div>
+                      <Link
+                        href={`${process.env.REACT_APP_ALGORAND_EXPLORER_URL}asset/${Number(
+                          document.data.developer_nft?.asa_id
+                        )}`}
+                        className="inline-flex items-center"
+                      >
+                        {document.data.developer_nft?.asa_id}{' '}
+                        <img
+                          src="/icons/algoexplorer.png"
+                          className="rounded-full"
+                          style={{ width: 12, height: 12 }}
+                        />
+                      </Link>
                     </div>
                   </div>
                   <div className="mx-auto w-full max-w-sm text-center text-primary">
@@ -105,6 +111,24 @@ export const DocumentDetails = () => {
                   </div>
                 </Form>
               </div>
+            </Card>
+          )}
+          {!hasOptedIn(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)) && (
+            <Card>
+              <Title size={5} as={2}>
+                Optin to Climatecoin
+              </Title>{' '}
+              <div>You have to opt-in to receive Climatecoins in order to continue</div>
+              <Button
+                onClick={() =>
+                  optinToAsset.mutateAsync(
+                    Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)
+                  )
+                }
+                size="xs"
+              >
+                opt in to climatecoin
+              </Button>
             </Card>
           )}
           {!!document.data.developer_nft && document.data.status === 'claimed' && (
