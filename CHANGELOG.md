@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/Dekalabs/climatecoin-frontend/compare/v0.4.0...v0.4.1) (2022-04-21)
+
+
+### Features
+
+* add real data to activity panel ([#75](https://github.com/Dekalabs/climatecoin-frontend/issues/75)) ([7bd637b](https://github.com/Dekalabs/climatecoin-frontend/commit/7bd637be81a8bc02564639254327e23501d021af))
+* add supply ([d5e7385](https://github.com/Dekalabs/climatecoin-frontend/commit/d5e73851b6597d449e46f204adf3fabccb4b74c6))
+* add tooltip component ([#71](https://github.com/Dekalabs/climatecoin-frontend/issues/71)) ([d2be03e](https://github.com/Dekalabs/climatecoin-frontend/commit/d2be03ec8fc142c514902604e7898917d51beb65))
+* added arrow to popover panel. updated navbar styles ([#78](https://github.com/Dekalabs/climatecoin-frontend/issues/78)) ([863f7e5](https://github.com/Dekalabs/climatecoin-frontend/commit/863f7e593b98a767d5a98313832549bd9389d4a2))
+* added button to clear notifications. more translations ([#65](https://github.com/Dekalabs/climatecoin-frontend/issues/65)) ([0a60dd7](https://github.com/Dekalabs/climatecoin-frontend/commit/0a60dd7278c5f908f4be8cb264771c9edb099123))
+* charts ([#72](https://github.com/Dekalabs/climatecoin-frontend/issues/72)) ([b3e418e](https://github.com/Dekalabs/climatecoin-frontend/commit/b3e418e35af5b05b667957892b15c360965b3d46))
+* clear notifications on popover clsoe ([#69](https://github.com/Dekalabs/climatecoin-frontend/issues/69)) ([d7a564b](https://github.com/Dekalabs/climatecoin-frontend/commit/d7a564b91d83b267c4fb1fd881e944838d410b85))
+* connected chart to strapi ([#79](https://github.com/Dekalabs/climatecoin-frontend/issues/79)) ([e59db76](https://github.com/Dekalabs/climatecoin-frontend/commit/e59db76661186ae10424cfdfeeabc7ccb4b4d9ea))
+* map ([#74](https://github.com/Dekalabs/climatecoin-frontend/issues/74)) ([9af7ae2](https://github.com/Dekalabs/climatecoin-frontend/commit/9af7ae2d40e87675f7f5ae9c17b4910ab7cec736))
+* notification popover ([#63](https://github.com/Dekalabs/climatecoin-frontend/issues/63)) ([566d7dd](https://github.com/Dekalabs/climatecoin-frontend/commit/566d7dd9c5c074f9341bd017c8f2fa828f36a262))
+* notifications and korean translations ([#64](https://github.com/Dekalabs/climatecoin-frontend/issues/64)) ([869adc4](https://github.com/Dekalabs/climatecoin-frontend/commit/869adc4ff150f343f9c1a0706770d3c1e4d7ddc1))
+* optin and claim + ui improvements ([#59](https://github.com/Dekalabs/climatecoin-frontend/issues/59)) ([4d8c854](https://github.com/Dekalabs/climatecoin-frontend/commit/4d8c854710e32c637170f40245d0abbf3e624714))
+
+
+### Bug Fixes
+
+* currency format ([0b5c9b0](https://github.com/Dekalabs/climatecoin-frontend/commit/0b5c9b038dcd5399758bd538e577b827ca13b31e))
+* french i18n ([#60](https://github.com/Dekalabs/climatecoin-frontend/issues/60)) ([eea74a3](https://github.com/Dekalabs/climatecoin-frontend/commit/eea74a3ee8d5f9cd5edeee08a2166d27482745d2))
+* improved user retrieval ([#61](https://github.com/Dekalabs/climatecoin-frontend/issues/61)) ([daf69ec](https://github.com/Dekalabs/climatecoin-frontend/commit/daf69ec0263227268c3ad1f8e19d3c4ff4e847e9))
+* login error ([a8cf178](https://github.com/Dekalabs/climatecoin-frontend/commit/a8cf178c5e634e06769f6a9a06ba9038b5e9e908))
+* mint ([#81](https://github.com/Dekalabs/climatecoin-frontend/issues/81)) ([7b1d5a3](https://github.com/Dekalabs/climatecoin-frontend/commit/7b1d5a396697076fa4719de1d2a7339e1058ed53))
+* notifications pagination ([#70](https://github.com/Dekalabs/climatecoin-frontend/issues/70)) ([5b4868a](https://github.com/Dekalabs/climatecoin-frontend/commit/5b4868a05b1e437aa2daf095d0c0bc7db5af9412))
+* typescript ([#68](https://github.com/Dekalabs/climatecoin-frontend/issues/68)) ([9e9707c](https://github.com/Dekalabs/climatecoin-frontend/commit/9e9707cc858050890a69e93a8a8d7154a1bede53))
+* upload file validation ([#62](https://github.com/Dekalabs/climatecoin-frontend/issues/62)) ([38065a8](https://github.com/Dekalabs/climatecoin-frontend/commit/38065a8bd9debb2225531e99be0688d0aa8dade6))
+
 ## [0.4.0](https://github.com/Dekalabs/climatecoin-frontend/compare/v0.3.0...v0.4.0) (2022-04-06)
 
 
