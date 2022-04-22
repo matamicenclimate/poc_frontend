@@ -12,13 +12,13 @@
 }
 
 .rdp-caption_label {
-  font-family: Poppins;
+  font-family: PPNeueMontreal;
   font-size: 16px;
 }
 
 .rdp-multiple_months .rdp-button.rdp-day.rdp-day_selected.rdp-day_range_start:after,
 .rdp-multiple_months .rdp-button.rdp-day.rdp-day_selected.rdp-day_range_end:after {
-  content: "";
+  content: '';
   position: absolute;
   width: 100%;
   height: 100%;
@@ -36,10 +36,10 @@
   z-index: 1;
 }
 
-.rdp-row .rdp-cell:last-child  .rdp-day_selected:not([disabled]){
+.rdp-row .rdp-cell:last-child .rdp-day_selected:not([disabled]) {
   border-radius: 0 8px 8px 0;
 }
 
 button.rdp-button_reset.rdp-button.rdp-day.rdp-day_selected.rdp-day_range_middle {
-  color: var(--color--neutral-2)
+  color: var(--color--neutral-2);
 }

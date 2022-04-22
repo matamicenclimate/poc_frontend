@@ -47,7 +47,7 @@ export const DocumentList = () => {
       return (
         <>
           {documents.data.map((document) => (
-            <tr key={document._id}>
+            <tr key={document._id} className="text-left">
               <td>
                 <div className="flex py-3">
                   <Pill variant={pillVariants[document.status]}>{document.status}</Pill>
@@ -55,7 +55,7 @@ export const DocumentList = () => {
               </td>
               <td className="text-neutral-2">{document.title}</td>
               <td>{document.serial_number}</td>
-              <td>
+              <td className="text-right">
                 <Link to={`/documents/${document._id}`}>{t('documents.List.viewDetails')}</Link>
               </td>
             </tr>
@@ -216,7 +216,7 @@ export const DocumentList = () => {
               </div>
             </div>
             <table className="font-Poppins w-full text-sm font-medium text-neutral-4">
-              <thead className="border-b-2 border-neutral-6 text-xs text-neutral-4">
+              <thead className="border-b-2 border-neutral-6 text-left text-xs text-neutral-4">
                 <th>
                   <div
                     className={clsx('flex cursor-pointer p-4')}
@@ -250,7 +250,7 @@ export const DocumentList = () => {
                     </>
                   </div>
                 </th>
-                <th>
+                <th className="text-right">
                   <div className=" p-4">{t<string>('documents.List.table.actions')}</div>
                 </th>
               </thead>

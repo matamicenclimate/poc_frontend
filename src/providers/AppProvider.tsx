@@ -10,6 +10,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { WalletProvider } from './Wallet.context';
 import { CurrencyProvider } from './Currency.context';
+import * as Sentry from '@sentry/react';
 
 const options = {
   // you can also just use 'bottom center'
@@ -36,19 +37,22 @@ const ErrorFallback = () => {
 
 export const AppProvider = ({ children }: { children: React.ReactElement }) => {
   return (
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <HelmetProvider>
-        <AlertProvider template={Alert} {...options}>
-          <QueryClientProvider client={queryClient}>
-            <AuthProvider>
-              {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}
-              <CurrencyProvider>
-                <WalletProvider>{children}</WalletProvider>
-              </CurrencyProvider>
-            </AuthProvider>
-          </QueryClientProvider>
-        </AlertProvider>
-      </HelmetProvider>
-    </ErrorBoundary>
+    <>
+      {/* @ts-expect-error - Temporary Fix - https://github.com/getsentry/sentry-javascript/issues/4904 */}
+      <Sentry.ErrorBoundary fallback={() => <ErrorFallback />} showDialog>
+        <HelmetProvider>
+          <AlertProvider template={Alert} {...options}>
+            <QueryClientProvider client={queryClient}>
+              <AuthProvider>
+                {process.env.NODE_ENV === 'development' && <ReactQueryDevtools />}
+                <CurrencyProvider>
+                  <WalletProvider>{children}</WalletProvider>
+                </CurrencyProvider>
+              </AuthProvider>
+            </QueryClientProvider>
+          </AlertProvider>
+        </HelmetProvider>
+      </Sentry.ErrorBoundary>
+    </>
   );
 };

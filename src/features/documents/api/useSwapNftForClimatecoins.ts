@@ -71,7 +71,8 @@ async function handleSwap(
   const blob = signedTxn.map((txn: string) => new Uint8Array(Buffer.from(txn, 'base64')));
   const { txId } = await getClient().sendRawTransaction(blob).do();
   const result = await waitForConfirmation(getClient(), txId, 3);
-
+  console.log(result);
+  console.log(Buffer.from(result.txn.txn.gh, 'base64').toString('base64'));
   return httpClient.post(`/carbon-documents/${documentId}/swap`, {
     txnId: txId,
     isGroup: true,

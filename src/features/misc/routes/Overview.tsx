@@ -104,15 +104,19 @@ export const Overview = () => {
     }
     if (activities.error instanceof Error) {
       return (
-        <tr>
-          <td colSpan={4}>{('An error has occurred: ' + activities.error.message) as string}</td>
-        </tr>
+        <table>
+          <tr>
+            <td colSpan={4}>{('An error has occurred: ' + activities.error.message) as string}</td>
+          </tr>
+        </table>
       );
     }
     return (
-      <tr>
-        <Spinner />
-      </tr>
+      <table>
+        <tr>
+          <Spinner />
+        </tr>
+      </table>
     );
   };
 
@@ -209,7 +213,7 @@ export const Overview = () => {
             {t('components.Overview.activity')}
           </Title>
           <div>
-            <table className=" border-separate [border-spacing:1rem] md:col-span-2 ">
+            <table className="w-full border-separate [border-spacing:1rem] md:col-span-2 ">
               <thead>
                 <tr className="mb-5 border-b text-left text-xs">
                   <th>{t('components.Overview.type')}</th>
