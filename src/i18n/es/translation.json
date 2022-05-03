@@ -209,7 +209,14 @@
     }
   },
   "profile": {
-    "title": "Perfil"
+    "title": "Perfil",
+    "name": "Nombre",
+    "surname": "Apellido",
+    "wallet": {
+      "adress": "Dirección de la cartera"
+    },
+    "edit": "Editar perfil",
+    "avatar": "Avatar"
   },
   "uploadDocuments": {
     "credits": {

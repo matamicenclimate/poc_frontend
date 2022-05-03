@@ -62,15 +62,25 @@ export const ProfileNav = () => {
     setIsDeveloper(data.type === 'developer');
   };
 
+  const getProfileAvatar = () => {
+    if (auth.user?.avatar === null) {
+      return 'avatar-placeholder.jpg';
+    }
+    if (auth.user?.avatar?.url) {
+      return auth.user?.avatar.url;
+    }
+    return 'avatar-placeholder.jpg';
+  };
+
   return (
     <div className="flex items-center">
       <Popover>
         <Popover.Button>
           <button className={clsx(styles.button)} style={{ padding: '6px' }}>
             <img
-              className="h-10 w-10 rounded-full"
+              src={getProfileAvatar()}
+              className="h-10 rounded-full"
               alt="100x100"
-              src="https://mdbootstrap.com/img/Photos/Avatars/img%20(30).jpg"
               data-holder-rendered="true"
             />
           </button>

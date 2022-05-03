@@ -225,7 +225,14 @@
     }
   },
   "profile": {
-    "title": "Profil"
+    "title": "Profil",
+    "name": "Nom",
+    "surname": "Nom de famille",
+    "wallet": {
+      "adress": "Adresse du portefeuille"
+    },
+    "edit": "Editer le profil",
+    "avatar": "Avatar"
   },
   "uploadDocuments": {
     "PDD": "PDD",

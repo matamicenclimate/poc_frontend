@@ -223,7 +223,14 @@
     }
   },
   "profile": {
-    "title": "프로필"
+    "title": "프로필",
+    "name": "이름",
+    "surname": "성",
+    "wallet": {
+      "adress": "지갑 주소"
+    },
+    "edit": "프로필 편집",
+    "avatar": "화신"
   },
   "uploadDocuments": {
     "PDD": "PDD",

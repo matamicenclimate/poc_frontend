@@ -111,11 +111,9 @@ function FileInput<FormSchema>({
                   </button>
                   <button
                     className="p-1"
-                    onClick={() =>
-                      onChange((old: File[]) => {
-                        return old.filter((_, i) => i !== index);
-                      })
-                    }
+                    onClick={() => {
+                      onChange((value as File[]).filter((_, i) => i !== index));
+                    }}
                   >
                     <Icon id="x-close-neutral-4" className="h-6 w-6" />
                   </button>

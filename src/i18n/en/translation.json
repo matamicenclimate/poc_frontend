@@ -203,7 +203,14 @@
     }
   },
   "profile": {
-    "title": "Profile"
+    "title": "Profile",
+    "name": "Name",
+    "surname": "Surname",
+    "wallet": {
+      "adress": "Wallet Adress"
+    },
+    "edit": "Edit profile",
+    "avatar": "Avatar"
   },
   "uploadDocuments": {
     "country": "Country",

@@ -17,7 +17,9 @@ import { useSort } from '@/hooks/useSort';
 import { Icon } from '@/componentes/Icon/Icon';
 
 const baseAsideLiStyles =
-  'flex cursor-pointer items-center px-6 py-2 transition hover:bg-neutral-7';
+  'flex cursor-pointer items-center text-neutral-4 px-6 py-2 transition hover:bg-neutral-7 hover:text-primary';
+
+const linkStyle = 'no-underline';
 
 const pillVariants: Record<string, PillProps['variant']> = {
   pending: 'new',
@@ -41,6 +43,16 @@ export const DocumentList = () => {
 
   const { sort, toggleSort, renderArrow } = useSort();
   const documents = useGetDocuments(user?.email as string, methods.watch(), sort);
+
+  const getProfileAvatar = () => {
+    if (user?.avatar === null) {
+      return 'avatar-placeholder.jpg';
+    }
+    if (user?.avatar?.url) {
+      return user?.avatar.url;
+    }
+    return 'avatar-placeholder.jpg';
+  };
 
   const renderDocuments = () => {
     if (documents.data) {
@@ -94,10 +106,7 @@ export const DocumentList = () => {
       <form onSubmit={(e) => e.preventDefault()}>
         <div className="grid gap-8 md:grid-cols-4">
           <aside className="text-sm font-bold text-neutral-4">
-            <img
-              src={`https://robohash.org/${user?.email}`}
-              className="mx-auto h-36 rounded-full"
-            />
+            <img src={getProfileAvatar()} className="mx-auto h-36 rounded-full" />
             <div className="my-4 text-center">
               <>
                 {t('documents.Upload.hi')}
@@ -160,12 +169,14 @@ export const DocumentList = () => {
             </ul>
             <hr />
             <ul className="my-2 space-y-1">
-              <li className={baseAsideLiStyles}>
-                <>
-                  <Icon id="user-line" className="mr-3 h-6 w-6" />
-                  {t('documents.Upload.profile')}
-                </>
-              </li>
+              <Link to="/profile" className={clsx(linkStyle)}>
+                <li className={baseAsideLiStyles}>
+                  <>
+                    <Icon id="user-line" className="mr-3 h-6 w-6" />
+                    {t('documents.Upload.profile')}
+                  </>
+                </li>
+              </Link>
               <li className={baseAsideLiStyles}>
                 <>
                   <Icon id="email-line" className="mr-3 h-6 w-6" />

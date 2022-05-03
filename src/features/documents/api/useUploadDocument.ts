@@ -17,12 +17,10 @@ function createCarbonDocument(formData: FormData): Promise<CarbonDocument> {
   return httpClient.post(`/carbon-documents`, formData, config);
 }
 
-function toFormData(carbonDocument: CarbonDocumentDTO) {
+export function toFormData<GenericDTO extends Record<string, any>>(document: GenericDTO) {
   const formData = new FormData();
 
-  const { ...newDocument } = carbonDocument;
-
-  newDocument.status = 'pending';
+  const { ...newDocument } = document;
 
   function isSelectOption(object: Record<string, any>): object is SelectOption {
     if (typeof object !== 'object') return false;
@@ -85,6 +83,9 @@ export function useUploadDocument() {
   const alert = useAlert();
   return useMutation(
     (carbonDocument: CarbonDocumentDTO) => {
+      // TODO: this should be handled in the BE
+      // make sure we create it in the pending state
+      carbonDocument.status = 'pending';
       const formData = toFormData(carbonDocument);
       return createCarbonDocument(formData);
     },
