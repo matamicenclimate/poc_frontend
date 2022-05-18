@@ -16,14 +16,14 @@ async function handleSwap(
 ): Promise<any> {
   console.log('swapping...');
 
-  if (!address) return;
-  if (!nftAsaId) return;
-  if (!nftSupply) return;
+  if (!address) return Promise.reject('No address');
+  if (!nftAsaId) return Promise.reject('No ASA id');
+  if (!nftSupply) return Promise.reject('No nftSupply');
 
   console.log('opting in...');
   const suggestedParams = await getClient().getTransactionParams().do();
 
-  suggestedParams.fee = suggestedParams.fee * 2;
+  suggestedParams.fee = suggestedParams.fee * 3;
 
   const unfreezeTxn = algosdk.makeApplicationCallTxnFromObject({
     from: address,
@@ -57,7 +57,7 @@ async function handleSwap(
   algosdk.assignGroupID([unfreezeTxn, transferTxn, swapTxn]);
 
   const groupId = algosdk.computeGroupID([unfreezeTxn, transferTxn, swapTxn]).toString('base64');
-  console.log(groupId);
+  console.log({ groupId });
   /** this is silly because magiclink doest support the atomic transaction composer **/
   const signedTxn = await magiclink.algorand.signGroupTransactionV2([
     { txn: Buffer.from(unfreezeTxn.toByte()).toString('base64') },
@@ -98,7 +98,9 @@ export function useSwapNftForClimatecoins() {
     }) => handleSwap(address, nftAsaId, nftSupply, documentId),
     {
       onSuccess: (data: CarbonDocument) => {
-        queryClient.invalidateQueries(documentKeys.detail(data._id as string));
+        if (data._id) {
+          queryClient.invalidateQueries(documentKeys.detail(data._id));
+        }
         alert.success('Asset swapped succesfully');
       },
       onError: (e: Error) => {

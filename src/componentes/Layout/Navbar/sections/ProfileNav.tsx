@@ -64,12 +64,12 @@ export const ProfileNav = () => {
 
   const getProfileAvatar = () => {
     if (auth.user?.avatar === null) {
-      return 'avatar-placeholder.jpg';
+      return '/avatar-placeholder.jpg';
     }
     if (auth.user?.avatar?.url) {
       return auth.user?.avatar.url;
     }
-    return 'avatar-placeholder.jpg';
+    return '/avatar-placeholder.jpg';
   };
 
   return (

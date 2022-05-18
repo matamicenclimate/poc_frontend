@@ -11,7 +11,7 @@ export function SwapNft({ nftAsaId, nftSupply }: { nftAsaId?: number; nftSupply?
   const swapNft = useSwapNftForClimatecoins();
   return (
     <div>
-      asset id: {nftAsaId}
+      asset id: {nftAsaId}; supply: {nftSupply}; userAddress: {account?.address}
       {swapNft.isLoading && <Spinner />}
       <Button
         onClick={() =>
