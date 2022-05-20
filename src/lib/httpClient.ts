@@ -2,6 +2,7 @@ import Axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 
 import storage from '@/utils/storage';
 import { magiclink } from './magiclink';
+import { API_URL } from '@/config';
 
 function authRequestInterceptor(config: AxiosRequestConfig) {
   const token = storage.getToken();
@@ -15,7 +16,7 @@ function authRequestInterceptor(config: AxiosRequestConfig) {
 }
 
 export const httpClient = Axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: API_URL,
 });
 
 httpClient.interceptors.request.use(authRequestInterceptor);

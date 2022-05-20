@@ -32,6 +32,16 @@
         "SELECT": "고르다"
       },
       "title": "클라이밋코인 구매"
+    },
+    "Compensate": {
+      "title": "클라이밋코인 보상",
+      "card": {
+        "title": "클라이밋코인 보상"
+      },
+      "button": "기후 코인 보상",
+      "amount": {
+        "label": "클라이밋코인 수량"
+      }
     }
   },
   "components": {

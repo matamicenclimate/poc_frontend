@@ -18,9 +18,5 @@ const styles = {
 
 export const Title = ({ size, as = undefined, children, className }: TitleProps) => {
   const Component: any = `h${as ?? size}`;
-  return (
-    <Component className={clsx('font-bold', styles[size], className)}>
-      {children}
-    </Component>
-  );
+  return <Component className={clsx('font-bold', styles[size], className)}>{children}</Component>;
 };

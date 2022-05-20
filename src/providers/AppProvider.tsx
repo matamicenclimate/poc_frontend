@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { QueryClientProvider } from 'react-query';
 // import { AuthProvider } from '@/context/auth-context';
-import { ErrorBoundary } from 'react-error-boundary';
 import { AuthProvider } from '@/lib/auth';
-import { transitions, positions, Provider as AlertProvider } from 'react-alert';
+import { positions, Provider as AlertProvider, transitions } from 'react-alert';
 import { Alert } from '@/componentes/Elements/Alert/Alert';
 import { queryClient } from '@/lib/react-query';
 import { HelmetProvider } from 'react-helmet-async';

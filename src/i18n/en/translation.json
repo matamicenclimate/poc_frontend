@@ -188,6 +188,9 @@
     "climatecoins": {
       "Buy": {
         "title": "Buy Climatecoins"
+      },
+      "Compensate": {
+        "title": "Compensateing of Climatecoins"
       }
     }
   },
@@ -210,7 +213,8 @@
       "adress": "Wallet Adress"
     },
     "edit": "Edit profile",
-    "avatar": "Avatar"
+    "avatar": "Avatar",
+    "button": "Update"
   },
   "uploadDocuments": {
     "country": "Country",
@@ -295,6 +299,23 @@
         "SELECT": "Select",
         "CONDITIONS": "Conditions",
         "CONFIRMATION": "Confirmation"
+      }
+    },
+    "Compensate": {
+      "title": "Compensating of Climatecoins",
+      "description": "Lorem ipsum",
+      "quantity": {
+        "label": "Quantity of Climatecoins"
+      },
+      "wallet": {
+        "label": "Wallet"
+      },
+      "button": "Compensate Climatecoins",
+      "card": {
+        "title": "Compensating of Climatecoins"
+      },
+      "amount": {
+        "label": "Amount of Climatecoins"
       }
     }
   },

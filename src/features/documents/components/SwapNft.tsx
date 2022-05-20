@@ -1,7 +1,7 @@
 import { Button } from '@/componentes/Elements/Button/Button';
 import { useWalletContext } from '@/providers/Wallet.context';
 import { useParams } from 'react-router-dom';
-import { useSwapNftForClimatecoins } from '@/features/documents/api/useSwapNftForClimatecoins';
+import { useSwapNftForClimatecoins } from '../api/useSwapNftForClimatecoins';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 
 export function SwapNft({ nftAsaId, nftSupply }: { nftAsaId?: number; nftSupply?: number }) {

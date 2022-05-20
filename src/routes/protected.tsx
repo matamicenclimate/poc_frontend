@@ -1,10 +1,10 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { Overview } from '@/features/misc/routes/Overview';
-import { Profile } from '@/features/users/routes/Profile';
-import { DocumentRouter } from '@/features/documents/routes/DocumentRouter';
-import { Wallet } from '@/features/wallet/routes/Wallet';
-import { ClimatecoinsRouter } from '@/features/climatecoins/routes/ClimatecoinsRouter';
+import { Overview } from '@/features/misc';
+import { Profile } from '@/features/users';
+import { DocumentRouter } from '@/features/documents';
+import { Wallet } from '@/features/wallet';
+import { ClimatecoinsRouter } from '@/features/climatecoins';
 
 const App = () => {
   return <Outlet />;

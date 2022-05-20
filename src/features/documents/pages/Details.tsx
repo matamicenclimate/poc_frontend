@@ -11,13 +11,13 @@ import { useParams } from 'react-router-dom';
 import { useGetDocument } from '../api/useGetDocument';
 import { ProjectPreview } from '../components/ProjectPreview';
 import { UploadSteps } from './Upload';
-import { useClaimNftFromDocument } from '@/features/documents/api/useClaimNftFromDocument';
+import { useClaimNftFromDocument } from '../api/useClaimNftFromDocument';
 import { useAuth } from '@/lib/auth';
-import { SwapNft } from '@/features/documents/components/SwapNft';
+import { SwapNft } from '../components/SwapNft';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { useAlert } from 'react-alert';
 import { Link } from '@/componentes/Elements/Link/Link';
-import { useOptinToAsset } from '@/features/wallet/api/useOptinToAsset';
+import { useOptinToAsset } from '@/features/wallet';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 
 export const DocumentDetails = () => {

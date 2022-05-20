@@ -32,6 +32,16 @@
         "SELECT": "Sélectionner"
       },
       "title": "Acheter des Climatecoins"
+    },
+    "Compensate": {
+      "title": "Compensation des Climatecoins",
+      "card": {
+        "title": "Compensation des Climatecoins"
+      },
+      "button": "Compenser les Climatecoins",
+      "amount": {
+        "label": "Montant des Climatecoins"
+      }
     }
   },
   "components": {

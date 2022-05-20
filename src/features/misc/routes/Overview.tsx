@@ -114,7 +114,9 @@ export const Overview = () => {
     return (
       <table>
         <tr>
-          <Spinner />
+          <td colSpan={4}>
+            <Spinner />
+          </td>
         </tr>
       </table>
     );

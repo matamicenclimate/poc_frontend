@@ -13,4 +13,8 @@ export function getMethodByName(name: string): algosdk.ABIMethod {
   return m;
 }
 
+export function getSelector(name: string): Uint8Array {
+  return getMethodByName(name).getSelector();
+}
+
 export const vaultContract = contract;

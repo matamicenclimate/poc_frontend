@@ -1,10 +1,10 @@
 import { TFunction } from 'i18next';
-import { FieldError, Path } from 'react-hook-form';
+import { Path } from 'react-hook-form';
 
-export type FieldName<FormSchema> = keyof FormSchema & string & Path<FormSchema>;
+export type FieldName<FormSchema> = keyof FormSchema & Path<FormSchema>;
 
-export type SelectOption = { value: any; label: string | TFunction };
+export type SelectOption = { value: unknown; label: string | TFunction };
 
-export type SchemaToErrors<Schema> = {
-  [Property in keyof Schema]?: any | { key: string };
+export type SchemaToErrors<FormSchema> = {
+  [Property in keyof FormSchema]?: any | undefined | { key: string };
 };

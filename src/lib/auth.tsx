@@ -15,6 +15,7 @@ async function handleUserResponse(data: UserResponse) {
 }
 
 async function loadUser(): Promise<AuthUser | null> {
+  if (!storage.getToken()) return null;
   const isLoggedIn = await magiclink.user.isLoggedIn();
 
   if (isLoggedIn) {
@@ -74,7 +75,7 @@ const authConfig: AuthProviderConfig<AuthUser | null, unknown> = {
       </div>
     );
   },
-  waitInitial: true,
+  waitInitial: false,
 };
 
 export const { AuthProvider, useAuth } = initReactQueryAuth<

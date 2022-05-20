@@ -26,5 +26,12 @@ module.exports = {
       version: 'detect',
     },
   },
-  rules: {},
+  rules: {
+    'no-restricted-imports': [
+      'warn',
+      {
+        patterns: ['@/features/*/*'],
+      },
+    ],
+  },
 };

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Dialog as HUIDialog } from '@headlessui/react';
 import { Button } from '../Elements/Button/Button';
 import { useTranslation } from 'react-i18next';
@@ -31,16 +30,16 @@ export const Dialog = ({
     <HUIDialog
       open={isOpen}
       onClose={() => setIsOpen(false)}
-      className="fixed z-10 inset-0 overflow-y-auto h-screen flex items-center"
+      className="fixed inset-0 z-10 flex h-screen items-center overflow-y-auto"
     >
       {/* Use the overlay to style a dim backdrop for your dialog */}
       <HUIDialog.Overlay className="fixed inset-0 bg-black opacity-30" />
-      <div className="relative bg-white rounded max-w-screen-sm w-full mx-auto p-4">
+      <div className="relative mx-auto w-full max-w-screen-sm rounded bg-white p-4">
         <HUIDialog.Title className="text-xl">{title}</HUIDialog.Title>
         {subtitle ? <HUIDialog.Description>{subtitle}</HUIDialog.Description> : null}
 
         {claim ? <p>{claim} </p> : null}
-        <div className="space-x-2 flex justify-end">
+        <div className="flex justify-end space-x-2">
           <Button onClick={() => (onCancel ? onCancel() : setIsOpen(false))}>
             {cancelLabel ? cancelLabel : t('dialogs.base.cancel')}
           </Button>

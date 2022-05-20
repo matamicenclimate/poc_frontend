@@ -1,17 +1,18 @@
 import { Line } from 'react-chartjs-2';
 
 import {
-  Chart as ChartJS,
   CategoryScale,
+  Chart as ChartJS,
+  Filler,
+  Legend,
   LinearScale,
-  PointElement,
   LineElement,
+  PointElement,
+  ScriptableContext,
   Title as ChartTitle,
   Tooltip,
-  Legend,
-  Filler,
-  ScriptableContext,
 } from 'chart.js';
+
 ChartJS.register(
   CategoryScale,
   LinearScale,

@@ -8,10 +8,9 @@ import React, {
 } from 'react';
 import { Popover as HLPopover } from '@headlessui/react';
 import { usePopper } from 'react-popper';
+import * as PopperJS from '@popperjs/core';
 import { VirtualElement } from '@popperjs/core';
 import { ReactComponent as IconDots } from '@/assets/icons/bx-dots-vertical.svg';
-
-import * as PopperJS from '@popperjs/core';
 import clsx from 'clsx';
 import styles from '@/componentes/Layout/Navbar/sections/shared.module.css';
 

@@ -1,6 +1,5 @@
 import { Card } from '@/componentes/Card/Card';
 import { Title } from '@/componentes/Elements/Title/Title';
-import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
 import { Stepper, useStepper } from '@/componentes/Stepper/Stepper';
 import { useTranslation } from 'react-i18next';
@@ -16,7 +15,8 @@ export const Buy = () => {
   const { currStep, nextStep, prevStep, setCurrStep } = useStepper(BuySteps);
 
   return (
-    <MainLayout title={t('head.climatecoins.Buy.title')}>
+    <>
+      {' '}
       <PageTitle
         title={t('climatecoins.Buy.title')}
         description={t('climatecoins.Buy.description')}
@@ -55,6 +55,6 @@ export const Buy = () => {
           ) : null}
         </div>
       </div>
-    </MainLayout>
+    </>
   );
 };

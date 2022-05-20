@@ -7,7 +7,7 @@ import { Input, Textarea } from '@/componentes/Form/Inputs';
 import { Select } from '@/componentes/Form/Select';
 
 import { useUploadDocument } from '../api/useUploadDocument';
-import { useGetFormOptions, FormOption } from '../api/useGetFormOptions';
+import { FormOption, useGetFormOptions } from '../api/useGetFormOptions';
 import { documentUploadValidationSchema, UploadFormSchema } from '../validation/UploadValidation';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { Card } from '@/componentes/Card/Card';

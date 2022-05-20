@@ -58,12 +58,12 @@ function FileInput<FormSchema>({
   });
   return (
     <div className={clsx('flex flex-col', wrapperClassName)}>
-      <Label {...{ name, required, label }} />
+      <Label {...{ name: name.toString(), required, label }} />
       <div
         {...getRootProps()}
         role="button"
         aria-label={t('components.FileInput.ariaLabel')}
-        id={name}
+        id={name.toString()}
         className="w-full"
         onBlur={onBlur}
       >

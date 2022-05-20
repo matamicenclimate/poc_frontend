@@ -28,6 +28,7 @@ export type InputProps<FormSchema> = {
   iconLeft?: React.ReactElement;
   iconRight?: React.ReactElement;
   // stepper
+  max?: number;
   step?: string;
 };
 
@@ -45,6 +46,7 @@ export function Input<FormSchema extends Record<string, any>>({
   wrapperClassName,
   iconLeft,
   iconRight,
+  max,
   ...rest
 }: InputProps<FormSchema>) {
   const { t } = useTranslation();
@@ -72,6 +74,7 @@ export function Input<FormSchema extends Record<string, any>>({
           )}
           {...register(name as Path<FormSchema>)}
           {...rest}
+          max={max}
         />
         {!!iconRight && <div className="absolute right-2">{iconRight}</div>}
       </div>

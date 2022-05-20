@@ -1,9 +1,7 @@
 import { useGetBalance } from '@/features/wallet/api/useGetBalance';
-import { magiclink } from '@/lib/magiclink';
-import { createContext, useContext, useEffect, useState, ReactElement } from 'react';
+import { createContext, ReactElement, useContext } from 'react';
 import { UseQueryResult } from 'react-query';
 import { IndexerAccount } from '@/features/wallet/api';
-import { useGetWallet } from '@/componentes/Layout/Navbar/api/useGetWallet';
 import { useAuth } from '@/lib/auth';
 
 interface Context {

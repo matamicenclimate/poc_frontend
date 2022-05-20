@@ -1,12 +1,13 @@
-import { documentKeys, CarbonDocument } from './index';
+import { CarbonDocument, documentKeys } from './index';
 import { useMutation, useQueryClient } from 'react-query';
 import { useAlert } from 'react-alert';
 import { getClient } from '@/lib/algosdk';
 import algosdk, { OnApplicationComplete, waitForConfirmation } from 'algosdk';
 import { magiclink } from '@/lib/magiclink';
 import { Buffer } from 'buffer';
-import { getMethodByName, vaultContract } from '@/contracts/vault';
+import { getSelector } from '@/contracts/vault';
 import { httpClient } from '@/lib/httpClient';
+import { CLIMATECOIN_ASA_ID, VAULT_CONTRACT_ID } from '@/config';
 
 async function handleSwap(
   address: string,
@@ -27,9 +28,9 @@ async function handleSwap(
 
   const unfreezeTxn = algosdk.makeApplicationCallTxnFromObject({
     from: address,
-    appIndex: vaultContract.networks['testnet'].appID,
+    appIndex: VAULT_CONTRACT_ID,
     // the atc appends the assets to the foreignAssets and passes the index of the asses in the appArgs
-    appArgs: [getMethodByName('unfreeze_nft').getSelector(), algosdk.encodeUint64(0)],
+    appArgs: [getSelector('unfreeze_nft'), algosdk.encodeUint64(0)],
     foreignAssets: [nftAsaId],
     onComplete: OnApplicationComplete.NoOpOC,
     suggestedParams,
@@ -39,17 +40,17 @@ async function handleSwap(
     from: address,
     // the atc appends the assets to the foreignAssets and passes the index of the asses in the appArgs
     assetIndex: nftAsaId,
-    to: algosdk.getApplicationAddress(vaultContract.networks['testnet'].appID),
+    to: algosdk.getApplicationAddress(VAULT_CONTRACT_ID),
     amount: nftSupply,
     suggestedParams,
   });
 
   const swapTxn = algosdk.makeApplicationCallTxnFromObject({
     from: address,
-    appIndex: vaultContract.networks['testnet'].appID,
+    appIndex: VAULT_CONTRACT_ID,
     // the atc appends the assets to the foreignAssets and passes the index of the asses in the appArgs
-    appArgs: [getMethodByName('swap_nft_to_fungible').getSelector(), algosdk.encodeUint64(1)],
-    foreignAssets: [Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID), nftAsaId],
+    appArgs: [getSelector('swap_nft_to_fungible'), algosdk.encodeUint64(1)],
+    foreignAssets: [Number(CLIMATECOIN_ASA_ID), nftAsaId],
     onComplete: OnApplicationComplete.NoOpOC,
     suggestedParams,
   });

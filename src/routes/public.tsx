@@ -1,4 +1,4 @@
-import { AuthRouter } from '@/features/auth/routes/AuthRouter';
+import { AuthRouter } from '@/features/auth';
 import { Navigate } from 'react-router-dom';
 
 export const publicRoutes = [

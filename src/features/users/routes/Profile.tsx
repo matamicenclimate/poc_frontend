@@ -10,7 +10,6 @@ import clsx from 'clsx';
 import FileInput from '@/componentes/Form/FileInput';
 import { Button } from '@/componentes/Elements/Button/Button';
 import { ProfileValidationSchema } from '../validation/ProfileValidation';
-import { AxiosRequestConfig } from 'axios';
 import { useUpdateProfile } from '../api/useUpdateProfile';
 
 export const Profile = () => {
@@ -54,8 +53,8 @@ export const Profile = () => {
 
   const updateProfile = useUpdateProfile();
 
-  const handleSubmit = async (data: any) => {
-    await updateProfile.mutateAsync(data);
+  const handleSubmit = (data: any) => {
+    updateProfile.mutate(data);
   };
 
   return (
@@ -118,7 +117,7 @@ export const Profile = () => {
                   {...baseInputProps}
                 />
                 <Button type="submit" size="md" disabled={updateProfile.isLoading}>
-                  Actualizar
+                  {t('profile.button')}
                 </Button>
               </form>
             </Card>

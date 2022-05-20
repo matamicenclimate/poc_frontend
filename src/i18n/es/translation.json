@@ -305,6 +305,16 @@
         "CONDITIONS": "Condiciones",
         "CONFIRMATION": "Confirmación"
       }
+    },
+    "Compensate": {
+      "title": "Compensación de Climatecoins",
+      "card": {
+        "title": "Compensación de Climatecoins"
+      },
+      "button": "Compensar Climatecoins",
+      "amount": {
+        "label": "Cantidad de Climatecoins"
+      }
     }
   },
   "intlNumber": "{{val, number}}",

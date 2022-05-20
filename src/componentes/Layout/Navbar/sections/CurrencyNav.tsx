@@ -4,6 +4,7 @@ import { useCurrencyContext } from '@/providers/Currency.context';
 import clsx from 'clsx';
 import { Icon } from '@/componentes/Icon/Icon';
 import styles from './shared.module.css';
+
 export const CurrencyNav = () => {
   const { t, i18n } = useTranslation();
 

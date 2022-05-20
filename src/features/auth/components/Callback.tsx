@@ -12,20 +12,17 @@ export const Callback = () => {
   const { t } = useTranslation();
   useEffect(() => {
     const onMount = async () => {
-      try {
-        /* Complete the "authentication callback" */
-        await magiclink.auth.loginWithCredential();
-
-        /* Get user metadata including email */
-        // const userMetadata = await magiclink.user.getMetadata();
-        // console.log({ userMetadata });
-        await auth.refetchUser();
-      } catch (e) {
-        alert.error(t('auth.Callback.error'));
-        setTimeout(() => {
-          window.location.assign(window.location.origin as unknown as string);
-        }, 3000);
-      }
+      /* Complete the "authentication callback" */
+      await magiclink.auth
+        .loginWithCredential()
+        .then(() => auth.refetchUser())
+        .catch((e) => {
+          console.error(e);
+          alert.error(t('auth.Callback.error'));
+        });
+      // setTimeout(() => {
+      //   window.location.assign(window.location.origin as unknown as string);
+      // }, 3000);
     };
     onMount();
   }, []);
