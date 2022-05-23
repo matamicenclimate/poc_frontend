@@ -46,6 +46,7 @@ async function handleBurnClimatecoins({
   console.log({
     transfer: algosdk.decodeUnsignedTransaction(transferTxnBuffer),
     burn: algosdk.decodeUnsignedTransaction(burnTxnBuffer),
+    oracle: algosdk.decodeSignedTransaction(oracleTxnBuffer),
     signedTxn,
   });
 

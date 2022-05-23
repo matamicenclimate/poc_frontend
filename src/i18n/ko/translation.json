@@ -1,6 +1,7 @@
 {
   "intlNumber": "{{val, number}}",
   "intlNumberWithOptions": "{{val, number(minimumFractionDigits: 2)}}",
+  "intlDateTime": "{{val, datetime}}",
   "auth": {
     "Callback": {
       "error": "로그인 오류",

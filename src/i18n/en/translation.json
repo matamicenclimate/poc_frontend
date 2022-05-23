@@ -58,6 +58,7 @@
         "english": "English",
         "korean": "Korean"
       },
+      "burn": "Compensate",
       "currency": "Currency",
       "home": "Home",
       "buy": "Buy",
@@ -320,5 +321,6 @@
     }
   },
   "intlNumber": "{{val, number}}",
-  "intlNumberWithOptions": "{{val, number(minimumFractionDigits: 2)}}"
+  "intlNumberWithOptions": "{{val, number(minimumFractionDigits: 2)}}",
+  "intlDateTime": "{{val, datetime}}"
 }

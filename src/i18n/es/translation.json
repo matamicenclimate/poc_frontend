@@ -44,6 +44,7 @@
         "clear": "Limpiar"
       },
       "buy": "Comprar",
+      "burn": "Compensar",
       "about": "Sobre nosotros",
       "developer": "Desarrollador",
       "home": "Casa",
@@ -319,6 +320,7 @@
   },
   "intlNumber": "{{val, number}}",
   "intlNumberWithOptions": "{{val, number(minimumFractionDigits: 2)}}",
+  "intlDateTime": "{{val, datetime}}",
   "dialogs": {
     "__i18n_ally_root__": {
       "base": {

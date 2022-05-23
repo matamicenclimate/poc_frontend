@@ -23,6 +23,7 @@ import { SelectOption } from '@/componentes/Form';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '@/componentes/Icon/Icon';
 import { FormMap } from '../components/Map';
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 
 const formOptionToSelectOption = (options: FormOption[] | undefined): SelectOption[] => {
   if (options === undefined) return [];
@@ -71,7 +72,7 @@ export const Upload = () => {
   };
 
   // Se podria memoizar
-  const StepperNavigation = () => (
+  const renderStepperNavigation = () => (
     <div className="col-span-2 grid grid-cols-3">
       {currStep !== 0 ? (
         <Button variant="light" type={undefined} onClick={prevStep}>
@@ -80,7 +81,13 @@ export const Upload = () => {
       ) : (
         <div />
       )}
-      <div />
+      {uploadDocuments.isLoading ? (
+        <div className="flex items-center justify-end">
+          <Spinner />
+        </div>
+      ) : (
+        <div />
+      )}
       {currStep === UploadSteps.CONFIRMATION ? (
         <Button
           type="submit"
@@ -219,7 +226,7 @@ export const Upload = () => {
                     type="text"
                     placeholder="https://"
                   />
-                  <StepperNavigation />
+                  {renderStepperNavigation()}
                 </div>
               </Card>
             ) : null}
@@ -308,7 +315,7 @@ export const Upload = () => {
                     type="text"
                     placeholder="Eg: https://youtube.com?v=32jmfdskj3kr3"
                   />
-                  <StepperNavigation />
+                  {renderStepperNavigation()}
                 </div>
               </Card>
             ) : null}
@@ -402,7 +409,7 @@ export const Upload = () => {
                     type="text"
                     placeholder="https://"
                   />
-                  <StepperNavigation />
+                  {renderStepperNavigation()}
                 </div>
               </Card>
             ) : null}
@@ -448,7 +455,7 @@ export const Upload = () => {
                     name="created_by_user"
                     defaultValue={user.user?.email as string}
                   />
-                  <StepperNavigation />
+                  {renderStepperNavigation()}
                 </div>
               </Card>
             </div>
@@ -476,7 +483,7 @@ export const Upload = () => {
                       }
                     />
                   </div>
-                  <StepperNavigation />
+                  {renderStepperNavigation()}
                 </div>
               </Card>
             ) : null}

@@ -30,7 +30,7 @@ export const Navbar = () => {
               {t('components.Navbar.buy')}
             </Link>
             <Link to="/coins/compensate" className={`text-neutral-4 ${linkStyle}`} navLink>
-              Quemado
+              {t('components.Navbar.burn')}
             </Link>
             <Link to="/sell" className={`text-neutral-4 ${linkStyle}`} navLink>
               {t('components.Navbar.sell')}

@@ -4,19 +4,24 @@ import { Card } from '@/componentes/Card/Card';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { EXPLORER_URL } from '@/config';
 import { Compensation } from '../types';
+import { format } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 
 export const CompensationHistory = ({ data }: { data: UseQueryResult<Compensation[]> }) => {
+  const { t } = useTranslation();
   const renderDocument = () => {
     if (data.data) {
       return (
-        <div>
+        <div className="divide-y">
           {data.data.map((comp) => (
             <div key={comp.id}>
-              {comp.id}
-              <div>
+              <div className="flex gap-2 py-3">
+                <div>{comp.amount} CC</div>
                 <Link href={`${EXPLORER_URL}tx/group/${encodeURIComponent(comp.txnId)}`}>
                   View txn
                 </Link>{' '}
+                <div className="flex-grow" />
+                <div>{t('intlDateTime', { val: comp.createdAt })}</div>
               </div>
             </div>
           ))}

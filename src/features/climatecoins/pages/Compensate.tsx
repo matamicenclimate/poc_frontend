@@ -97,6 +97,7 @@ export const Compensate = () => {
             isOpen={!!oracleResponse}
             setIsOpen={() => setOracleResponse(null)}
             onAccept={handleConfirmation}
+            isLoading={burnClimatecoins.isLoading}
             title={'Are you sure'}
           ></Dialog>
         </div>

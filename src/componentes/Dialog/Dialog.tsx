@@ -1,6 +1,7 @@
 import { Dialog as HUIDialog } from '@headlessui/react';
 import { Button } from '../Elements/Button/Button';
 import { useTranslation } from 'react-i18next';
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 
 type DialogProps = {
   isOpen: boolean;
@@ -12,6 +13,7 @@ type DialogProps = {
   acceptLabel?: string;
   onCancel?: () => void;
   cancelLabel?: string;
+  isLoading?: boolean;
 };
 
 export const Dialog = ({
@@ -24,6 +26,7 @@ export const Dialog = ({
   acceptLabel,
   onCancel,
   cancelLabel,
+  isLoading,
 }: DialogProps) => {
   const { t } = useTranslation();
   return (
@@ -39,11 +42,20 @@ export const Dialog = ({
         {subtitle ? <HUIDialog.Description>{subtitle}</HUIDialog.Description> : null}
 
         {claim ? <p>{claim} </p> : null}
-        <div className="flex justify-end space-x-2">
-          <Button onClick={() => (onCancel ? onCancel() : setIsOpen(false))} size="md">
+        <div className="flex items-center justify-end space-x-2">
+          {isLoading ? <Spinner /> : null}
+          <Button
+            onClick={() => (onCancel ? onCancel() : setIsOpen(false))}
+            size="md"
+            disabled={isLoading}
+          >
             {cancelLabel ? cancelLabel : t('dialogs.base.cancel')}
           </Button>
-          <Button onClick={() => (onAccept ? onAccept() : setIsOpen(false))} size="md">
+          <Button
+            onClick={() => (onAccept ? onAccept() : setIsOpen(false))}
+            size="md"
+            disabled={isLoading}
+          >
             {acceptLabel ? acceptLabel : t('dialogs.base.accept')}
           </Button>
         </div>
