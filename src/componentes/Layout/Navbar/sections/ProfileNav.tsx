@@ -77,10 +77,11 @@ export const ProfileNav = () => {
       <Popover>
         <Popover.Button>
           <button className={clsx(styles.button)} style={{ padding: '6px' }}>
-            <img
-              src={getProfileAvatar()}
-              className="h-10 rounded-full"
-              alt="100x100"
+            <div
+              style={{
+                backgroundImage: `url(${getProfileAvatar()})`,
+              }}
+              className="h-10 w-10 rounded-full bg-cover bg-center"
               data-holder-rendered="true"
             />
           </button>
