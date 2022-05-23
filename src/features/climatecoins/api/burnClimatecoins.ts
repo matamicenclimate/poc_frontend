@@ -6,9 +6,10 @@ import algosdk, { waitForConfirmation } from 'algosdk';
 import { magiclink } from '@/lib/magiclink';
 import { Buffer } from 'buffer';
 import { queryClient } from '@/lib/react-query';
-import { CompensationCalculation } from '../types';
+import { CompensationCalculation, compensationKeys } from '../types';
+import { useAuth } from '@/lib/auth';
 
-type HandleBurnParams = CompensationCalculation;
+type HandleBurnParams = { userId: string | null | undefined } & CompensationCalculation;
 
 async function handleBurnClimatecoins({
   amount,
@@ -18,9 +19,11 @@ async function handleBurnClimatecoins({
   encodedBurnTxn,
   encodedTransferTxn,
   nftIds,
+  userId,
 }: HandleBurnParams): Promise<any> {
   console.log('burning...');
   if (!address) return Promise.reject('No address');
+  if (!userId) return Promise.reject('No user');
 
   const suggestedParams = await getClient().getTransactionParams().do();
   suggestedParams.fee = suggestedParams.fee * 3;
@@ -45,21 +48,24 @@ async function handleBurnClimatecoins({
   const { txId } = await getClient().sendRawTransaction(signedTxn).do();
   const result = await waitForConfirmation(getClient(), txId, 3);
   console.log({ result, txId });
-
-  return httpClient.post(`/compensations`, { txnId: txId, amount, nfts: nftIds });
+  const groupId = Buffer.from(result.txn.txn.grp).toString('base64');
+  return httpClient.post(`/compensations`, { txnId: groupId, amount, nfts: nftIds, user: userId });
 }
 
 export function useBurnClimatecoins() {
   const alert = useAlert();
+  const { user } = useAuth();
   return useMutation(
-    (burnParams: HandleBurnParams) => {
+    (burnParams: Omit<HandleBurnParams, 'userId'>) => {
       return handleBurnClimatecoins({
         ...burnParams,
+        userId: user?.id,
       });
     },
     {
       onSuccess: () => {
         queryClient.invalidateQueries(['account']);
+        queryClient.invalidateQueries(compensationKeys.lists());
         alert.success('Climatecoins compensated succesfully');
       },
       onError: () => {

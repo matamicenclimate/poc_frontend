@@ -10,8 +10,8 @@ import { useState } from 'react';
 import { useWalletContext } from '@/providers/Wallet.context';
 import { useCurrencyContext } from '@/providers/Currency.context';
 import { Icon } from '@/componentes/Icon/Icon';
-import { BalanceChart } from '@/features/misc/components/BalanceChart';
-import { useGetChartData } from '@/features/misc/api/useGetChartData';
+import { BalanceChart } from '../components/BalanceChart';
+import { useGetChartData } from '../api/useGetChartData';
 import { useGetActivities } from '../api/useGetActivities';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { format } from 'date-fns';
@@ -74,14 +74,19 @@ export const Overview = () => {
                 </td>
                 <td>{t('intlNumber', { val: data.supply }) ?? 0}</td>
                 <td>
-                  {data.nft.metadata.description}
-                  <br />
-                  <Link
-                    href={`${process.env.REACT_APP_ALGORAND_EXPLORER_URL}asset/${data.nft.asa_id}`}
-                    className="inline-flex items-center text-xs"
-                  >
-                    View asset <img src="icons/algoexplorer.png" className="h-3 w-3 rounded-full" />
-                  </Link>{' '}
+                  {data.nft ? (
+                    <>
+                      {data.nft.metadata.description}
+                      <br />
+                      <Link
+                        href={`${process.env.REACT_APP_ALGORAND_EXPLORER_URL}asset/${data.nft.asa_id}`}
+                        className="inline-flex items-center text-xs"
+                      >
+                        View asset{' '}
+                        <img src="icons/algoexplorer.png" className="h-3 w-3 rounded-full" />
+                      </Link>{' '}
+                    </>
+                  ) : null}
                   <Link
                     href={
                       data.is_group

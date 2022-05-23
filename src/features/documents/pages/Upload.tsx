@@ -22,7 +22,7 @@ import { Stepper, useStepper } from '@/componentes/Stepper/Stepper';
 import { SelectOption } from '@/componentes/Form';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '@/componentes/Icon/Icon';
-import { FormMap } from '@/features/documents/components/Map';
+import { FormMap } from '../components/Map';
 
 const formOptionToSelectOption = (options: FormOption[] | undefined): SelectOption[] => {
   if (options === undefined) return [];

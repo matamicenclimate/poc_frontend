@@ -1,6 +1,6 @@
 import { algoIndexer } from '@/lib/algoIndexer';
 import { useQuery } from 'react-query';
-import { IndexerAccount } from '.';
+import { IndexerAccount } from '../types';
 
 function getBalances(address: string): Promise<IndexerAccount> {
   return algoIndexer.get(`/accounts/${address}`);

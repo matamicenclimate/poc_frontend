@@ -1,5 +1,5 @@
 import { useAlert } from 'react-alert';
-import { CarbonDocument, documentKeys } from './index';
+import { CarbonDocument, documentKeys } from '../types';
 import { AxiosRequestConfig } from 'axios';
 import { httpClient } from '@/lib/httpClient';
 import { useMutation, useQueryClient } from 'react-query';

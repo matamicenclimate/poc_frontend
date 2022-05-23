@@ -1,4 +1,4 @@
-import { documentKeys } from './index';
+import { documentKeys } from '../types';
 import { useQuery } from 'react-query';
 import { httpClient } from '@/lib/httpClient';
 

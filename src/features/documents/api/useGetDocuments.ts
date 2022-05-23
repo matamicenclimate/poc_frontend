@@ -1,16 +1,16 @@
-import { CarbonDocument, documentKeys } from './index';
+import { CarbonDocument, documentKeys } from '../types';
 import { httpClient } from '@/lib/httpClient';
 import { useQuery } from 'react-query';
 import { format } from 'date-fns';
 import { SortState } from '@/hooks/useSort';
 
-function fetchDocuments(filter: Record<any, any>): Promise<CarbonDocument[]> {
-  const newFilter: any = {};
+function fetchDocuments(filter: Record<string, unknown>): Promise<CarbonDocument[]> {
+  const newFilter: Record<string, string> = {};
   Object.keys(filter).forEach(function (key) {
     if (typeof filter[key] === 'undefined' || filter[key] === null || filter[key] === '') {
       return;
     } else {
-      newFilter[key] = filter[key];
+      newFilter[key] = filter[key] as string;
     }
   });
   console.log(newFilter);

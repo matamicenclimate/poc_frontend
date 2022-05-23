@@ -1,4 +1,4 @@
-import { CarbonDocument, documentKeys } from './index';
+import { CarbonDocument, documentKeys } from '../types';
 import { httpClient } from '@/lib/httpClient';
 import { useMutation, useQueryClient } from 'react-query';
 import { useAlert } from 'react-alert';
@@ -23,7 +23,6 @@ async function claimFromDocument(
     amount: 0, // this is an optinTxn so amount has to be 0
     suggestedParams,
   };
-
   const txn = algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject(transactionOptions);
 
   const signedTxn = await magiclink.algorand.signGroupTransactionV2([

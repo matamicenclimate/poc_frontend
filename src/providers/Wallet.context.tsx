@@ -1,7 +1,7 @@
 import { useGetBalance } from '@/features/wallet/api/useGetBalance';
 import { createContext, ReactElement, useContext } from 'react';
 import { UseQueryResult } from 'react-query';
-import { IndexerAccount } from '@/features/wallet/api';
+import { IndexerAccount } from '@/features/wallet';
 import { useAuth } from '@/lib/auth';
 
 interface Context {

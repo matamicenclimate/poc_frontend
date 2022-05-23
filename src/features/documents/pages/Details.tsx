@@ -152,6 +152,7 @@ export const DocumentDetails = () => {
         </div>
       );
     }
+
     if (document.error instanceof Error) {
       return <>{('An error has occurred: ' + document.error.message) as string}</>;
     }

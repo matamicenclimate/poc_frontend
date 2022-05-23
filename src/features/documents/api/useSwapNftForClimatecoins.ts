@@ -1,4 +1,4 @@
-import { CarbonDocument, documentKeys } from './index';
+import { CarbonDocument, documentKeys } from '../types';
 import { useMutation, useQueryClient } from 'react-query';
 import { useAlert } from 'react-alert';
 import { getClient } from '@/lib/algosdk';
@@ -57,23 +57,20 @@ async function handleSwap(
 
   algosdk.assignGroupID([unfreezeTxn, transferTxn, swapTxn]);
 
-  const groupId = algosdk.computeGroupID([unfreezeTxn, transferTxn, swapTxn]).toString('base64');
-  console.log({ groupId });
   /** this is silly because magiclink doest support the atomic transaction composer **/
   const signedTxn = await magiclink.algorand.signGroupTransactionV2([
     { txn: Buffer.from(unfreezeTxn.toByte()).toString('base64') },
     { txn: Buffer.from(transferTxn.toByte()).toString('base64') },
     { txn: Buffer.from(swapTxn.toByte()).toString('base64') },
   ]);
-  console.log(signedTxn);
-  // const groupId2 = algosdk.computeGroupID([unfreezeTxn, transferTxn, swapTxn]).toString('base64');
-  // console.log(groupId2);
+
   /** convert it back to a buffer so we can send it **/
   const blob = signedTxn.map((txn: string) => new Uint8Array(Buffer.from(txn, 'base64')));
   const { txId } = await getClient().sendRawTransaction(blob).do();
   const result = await waitForConfirmation(getClient(), txId, 3);
-  console.log(result);
-  console.log(Buffer.from(result.txn.txn.gh, 'base64').toString('base64'));
+
+  const groupId = Buffer.from(result.txn.txn.grp).toString('base64');
+
   return httpClient.post(`/carbon-documents/${documentId}/swap`, {
     txnId: txId,
     isGroup: true,

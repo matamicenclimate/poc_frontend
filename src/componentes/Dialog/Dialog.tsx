@@ -40,10 +40,10 @@ export const Dialog = ({
 
         {claim ? <p>{claim} </p> : null}
         <div className="flex justify-end space-x-2">
-          <Button onClick={() => (onCancel ? onCancel() : setIsOpen(false))}>
+          <Button onClick={() => (onCancel ? onCancel() : setIsOpen(false))} size="md">
             {cancelLabel ? cancelLabel : t('dialogs.base.cancel')}
           </Button>
-          <Button onClick={() => (onAccept ? onAccept() : setIsOpen(false))}>
+          <Button onClick={() => (onAccept ? onAccept() : setIsOpen(false))} size="md">
             {acceptLabel ? acceptLabel : t('dialogs.base.accept')}
           </Button>
         </div>

@@ -75,7 +75,7 @@ const authConfig: AuthProviderConfig<AuthUser | null, unknown> = {
       </div>
     );
   },
-  waitInitial: false,
+  waitInitial: true,
 };
 
 export const { AuthProvider, useAuth } = initReactQueryAuth<

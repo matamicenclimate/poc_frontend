@@ -1,4 +1,4 @@
-import { CarbonDocument, documentKeys } from './index';
+import { CarbonDocument, documentKeys } from '../types';
 import { httpClient } from '@/lib/httpClient';
 import { useMutation, useQueryClient } from 'react-query';
 import { useAlert } from 'react-alert';
