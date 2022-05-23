@@ -35,7 +35,7 @@ export const Navbar = () => {
             <Link to="/sell" className={`text-neutral-4 ${linkStyle}`} navLink>
               {t('components.Navbar.sell')}
             </Link>
-            <Link to="/about-us" className={` text-neutral-4 ${linkStyle}`} navLink>
+            <Link to="/about" className={` text-neutral-4 ${linkStyle}`} navLink>
               {t('components.Navbar.about')}
             </Link>
             {auth.user && auth.user.type === 'developer' && (

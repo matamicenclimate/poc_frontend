@@ -15,11 +15,13 @@ import { useGetChartData } from '../api/useGetChartData';
 import { useGetActivities } from '../api/useGetActivities';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { format } from 'date-fns';
+import { BalanceShowcase } from '@/features/misc/components/BalanceShowcase';
 
 const pillVariants: Record<string, PillProps['variant']> = {
   swap: 'swap',
   buy: 'featured',
   sell: 'popular',
+  burn: 'popular',
   offset: 'comingSoon',
 };
 
@@ -30,7 +32,6 @@ export const Overview = () => {
   const activities = useGetActivities(tabSelected);
 
   const { climatecoinBalance } = useWalletContext();
-  const { formatter } = useCurrencyContext();
   const chartBalance = useGetChartData();
 
   const tabs = [
@@ -87,6 +88,12 @@ export const Overview = () => {
                       </Link>{' '}
                     </>
                   ) : null}
+                  {data.type === 'burn' ? (
+                    <>
+                      Cliamtecoins compensated
+                      <br />
+                    </>
+                  ) : null}
                   <Link
                     href={
                       data.is_group
@@ -97,7 +104,12 @@ export const Overview = () => {
                     }
                     className="inline-flex items-center text-xs"
                   >
-                    View txn <img src="icons/algoexplorer.png" className="h-3 w-3 rounded-full" />
+                    View txn{' '}
+                    <img
+                      role="figure"
+                      src="icons/algoexplorer.png"
+                      className="h-3 w-3 rounded-full"
+                    />
                   </Link>
                 </td>
                 <td className="text-right">{format(new Date(data.date), 'dd/MM/yyyy')}</td>
@@ -135,47 +147,7 @@ export const Overview = () => {
         <Title size={4} as={1}>
           {t('misc.Overview.title')}
         </Title>
-        <div className="mt-5 grid gap-16 md:grid-cols-3">
-          <div id="price-panel" className="flex flex-col gap-3">
-            <p className="text-sm font-medium text-neutral-3">
-              {t<string>('components.Overview.totalBalance')}
-            </p>
-            <div className="leading-tight">
-              <div className="flex items-center">
-                <p className="mr-2 text-6xl text-neutral-2">
-                  {t<string>('intlNumber', { val: climatecoinBalance().toFixed(2) })}
-                </p>
-                <div className="h-[1.625rem] w-[6.6875rem] text-center">
-                  <Pill style="solid" variant="popular">
-                    Climatecoins
-                  </Pill>
-                </div>
-              </div>
-              <p className="text-2xl text-neutral-4">{formatter(climatecoinBalance() * 10)}</p>
-            </div>
-            <div className="flex flex-col space-y-3">
-              <Link size="sm" as="button" variant="primary" to="/">
-                {t('components.Overview.footprint')}
-              </Link>
-              <Link size="sm" variant="light" to="/" as="button">
-                {t('components.Overview.buyClimatecoins')}
-              </Link>
-            </div>
-          </div>
-          <div id="graphic-panel" className="col-span-2 flex flex-col text-sm">
-            <div className="flex-grow" />
-            <div>
-              <BalanceChart
-                data={chartBalance.data?.data}
-                labels={chartBalance.data?.labels}
-                width={500}
-              />
-            </div>
-            <p className="py-4 pt-8 text-right">
-              🌱 You have enough climatecoins to clean <Link to="#">a football stadium</Link>
-            </p>
-          </div>
-        </div>
+        <BalanceShowcase climatecoinBalance={climatecoinBalance} chartBalance={chartBalance} />
       </div>
 
       <div id="bottom-row" className="grid gap-7 p-8 md:grid-cols-3">

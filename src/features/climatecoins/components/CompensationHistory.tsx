@@ -4,7 +4,6 @@ import { Card } from '@/componentes/Card/Card';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { EXPLORER_URL } from '@/config';
 import { Compensation } from '../types';
-import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 
 export const CompensationHistory = ({ data }: { data: UseQueryResult<Compensation[]> }) => {
@@ -16,10 +15,21 @@ export const CompensationHistory = ({ data }: { data: UseQueryResult<Compensatio
           {data.data.map((comp) => (
             <div key={comp.id}>
               <div className="flex gap-2 py-3">
-                <div>{comp.amount} CC</div>
-                <Link href={`${EXPLORER_URL}tx/group/${encodeURIComponent(comp.txnId)}`}>
-                  View txn
-                </Link>{' '}
+                <div>
+                  {comp.amount} tonnes of CO2 compensated
+                  <br />
+                  <Link
+                    href={`${EXPLORER_URL}tx/group/${encodeURIComponent(comp.txnId)}`}
+                    className="inline-flex items-center text-xs"
+                  >
+                    View txn{' '}
+                    <img
+                      role="figure"
+                      src="/icons/algoexplorer.png"
+                      className="h-3 w-3 rounded-full"
+                    />
+                  </Link>{' '}
+                </div>
                 <div className="flex-grow" />
                 <div>{t('intlDateTime', { val: comp.createdAt })}</div>
               </div>

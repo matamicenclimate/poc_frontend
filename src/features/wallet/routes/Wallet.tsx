@@ -1,32 +1,32 @@
-import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
 import { Button } from '@/componentes/Elements/Button/Button';
-import { Link } from '@/componentes/Elements/Link/Link';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { useTranslation } from 'react-i18next';
-
-import { Form } from '@/componentes/Form/Form';
-import { Input } from '@/componentes/Form/Inputs';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { useWalletContext } from '@/providers/Wallet.context';
 import { Card } from '@/componentes/Card/Card';
 import { useOptinToAsset } from '../api/useOptinToAsset';
+import { useGetSwappableDocuments } from '@/features/documents';
+import { useAuth } from '@/lib/auth';
+import { NftCard } from '@/features/wallet/components/NftCard';
+import { useGetChartData } from '@/features/misc/api/useGetChartData';
+import { BalanceShowcase } from '@/features/misc/components/BalanceShowcase';
 
 export const Wallet = () => {
   const { t } = useTranslation();
-
+  const { user } = useAuth();
   const { account, hasOptedIn } = useWalletContext();
   const optinToAsset = useOptinToAsset();
-
-  const handleSubmit = async (data: any) => {
-    console.log(data);
-    await optinToAsset.mutateAsync(Number(data.asaId));
-  };
-
+  const swappableNfts = useGetSwappableDocuments(user?.email);
+  const { climatecoinBalance } = useWalletContext();
+  const chartBalance = useGetChartData();
   return (
     <MainLayout title={t('head.Wallet.title')}>
-      <Breadcrumb links={[{ to: '/wallet', label: t('head.Wallet.title') }]} />
-
-      <Title size={1}>{t('wallet.Wallet.title')}</Title>
+      <div className="flex items-center justify-between py-8">
+        <Title size={3} as={1}>
+          {t('wallet.Wallet.title')}
+        </Title>
+        <div>{account?.address}</div>
+      </div>
       {!hasOptedIn(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)) && (
         <Card padding="sm">
           <div className="flex items-center justify-between">
@@ -57,24 +57,10 @@ export const Wallet = () => {
           </div>
         </Card>
       )}
-
-      <Form onSubmit={handleSubmit} className="my-4 space-y-4 rounded border p-4">
-        <Title size={3}>Optin to asset</Title>
-        <Input name="asaId" type="text" label="asset id" />
-        <Button type="submit">Optin</Button>
-      </Form>
-      {process.env.NODE_ENV === 'development' ? (
-        <>
-          <Link href="https://bank.testnet.algorand.network/">get algo faucet </Link>
-          <br />
-          <Link href="https://dispenser.testnet.aws.algodev.network/">get usdc faucet </Link>
-        </>
-      ) : null}
-      <br />
-      {account?.address}
-      <br />
-      <pre>{JSON.stringify(account, null, 2)}</pre>
-      <br />
+      <div className="flex flex-col space-y-8">
+        <BalanceShowcase climatecoinBalance={climatecoinBalance} chartBalance={chartBalance} />
+        <NftCard data={swappableNfts} />
+      </div>
     </MainLayout>
   );
 };
