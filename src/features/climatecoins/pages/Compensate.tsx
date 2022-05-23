@@ -75,19 +75,16 @@ export const Compensate = () => {
                 type="number"
                 required
                 max={climatecoinBalance()}
-                defaultValue={0}
+                placeholder={'0'}
               />
 
-              <span className="flex items-center font-normal text-primary">
-                {t('intlNumber', {
-                  val: climatecoinBalance(),
-                })}{' '}
-                CC
-              </span>
-              <div className="col-span-1">
-                <p>{t('climatecoins.Compensate.wallet.label')}</p>
-                <span>{account?.address}</span>
-              </div>
+              {/*<span className="flex items-center font-normal text-primary">*/}
+              {/*  {t('intlNumber', {*/}
+              {/*    val: climatecoinBalance(),*/}
+              {/*  })}{' '}*/}
+              {/*  CC*/}
+              {/*</span>*/}
+
               <div className="flex items-center space-x-4">
                 <Button type="submit" size="md" disabled={calculateCompensation.isLoading}>
                   {t('climatecoins.Compensate.button')}
@@ -106,9 +103,9 @@ export const Compensate = () => {
         <div>
           <Card>Some info</Card>
         </div>
-      </div>
-      <div>
-        <CompensationHistory data={compensations} />
+        <div className="md:col-span-3">
+          <CompensationHistory data={compensations} />
+        </div>
       </div>
     </>
   );

@@ -43,7 +43,11 @@ async function handleBurnClimatecoins({
 
   // group them
   const signedTxn = [signedTransferTxn, oracleTxnBuffer, signedBurnTxn];
-  console.log({ signedTxn });
+  console.log({
+    transfer: algosdk.decodeUnsignedTransaction(transferTxnBuffer),
+    burn: algosdk.decodeUnsignedTransaction(burnTxnBuffer),
+    signedTxn,
+  });
 
   const { txId } = await getClient().sendRawTransaction(signedTxn).do();
   const result = await waitForConfirmation(getClient(), txId, 3);
