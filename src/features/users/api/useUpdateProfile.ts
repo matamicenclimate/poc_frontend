@@ -2,8 +2,8 @@ import { useAlert } from 'react-alert';
 import { AxiosRequestConfig } from 'axios';
 import { httpClient } from '@/lib/httpClient';
 import { useMutation, useQueryClient } from 'react-query';
-import { toFormData } from '@/features/documents/api/useUploadDocument';
 import { useAuth } from '@/lib/auth';
+import { toFormData } from '@/utils/toFormData';
 
 function updateProfile(formData: FormData, userId: string): Promise<any> {
   const config: AxiosRequestConfig<FormData> = {

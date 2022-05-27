@@ -1,6 +1,7 @@
 import { algoIndexer } from '@/lib/algoIndexer';
 import { useQuery } from 'react-query';
 import { IndexerAccount } from '../types';
+import { accountKeys } from '.';
 
 function getBalances(address: string): Promise<IndexerAccount> {
   return algoIndexer.get(`/accounts/${address}`);
@@ -8,7 +9,7 @@ function getBalances(address: string): Promise<IndexerAccount> {
 
 // si no tenemos el address desactivamos la llamada
 export const useGetBalance = (address: string | null) => {
-  return useQuery(['account', address], () => getBalances(address as string), {
+  return useQuery(accountKeys.detail(address as string), () => getBalances(address as string), {
     enabled: !!address,
   });
 };

@@ -8,6 +8,7 @@ import { Buffer } from 'buffer';
 import { getSelector } from '@/contracts/vault';
 import { httpClient } from '@/lib/httpClient';
 import { CLIMATECOIN_ASA_ID, VAULT_CONTRACT_ID } from '@/config';
+import { accountKeys } from '@/features/wallet';
 
 async function handleSwap(
   address: string,
@@ -99,7 +100,8 @@ export function useSwapNftForClimatecoins() {
         if (data._id) {
           queryClient.invalidateQueries(documentKeys.detail(data._id));
         }
-        alert.success('Asset swapped succesfully');
+        queryClient.invalidateQueries(accountKeys.all);
+        alert.success('Asset swapped successfully');
       },
       onError: (e: Error) => {
         alert.error('Error claiming nft');

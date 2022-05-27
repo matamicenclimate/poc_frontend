@@ -15,8 +15,8 @@ export const AppRouter = () => {
       children: [
         { path: '/about', element: <AboutUs /> },
         { path: '/terms-conditions', element: <TermsAndConditions /> },
-        { path: '.', element: <Overview /> },
-        { path: '*', element: <Navigate to="." /> },
+        { path: '/', element: <Overview /> },
+        { path: '*', element: <Navigate to="/" /> },
       ],
     },
     { path: '/nfts/*', element: <NFTRouter /> },

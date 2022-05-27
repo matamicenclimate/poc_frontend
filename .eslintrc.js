@@ -28,7 +28,7 @@ module.exports = {
   },
   rules: {
     'no-restricted-imports': [
-      'warn',
+      'error',
       {
         patterns: ['@/features/*/*'],
       },

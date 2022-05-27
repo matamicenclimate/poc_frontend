@@ -4,7 +4,6 @@ import { Title } from '@/componentes/Elements/Title/Title';
 import { CarbonDocument } from '@/features/documents';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
-import { useClaimNftFromDocument } from '@/features/documents/api/useClaimNftFromDocument';
 
 export const NftCard = ({ data }: { data: UseQueryResult<CarbonDocument[]> }) => {
   const renderDocument = () => {

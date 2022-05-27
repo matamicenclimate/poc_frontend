@@ -9,11 +9,11 @@ import { Button } from '@/componentes/Elements/Button/Button';
 import { useState } from 'react';
 import { useWalletContext } from '@/providers/Wallet.context';
 import { Icon } from '@/componentes/Icon/Icon';
-import { useGetChartData } from '../api/useGetChartData';
+import { useGetChartData } from '../../wallet/api/useGetChartData';
 import { useGetActivities } from '../api/useGetActivities';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { format } from 'date-fns';
-import { BalanceShowcase } from '@/features/misc/components/BalanceShowcase';
+import { BalanceShowcase } from '@/features/misc';
 
 const pillVariants: Record<string, PillProps['variant']> = {
   swap: 'swap',

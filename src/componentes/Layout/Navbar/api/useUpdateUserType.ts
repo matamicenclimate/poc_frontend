@@ -2,7 +2,7 @@ import { httpClient } from '@/lib/httpClient';
 import { useMutation } from 'react-query';
 import { useAlert } from 'react-alert';
 import { useAuth } from '@/lib/auth';
-import { StrapiUser } from '@/features/auth/types';
+import { StrapiUser } from '@/features/auth';
 
 function putUserType(userId: string, type: string): Promise<StrapiUser> {
   return httpClient.put(`/users/${userId}`, { type });

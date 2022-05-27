@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { ChartBalance } from '@/features/misc/api/useGetChartData';
+import { ChartBalance } from '@/features/wallet';
 import { useCurrencyContext } from '@/providers/Currency.context';
 import { UseQueryResult } from 'react-query';
 import { Pill } from '@/componentes/Elements/Pill/Pill';

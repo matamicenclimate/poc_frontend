@@ -1,4 +1,4 @@
-import { Nft } from '@/features/nfts/types';
+import { Nft } from '@/features/nfts';
 
 export const compensationKeys = {
   all: ['compensations'] as const,

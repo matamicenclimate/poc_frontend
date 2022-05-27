@@ -1,6 +1,6 @@
 import { httpClient } from '@/lib/httpClient';
 import { useQuery } from 'react-query';
-import { Compensation, compensationKeys } from '@/features/climatecoins/types';
+import { Compensation, compensationKeys } from '../types';
 
 function fetchCompensations(): Promise<Compensation[]> {
   const params = new URLSearchParams({

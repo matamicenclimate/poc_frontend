@@ -6,13 +6,14 @@ import { getClient } from '@/lib/algosdk';
 import algosdk, { waitForConfirmation } from 'algosdk';
 import { magiclink } from '@/lib/magiclink';
 import { Buffer } from 'buffer';
+import { accountKeys } from '@/features/wallet';
 
 async function claimFromDocument(
   documentId: string,
   email: string,
   address: string,
   assetId: number
-): Promise<any> {
+): Promise<CarbonDocument> {
   console.log('opting in...');
   const suggestedParams = await getClient().getTransactionParams().do();
 
@@ -56,6 +57,7 @@ export function useClaimNftFromDocument() {
     {
       onSuccess: (data: CarbonDocument) => {
         queryClient.invalidateQueries(documentKeys.detail(data._id as string));
+        queryClient.invalidateQueries(accountKeys.all);
         alert.success('Asset claimed succesfully');
       },
       onError: () => {

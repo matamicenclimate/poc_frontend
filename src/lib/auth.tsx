@@ -1,11 +1,15 @@
 import storage from '@/utils/storage';
 import { AuthProviderConfig, initReactQueryAuth } from 'react-query-auth';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
-import { LoginCredentialsDTO } from '@/features/auth/api/login';
-import { RegisterCredentialsDTO, registerWithEmailAndPassword } from '@/features/auth/api/register';
-import { AuthUser, UserResponse } from '@/features/auth/types';
+import {
+  LoginCredentialsDTO,
+  RegisterCredentialsDTO,
+  registerWithEmailAndPassword,
+  AuthUser,
+  UserResponse,
+  getUser,
+} from '@/features/auth';
 import { magiclink } from './magiclink';
-import { getUser } from '@/features/auth/api/getUser';
 import { httpClient } from '@/lib/httpClient';
 
 async function handleUserResponse(data: UserResponse) {

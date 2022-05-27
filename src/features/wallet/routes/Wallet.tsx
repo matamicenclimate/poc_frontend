@@ -7,9 +7,9 @@ import { Card } from '@/componentes/Card/Card';
 import { useOptinToAsset } from '../api/useOptinToAsset';
 import { useGetSwappableDocuments } from '@/features/documents';
 import { useAuth } from '@/lib/auth';
-import { NftCard } from '@/features/wallet/components/NftCard';
-import { useGetChartData } from '@/features/misc/api/useGetChartData';
-import { BalanceShowcase } from '@/features/misc/components/BalanceShowcase';
+import { NftCard } from '../components/NftCard';
+import { useGetChartData } from '../api/useGetChartData';
+import { BalanceShowcase } from '@/features/misc';
 
 export const Wallet = () => {
   const { t } = useTranslation();
