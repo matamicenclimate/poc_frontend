@@ -21,7 +21,7 @@ import { Icon } from '@/componentes/Icon/Icon';
 
 export const Compensate = () => {
   const { t } = useTranslation();
-  const {  climatecoinBalance } = useWalletContext();
+  const { climatecoinBalance } = useWalletContext();
   const calculateCompensation = useCalculateCompensation();
   const compensations = useGetCompensations();
   const burnClimatecoins = useBurnClimatecoins();
@@ -120,11 +120,13 @@ export const Compensate = () => {
           </div>
         </div>
         <Dialog
+          size="xs"
           isOpen={!!oracleResponse}
           setIsOpen={() => setOracleResponse(null)}
           onAccept={handleConfirmation}
           isLoading={burnClimatecoins.isLoading}
           title={'Are you sure'}
+          claim={'Lorem ipsum dolor sit amet'}
         ></Dialog>
       </div>
     </>
