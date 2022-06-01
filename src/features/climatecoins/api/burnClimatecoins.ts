@@ -54,7 +54,7 @@ async function handleBurnClimatecoins({
   const result = await waitForConfirmation(getClient(), txId, 3);
   console.log({ result, txId });
   const groupId = Buffer.from(result.txn.txn.grp).toString('base64');
-  return httpClient.post(`/compensations`, { txnId: groupId, amount, nfts: nftIds, user: userId });
+  return httpClient.post(`/compensations`, { txn_id: groupId, amount, nfts: nftIds, user: userId });
 }
 
 export function useBurnClimatecoins() {
