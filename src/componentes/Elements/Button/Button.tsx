@@ -17,7 +17,7 @@ const variants = {
   ),
   dark: clsx(
     'text-neutral-2 bg-neutral-8 border-solid border-2 border-neutral-4',
-    'hover:border-transparent disabled:border-transparent'
+    'hover:border-neutral-2 disabled:border-neutral-2'
   ),
 };
 
