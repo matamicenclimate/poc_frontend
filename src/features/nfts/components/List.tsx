@@ -13,8 +13,8 @@ import { PageTitle } from '@/componentes/Layout/PageTitle';
 
 export const NFTList = () => {
   // const nfts = useGetNFTs();
-  const nfts = useGetNFTsByStatus('swapped');
-  const burnedNfts = useGetNFTsByStatus('burned');
+  const nfts = useGetNFTsByStatus({ status: 'swapped' });
+  const burnedNfts = useGetNFTsByStatus({ status: 'burned' });
   const { t } = useTranslation();
 
   const renderNfts = (nfts: UseQueryResult<any>) => {

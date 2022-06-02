@@ -10,6 +10,10 @@ import { useAuth } from '@/lib/auth';
 import { NftCard } from '../components/NftCard';
 import { useGetChartData } from '../api/useGetChartData';
 import { BalanceShowcase } from '@/features/misc';
+import { useGetNFTsByStatus } from '@/features/nfts';
+import { CarbonDocumentNftCard } from '../components/CarbonDocumentNftCard';
+import { EXPLORER_URL } from '@/config';
+import { Link } from '@/componentes/Elements/Link/Link';
 
 export const Wallet = () => {
   const { t } = useTranslation();
@@ -17,6 +21,7 @@ export const Wallet = () => {
   const { account, hasOptedIn } = useWalletContext();
   const optinToAsset = useOptinToAsset();
   const swappableNfts = useGetSwappableDocuments(user?.email);
+  const compensationNfts = useGetNFTsByStatus({ nft_type: 'compensation' });
   const { climatecoinBalance } = useWalletContext();
   const chartBalance = useGetChartData();
   return (
@@ -25,7 +30,15 @@ export const Wallet = () => {
         <Title size={3} as={1}>
           {t('wallet.Wallet.title')}
         </Title>
-        <div>{account?.address}</div>
+        <div>
+          <Link
+            href={`${EXPLORER_URL}address/${encodeURIComponent(account?.address as string)}`}
+            className="inline-flex items-center text-sm"
+          >
+            {account?.address}
+            <img src="/icons/algoexplorer.png" className="h-3 w-3 rounded-full" />
+          </Link>
+        </div>
       </div>
       {!hasOptedIn(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)) && (
         <Card padding="sm">
@@ -59,7 +72,16 @@ export const Wallet = () => {
       )}
       <div className="flex flex-col space-y-8">
         <BalanceShowcase climatecoinBalance={climatecoinBalance} chartBalance={chartBalance} />
-        <NftCard data={swappableNfts} />
+
+        <Title size={4} as={2}>
+          Compensation Certificates
+        </Title>
+        <NftCard data={compensationNfts} />
+
+        <Title size={4} as={2}>
+          Unclaimed Nfts
+        </Title>
+        <CarbonDocumentNftCard data={swappableNfts} />
       </div>
     </MainLayout>
   );

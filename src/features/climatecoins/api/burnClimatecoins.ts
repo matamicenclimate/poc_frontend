@@ -6,7 +6,7 @@ import algosdk, { waitForConfirmation } from 'algosdk';
 import { magiclink } from '@/lib/magiclink';
 import { Buffer } from 'buffer';
 import { queryClient } from '@/lib/react-query';
-import { CompensationCalculation, compensationKeys } from '../types';
+import { Compensation, CompensationCalculation, compensationKeys } from '../types';
 import { useAuth } from '@/lib/auth';
 
 type HandleBurnParams = { userId: string | null | undefined } & CompensationCalculation;
@@ -54,7 +54,12 @@ async function handleBurnClimatecoins({
   const result = await waitForConfirmation(getClient(), txId, 3);
   console.log({ result, txId });
   const groupId = Buffer.from(result.txn.txn.grp).toString('base64');
-  return httpClient.post(`/compensations`, { txn_id: groupId, amount, nfts: nftIds, user: userId });
+  return httpClient.post(`/compensations`, {
+    txn_id: groupId,
+    amount,
+    nfts: nftIds,
+    user: userId,
+  });
 }
 
 export function useBurnClimatecoins() {

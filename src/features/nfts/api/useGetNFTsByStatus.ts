@@ -6,9 +6,9 @@ function fetchNFTs(filter: Record<string, string>): Promise<any[]> {
   const params = new URLSearchParams(filter).toString();
   return httpClient.get(`/nfts?${params}`);
 }
-export function useGetNFTsByStatus(status: string) {
+export function useGetNFTsByStatus(filter: { status?: string; nft_type?: string }) {
   const parsed = {
-    status,
+    ...filter,
   };
-  return useQuery(nftKeys.status(status), () => fetchNFTs(parsed));
+  return useQuery(nftKeys.status(JSON.stringify(filter)), () => fetchNFTs(parsed));
 }

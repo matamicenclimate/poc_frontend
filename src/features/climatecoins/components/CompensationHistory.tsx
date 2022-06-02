@@ -19,7 +19,7 @@ export const CompensationHistory = ({ data }: { data: UseQueryResult<Compensatio
                   {comp.amount} tonnes of CO2 compensated
                   <br />
                   <Link
-                    href={`${EXPLORER_URL}tx/group/${encodeURIComponent(comp.txnId)}`}
+                    href={`${EXPLORER_URL}tx/group/${encodeURIComponent(comp.txn_id)}`}
                     className="inline-flex items-center text-xs"
                   >
                     View txn{' '}

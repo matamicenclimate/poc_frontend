@@ -5,6 +5,7 @@ import { UseQueryResult } from 'react-query';
 import { Pill } from '@/componentes/Elements/Pill/Pill';
 import { BalanceChart } from './BalanceChart';
 import { Link } from '@/componentes/Elements/Link/Link';
+import { CLIMATECOIN_ASA_ID } from '@/config';
 
 export function BalanceShowcase({
   climatecoinBalance,
@@ -33,7 +34,9 @@ export function BalanceShowcase({
               </Pill>
             </div>
           </div>
-          <p className="text-2xl text-neutral-4">{formatter(climatecoinBalance() * 10)}</p>
+          <div className="flex items-center space-x-4">
+            <p className="text-2xl text-neutral-4">{formatter(climatecoinBalance() * 10)}</p>
+          </div>
         </div>
         <div className="flex flex-col space-y-3">
           <Link size="sm" as="button" variant="primary" to="/coins/compensate">
@@ -53,9 +56,17 @@ export function BalanceShowcase({
             width={500}
           />
         </div>
-        <p className="py-4 pt-8 text-right">
-          🌱 You have enough climatecoins to clean <Link to="#">a football stadium</Link>
-        </p>
+        <div className="mt-6 flex items-center justify-between">
+          <Link
+            href={`${process.env.REACT_APP_ALGORAND_EXPLORER_URL}asset/${CLIMATECOIN_ASA_ID}`}
+            className="flex items-center"
+          >
+            View in explorer <img src="/icons/algoexplorer.png" className="h-3 w-3 rounded-full" />
+          </Link>
+          <p className="text-right">
+            🌱 You have enough climatecoins to clean <Link to="#">a football stadium</Link>
+          </p>
+        </div>
       </div>
     </div>
   );

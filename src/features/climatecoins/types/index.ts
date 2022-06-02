@@ -21,7 +21,7 @@ export interface Compensation {
   state: string;
   nfts: Nft[];
   _id: string;
-  txnId: string;
+  txn_id: string;
   amount: string;
   published_at: Date;
   createdAt: Date;
