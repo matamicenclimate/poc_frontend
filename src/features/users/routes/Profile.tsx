@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import clsx from 'clsx';
-import { UpdateDataForm } from './UpdateDataForm';
-import { UpdateAvatarForm } from './UpdateAvatarForm';
 import { Card } from '@/componentes/Card/Card';
+import { UpdateAvatarForm } from '../components/UpdateAvatarForm';
+import { UpdateDataForm } from '../components/UpdateDataForm';
 
 export const Profile = () => {
   const { user } = useAuth();
