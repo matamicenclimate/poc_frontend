@@ -4,8 +4,15 @@ import { httpClient } from '@/lib/httpClient';
 import { useMutation, useQueryClient } from 'react-query';
 import { useAuth } from '@/lib/auth';
 import { toFormData } from '@/utils/toFormData';
+import { StrapiUser } from '@/features/auth';
 
-function updateProfile(formData: FormData, userId: string): Promise<any> {
+interface UpdateProfileDTO {
+  firstname: string;
+  surname: string;
+  avatar: File | any; // TODO: check this type xD
+}
+
+function updateProfile(formData: FormData, userId: string): Promise<StrapiUser> {
   const config: AxiosRequestConfig<FormData> = {
     headers: {
       'content-type': 'application/form-data',
@@ -19,7 +26,7 @@ export function useUpdateProfile() {
   const alert = useAlert();
   const auth = useAuth();
   return useMutation(
-    (profileDocument: any) => {
+    (profileDocument: Partial<UpdateProfileDTO>) => {
       const formData = toFormData(profileDocument);
       return updateProfile(formData, auth?.user?.id as string);
     },

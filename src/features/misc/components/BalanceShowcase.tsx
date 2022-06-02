@@ -42,9 +42,6 @@ export function BalanceShowcase({
           <Link size="sm" as="button" variant="primary" to="/coins/compensate">
             {t('components.Overview.footprint')}
           </Link>
-          <Link size="sm" variant="light" to="/coins/buy" as="button">
-            {t('components.Overview.buyClimatecoins')}
-          </Link>
         </div>
       </div>
       <div id="graphic-panel" className="col-span-2 flex flex-col text-sm">

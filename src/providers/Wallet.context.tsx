@@ -1,4 +1,4 @@
-import { createContext, ReactElement, useContext } from 'react';
+import { ReactElement, createContext, useContext } from 'react';
 import { UseQueryResult } from 'react-query';
 import { IndexerAccount, useGetBalance } from '@/features/wallet';
 import { useAuth } from '@/lib/auth';

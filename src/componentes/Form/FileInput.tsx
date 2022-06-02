@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useDropzone } from 'react-dropzone';
-import { useController, UseControllerProps } from 'react-hook-form';
+import { UseControllerProps, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Label } from './Label';
 import { FieldError } from './FieldError';

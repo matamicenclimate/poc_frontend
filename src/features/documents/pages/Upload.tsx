@@ -8,7 +8,7 @@ import { Select } from '@/componentes/Form/Select';
 
 import { useUploadDocument } from '../api/useUploadDocument';
 import { FormOption, useGetFormOptions } from '../api/useGetFormOptions';
-import { documentUploadValidationSchema, UploadFormSchema } from '../validation/UploadValidation';
+import { UploadFormSchema, documentUploadValidationSchema } from '../validation/UploadValidation';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { Card } from '@/componentes/Card/Card';
 import useYupValidationResolver from '@/componentes/Form/useValidationResolver';

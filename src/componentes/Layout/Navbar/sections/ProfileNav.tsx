@@ -13,6 +13,7 @@ import { Link } from '@/componentes/Elements/Link/Link';
 import { Icon } from '@/componentes/Icon/Icon';
 import { useTranslation } from 'react-i18next';
 import styles from './shared.module.css';
+import AvatarPlaceholder from '@/assets/images/avatar-placeholder.jpg';
 
 export const ProfileNav = () => {
   const auth = useAuth();
@@ -64,12 +65,12 @@ export const ProfileNav = () => {
 
   const getProfileAvatar = () => {
     if (auth.user?.avatar === null) {
-      return '/avatar-placeholder.jpg';
+      return AvatarPlaceholder;
     }
     if (auth.user?.avatar?.url) {
       return auth.user?.avatar.url;
     }
-    return '/avatar-placeholder.jpg';
+    return AvatarPlaceholder;
   };
 
   return (

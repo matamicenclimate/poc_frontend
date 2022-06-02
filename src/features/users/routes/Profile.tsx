@@ -2,44 +2,17 @@ import { useAuth } from '@/lib/auth';
 import { useTranslation } from 'react-i18next';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
-import { useWalletContext } from '@/providers/Wallet.context';
-import { Input } from '@/componentes/Form/Inputs';
-import { Card } from '@/componentes/Card/Card';
-import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
-import FileInput from '@/componentes/Form/FileInput';
-import { Button } from '@/componentes/Elements/Button/Button';
-import { ProfileValidationSchema } from '../validation/ProfileValidation';
-import { useUpdateProfile } from '../api/useUpdateProfile';
+import { UpdateDataForm } from './UpdateDataForm';
+import { UpdateAvatarForm } from './UpdateAvatarForm';
+import { Card } from '@/componentes/Card/Card';
 
 export const Profile = () => {
   const { user } = useAuth();
   const { t } = useTranslation();
-  const { account } = useWalletContext();
-
-  const methods = useForm<any>({
-    mode: 'onBlur',
-  });
-
-  const baseInputProps = {
-    register: methods.register,
-    control: methods.control,
-    errors: methods.formState.errors,
-    wrapperClassName: 'col-span-2',
-  };
 
   const baseAsideLiStyles =
     'flex cursor-pointer items-center px-6 py-2 transition hover:bg-neutral-7';
-
-  const getAvatarPreview = () => {
-    if (methods.watch('avatar') === undefined) {
-      return 'avatar-placeholder.jpg';
-    }
-    if (methods.watch('avatar').length === 1) {
-      return URL.createObjectURL(methods.watch('avatar')[0]);
-    }
-    return 'avatar-placeholder.jpg';
-  };
 
   const getProfileAvatar = () => {
     if (user?.avatar === null) {
@@ -49,12 +22,6 @@ export const Profile = () => {
       return user?.avatar.url;
     }
     return 'avatar-placeholder.jpg';
-  };
-
-  const updateProfile = useUpdateProfile();
-
-  const handleSubmit = (data: any) => {
-    updateProfile.mutate(data);
   };
 
   return (
@@ -81,45 +48,12 @@ export const Profile = () => {
         </aside>
 
         <main className="space-y-4 md:col-span-3">
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-col items-center space-x-2 space-y-7">
             <Card>
-              <Title className="mb-4" size={5} as={2}>
-                {t('profile.edit')}
-              </Title>
-
-              <form className="space-y-5" onSubmit={methods.handleSubmit(handleSubmit)}>
-                <div className="grid gap-4 md:grid-cols-3">
-                  <FileInput<ProfileValidationSchema>
-                    {...baseInputProps}
-                    label={t('profile.avatar')}
-                    required
-                    name="avatar"
-                    accept={'.png, .jpg, .jpeg'}
-                  />
-                  <img
-                    src={getAvatarPreview()}
-                    className="mx-auto h-36 rounded-full md:col-span-1"
-                  />
-                </div>
-                <Input<ProfileValidationSchema>
-                  label={t('profile.name')}
-                  name="first_name"
-                  type="text"
-                  placeholder={user?.first_name ? user.first_name : t('profile.name')}
-                  {...baseInputProps}
-                />
-
-                <Input<ProfileValidationSchema>
-                  label={t('profile.surname')}
-                  name="last_name"
-                  type="text"
-                  placeholder={user?.last_name ? user.last_name : t('profile.surname')}
-                  {...baseInputProps}
-                />
-                <Button type="submit" size="md" disabled={updateProfile.isLoading}>
-                  {t('profile.button')}
-                </Button>
-              </form>
+              <UpdateAvatarForm />
+            </Card>
+            <Card>
+              <UpdateDataForm />
             </Card>
           </div>
         </main>

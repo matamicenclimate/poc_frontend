@@ -15,7 +15,7 @@ async function handleSwap(
   nftAsaId: number,
   nftSupply: number,
   documentId: string
-): Promise<any> {
+): Promise<CarbonDocument> {
   console.log('swapping...');
 
   if (!address) return Promise.reject('No address');

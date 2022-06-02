@@ -2,7 +2,7 @@ import * as React from 'react';
 import { QueryClientProvider } from 'react-query';
 // import { AuthProvider } from '@/context/auth-context';
 import { AuthProvider } from '@/lib/auth';
-import { positions, Provider as AlertProvider, transitions } from 'react-alert';
+import { Provider as AlertProvider, positions, transitions } from 'react-alert';
 import { Alert } from '@/componentes/Elements/Alert/Alert';
 import { queryClient } from '@/lib/react-query';
 import { HelmetProvider } from 'react-helmet-async';

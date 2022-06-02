@@ -1,6 +1,5 @@
 import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import { Compensate } from '../pages/Compensate';
-import { Buy } from '../pages/Buy';
 import { Suspense } from 'react';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
@@ -25,9 +24,8 @@ export const ClimatecoinsRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<CoinsWrapper />}>
-        <Route path="buy" element={<Buy />} />
         <Route path="compensate" element={<Compensate />} />
-        <Route path="*" element={<Navigate to="buy" />} />
+        <Route path="*" element={<Navigate to="compensate" />} />
       </Route>
     </Routes>
   );

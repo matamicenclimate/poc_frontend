@@ -2,12 +2,12 @@ import storage from '@/utils/storage';
 import { AuthProviderConfig, initReactQueryAuth } from 'react-query-auth';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import {
+  AuthUser,
   LoginCredentialsDTO,
   RegisterCredentialsDTO,
-  registerWithEmailAndPassword,
-  AuthUser,
   UserResponse,
   getUser,
+  registerWithEmailAndPassword,
 } from '@/features/auth';
 import { magiclink } from './magiclink';
 import { httpClient } from '@/lib/httpClient';

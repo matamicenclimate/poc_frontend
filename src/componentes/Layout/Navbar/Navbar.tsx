@@ -26,14 +26,8 @@ export const Navbar = () => {
             <Link to="/home" className={`text-neutral-2 ${linkStyle}`} navLink>
               {t('components.Navbar.home')}
             </Link>
-            <Link to="/coins/buy" className={`text-neutral-4 ${linkStyle}`} navLink>
-              {t('components.Navbar.buy')}
-            </Link>
             <Link to="/coins/compensate" className={`text-neutral-4 ${linkStyle}`} navLink>
               {t('components.Navbar.burn')}
-            </Link>
-            <Link to="/sell" className={`text-neutral-4 ${linkStyle}`} navLink>
-              {t('components.Navbar.sell')}
             </Link>
             <Link to="/about" className={` text-neutral-4 ${linkStyle}`} navLink>
               {t('components.Navbar.about')}

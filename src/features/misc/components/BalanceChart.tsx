@@ -3,13 +3,13 @@ import { Line } from 'react-chartjs-2';
 import {
   CategoryScale,
   Chart as ChartJS,
+  Title as ChartTitle,
   Filler,
   Legend,
-  LinearScale,
   LineElement,
+  LinearScale,
   PointElement,
   ScriptableContext,
-  Title as ChartTitle,
   Tooltip,
 } from 'chart.js';
 
