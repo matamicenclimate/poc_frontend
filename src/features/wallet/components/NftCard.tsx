@@ -1,7 +1,5 @@
 import { Card } from '@/componentes/Card/Card';
 import { UseQueryResult } from 'react-query';
-import { Title } from '@/componentes/Elements/Title/Title';
-import { CarbonDocument } from '@/features/documents';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { Nft } from '@/features/nfts';

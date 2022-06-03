@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { QueryClientProvider } from 'react-query';
-// import { AuthProvider } from '@/context/auth-context';
 import { AuthProvider } from '@/lib/auth';
 import { Provider as AlertProvider, positions, transitions } from 'react-alert';
 import { Alert } from '@/componentes/Elements/Alert/Alert';

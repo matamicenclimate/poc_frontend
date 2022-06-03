@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useGetDocument } from '../api/useGetDocument';
 import { ProjectPreview } from '../components/ProjectPreview';
-import { UploadSteps } from './Upload';
+import { UploadSteps } from '../components/UploadForm';
 import { useClaimNftFromDocument } from '../api/useClaimNftFromDocument';
 import { useAuth } from '@/lib/auth';
 import { SwapNft } from '../components/SwapNft';
