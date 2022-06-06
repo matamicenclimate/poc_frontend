@@ -14,6 +14,7 @@ import { useGetActivities } from '../api/useGetActivities';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { format } from 'date-fns';
 import { BalanceShowcase } from '@/features/misc';
+import { useAuth } from '@/lib/auth';
 
 const pillVariants: Record<string, PillProps['variant']> = {
   swap: 'swap',
@@ -26,7 +27,7 @@ const pillVariants: Record<string, PillProps['variant']> = {
 export const Overview = () => {
   const { t } = useTranslation();
   const [tabSelected, setTabSelected] = useState<string | null>(null);
-
+  const auth = useAuth();
   const activities = useGetActivities(tabSelected);
 
   const { climatecoinBalance } = useWalletContext();

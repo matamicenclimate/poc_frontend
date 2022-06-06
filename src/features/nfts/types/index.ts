@@ -1,4 +1,5 @@
 export interface Nft {
+  consolidation_certificate_ipfs_cid?: string;
   supply: string;
   txn_type: string;
   is_holded: boolean;

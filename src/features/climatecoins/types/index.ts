@@ -18,6 +18,7 @@ export interface CompensationCalculation {
 }
 
 export interface Compensation {
+  consolidation_certificate_ipfs_cid?: string;
   state: string;
   nfts: Nft[];
   _id: string;

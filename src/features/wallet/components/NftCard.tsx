@@ -5,13 +5,22 @@ import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { Nft } from '@/features/nfts';
 import { useWalletContext } from '@/providers/Wallet.context';
 import { Button } from '@/componentes/Elements/Button/Button';
+import { EXPLORER_URL, IPFS_GATEWAY_URL } from '@/config';
 
 export const NftCard = ({ data }: { data: UseQueryResult<Nft[]> }) => {
   const { hasOptedIn } = useWalletContext();
+
+  const getIpfsCid = (ipfsUrl: string) => {
+    if (ipfsUrl.indexOf('ipfs://') === 0) {
+      return ipfsUrl.split('ipfs://')[1];
+    }
+    return '';
+  };
+
   const renderDocument = () => {
     if (data.data) {
       return (
-        <div className="grid grid-cols-3 divide-y">
+        <div className="grid grid-cols-3 gap-4 divide-y">
           {data.data.map((document) => (
             <Card key={document.asa_id}>
               <div className="space-y-4">
@@ -22,20 +31,38 @@ export const NftCard = ({ data }: { data: UseQueryResult<Nft[]> }) => {
                   {JSON.stringify(document.metadata, null, 2)}
                 </pre>
                 <div className="space-y-1">
-                  <Link
-                    href={`${process.env.REACT_APP_ALGORAND_EXPLORER_URL}asset/${document.asa_id}`}
-                    className="w-full"
-                    as="button"
-                    size="sm"
-                    variant="dark"
-                  >
-                    View asset{' '}
-                    <img src="/icons/algoexplorer.png" className="h-3 w-3 rounded-full" />
-                  </Link>
+                  <div className="grid grid-cols-4 gap-1">
+                    <Link
+                      to={`/nfts/${document.id}`}
+                      className="col-span-2 w-full"
+                      as="button"
+                      size="sm"
+                      variant="dark"
+                    >
+                      View details
+                    </Link>
+                    <Link
+                      href={`${EXPLORER_URL}asset/${document.asa_id}`}
+                      className="w-full"
+                      as="button"
+                      size="sm"
+                      variant="dark"
+                    >
+                      <img src="/icons/algoexplorer.png" className="h-4 w-5 rounded-full" />
+                    </Link>
+                    <Link
+                      href={`${IPFS_GATEWAY_URL}${getIpfsCid(document.metadata.external_url)}`}
+                      className="w-full"
+                      as="button"
+                      size="sm"
+                      variant="dark"
+                    >
+                      ipfs
+                    </Link>
+                  </div>
                   <Link to={`/nfts/${document.id}`} as="button" className="w-full" size="sm">
-                    Claim NFT
+                    {!hasOptedIn(Number(document.asa_id)) ? 'Optin and claim' : 'Claim'}
                   </Link>
-                  {!hasOptedIn(Number(document.asa_id)) && <Button variant="primary">Optin</Button>}
                 </div>
               </div>
             </Card>

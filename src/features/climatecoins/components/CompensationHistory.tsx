@@ -2,7 +2,7 @@ import { UseQueryResult } from 'react-query';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { Card } from '@/componentes/Card/Card';
 import { Link } from '@/componentes/Elements/Link/Link';
-import { EXPLORER_URL } from '@/config';
+import { EXPLORER_URL, IPFS_GATEWAY_URL } from '@/config';
 import { Compensation } from '../types';
 import { useTranslation } from 'react-i18next';
 
@@ -18,17 +18,25 @@ export const CompensationHistory = ({ data }: { data: UseQueryResult<Compensatio
                 <div>
                   {comp.amount} tonnes of CO2 compensated
                   <br />
-                  <Link
-                    href={`${EXPLORER_URL}tx/group/${encodeURIComponent(comp.txn_id)}`}
-                    className="inline-flex items-center text-xs"
-                  >
-                    View txn{' '}
-                    <img
-                      role="figure"
-                      src="/icons/algoexplorer.png"
-                      className="h-3 w-3 rounded-full"
-                    />
-                  </Link>{' '}
+                  <div className="flex space-x-2">
+                    <Link
+                      href={`${EXPLORER_URL}tx/group/${encodeURIComponent(comp.txn_id)}`}
+                      className="inline-flex items-center text-xs"
+                    >
+                      View txn{' '}
+                      <img
+                        role="figure"
+                        src="/icons/algoexplorer.png"
+                        className="h-3 w-3 rounded-full"
+                      />
+                    </Link>{' '}
+                    <Link
+                      href={`${IPFS_GATEWAY_URL}${comp.consolidation_certificate_ipfs_cid}`}
+                      className="inline-flex items-center text-xs"
+                    >
+                      View certificate
+                    </Link>{' '}
+                  </div>
                 </div>
                 <div className="flex-grow" />
                 <div>{t('intlDateTime', { val: comp.createdAt })}</div>
