@@ -89,7 +89,7 @@ export const Overview = () => {
                   ) : null}
                   {data.type === 'burn' ? (
                     <>
-                      Cliamtecoins compensated
+                      Climatecoins compensated
                       <br />
                     </>
                   ) : null}

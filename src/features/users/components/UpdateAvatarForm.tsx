@@ -22,9 +22,6 @@ export const UpdateAvatarForm = () => {
   };
 
   const getAvatarPreview = () => {
-    if (methods.watch('avatar') === undefined) {
-      return 'avatar-placeholder.jpg';
-    }
     if (methods.watch('avatar').length === 1) {
       return URL.createObjectURL(methods.watch('avatar')[0]);
     }
@@ -43,7 +40,7 @@ export const UpdateAvatarForm = () => {
           label={t('profile.avatar')}
           required
           name="avatar"
-          accept={'.png, .jpg, .jpeg'}
+          accept=".png,.jpg,.jpeg"
           control={methods.control}
         />
         <img src={getAvatarPreview()} className="mx-auto h-36 rounded-full md:col-span-1" />

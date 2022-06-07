@@ -64,9 +64,6 @@ export const ProfileNav = () => {
   };
 
   const getProfileAvatar = () => {
-    if (auth.user?.avatar === null) {
-      return AvatarPlaceholder;
-    }
     if (auth.user?.avatar?.url) {
       return auth.user?.avatar.url;
     }

@@ -274,14 +274,14 @@ export const UploadForm = ({ email }: { email?: string }) => {
                   label={t('uploadDocuments.projectThumbnail')}
                   required
                   name="thumbnail"
-                  accept={'.png, .jpg, .jpeg'}
+                  accept=".png,.jpg,.jpeg"
                 />
                 <FileInput<UploadFormSchema>
                   {...baseInputProps}
                   label={t('uploadDocuments.projectCover')}
                   required
                   name="cover"
-                  accept={'.png, .jpg, .jpeg'}
+                  accept=".png,.jpg,.jpeg"
                 />
                 <Input<UploadFormSchema>
                   {...baseInputProps}
@@ -426,28 +426,28 @@ export const UploadForm = ({ email }: { email?: string }) => {
                     label={t('uploadDocuments.PDD')}
                     required
                     name="pdd"
-                    accept={'.pdf'}
+                    accept=".pdf"
                   />
                   <FileInput<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-2"
                     label={t('uploadDocuments.validation.report')}
                     name="validation_report"
-                    accept={'.pdf'}
+                    accept=".pdf"
                   />
                   <FileInput<UploadFormSchema>
                     {...baseInputProps}
                     wrapperClassName="col-span-2"
                     label={t('uploadDocuments.monitoring.report')}
                     name="monitoring_report"
-                    accept={'.pdf'}
+                    accept=".pdf"
                   />
                   <FileInput<UploadFormSchema>
                     {...baseInputProps}
                     label={t('uploadDocuments.verification.report')}
                     required
                     name="verification_report"
-                    accept={'.pdf'}
+                    accept=".pdf"
                   />
                   <Input<UploadFormSchema>
                     {...baseInputProps}
