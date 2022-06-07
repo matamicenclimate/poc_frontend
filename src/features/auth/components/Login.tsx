@@ -1,14 +1,15 @@
+import { useState } from 'react';
+import { useAlert } from 'react-alert';
+import { useTranslation } from 'react-i18next';
+
+import { ReactComponent as LockIcon } from '@/assets/icons/bx-lock-alt.svg';
+import LogoMagic from '@/assets/icons/bx-magic-link.png';
 import { Button } from '@/componentes/Elements/Button/Button';
+import { Title } from '@/componentes/Elements/Title/Title';
 import { Form } from '@/componentes/Form/Form';
 import { Input } from '@/componentes/Form/Inputs';
 import { LoginLayout } from '@/componentes/Layout/LoginLayout';
 import { useAuth } from '@/lib/auth';
-import { useTranslation } from 'react-i18next';
-import { Title } from '@/componentes/Elements/Title/Title';
-import { useState } from 'react';
-import { ReactComponent as LockIcon } from '@/assets/icons/bx-lock-alt.svg';
-import LogoMagic from '@/assets/icons/bx-magic-link.png';
-import { useAlert } from 'react-alert';
 
 export const Login = () => {
   const auth = useAuth();

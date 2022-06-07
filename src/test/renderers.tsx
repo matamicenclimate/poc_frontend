@@ -1,13 +1,13 @@
-import { AppProvider } from '@/providers/AppProvider';
 import { createMemoryHistory } from 'history';
-import { BrowserRouter } from 'react-router-dom';
-import { Alert } from '@/componentes/Elements/Alert/Alert';
+import { positions, Provider as AlertProvider, transitions } from 'react-alert';
 import { QueryClientProvider } from 'react-query';
+import { BrowserRouter } from 'react-router-dom';
+
+import { Alert } from '@/componentes/Elements/Alert/Alert';
 import { queryClient } from '@/lib/react-query';
+import { AppProvider } from '@/providers/AppProvider';
 import { CurrencyProvider } from '@/providers/Currency.context';
 import { WalletProvider } from '@/providers/Wallet.context';
-import { positions, Provider as AlertProvider, transitions } from 'react-alert';
-import * as React from 'react';
 
 export const DefaultRender = ({ children }: any) => {
   const history = createMemoryHistory();

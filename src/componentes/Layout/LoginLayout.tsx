@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { Head } from './Head';
+
 import Logolight from '@/assets/logo-light.png';
+
 import LoginImage from '../../assets/images/login.jpg';
+import { Head } from './Head';
 
 interface MainLayoutProps {
   title?: string;

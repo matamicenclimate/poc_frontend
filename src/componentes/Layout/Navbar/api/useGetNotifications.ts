@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query';
+
 import { httpClient } from '@/lib/httpClient';
 
 export interface Notification {

@@ -1,14 +1,16 @@
-import * as React from 'react';
-import { QueryClientProvider } from 'react-query';
-import { AuthProvider } from '@/lib/auth';
-import { Provider as AlertProvider, positions, transitions } from 'react-alert';
-import { Alert } from '@/componentes/Elements/Alert/Alert';
-import { queryClient } from '@/lib/react-query';
-import { HelmetProvider } from 'react-helmet-async';
-import { ReactQueryDevtools } from 'react-query/devtools';
-import { WalletProvider } from './Wallet.context';
-import { CurrencyProvider } from './Currency.context';
 import * as Sentry from '@sentry/react';
+import * as React from 'react';
+import { positions, Provider as AlertProvider, transitions } from 'react-alert';
+import { HelmetProvider } from 'react-helmet-async';
+import { QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
+import { Alert } from '@/componentes/Elements/Alert/Alert';
+import { AuthProvider } from '@/lib/auth';
+import { queryClient } from '@/lib/react-query';
+
+import { CurrencyProvider } from './Currency.context';
+import { WalletProvider } from './Wallet.context';
 
 const options = {
   // you can also just use 'bottom center'

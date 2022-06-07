@@ -1,6 +1,7 @@
+import { useTranslation } from 'react-i18next';
+
 import { Pill } from '@/componentes/Elements/Pill/Pill';
 import { Title } from '@/componentes/Elements/Title/Title';
-import { useTranslation } from 'react-i18next';
 
 type ProjectPreviewProps = {
   values: Record<string, any>;

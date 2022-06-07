@@ -7,7 +7,7 @@ import { EXPLORER_URL, IPFS_GATEWAY_URL } from '@/config';
 import { Nft } from '@/features/nfts';
 import { useWalletContext } from '@/providers/Wallet.context';
 
-export const NftCard = ({ data }: { data: UseQueryResult<Nft[]> }) => {
+export const CompensationNftsCardList = ({ data }: { data: UseQueryResult<Nft[]> }) => {
   const { hasOptedIn } = useWalletContext();
 
   const getIpfsCid = (ipfsUrl: string) => {

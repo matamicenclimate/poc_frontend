@@ -1,11 +1,12 @@
 import clsx from 'clsx';
 import { useDropzone } from 'react-dropzone';
-import { UseControllerProps, useController } from 'react-hook-form';
+import { useController,UseControllerProps } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Label } from './Label';
-import { FieldError } from './FieldError';
-import { FieldName, SchemaToErrors } from '.';
+
 import { Icon } from '../Icon/Icon';
+import { FieldName, SchemaToErrors } from '.';
+import { FieldError } from './FieldError';
+import { Label } from './Label';
 
 export type FileInputProps<FormSchema> = {
   name: FieldName<FormSchema>;

@@ -1,8 +1,4 @@
-import { useTranslation } from 'react-i18next';
-import Popover from '@/componentes/Popover/Popover';
-import { Icon } from '@/componentes/Icon/Icon';
-import { useGetNotifications } from '@/componentes/Layout/Navbar/api/useGetNotifications';
-import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
+import clsx from 'clsx';
 import {
   differenceInDays,
   differenceInHours,
@@ -10,10 +6,16 @@ import {
   differenceInWeeks,
   parseJSON,
 } from 'date-fns';
-import { Link } from '@/componentes/Elements/Link/Link';
-import clsx from 'clsx';
-import { useMarkNotificationsAsRead } from '@/componentes/Layout/Navbar/api/useMarkNotificationsAsRead';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { Link } from '@/componentes/Elements/Link/Link';
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
+import { Icon } from '@/componentes/Icon/Icon';
+import { useGetNotifications } from '@/componentes/Layout/Navbar/api/useGetNotifications';
+import { useMarkNotificationsAsRead } from '@/componentes/Layout/Navbar/api/useMarkNotificationsAsRead';
+import Popover from '@/componentes/Popover/Popover';
+
 import styles from './shared.module.css';
 
 const modelToUrl: Record<string, string> = {

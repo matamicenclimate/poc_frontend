@@ -1,6 +1,8 @@
-import { documentKeys } from '../types';
-import { httpClient } from '@/lib/httpClient';
 import { useQuery } from 'react-query';
+
+import { httpClient } from '@/lib/httpClient';
+
+import { documentKeys } from '../types';
 
 function fetchDocuments<K extends Record<string, string>>(filter: K): Promise<[]> {
   const params = new URLSearchParams(filter).toString();

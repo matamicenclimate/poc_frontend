@@ -1,5 +1,6 @@
-import { SelectOption } from '@/componentes/Form';
 import { format } from 'date-fns';
+
+import { SelectOption } from '@/componentes/Form';
 
 export function toFormData<GenericDTO extends Record<string, any>>(document: GenericDTO) {
   const formData = new FormData();

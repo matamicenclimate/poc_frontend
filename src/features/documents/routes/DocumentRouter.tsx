@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+
 import { DocumentDetails } from '../pages/Details';
 import { DocumentList } from '../pages/List';
 import { Upload } from '../pages/Upload';

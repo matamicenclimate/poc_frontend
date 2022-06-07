@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query';
+
 import { magiclink } from '@/lib/magiclink';
 
 function fetchWallet(): Promise<string> {

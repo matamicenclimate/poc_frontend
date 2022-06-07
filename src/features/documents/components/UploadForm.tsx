@@ -1,25 +1,25 @@
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
+import { Card } from '@/componentes/Card/Card';
 import { Button } from '@/componentes/Elements/Button/Button';
+import { Link } from '@/componentes/Elements/Link/Link';
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
+import { Title } from '@/componentes/Elements/Title/Title';
+import { SelectOption } from '@/componentes/Form';
+import FileInput from '@/componentes/Form/FileInput';
 import { Input, Textarea } from '@/componentes/Form/Inputs';
 import { Select } from '@/componentes/Form/Select';
-
-import { useUploadDocument } from '../api/useUploadDocument';
-import { FormOption, useGetFormOptions } from '../api/useGetFormOptions';
-import { UploadFormSchema, documentUploadValidationSchema } from '../validation/UploadValidation';
-import { Title } from '@/componentes/Elements/Title/Title';
-import { Card } from '@/componentes/Card/Card';
-import useYupValidationResolver from '@/componentes/Form/useValidationResolver';
-import { useForm } from 'react-hook-form';
-import FileInput from '@/componentes/Form/FileInput';
-import { Link } from '@/componentes/Elements/Link/Link';
-import { ProjectPreview } from '../components/ProjectPreview';
 import { Switch } from '@/componentes/Form/Switch';
-import { Stepper, useStepper } from '@/componentes/Stepper/Stepper';
-import { SelectOption } from '@/componentes/Form';
-import { useNavigate } from 'react-router-dom';
+import useYupValidationResolver from '@/componentes/Form/useValidationResolver';
 import { Icon } from '@/componentes/Icon/Icon';
-import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
+import { Stepper, useStepper } from '@/componentes/Stepper/Stepper';
+
+import { FormOption, useGetFormOptions } from '../api/useGetFormOptions';
+import { useUploadDocument } from '../api/useUploadDocument';
+import { ProjectPreview } from '../components/ProjectPreview';
+import { documentUploadValidationSchema,UploadFormSchema } from '../validation/UploadValidation';
 
 /*
  * esto esta feo,

@@ -1,6 +1,8 @@
 import { useAlert } from 'react-alert';
-import { httpClient } from '@/lib/httpClient';
 import { useMutation } from 'react-query';
+
+import { httpClient } from '@/lib/httpClient';
+
 import { CompensationCalculation } from '../types';
 
 function fetchCalculateCompensation(amount: number): Promise<CompensationCalculation> {

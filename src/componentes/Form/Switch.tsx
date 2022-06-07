@@ -1,5 +1,6 @@
 import { Switch as HLSwitch } from '@headlessui/react';
 import { Control, useController } from 'react-hook-form';
+
 import { FieldName, SchemaToErrors } from '.';
 
 type SwitchProps<FormSchema> = {

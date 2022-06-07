@@ -1,7 +1,8 @@
 import clsx from 'clsx';
-import { NavLink, Link as RouterLink, To } from 'react-router-dom';
-import { ButtonStyleProps, buttonStyles } from '../Button/Button';
 import { TFunctionResult } from 'i18next';
+import { Link as RouterLink, NavLink, To } from 'react-router-dom';
+
+import { ButtonStyleProps, buttonStyles } from '../Button/Button';
 
 type BaseProps = {
   as?: string;

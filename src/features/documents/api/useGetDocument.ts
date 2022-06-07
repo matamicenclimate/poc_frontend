@@ -1,6 +1,8 @@
-import { CarbonDocument, documentKeys } from '../types';
-import { httpClient } from '@/lib/httpClient';
 import { useQuery } from 'react-query';
+
+import { httpClient } from '@/lib/httpClient';
+
+import { CarbonDocument, documentKeys } from '../types';
 
 function fetchDocuments(id: string): Promise<CarbonDocument> {
   return httpClient.get(`/carbon-documents/${id}`);

@@ -1,5 +1,6 @@
 import { httpClient } from '@/lib/httpClient';
 import { magiclink } from '@/lib/magiclink';
+
 import { AuthUser } from '../types';
 
 export const getUser = async (): Promise<AuthUser> => {

@@ -1,5 +1,6 @@
-import { httpClient } from '@/lib/httpClient';
 import { useQuery } from 'react-query';
+
+import { httpClient } from '@/lib/httpClient';
 
 export interface CurrencyInfo {
   _id: string;

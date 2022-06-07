@@ -4,11 +4,10 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 import '@testing-library/jest-dom/extend-expect';
+import './i18n/config';
 
 import { queryClient } from '@/lib/react-query';
 import { server } from '@/test/server/server';
-
-import './i18n/config';
 
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
 afterAll(() => server.close());

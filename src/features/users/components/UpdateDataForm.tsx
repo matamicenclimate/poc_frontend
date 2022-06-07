@@ -1,11 +1,13 @@
-import { useAuth } from '@/lib/auth';
-import { useTranslation } from 'react-i18next';
-import { Input } from '@/componentes/Form/Inputs';
-import { Button } from '@/componentes/Elements/Button/Button';
-import { ProfileValidationSchema } from '../validation/ProfileValidation';
-import { useUpdateProfile } from '../api/useUpdateProfile';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import { Button } from '@/componentes/Elements/Button/Button';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
+import { Input } from '@/componentes/Form/Inputs';
+import { useAuth } from '@/lib/auth';
+
+import { useUpdateProfile } from '../api/useUpdateProfile';
+import { ProfileValidationSchema } from '../validation/ProfileValidation';
 
 export const UpdateDataForm = () => {
   const { user } = useAuth();

@@ -1,13 +1,15 @@
-import { useAlert } from 'react-alert';
-import { httpClient } from '@/lib/httpClient';
-import { useMutation } from 'react-query';
-import { getClient } from '@/lib/algosdk';
 import algosdk, { waitForConfirmation } from 'algosdk';
-import { magiclink } from '@/lib/magiclink';
 import { Buffer } from 'buffer';
-import { queryClient } from '@/lib/react-query';
-import { Compensation, CompensationCalculation, compensationKeys } from '../types';
+import { useAlert } from 'react-alert';
+import { useMutation } from 'react-query';
+
+import { getClient } from '@/lib/algosdk';
 import { useAuth } from '@/lib/auth';
+import { httpClient } from '@/lib/httpClient';
+import { magiclink } from '@/lib/magiclink';
+import { queryClient } from '@/lib/react-query';
+
+import { CompensationCalculation, compensationKeys } from '../types';
 
 type HandleBurnParams = { userId: string | null | undefined } & CompensationCalculation;
 

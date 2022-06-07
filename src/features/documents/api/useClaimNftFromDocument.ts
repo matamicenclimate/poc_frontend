@@ -1,12 +1,14 @@
-import { CarbonDocument, documentKeys } from '../types';
-import { httpClient } from '@/lib/httpClient';
-import { useMutation, useQueryClient } from 'react-query';
-import { useAlert } from 'react-alert';
-import { getClient } from '@/lib/algosdk';
 import algosdk, { waitForConfirmation } from 'algosdk';
-import { magiclink } from '@/lib/magiclink';
 import { Buffer } from 'buffer';
+import { useAlert } from 'react-alert';
+import { useMutation, useQueryClient } from 'react-query';
+
 import { accountKeys } from '@/features/wallet';
+import { getClient } from '@/lib/algosdk';
+import { httpClient } from '@/lib/httpClient';
+import { magiclink } from '@/lib/magiclink';
+
+import { CarbonDocument, documentKeys } from '../types';
 
 async function claimFromDocument(
   documentId: string,

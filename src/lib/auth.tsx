@@ -1,16 +1,18 @@
-import storage from '@/utils/storage';
 import { AuthProviderConfig, initReactQueryAuth } from 'react-query-auth';
+
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import {
   AuthUser,
+  getUser,
   LoginCredentialsDTO,
   RegisterCredentialsDTO,
-  UserResponse,
-  getUser,
   registerWithEmailAndPassword,
+  UserResponse,
 } from '@/features/auth';
-import { magiclink } from './magiclink';
 import { httpClient } from '@/lib/httpClient';
+import storage from '@/utils/storage';
+
+import { magiclink } from './magiclink';
 
 async function handleUserResponse(data: UserResponse) {
   const { jwt, user } = data;

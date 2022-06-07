@@ -1,15 +1,15 @@
-import { Breadcrumb } from '@/componentes/Elements/Breadcrumb/Breadcrumb';
+import { useTranslation } from 'react-i18next';
+import { UseQueryResult } from 'react-query';
+
+import { Card } from '@/componentes/Card/Card';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
-import { useTranslation } from 'react-i18next';
-import { useGetNFTs } from '../api/useGetNFTs';
-import { Card } from '@/componentes/Card/Card';
-import { useGetNFTsByStatus } from '../api/useGetNFTsByStatus';
-import { UseQueryResult } from 'react-query';
-import { EXPLORER_URL } from '@/config';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
+import { EXPLORER_URL } from '@/config';
+
+import { useGetNFTsByStatus } from '../api/useGetNFTsByStatus';
 
 export const NFTList = () => {
   // const nfts = useGetNFTs();

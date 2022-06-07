@@ -1,10 +1,11 @@
-import { useAlert } from 'react-alert';
 import { AxiosRequestConfig } from 'axios';
-import { httpClient } from '@/lib/httpClient';
+import { useAlert } from 'react-alert';
 import { useMutation, useQueryClient } from 'react-query';
-import { useAuth } from '@/lib/auth';
-import { toFormData } from '@/utils/toFormData';
+
 import { StrapiUser } from '@/features/auth';
+import { useAuth } from '@/lib/auth';
+import { httpClient } from '@/lib/httpClient';
+import { toFormData } from '@/utils/toFormData';
 
 interface UpdateProfileDTO {
   firstname: string;

@@ -1,13 +1,15 @@
 import '@/lib/sentry';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 import './styles/main.css';
 import 'react-day-picker/dist/style.css';
 import './styles/datepicker.css';
+import '@/lib/yup';
+
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import '@/lib/yup';
 
 const rootElement = document.getElementById('root');
 if (!rootElement) throw new Error('Failed to find the root element');

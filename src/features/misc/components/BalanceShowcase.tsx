@@ -1,11 +1,13 @@
 import { useTranslation } from 'react-i18next';
+import { UseQueryResult } from 'react-query';
+
+import { Link } from '@/componentes/Elements/Link/Link';
+import { Pill } from '@/componentes/Elements/Pill/Pill';
+import { CLIMATECOIN_ASA_ID } from '@/config';
 import { ChartBalance } from '@/features/wallet';
 import { useCurrencyContext } from '@/providers/Currency.context';
-import { UseQueryResult } from 'react-query';
-import { Pill } from '@/componentes/Elements/Pill/Pill';
+
 import { BalanceChart } from './BalanceChart';
-import { Link } from '@/componentes/Elements/Link/Link';
-import { CLIMATECOIN_ASA_ID } from '@/config';
 
 export function BalanceShowcase({
   climatecoinBalance,

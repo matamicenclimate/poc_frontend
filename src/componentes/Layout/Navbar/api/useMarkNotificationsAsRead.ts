@@ -1,6 +1,7 @@
-import { httpClient } from '@/lib/httpClient';
-import { useMutation, useQueryClient } from 'react-query';
 import { useAlert } from 'react-alert';
+import { useMutation, useQueryClient } from 'react-query';
+
+import { httpClient } from '@/lib/httpClient';
 
 function markAsRead(): Promise<any> {
   return httpClient.put(`/notifications/me/read`);

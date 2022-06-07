@@ -1,14 +1,16 @@
-import { CarbonDocument, documentKeys } from '../types';
-import { useMutation, useQueryClient } from 'react-query';
-import { useAlert } from 'react-alert';
-import { getClient } from '@/lib/algosdk';
 import algosdk, { OnApplicationComplete, waitForConfirmation } from 'algosdk';
-import { magiclink } from '@/lib/magiclink';
 import { Buffer } from 'buffer';
-import { getSelector } from '@/contracts/vault';
-import { httpClient } from '@/lib/httpClient';
+import { useAlert } from 'react-alert';
+import { useMutation, useQueryClient } from 'react-query';
+
 import { CLIMATECOIN_ASA_ID, VAULT_CONTRACT_ID } from '@/config';
+import { getSelector } from '@/contracts/vault';
 import { accountKeys } from '@/features/wallet';
+import { getClient } from '@/lib/algosdk';
+import { httpClient } from '@/lib/httpClient';
+import { magiclink } from '@/lib/magiclink';
+
+import { CarbonDocument, documentKeys } from '../types';
 
 async function handleSwap(
   address: string,

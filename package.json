@@ -11,7 +11,9 @@
     "test": "set NODE_ENV=test && craco test --watchAll=false --silent=false",
     "eject": "react-scripts eject",
     "prepare": "husky install",
-    "release": "standard-version"
+    "release": "standard-version",
+    "lint": "eslint .",
+    "lint:fix": "yarn run lint -- --fix"
   },
   "dependencies": {
     "@craco/craco": "^6.4.3",
@@ -98,6 +100,8 @@
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.4.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^7.0.0",
     "msw": "^0.39.2",
     "postcss": "^8.4.6",

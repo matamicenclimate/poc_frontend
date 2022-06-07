@@ -1,6 +1,8 @@
-import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+
 import L, { Point } from 'leaflet';
+import { MapContainer, Marker, TileLayer } from 'react-leaflet';
+
 import { Counter } from '@/componentes/Counter/Counter';
 
 const activeIcon = L.icon({

@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '@/lib/auth';
 
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
+import { useAuth } from '@/lib/auth';
+
 import { UploadForm } from '../components/UploadForm';
 
 export const Upload = () => {

@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
+
 import { Link } from '../Link/Link';
 
 const baseStyle = 'flex gap-4 p-2 border';

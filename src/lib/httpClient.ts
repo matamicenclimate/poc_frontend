@@ -1,8 +1,9 @@
 import Axios, { AxiosRequestConfig, AxiosRequestHeaders } from 'axios';
 
-import storage from '@/utils/storage';
-import { magiclink } from './magiclink';
 import { API_URL } from '@/config';
+import storage from '@/utils/storage';
+
+import { magiclink } from './magiclink';
 
 function authRequestInterceptor(config: AxiosRequestConfig) {
   const token = storage.getToken();

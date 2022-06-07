@@ -1,10 +1,11 @@
-import { magiclink } from '@/lib/magiclink';
 import { useEffect } from 'react';
+import { useAlert } from 'react-alert';
+import { useTranslation } from 'react-i18next';
+
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { useAuth } from '@/lib/auth';
-import { useTranslation } from 'react-i18next';
-import { useAlert } from 'react-alert';
+import { magiclink } from '@/lib/magiclink';
 
 export const Callback = () => {
   const auth = useAuth();

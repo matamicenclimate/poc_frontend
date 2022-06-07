@@ -1,19 +1,21 @@
-import { Button } from '@/componentes/Elements/Button/Button';
-import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { useTranslation } from 'react-i18next';
-import { Title } from '@/componentes/Elements/Title/Title';
-import { useWalletContext } from '@/providers/Wallet.context';
+
 import { Card } from '@/componentes/Card/Card';
-import { useOptinToAsset } from '../api/useOptinToAsset';
+import { Button } from '@/componentes/Elements/Button/Button';
+import { Link } from '@/componentes/Elements/Link/Link';
+import { Title } from '@/componentes/Elements/Title/Title';
+import { MainLayout } from '@/componentes/Layout/MainLayout';
+import { EXPLORER_URL } from '@/config';
 import { useGetSwappableDocuments } from '@/features/documents';
-import { useAuth } from '@/lib/auth';
-import { NftCard } from '../components/NftCard';
-import { useGetChartData } from '../api/useGetChartData';
 import { BalanceShowcase } from '@/features/misc';
 import { useGetNFTsByStatus } from '@/features/nfts';
+import { useAuth } from '@/lib/auth';
+import { useWalletContext } from '@/providers/Wallet.context';
+
+import { useGetChartData } from '../api/useGetChartData';
+import { useOptinToAsset } from '../api/useOptinToAsset';
 import { CarbonDocumentNftCard } from '../components/CarbonDocumentNftCard';
-import { EXPLORER_URL } from '@/config';
-import { Link } from '@/componentes/Elements/Link/Link';
+import { NftCard } from '../components/NftCard';
 
 export const Wallet = () => {
   const { t } = useTranslation();
@@ -46,7 +48,7 @@ export const Wallet = () => {
             <div>You have to opt-in to receive Climatecoins in order to continue</div>
             <Button
               onClick={() =>
-                optinToAsset.mutateAsync(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string))
+                optinToAsset.mutate(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string))
               }
               size="xs"
             >
@@ -61,7 +63,7 @@ export const Wallet = () => {
             <div>You have to opt-in to receive usdc in order to continue</div>
             <Button
               onClick={() =>
-                optinToAsset.mutateAsync(Number(process.env.REACT_APP_USDC_ASA_ID as string))
+                optinToAsset.mutate(Number(process.env.REACT_APP_USDC_ASA_ID as string))
               }
               size="xs"
             >

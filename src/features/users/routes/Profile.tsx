@@ -1,9 +1,11 @@
-import { useAuth } from '@/lib/auth';
+import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
+
+import { Card } from '@/componentes/Card/Card';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
-import clsx from 'clsx';
-import { Card } from '@/componentes/Card/Card';
+import { useAuth } from '@/lib/auth';
+
 import { UpdateAvatarForm } from '../components/UpdateAvatarForm';
 import { UpdateDataForm } from '../components/UpdateDataForm';
 

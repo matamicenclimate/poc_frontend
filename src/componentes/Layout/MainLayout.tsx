@@ -1,10 +1,11 @@
-import * as React from 'react';
-import { Head } from './Head';
-import { Navbar } from './Navbar/Navbar';
-import { Icon } from '@/componentes/Icon/Icon';
-import { CLIMATECOIN_ASA_ID, NETWORKNAME, VAULT_CONTRACT_ID } from '@/config';
+
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Title } from '@/componentes/Elements/Title/Title';
+import { Icon } from '@/componentes/Icon/Icon';
+import { CLIMATECOIN_ASA_ID, NETWORKNAME, VAULT_CONTRACT_ID } from '@/config';
+
+import { Head } from './Head';
+import { Navbar } from './Navbar/Navbar';
 
 interface MainLayoutProps {
   title?: string;

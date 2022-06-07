@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { Control, useController } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import ReactSelect, { OptionsOrGroups, StylesConfig } from 'react-select';
+
 import { FieldName, SchemaToErrors, SelectOption } from '.';
 import { FieldError } from './FieldError';
 import { Label } from './Label';

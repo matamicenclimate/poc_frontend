@@ -1,8 +1,11 @@
-import { httpClient } from '@/lib/httpClient';
 import { useQuery } from 'react-query';
+
+import { Nft } from '@/features/nfts';
+import { httpClient } from '@/lib/httpClient';
+
 import { nftKeys } from '.';
 
-function fetchNFTs(filter: Record<string, string>): Promise<any[]> {
+function fetchNFTs(filter: Record<string, string>): Promise<Nft[]> {
   const params = new URLSearchParams(filter).toString();
   return httpClient.get(`/nfts?${params}`);
 }

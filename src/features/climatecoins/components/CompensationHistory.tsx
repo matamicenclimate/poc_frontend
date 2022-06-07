@@ -1,10 +1,12 @@
+import { useTranslation } from 'react-i18next';
 import { UseQueryResult } from 'react-query';
-import { Title } from '@/componentes/Elements/Title/Title';
+
 import { Card } from '@/componentes/Card/Card';
 import { Link } from '@/componentes/Elements/Link/Link';
+import { Title } from '@/componentes/Elements/Title/Title';
 import { EXPLORER_URL, IPFS_GATEWAY_URL } from '@/config';
+
 import { Compensation } from '../types';
-import { useTranslation } from 'react-i18next';
 
 export const CompensationHistory = ({ data }: { data: UseQueryResult<Compensation[]> }) => {
   const { t } = useTranslation();

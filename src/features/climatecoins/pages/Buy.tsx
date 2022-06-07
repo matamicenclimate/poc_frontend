@@ -1,8 +1,9 @@
+import { useTranslation } from 'react-i18next';
+
 import { Card } from '@/componentes/Card/Card';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
 import { Stepper, useStepper } from '@/componentes/Stepper/Stepper';
-import { useTranslation } from 'react-i18next';
 
 enum BuySteps {
   SELECT = 0,

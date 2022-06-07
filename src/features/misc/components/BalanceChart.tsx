@@ -1,17 +1,16 @@
-import { Line } from 'react-chartjs-2';
-
 import {
   CategoryScale,
   Chart as ChartJS,
-  Title as ChartTitle,
   Filler,
   Legend,
-  LineElement,
   LinearScale,
+  LineElement,
   PointElement,
   ScriptableContext,
+  Title as ChartTitle,
   Tooltip,
 } from 'chart.js';
+import { Line } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,

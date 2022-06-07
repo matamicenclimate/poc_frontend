@@ -1,8 +1,10 @@
-import { CarbonDocument, documentKeys } from '../types';
-import { httpClient } from '@/lib/httpClient';
-import { useQuery } from 'react-query';
 import { format } from 'date-fns';
+import { useQuery } from 'react-query';
+
 import { SortState } from '@/hooks/useSort';
+import { httpClient } from '@/lib/httpClient';
+
+import { CarbonDocument, documentKeys } from '../types';
 
 function fetchDocuments(filter: Record<string, unknown>): Promise<CarbonDocument[]> {
   const newFilter: Record<string, string> = {};

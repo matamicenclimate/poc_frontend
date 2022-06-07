@@ -1,6 +1,7 @@
-import { httpClient } from '@/lib/httpClient';
 import { useQuery } from 'react-query';
+
 import { Nft } from '@/features/nfts';
+import { httpClient } from '@/lib/httpClient';
 
 export interface Activity {
   group_id?: string;

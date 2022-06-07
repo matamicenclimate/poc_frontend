@@ -1,30 +1,30 @@
+import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
+
 import { Card } from '@/componentes/Card/Card';
 import { Button } from '@/componentes/Elements/Button/Button';
+import { Link } from '@/componentes/Elements/Link/Link';
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
+import { Title } from '@/componentes/Elements/Title/Title';
 import { Form } from '@/componentes/Form/Form';
 import { Input } from '@/componentes/Form/Inputs';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
 import { Stepper } from '@/componentes/Stepper/Stepper';
+import { useOptinToAsset } from '@/features/wallet';
+import { useAuth } from '@/lib/auth';
 import { useWalletContext } from '@/providers/Wallet.context';
-import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
+
+import { useClaimNftFromDocument } from '../api/useClaimNftFromDocument';
 import { useGetDocument } from '../api/useGetDocument';
 import { ProjectPreview } from '../components/ProjectPreview';
-import { UploadSteps } from '../components/UploadForm';
-import { useClaimNftFromDocument } from '../api/useClaimNftFromDocument';
-import { useAuth } from '@/lib/auth';
 import { SwapNft } from '../components/SwapNft';
-import { Title } from '@/componentes/Elements/Title/Title';
-import { useAlert } from 'react-alert';
-import { Link } from '@/componentes/Elements/Link/Link';
-import { useOptinToAsset } from '@/features/wallet';
-import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
+import { UploadSteps } from '../components/UploadForm';
 
 export const DocumentDetails = () => {
   const { documentId } = useParams();
   const { t } = useTranslation();
   const auth = useAuth();
-  const alert = useAlert();
   const document = useGetDocument(documentId as string);
   const claimNft = useClaimNftFromDocument();
   const { account, hasOptedIn } = useWalletContext();

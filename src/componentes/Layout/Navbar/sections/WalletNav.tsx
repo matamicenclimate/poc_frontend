@@ -1,10 +1,11 @@
+import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+
+import { Icon } from '@/componentes/Icon/Icon';
+import styles from '@/componentes/Layout/Navbar/sections/shared.module.css';
 import Popover from '@/componentes/Popover/Popover';
 import { useWalletContext } from '@/providers/Wallet.context';
-import { useNavigate } from 'react-router-dom';
-import { Icon } from '@/componentes/Icon/Icon';
-import { useTranslation } from 'react-i18next';
-import clsx from 'clsx';
-import styles from '@/componentes/Layout/Navbar/sections/shared.module.css';
 
 export const WalletNav = () => {
   const { account, usdcBalance, climatecoinBalance, algoBalance } = useWalletContext();

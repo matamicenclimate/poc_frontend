@@ -1,19 +1,21 @@
-import clsx from 'clsx';
-import { useAuth } from '@/lib/auth';
-import Popover from '@/componentes/Popover/Popover';
-import { ReactComponent as IconCog } from '@/assets/icons/bx-cog-line2.svg';
-import { ReactComponent as IconLogout } from '@/assets/icons/bx-logout.svg';
-import { ReactComponent as IconLock } from '@/assets/icons/bx-lock-line.svg';
-import { ReactComponent as IconShare } from '@/assets/icons/bx-share-square.svg';
-import { ReactComponent as IconBrightness } from '@/assets/icons/bx-brightness-line.svg';
 import { Switch as HLSwitch } from '@headlessui/react';
-import { useUpdateUserType } from '@/componentes/Layout/Navbar/api/useUpdateUserType';
+import clsx from 'clsx';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { ReactComponent as IconBrightness } from '@/assets/icons/bx-brightness-line.svg';
+import { ReactComponent as IconCog } from '@/assets/icons/bx-cog-line2.svg';
+import { ReactComponent as IconLock } from '@/assets/icons/bx-lock-line.svg';
+import { ReactComponent as IconLogout } from '@/assets/icons/bx-logout.svg';
+import { ReactComponent as IconShare } from '@/assets/icons/bx-share-square.svg';
+import AvatarPlaceholder from '@/assets/images/avatar-placeholder.jpg';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Icon } from '@/componentes/Icon/Icon';
-import { useTranslation } from 'react-i18next';
+import { useUpdateUserType } from '@/componentes/Layout/Navbar/api/useUpdateUserType';
+import Popover from '@/componentes/Popover/Popover';
+import { useAuth } from '@/lib/auth';
+
 import styles from './shared.module.css';
-import AvatarPlaceholder from '@/assets/images/avatar-placeholder.jpg';
 
 export const ProfileNav = () => {
   const auth = useAuth();

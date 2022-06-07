@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { Path, UseFormRegister } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+
 import { FieldName, SchemaToErrors } from '.';
 import { FieldError } from './FieldError';
 import { Label } from './Label';

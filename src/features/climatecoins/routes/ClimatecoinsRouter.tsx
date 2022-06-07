@@ -1,8 +1,10 @@
-import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
-import { Compensate } from '../pages/Compensate';
 import { Suspense } from 'react';
-import { MainLayout } from '@/componentes/Layout/MainLayout';
+import { Navigate, Outlet, Route, Routes } from 'react-router-dom';
+
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
+import { MainLayout } from '@/componentes/Layout/MainLayout';
+
+import { Compensate } from '../pages/Compensate';
 
 const CoinsWrapper = () => {
   return (

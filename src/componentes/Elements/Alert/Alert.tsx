@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+
 import { ReactComponent as CheckIcon } from '@/assets/icons/bx-check-line.svg';
 
 const base = 'p-3 flex gap-2 rounded-md items-center';

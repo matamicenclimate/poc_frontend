@@ -1,20 +1,21 @@
-import { MainLayout } from '@/componentes/Layout/MainLayout';
-import { Link } from '@/componentes/Elements/Link/Link';
-import { useTranslation } from 'react-i18next';
-import { Head } from '@/componentes/Layout/Head';
-import { Title } from '@/componentes/Elements/Title/Title';
-import { Pill, PillProps } from '@/componentes/Elements/Pill/Pill';
-import OverviewImage from '../../../assets/images/overview.jpg';
-import { Button } from '@/componentes/Elements/Button/Button';
+import { format } from 'date-fns';
 import { useState } from 'react';
-import { useWalletContext } from '@/providers/Wallet.context';
+import { useTranslation } from 'react-i18next';
+
+import { Button } from '@/componentes/Elements/Button/Button';
+import { Link } from '@/componentes/Elements/Link/Link';
+import { Pill, PillProps } from '@/componentes/Elements/Pill/Pill';
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
+import { Title } from '@/componentes/Elements/Title/Title';
 import { Icon } from '@/componentes/Icon/Icon';
+import { Head } from '@/componentes/Layout/Head';
+import { MainLayout } from '@/componentes/Layout/MainLayout';
+import { BalanceShowcase } from '@/features/misc';
+import { useWalletContext } from '@/providers/Wallet.context';
+
+import OverviewImage from '../../../assets/images/overview.jpg';
 import { useGetChartData } from '../../wallet/api/useGetChartData';
 import { useGetActivities } from '../api/useGetActivities';
-import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
-import { format } from 'date-fns';
-import { BalanceShowcase } from '@/features/misc';
-import { useAuth } from '@/lib/auth';
 
 const pillVariants: Record<string, PillProps['variant']> = {
   swap: 'swap',
@@ -27,7 +28,6 @@ const pillVariants: Record<string, PillProps['variant']> = {
 export const Overview = () => {
   const { t } = useTranslation();
   const [tabSelected, setTabSelected] = useState<string | null>(null);
-  const auth = useAuth();
   const activities = useGetActivities(tabSelected);
 
   const { climatecoinBalance } = useWalletContext();

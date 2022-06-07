@@ -1,12 +1,13 @@
-import { useController } from 'react-hook-form';
-import { DateRange, DayPicker } from 'react-day-picker';
 import { addDays, addMonths, addWeeks, addYears } from 'date-fns';
-import { Button } from '@/componentes/Elements/Button/Button';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import enUS from 'date-fns/locale/en-US';
 import es from 'date-fns/locale/es';
 import fr from 'date-fns/locale/fr';
+import { useState } from 'react';
+import { DateRange, DayPicker } from 'react-day-picker';
+import { useController } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import { Button } from '@/componentes/Elements/Button/Button';
 
 export const DayPickerRange = ({ control, name }: any) => {
   const { t, i18n } = useTranslation();

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import useYupValidationResolver from './useValidationResolver';
 import * as yup from 'yup';
+
+import useYupValidationResolver from './useValidationResolver';
 
 interface FormProps {
   defaultValues?: any;

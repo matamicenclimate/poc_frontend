@@ -1,11 +1,13 @@
-import { useAuth } from '@/lib/auth';
 import { useTranslation } from 'react-i18next';
-import { WalletNav } from './sections/WalletNav';
-import { ProfileNav } from './sections/ProfileNav';
-import { Link } from '@/componentes/Elements/Link/Link';
+
 import LogoDark from '@/assets/logo-dark.png';
-import { CurrencyNav } from './sections/CurrencyNav';
+import { Link } from '@/componentes/Elements/Link/Link';
 import { NotificationNav } from '@/componentes/Layout/Navbar/sections/NotificationNav';
+import { useAuth } from '@/lib/auth';
+
+import { CurrencyNav } from './sections/CurrencyNav';
+import { ProfileNav } from './sections/ProfileNav';
+import { WalletNav } from './sections/WalletNav';
 
 const linkStyle = 'flex items-center text-sm hover:underline';
 

@@ -1,6 +1,8 @@
+import 'react-popper-tooltip/dist/styles.css';
+
 import clsx from 'clsx';
 import { usePopperTooltip } from 'react-popper-tooltip';
-import 'react-popper-tooltip/dist/styles.css';
+
 import { Icon } from '../Icon/Icon';
 
 type TooltipProps = {

@@ -1,9 +1,11 @@
-import { useTranslation } from 'react-i18next';
-import FileInput from '@/componentes/Form/FileInput';
-import { Button } from '@/componentes/Elements/Button/Button';
-import { ProfileValidationSchema } from '../validation/ProfileValidation';
-import { useUpdateProfile } from '../api/useUpdateProfile';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
+
+import { Button } from '@/componentes/Elements/Button/Button';
+import FileInput from '@/componentes/Form/FileInput';
+
+import { useUpdateProfile } from '../api/useUpdateProfile';
+import { ProfileValidationSchema } from '../validation/ProfileValidation';
 
 export const UpdateAvatarForm = () => {
   const { t } = useTranslation();

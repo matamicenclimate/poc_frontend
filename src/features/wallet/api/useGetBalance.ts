@@ -1,5 +1,7 @@
-import { algoIndexer } from '@/lib/algoIndexer';
 import { useQuery } from 'react-query';
+
+import { algoIndexer } from '@/lib/algoIndexer';
+
 import { IndexerAccount } from '../types';
 import { accountKeys } from '.';
 

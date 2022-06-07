@@ -1,6 +1,8 @@
-import { minimalRender, render, screen } from '@/test/test-utils';
-import { UploadForm } from '../components/UploadForm';
 import { act, fireEvent } from '@testing-library/react';
+
+import { minimalRender, screen } from '@/test/test-utils';
+
+import { UploadForm } from '../components/UploadForm';
 
 test('renders the upload form', async () => {
   await minimalRender(<UploadForm email="test@deka.com" />);

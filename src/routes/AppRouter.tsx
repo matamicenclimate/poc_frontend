@@ -1,9 +1,11 @@
 import { Navigate, Outlet, useRoutes } from 'react-router-dom';
+
+import { AboutUs, Overview, TermsAndConditions } from '@/features/misc';
+import { NFTRouter } from '@/features/nfts';
+import { useAuth } from '@/lib/auth';
+
 import { protectedRoutes } from './protected';
 import { publicRoutes } from './public';
-import { useAuth } from '@/lib/auth';
-import { NFTRouter } from '@/features/nfts';
-import { AboutUs, Overview, TermsAndConditions } from '@/features/misc';
 
 export const AppRouter = () => {
   const auth = useAuth();

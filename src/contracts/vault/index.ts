@@ -1,5 +1,6 @@
 // Parse the json file into an object, pass it to create an ABIContract object
 import algosdk from 'algosdk';
+
 import contractJson from './contract.json';
 
 const contract = new algosdk.ABIContract(contractJson);

@@ -1,8 +1,10 @@
 import { Dialog as HUIDialog } from '@headlessui/react';
-import { Button } from '../Elements/Button/Button';
-import { useTranslation } from 'react-i18next';
-import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import clsx from 'clsx';
+import { useTranslation } from 'react-i18next';
+
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
+
+import { Button } from '../Elements/Button/Button';
 
 type DialogProps = {
   isOpen: boolean;

@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { UseQueryResult } from 'react-query';
+
 import {
   CurrencyInfo,
   useGetCurrenciesExchangeRate,
 } from '@/providers/api/useGetCurrenciesExchangeRate';
-import { UseQueryResult } from 'react-query';
-import { useTranslation } from 'react-i18next';
 
 interface Context {
   state: ContextState;

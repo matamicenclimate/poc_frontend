@@ -1,4 +1,5 @@
 import { rest } from 'msw';
+
 import { getBaseUrl } from '@/test/server';
 
 export default [

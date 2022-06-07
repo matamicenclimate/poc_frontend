@@ -1,7 +1,9 @@
 import clsx from 'clsx';
-import { ReactComponent as CheckIcon } from '@/assets/icons/bx-check-line.svg';
-import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import { ReactComponent as CheckIcon } from '@/assets/icons/bx-check-line.svg';
+
 import { Icon } from '../Icon/Icon';
 
 export function useStepper<Obj>(someEnum: Obj) {

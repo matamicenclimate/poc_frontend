@@ -1,10 +1,11 @@
-import { useMutation, useQueryClient } from 'react-query';
-import { useAlert } from 'react-alert';
-import { useWalletContext } from '@/providers/Wallet.context';
-import { getClient } from '@/lib/algosdk';
 import algosdk, { waitForConfirmation } from 'algosdk';
-import { magiclink } from '@/lib/magiclink';
 import { Buffer } from 'buffer';
+import { useAlert } from 'react-alert';
+import { useMutation, useQueryClient } from 'react-query';
+
+import { getClient } from '@/lib/algosdk';
+import { magiclink } from '@/lib/magiclink';
+import { useWalletContext } from '@/providers/Wallet.context';
 
 export function useOptinToAsset() {
   const queryClient = useQueryClient();

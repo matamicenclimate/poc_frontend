@@ -1,23 +1,26 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+
+import OverviewImage from '@/assets/images/overview.jpg';
 import { Card } from '@/componentes/Card/Card';
+import { Dialog } from '@/componentes/Dialog/Dialog';
 import { Button } from '@/componentes/Elements/Button/Button';
+import { Link } from '@/componentes/Elements/Link/Link';
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { Input } from '@/componentes/Form/Inputs';
-import { PageTitle } from '@/componentes/Layout/PageTitle';
-import { useWalletContext } from '@/providers/Wallet.context';
-import { useCalculateCompensation } from '../api/calculateCompensation';
-import { useBurnClimatecoins } from '../api/burnClimatecoins';
-import { CompensationCalculation } from '../types';
-import { Dialog } from '@/componentes/Dialog/Dialog';
-import { useGetCompensations } from '../api/getCompensations';
-import { useAuth } from '@/lib/auth';
-import { CompensationHistory } from '../components/CompensationHistory';
-import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
-import OverviewImage from '@/assets/images/overview.jpg';
-import { Link } from '@/componentes/Elements/Link/Link';
 import { Icon } from '@/componentes/Icon/Icon';
+import { PageTitle } from '@/componentes/Layout/PageTitle';
+import { useGetNFTsByStatus } from '@/features/nfts';
+import { useWalletContext } from '@/providers/Wallet.context';
+
+import { useBurnClimatecoins } from '../api/burnClimatecoins';
+import { useCalculateCompensation } from '../api/calculateCompensation';
+import { useGetCompensations } from '../api/getCompensations';
+import { CompensationHistory } from '../components/CompensationHistory';
+import { CompensationNftsCardList } from '../components/CompensationNftsCardList';
+import { CompensationCalculation } from '../types';
 
 export const Compensate = () => {
   const { t } = useTranslation();
@@ -25,6 +28,8 @@ export const Compensate = () => {
   const calculateCompensation = useCalculateCompensation();
   const compensations = useGetCompensations();
   const burnClimatecoins = useBurnClimatecoins();
+  const compensationNfts = useGetNFTsByStatus({ nft_type: 'compensation' });
+
   const [oracleResponse, setOracleResponse] = useState<null | CompensationCalculation>(null);
   const methods = useForm<any>({
     mode: 'onBlur',
@@ -118,6 +123,12 @@ export const Compensate = () => {
               </Link>
             </div>
           </div>
+        </div>
+        <div className="col-span-3 space-y-4">
+          <Title size={3} as={2}>
+            Compensation Certificates
+          </Title>
+          <CompensationNftsCardList data={compensationNfts} />
         </div>
         <Dialog
           size="xs"

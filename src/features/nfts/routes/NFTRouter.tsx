@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+
 import { NFTList } from '../components/List';
 
 export const NFTRouter = () => {
