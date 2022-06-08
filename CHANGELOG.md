@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.8.0](https://github.com/Dekalabs/climatecoin-frontend/compare/v0.6.0...v0.8.0) (2022-06-08)
+
+
+### Features
+
+* compensate coins ([#89](https://github.com/Dekalabs/climatecoin-frontend/issues/89)) ([d889d06](https://github.com/Dekalabs/climatecoin-frontend/commit/d889d06aef3f9fc713e64f789fba72a640f5de79))
+* initial implementation of compensations ([#90](https://github.com/Dekalabs/climatecoin-frontend/issues/90)) ([95915c3](https://github.com/Dekalabs/climatecoin-frontend/commit/95915c3be56e7626129121dff9afcb324e3dd6b6))
+* links to ipfs on compensations ([af6b666](https://github.com/Dekalabs/climatecoin-frontend/commit/af6b666082c5c23040947ccb4a78feb562d0211d))
+* profile section and split forms ([#95](https://github.com/Dekalabs/climatecoin-frontend/issues/95)) ([4a3cd99](https://github.com/Dekalabs/climatecoin-frontend/commit/4a3cd99326951318cab4c60825419629c66e3890))
+* tests ([#86](https://github.com/Dekalabs/climatecoin-frontend/issues/86)) ([8310ff9](https://github.com/Dekalabs/climatecoin-frontend/commit/8310ff9839391e84707ad2636ff832cda0ab6fd5))
+* update balances on claim and swap. refactored imports to follow 'module' conventions ([c2954c7](https://github.com/Dekalabs/climatecoin-frontend/commit/c2954c7c093be03b5007976be31dcdf9dfd771c1))
+* wallet ([#93](https://github.com/Dekalabs/climatecoin-frontend/issues/93)) ([9ded683](https://github.com/Dekalabs/climatecoin-frontend/commit/9ded683d0c90337fb8681c966c98bc7412378a39))
+* wallet screen ([#94](https://github.com/Dekalabs/climatecoin-frontend/issues/94)) ([1f393c7](https://github.com/Dekalabs/climatecoin-frontend/commit/1f393c780fd61e14e571a074bb85228785682618))
+* wallet style ([#92](https://github.com/Dekalabs/climatecoin-frontend/issues/92)) ([579767a](https://github.com/Dekalabs/climatecoin-frontend/commit/579767ab93d8c1293843240bb55201efc69c5d61))
+
+
+### Bug Fixes
+
+* avatar size in navbar ([cb11674](https://github.com/Dekalabs/climatecoin-frontend/commit/cb11674e90815e0a1623a105185d53c093a45e80))
+* dummy about page ([ada5428](https://github.com/Dekalabs/climatecoin-frontend/commit/ada54284a689899212b15e00de06a87d5f6c473a))
+* hardcoded backend url ([a4b8af6](https://github.com/Dekalabs/climatecoin-frontend/commit/a4b8af6d14ae7d675171ec45419a595f71d4c967))
+* hardcoded url ([e12bfd3](https://github.com/Dekalabs/climatecoin-frontend/commit/e12bfd3af7e3f2d8ab41d1581e8e16f58d26ee6a))
+* profile imports ([6dcc36b](https://github.com/Dekalabs/climatecoin-frontend/commit/6dcc36b55ac5565364a90af8fe97b10b2ba11cd9))
+* updated compensation create payload ([c671a3e](https://github.com/Dekalabs/climatecoin-frontend/commit/c671a3eed470a1fa1baf36ae9ecb8a3781ed5f5e))
+
 ## [0.6.0](https://github.com/Dekalabs/climatecoin-frontend/compare/v0.4.0...v0.6.0) (2022-05-17)
 
 
