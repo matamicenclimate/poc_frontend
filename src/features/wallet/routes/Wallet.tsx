@@ -8,14 +8,12 @@ import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { EXPLORER_URL } from '@/config';
 import { useGetSwappableDocuments } from '@/features/documents';
 import { BalanceShowcase } from '@/features/misc';
-import { useGetNFTsByStatus } from '@/features/nfts';
 import { useAuth } from '@/lib/auth';
 import { useWalletContext } from '@/providers/Wallet.context';
 
 import { useGetChartData } from '../api/useGetChartData';
 import { useOptinToAsset } from '../api/useOptinToAsset';
 import { CarbonDocumentNftCard } from '../components/CarbonDocumentNftCard';
-import { NftCard } from '../components/NftCard';
 
 export const Wallet = () => {
   const { t } = useTranslation();
@@ -23,7 +21,6 @@ export const Wallet = () => {
   const { account, hasOptedIn } = useWalletContext();
   const optinToAsset = useOptinToAsset();
   const swappableNfts = useGetSwappableDocuments(user?.email);
-  const compensationNfts = useGetNFTsByStatus({ nft_type: 'compensation' });
   const { climatecoinBalance } = useWalletContext();
   const chartBalance = useGetChartData();
   return (
@@ -74,11 +71,6 @@ export const Wallet = () => {
       )}
       <div className="flex flex-col space-y-8">
         <BalanceShowcase climatecoinBalance={climatecoinBalance} chartBalance={chartBalance} />
-
-        <Title size={4} as={2}>
-          Compensation Certificates
-        </Title>
-        <NftCard data={compensationNfts} />
 
         <Title size={4} as={2}>
           Unclaimed Nfts

@@ -304,17 +304,17 @@
       }
     },
     "Compensate": {
-      "title": "Compensating of Climatecoins",
-      "description": "Lorem ipsum",
+      "title": "Compensations",
+      "description": "Offset your carbon footprint by burning climatecoins.",
       "quantity": {
         "label": "Quantity of Climatecoins"
       },
       "wallet": {
         "label": "Wallet"
       },
-      "button": "Compensate Climatecoins",
+      "button": "Compensate",
       "card": {
-        "title": "Compensating of Climatecoins"
+        "title": "Compensate your footprint"
       },
       "amount": {
         "label": "Amount of Climatecoins"
