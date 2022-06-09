@@ -17,6 +17,7 @@ export function useOptinToAsset() {
     // create the asset accept transaction
     console.log('opting in...');
 
+    if (hasOptedIn(asaId)) Promise.resolve();
     if (!account?.address) return;
     console.log('opting in...');
     const suggestedParams = await getClient().getTransactionParams().do();

@@ -18,9 +18,6 @@ export function SwapNft({ nftAsaId, nftSupply }: { nftAsaId?: number; nftSupply?
       <Button
         onClick={() =>
           swapNft.mutateAsync({
-            address: account?.address as string,
-            nftSupply: nftSupply as number,
-            nftAsaId: nftAsaId as number,
             documentId: documentId as string,
           })
         }

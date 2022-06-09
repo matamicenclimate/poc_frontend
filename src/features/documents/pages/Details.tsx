@@ -35,7 +35,6 @@ export const DocumentDetails = () => {
     await claimNft.mutateAsync({
       documentId: documentId as string,
       email: auth.user?.email as string,
-      address: account?.address,
       assetId: Number(document.data.developer_nft?.asa_id),
     });
   };
