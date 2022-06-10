@@ -48,7 +48,6 @@
       "about": "Sobre nosotros",
       "developer": "Desarrollador",
       "nfts": "Nfts",
-
       "home": "Inicio",
       "sell": "Vender",
       "wallet": {
@@ -329,6 +328,40 @@
         "accept": "Aceptar",
         "cancel": "Cancelar"
       }
+    }
+  },
+  "compensations": {
+    "Compensate": {
+      "title": "Compensar",
+      "description": "¿Sabía que parte de los beneficios de compensación de Climatecoin son para subvenciones?",
+      "stepper": {
+        "INITIAL": "Seleccione la cantidad",
+        "CONFIRMATION": "Aceptar condiciones",
+        "SUCCESS": "Confirmación"
+      },
+      "steps": {
+        "confirmation": {
+          "title": "Confirmación de compensación"
+        },
+        "accept": {
+          "title": "Aceptar condiciones",
+          "description": "¿Está seguro de que desea compensar {{amount}} tokens de Climatecoins, estos tokens se quemarán y ya no estarán disponibles en su cuenta. \n¡Estás ayudando al planeta! \nGracias."
+        }
+      },
+      "card": {
+        "title": "Seleccione la cantidad a compensar"
+      },
+      "button": "Compensar",
+      "wallet": {
+        "label": "monedero climacoin"
+      },
+      "amount": {
+        "label": "Cantidad"
+      }
+    },
+    "Details": {
+      "downloadCertificate": "Descargar certificado",
+      "viewTxn": "Ver transacción"
     }
   }
 }

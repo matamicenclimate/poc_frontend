@@ -11,6 +11,7 @@ export interface CurrencyInfo {
   createdAt: Date;
   updatedAt: Date;
   usd_usd: number;
+  usd_climatecoin: number;
 }
 
 function fetchCurenciesExchangeRate(): Promise<CurrencyInfo> {

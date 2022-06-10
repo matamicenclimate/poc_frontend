@@ -17,7 +17,7 @@ export function BalanceShowcase({
   chartBalance: UseQueryResult<ChartBalance>;
 }) {
   const { t } = useTranslation();
-  const { formatter } = useCurrencyContext();
+  const { formatter, climatecoinValue } = useCurrencyContext();
 
   return (
     <div className="grid gap-16 md:grid-cols-3">
@@ -37,7 +37,9 @@ export function BalanceShowcase({
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <p className="text-2xl text-neutral-4">{formatter(climatecoinBalance() * 10)}</p>
+            <p className="text-2xl text-neutral-4">
+              {formatter(climatecoinValue(climatecoinBalance()))}
+            </p>
           </div>
         </div>
         <div className="flex flex-col space-y-3">

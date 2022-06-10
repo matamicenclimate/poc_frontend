@@ -61,7 +61,6 @@
       "buy": "구입하다",
       "currency": "통화",
       "developer": "개발자",
-
       "home": "집",
       "i18n": {
         "english": "영어",
@@ -266,6 +265,40 @@
       "creditEnd": "크레딧 종료",
       "video": "동영상",
       "creditStart": "크레딧 시작"
+    }
+  },
+  "compensations": {
+    "Compensate": {
+      "title": "보상",
+      "description": "Climatecoin의 상쇄 혜택 중 일부가 보조금이라는 사실을 알고 계셨습니까?",
+      "stepper": {
+        "INITIAL": "금액 선택",
+        "CONFIRMATION": "조건 수락",
+        "SUCCESS": "확인"
+      },
+      "steps": {
+        "confirmation": {
+          "title": "보상 확인"
+        },
+        "accept": {
+          "title": "조건 수락",
+          "description": "클라이밋코인의 {{amount}} 토큰을 상쇄하시겠습니까? 이 토큰은 소각되어 귀하의 계정에서 더 이상 사용할 수 없습니다. \n당신은 지구를 돕고 있습니다! \n고맙습니다."
+        }
+      },
+      "card": {
+        "title": "보상할 금액 선택"
+      },
+      "button": "보상",
+      "wallet": {
+        "label": "클라이밋코인 지갑"
+      },
+      "amount": {
+        "label": "수량"
+      }
+    },
+    "Details": {
+      "downloadCertificate": "인증서 다운로드",
+      "viewTxn": "거래 보기"
     }
   }
 }

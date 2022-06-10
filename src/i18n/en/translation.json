@@ -323,5 +323,39 @@
   },
   "intlNumber": "{{val, number}}",
   "intlNumberWithOptions": "{{val, number(minimumFractionDigits: 2)}}",
-  "intlDateTime": "{{val, datetime}}"
+  "intlDateTime": "{{val, datetime}}",
+  "compensations": {
+    "Compensate": {
+      "title": "Compensate",
+      "description": "Did you know that part of Climatecoin's offsetting benefits are for grants?",
+      "stepper": {
+        "INITIAL": "Select amount",
+        "CONFIRMATION": "Accept conditions",
+        "SUCCESS": "Confirmation"
+      },
+      "steps": {
+        "confirmation": {
+          "title": "Compensation confirmation"
+        },
+        "accept": {
+          "title": "Accept conditions",
+          "description": "Are you sure you want to offset {{amount}} tokens of Climatecoins, these tokens will be burned and will no longer be available in your account. You are helping the planet! Thank you. "
+        }
+      },
+      "card": {
+        "title": "Select amount to compensate"
+      },
+      "button": "Compensate",
+      "wallet": {
+        "label": "Climatecoin wallet"
+      },
+      "amount": {
+        "label": "Quantity"
+      }
+    },
+    "Details": {
+      "downloadCertificate": "Download certificate",
+      "viewTxn": "View transaction"
+    }
+  }
 }

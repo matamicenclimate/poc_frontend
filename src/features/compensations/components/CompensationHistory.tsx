@@ -18,7 +18,9 @@ export const CompensationHistory = ({ data }: { data: UseQueryResult<Compensatio
             <div key={comp.id}>
               <div className="flex gap-2 py-3">
                 <div>
-                  {comp.amount} tonnes of CO2 compensated
+                  <Link to={`/coins/compensate/${comp.id}`}>
+                    {comp.amount} tonnes of CO2 compensated
+                  </Link>
                   <br />
                   <div className="flex space-x-2">
                     <Link

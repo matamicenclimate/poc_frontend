@@ -14,6 +14,7 @@ type SelectProps<FormSchema> = {
   options: SelectOption[];
   isMulti?: boolean;
   tooltipInfo?: string;
+  defaultValues?: any;
   // this should be injected by the <Form />
   control: Control<FormSchema>;
   errors?: SchemaToErrors<FormSchema>;
@@ -56,6 +57,7 @@ export function Select<FormSchema>({
   label,
   errors = {},
   required = false,
+  defaultValues = undefined,
   tooltipInfo,
   labelClassName,
   errorClassName,
@@ -72,7 +74,7 @@ export function Select<FormSchema>({
     name,
     control,
     rules: { required },
-    defaultValue: isMulti ? [] : ('' as any),
+    defaultValue: defaultValues ? defaultValues : isMulti ? [] : ('' as any),
   });
 
   return (
@@ -91,7 +93,7 @@ export function Select<FormSchema>({
           options={options as OptionsOrGroups<any, any>}
           isMulti={isMulti}
           styles={colourStyles(!!iconLeft, !!errors[name])}
-          defaultValue={isMulti ? [] : ('' as any)}
+          defaultValue={defaultValues ?? isMulti ? [] : ('' as any)}
         />
       </div>
 

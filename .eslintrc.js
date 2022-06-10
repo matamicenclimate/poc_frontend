@@ -27,8 +27,8 @@ module.exports = {
     },
   },
   rules: {
-    'simple-import-sort/imports': 'error',
-    'unused-imports/no-unused-imports': 'error',
+    'simple-import-sort/imports': 'warn',
+    'unused-imports/no-unused-imports': 'warn',
     'unused-imports/no-unused-vars': [
       'warn',
       { vars: 'all', varsIgnorePattern: '^_', args: 'after-used', argsIgnorePattern: '^_' },

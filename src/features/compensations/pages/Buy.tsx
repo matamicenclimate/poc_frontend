@@ -19,8 +19,8 @@ export const Buy = () => {
     <>
       {' '}
       <PageTitle
-        title={t('climatecoins.Buy.title')}
-        description={t('climatecoins.Buy.description')}
+        title={t('compensations.Buy.title')}
+        description={t('compensations.Buy.description')}
         linkTo=""
       />
       <div className="grid md:grid-cols-3">
@@ -36,21 +36,21 @@ export const Buy = () => {
           {currStep === BuySteps.SELECT ? (
             <Card>
               <Title size={5} as={2}>
-                {t('climatecoins.Buy.stepper.SELECT')}
+                {t('compensations.Buy.stepper.SELECT')}
               </Title>
             </Card>
           ) : null}
           {currStep === BuySteps.CONDITIONS ? (
             <Card>
               <Title size={5} as={2}>
-                {t('climatecoins.Buy.stepper.CONDITIONS')}
+                {t('compensations.Buy.stepper.CONDITIONS')}
               </Title>
             </Card>
           ) : null}
           {currStep === BuySteps.CONFIRMATION ? (
             <Card>
               <Title size={5} as={2}>
-                {t('climatecoins.Buy.stepper.CONFIRMATION')}
+                {t('compensations.Buy.stepper.CONFIRMATION')}
               </Title>
             </Card>
           ) : null}

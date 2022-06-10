@@ -47,7 +47,7 @@ module.exports = {
     },
     fontSize: {
       xs: ['12px', '1,8'],
-      sm: ['0.875rem', '1rem'],
+      sm: ['0.875rem', '2'],
       md: ['1rem', '0.712rem'],
       lg: '1.125rem',
       xl: '1.25rem',
@@ -58,6 +58,6 @@ module.exports = {
       '6xl': '4rem',
       '7xl': '5rem',
     },
-   },
+  },
   plugins: [],
 };

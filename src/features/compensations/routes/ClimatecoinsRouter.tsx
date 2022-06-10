@@ -5,6 +5,7 @@ import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 
 import { Compensate } from '../pages/Compensate';
+import { CompensationDetails } from '../pages/Details';
 
 const CoinsWrapper = () => {
   return (
@@ -27,6 +28,7 @@ export const ClimatecoinsRouter = () => {
     <Routes>
       <Route path="/" element={<CoinsWrapper />}>
         <Route path="compensate" element={<Compensate />} />
+        <Route path="compensate/:compensationId" element={<CompensationDetails />} />
         <Route path="*" element={<Navigate to="compensate" />} />
       </Route>
     </Routes>

@@ -1,6 +1,6 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { ClimatecoinsRouter } from '@/features/climatecoins';
+import { ClimatecoinsRouter } from '@/features/compensations';
 import { DocumentRouter } from '@/features/documents';
 import { Overview } from '@/features/misc';
 import { Profile } from '@/features/users';

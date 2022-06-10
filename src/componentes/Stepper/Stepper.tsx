@@ -25,6 +25,7 @@ type StepperProps<Obj extends Record<any, any>> = {
   setCurrStep: React.Dispatch<React.SetStateAction<number>>;
   currStep: number;
   translationRoot: string;
+  disableFutureSteps?: boolean;
 };
 export function Stepper<Obj>({
   stepsEnum,
@@ -32,6 +33,7 @@ export function Stepper<Obj>({
   setCurrStep,
   currStep,
   translationRoot,
+  disableFutureSteps = false,
 }: StepperProps<Obj>) {
   const { t } = useTranslation();
   return (
@@ -45,7 +47,12 @@ export function Stepper<Obj>({
           ) : null}
           <div
             key={index}
-            onClick={() => setCurrStep(index)}
+            onClick={() => {
+              if (index > currStep) {
+                if (disableFutureSteps) return;
+              }
+              return setCurrStep(index);
+            }}
             className="flex w-60 cursor-pointer gap-4 rounded-full p-2 text-sm shadow-sm"
           >
             <div

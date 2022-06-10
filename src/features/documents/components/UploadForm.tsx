@@ -19,7 +19,7 @@ import { Stepper, useStepper } from '@/componentes/Stepper/Stepper';
 import { FormOption, useGetFormOptions } from '../api/useGetFormOptions';
 import { useUploadDocument } from '../api/useUploadDocument';
 import { ProjectPreview } from '../components/ProjectPreview';
-import { documentUploadValidationSchema,UploadFormSchema } from '../validation/UploadValidation';
+import { documentUploadValidationSchema, UploadFormSchema } from '../validation/UploadValidation';
 
 /*
  * esto esta feo,
@@ -60,11 +60,7 @@ export const UploadForm = ({ email }: { email?: string }) => {
   const { currStep, nextStep, prevStep, setCurrStep } = useStepper(UploadSteps);
   const navigate = useNavigate();
   const handleSubmit = async (data: UploadFormSchema) => {
-    console.log({ data });
-
     const res = await uploadDocuments.mutateAsync(data);
-    // setIsOpen((old) => !old);
-    // but you can use a location instead
     navigate(`/documents/${res._id}`);
   };
 

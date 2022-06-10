@@ -62,7 +62,6 @@
       "currency": "Monnaie",
       "developer": "Développeur",
       "nfts": "Nfts",
-
       "home": "Maison",
       "i18n": {
         "english": "Anglais",
@@ -303,6 +302,40 @@
   "validation": {
     "errors": {
       "format": ""
+    }
+  },
+  "compensations": {
+    "Compensate": {
+      "title": "Compenser",
+      "description": "Saviez-vous qu'une partie des avantages compensatoires de Climatecoin est destinée aux subventions ?",
+      "stepper": {
+        "INITIAL": "Sélectionnez le montant",
+        "CONFIRMATION": "Accepter les conditions",
+        "SUCCESS": "Confirmation"
+      },
+      "steps": {
+        "confirmation": {
+          "title": "Attestation de rémunération"
+        },
+        "accept": {
+          "title": "Accepter les conditions",
+          "description": "Êtes-vous sûr de vouloir compenser {{amount}} jetons de Climatecoins, ces jetons seront brûlés et ne seront plus disponibles sur votre compte. \nVous aidez la planète ! \nMerci."
+        }
+      },
+      "card": {
+        "title": "Sélectionnez le montant à compenser"
+      },
+      "button": "Compenser",
+      "wallet": {
+        "label": "Portefeuille Climatecoin"
+      },
+      "amount": {
+        "label": "Quantité"
+      }
+    },
+    "Details": {
+      "downloadCertificate": "Télécharger le certificat",
+      "viewTxn": "Afficher la transaction"
     }
   }
 }

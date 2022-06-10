@@ -9,7 +9,7 @@ import { httpClient } from '@/lib/httpClient';
 import { magiclink } from '@/lib/magiclink';
 import { queryClient } from '@/lib/react-query';
 
-import { CompensationCalculation, compensationKeys } from '../types';
+import { Compensation, CompensationCalculation, compensationKeys } from '../types';
 
 type HandleBurnParams = { userId: string | null | undefined } & CompensationCalculation;
 
@@ -22,7 +22,7 @@ async function handleBurnClimatecoins({
   encodedTransferTxn,
   nftIds,
   userId,
-}: HandleBurnParams): Promise<any> {
+}: HandleBurnParams): Promise<Compensation> {
   console.log('burning...');
   if (!address) return Promise.reject('No address');
   if (!userId) return Promise.reject('No user');
@@ -81,7 +81,7 @@ export function useBurnClimatecoins() {
         alert.success('Climatecoins compensated succesfully');
       },
       onError: () => {
-        alert.error('Error burning climatecoins');
+        alert.error('Error burning compensations');
       },
     }
   );
