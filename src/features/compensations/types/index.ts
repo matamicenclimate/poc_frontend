@@ -8,7 +8,6 @@ export const compensationKeys = {
 };
 
 export interface CompensationCalculation {
-  address: string;
   amount: number;
   assets: number[]; // blockchain asa ids
   nftIds: string[]; // db ids

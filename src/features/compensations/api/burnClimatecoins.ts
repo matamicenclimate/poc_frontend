@@ -1,9 +1,8 @@
-import algosdk, { waitForConfirmation } from 'algosdk';
+import algosdk from 'algosdk';
 import { Buffer } from 'buffer';
 import { useAlert } from 'react-alert';
 import { useMutation } from 'react-query';
 
-import { getClient } from '@/lib/algosdk';
 import { useAuth } from '@/lib/auth';
 import { httpClient } from '@/lib/httpClient';
 import { magiclink } from '@/lib/magiclink';
@@ -15,20 +14,12 @@ type HandleBurnParams = { userId: string | null | undefined } & CompensationCalc
 
 async function handleBurnClimatecoins({
   amount,
-  address,
-  assets,
   txn: oracleTxN,
   encodedBurnTxn,
   encodedTransferTxn,
   nftIds,
-  userId,
 }: HandleBurnParams): Promise<Compensation> {
   console.log('burning...');
-  if (!address) return Promise.reject('No address');
-  if (!userId) return Promise.reject('No user');
-
-  const suggestedParams = await getClient().getTransactionParams().do();
-  suggestedParams.fee = suggestedParams.fee * 3;
 
   // convert the txns to buffers
   const oracleTxnBuffer = Buffer.from(Object.values(oracleTxN));
@@ -43,24 +34,12 @@ async function handleBurnClimatecoins({
     algosdk.decodeUnsignedTransaction(burnTxnBuffer).toByte()
   );
 
-  // group them
   const signedTxn = [signedTransferTxn, oracleTxnBuffer, signedBurnTxn];
-  console.log({
-    transfer: algosdk.decodeUnsignedTransaction(transferTxnBuffer),
-    burn: algosdk.decodeUnsignedTransaction(burnTxnBuffer),
-    oracle: algosdk.decodeSignedTransaction(oracleTxnBuffer),
-    signedTxn,
-  });
 
-  const { txId } = await getClient().sendRawTransaction(signedTxn).do();
-  const result = await waitForConfirmation(getClient(), txId, 3);
-  console.log({ result, txId });
-  const groupId = Buffer.from(result.txn.txn.grp).toString('base64');
   return httpClient.post(`/compensations`, {
-    txn_id: groupId,
+    signedTxn,
     amount,
     nfts: nftIds,
-    user: userId,
   });
 }
 
