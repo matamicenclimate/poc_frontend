@@ -74,7 +74,8 @@ export function Select<FormSchema>({
     name,
     control,
     rules: { required },
-    defaultValue: defaultValues ? defaultValues : isMulti ? [] : ('' as any),
+    // TODO: this is for the fileValidation, should be improved
+    defaultValue: isMulti ? ([] as any) : ('' as any),
   });
 
   return (
@@ -93,7 +94,6 @@ export function Select<FormSchema>({
           options={options as OptionsOrGroups<any, any>}
           isMulti={isMulti}
           styles={colourStyles(!!iconLeft, !!errors[name])}
-          defaultValue={defaultValues ?? isMulti ? [] : ('' as any)}
         />
       </div>
 

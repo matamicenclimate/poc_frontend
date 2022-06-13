@@ -3,14 +3,11 @@ import { Buffer } from 'buffer';
 import { useAlert } from 'react-alert';
 import { useMutation } from 'react-query';
 
-import { useAuth } from '@/lib/auth';
 import { httpClient } from '@/lib/httpClient';
 import { magiclink } from '@/lib/magiclink';
 import { queryClient } from '@/lib/react-query';
 
 import { Compensation, CompensationCalculation, compensationKeys } from '../types';
-
-type HandleBurnParams = { userId: string | null | undefined } & CompensationCalculation;
 
 async function handleBurnClimatecoins({
   amount,
@@ -18,13 +15,20 @@ async function handleBurnClimatecoins({
   encodedBurnTxn,
   encodedTransferTxn,
   nftIds,
-}: HandleBurnParams): Promise<Compensation> {
-  console.log('burning...');
-
+}: CompensationCalculation): Promise<Compensation> {
   // convert the txns to buffers
   const oracleTxnBuffer = Buffer.from(Object.values(oracleTxN));
   const transferTxnBuffer = Buffer.from(Object.values(encodedTransferTxn));
   const burnTxnBuffer = Buffer.from(Object.values(encodedBurnTxn));
+
+  // skip this in testing
+  if (process.env.NODE_ENV === 'test') {
+    return httpClient.post(`/compensations`, {
+      signedTxn: [],
+      amount,
+      nfts: nftIds,
+    });
+  }
 
   // decode and sign
   const signedTransferTxn = await magiclink.algorand.signTransaction(
@@ -35,7 +39,6 @@ async function handleBurnClimatecoins({
   );
 
   const signedTxn = [signedTransferTxn, oracleTxnBuffer, signedBurnTxn];
-
   return httpClient.post(`/compensations`, {
     signedTxn,
     amount,
@@ -45,23 +48,14 @@ async function handleBurnClimatecoins({
 
 export function useBurnClimatecoins() {
   const alert = useAlert();
-  const { user } = useAuth();
-  return useMutation(
-    (burnParams: Omit<HandleBurnParams, 'userId'>) => {
-      return handleBurnClimatecoins({
-        ...burnParams,
-        userId: user?.id,
-      });
+  return useMutation((burnParams: CompensationCalculation) => handleBurnClimatecoins(burnParams), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(['account']);
+      queryClient.invalidateQueries(compensationKeys.lists());
+      alert.success('Climatecoins compensated succesfully');
     },
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries(['account']);
-        queryClient.invalidateQueries(compensationKeys.lists());
-        alert.success('Climatecoins compensated succesfully');
-      },
-      onError: () => {
-        alert.error('Error burning compensations');
-      },
-    }
-  );
+    onError: () => {
+      alert.error('Error burning compensations');
+    },
+  });
 }

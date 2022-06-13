@@ -1,6 +1,7 @@
 import { render as rtlRender, screen, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { FunctionComponent } from 'react';
+import { createMemoryHistory } from 'history';
+import React, { FunctionComponent } from 'react';
 
 import { DefaultRender, MockAuthRender } from './renderers';
 
@@ -37,13 +38,14 @@ export const render = async (
 
 export const minimalRender = async (
   ui: any,
-  { route = '/', ...renderOptions }: Record<string, any> = {}
+  { route = '/', history = createMemoryHistory(), ...renderOptions }: Record<string, any> = {}
 ) => {
-  window.history.pushState({}, 'Test page', route);
+  history.push(route);
 
   const returnValue = {
+    history,
     ...rtlRender(ui, {
-      wrapper: MockAuthRender as FunctionComponent<unknown>,
+      wrapper: (props) => React.createElement(MockAuthRender, { history }, props.children),
       ...renderOptions,
     }),
   };

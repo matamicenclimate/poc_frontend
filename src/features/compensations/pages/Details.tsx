@@ -7,15 +7,13 @@ import { Link } from '@/componentes/Elements/Link/Link';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
 import { Stepper } from '@/componentes/Stepper/Stepper';
-import { EXPLORER_URL } from '@/config';
-import { useWalletContext } from '@/providers/Wallet.context';
+import { EXPLORER_URL, IPFS_GATEWAY_URL } from '@/config';
 
 import { useGetCompensation } from '../api/getCompensation';
-import { CompensateSteps } from './Compensate';
+import { CompensateSteps } from '../components/CompensateForm';
 
 export const CompensationDetails = () => {
   const { t } = useTranslation();
-  const { account, climatecoinBalance } = useWalletContext();
 
   const { compensationId } = useParams();
   const compensation = useGetCompensation(compensationId);
@@ -46,7 +44,7 @@ export const CompensationDetails = () => {
                 Thank you for helping to offset the carbon footprint, your tokens have been
                 successfully burned, you can view the transaction in real time directly on Algorand.
               </p>
-              <div className="grid grid-cols-3">
+              <div className="grid grid-cols-3 ">
                 <Link
                   as="button"
                   variant="light"
@@ -59,9 +57,20 @@ export const CompensationDetails = () => {
                   {t('compensations.Details.viewTxn')}
                 </Link>
                 <div></div>
-                <Button size="md" onClick={() => null}>
-                  {t('compensations.Details.downloadCertificate')}
-                </Button>
+                {compensation.data?.consolidation_certificate_ipfs_cid ? (
+                  <Link
+                    href={`${IPFS_GATEWAY_URL}${compensation.data?.consolidation_certificate_ipfs_cid}`}
+                    className="inline-flex items-center text-xs"
+                    as="button"
+                    size="md"
+                  >
+                    {t('compensations.Details.downloadCertificate')}
+                  </Link>
+                ) : (
+                  <Button onClick={() => null} size="md" disabled>
+                    {t('compensations.Details.downloadCertificate')}
+                  </Button>
+                )}
               </div>
             </div>
           </Card>

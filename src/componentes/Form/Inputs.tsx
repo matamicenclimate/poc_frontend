@@ -66,6 +66,7 @@ export function Input<FormSchema extends Record<string, any>>({
           type={type}
           id={name}
           placeholder={placeholder}
+          aria-label={label}
           className={clsx(
             `flex-grow rounded-md border-2 p-2 text-sm leading-normal`,
             !!iconRight && 'pr-10',
