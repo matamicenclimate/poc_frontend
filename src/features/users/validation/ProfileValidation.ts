@@ -15,9 +15,14 @@ const imageValidation = yup.array().test('format', 'validation.errors.format.ima
 });
 
 export const ProfileValidationSchema = yup.object({
-  first_name: yup.string().required(),
-  last_name: yup.string().required(),
   avatar: imageValidation.required(),
+  alias: yup.string().required(),
+  name: yup.string(),
+  surname: yup.string(),
+  city: yup.string(),
+  country: yup.object().nullable().required(),
+  bio: yup.string(),
+  personal_URL: yup.string(),
 });
 
 export type ProfileValidationSchema = yup.InferType<typeof ProfileValidationSchema>;

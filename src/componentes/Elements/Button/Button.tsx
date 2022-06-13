@@ -19,6 +19,10 @@ const variants = {
     'text-neutral-2 bg-neutral-8 border-solid border-2 border-neutral-4',
     'hover:border-neutral-2 disabled:border-neutral-2'
   ),
+  danger: clsx(
+    'text-primary-red bg-neutral-7 border-solid border-2 border-neutral-7',
+    'hover:border-primary-red disabled:border-neutral-2'
+  ),
 };
 
 export const buttonStyles = { base, sizes, variants };
@@ -26,6 +30,7 @@ export const buttonStyles = { base, sizes, variants };
 type ButtonProps = {
   onClick?: () => void;
   children: React.ReactNode;
+  className?: string;
   type?: 'submit' | 'button' | undefined;
   disabled?: boolean;
   ref?: any;
@@ -46,6 +51,7 @@ export const Button = React.forwardRef(
       size = 'md',
       variant = 'primary',
       disabled = false,
+      className,
       iconLeft,
       iconRight,
       children,
@@ -56,7 +62,7 @@ export const Button = React.forwardRef(
     return (
       <button
         onClick={onClick}
-        className={clsx(base, sizes[size], variants[variant])}
+        className={clsx(base, sizes[size], variants[variant], className)}
         disabled={disabled}
         ref={ref}
         {...props}

@@ -10,6 +10,7 @@ import { Title } from '@/componentes/Elements/Title/Title';
 import { DayPickerRange } from '@/componentes/Form/DayPickerRange';
 import { Input } from '@/componentes/Form/Inputs';
 import { Icon } from '@/componentes/Icon/Icon';
+import { Aside } from '@/componentes/Layout/Aside';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
 import Popover from '@/componentes/Popover/Popover';
@@ -17,11 +18,6 @@ import { useSort } from '@/hooks/useSort';
 import { useAuth } from '@/lib/auth';
 
 import { useGetDocuments } from '../api/useGetDocuments';
-
-const baseAsideLiStyles =
-  'flex cursor-pointer items-center text-neutral-4 px-6 py-2 transition hover:bg-neutral-7 hover:text-primary';
-
-const linkStyle = 'no-underline';
 
 const pillVariants: Record<string, PillProps['variant']> = {
   pending: 'new',
@@ -45,16 +41,6 @@ export const DocumentList = () => {
 
   const { sort, toggleSort, renderArrow } = useSort();
   const documents = useGetDocuments(user?.email as string, methods.watch(), sort);
-
-  const getProfileAvatar = () => {
-    if (user?.avatar === null) {
-      return 'avatar-placeholder.jpg';
-    }
-    if (user?.avatar?.url) {
-      return user?.avatar.url;
-    }
-    return 'avatar-placeholder.jpg';
-  };
 
   const renderDocuments = () => {
     if (documents.data) {
@@ -107,92 +93,7 @@ export const DocumentList = () => {
       />
       <form onSubmit={(e) => e.preventDefault()}>
         <div className="grid gap-8 md:grid-cols-4">
-          <aside className="text-sm font-bold text-neutral-4">
-            <img src={getProfileAvatar()} className="mx-auto h-36 rounded-full" />
-            <div className="my-4 text-center">
-              <>
-                {t('documents.Upload.hi')}
-                {user?.username?.split('@')[0]} 👋🏻
-              </>
-            </div>
-            <hr />
-            <ul className="my-2 space-y-1">
-              <li
-                className={clsx(
-                  baseAsideLiStyles,
-                  methods.getValues('status') === 'accepted' && 'text-primary'
-                )}
-                onClick={() => methods.setValue('status', 'accepted')}
-              >
-                <>
-                  <Icon
-                    id={`arrow-right-line${
-                      methods.getValues('status') === 'accepted' ? '-primary' : ''
-                    }`}
-                    className="mr-3 h-6 w-6 fill-primary"
-                  />{' '}
-                  {t('documents.Upload.buys')}
-                </>
-              </li>
-              <li
-                className={clsx(
-                  baseAsideLiStyles,
-                  methods.getValues('status') === 'completed' && 'text-primary'
-                )}
-                onClick={() => methods.setValue('status', 'completed')}
-              >
-                <>
-                  <Icon
-                    id={`arrow-right-line${
-                      methods.getValues('status') === 'completed' ? '-primary' : ''
-                    }`}
-                    className="mr-3 h-6 w-6 fill-primary"
-                  />{' '}
-                  {t('documents.Upload.sold')}
-                </>
-              </li>
-              <li
-                className={clsx(
-                  baseAsideLiStyles,
-                  methods.getValues('status') === undefined && 'text-primary'
-                )}
-                onClick={() => methods.setValue('status', undefined)}
-              >
-                <>
-                  <Icon
-                    id={`shopping-bag${
-                      methods.getValues('status') === undefined ? '-primary' : ''
-                    }`}
-                    className="mr-3 h-6 w-6 fill-primary"
-                  />
-                  {t('documents.Upload.projects')}
-                </>
-              </li>
-            </ul>
-            <hr />
-            <ul className="my-2 space-y-1">
-              <Link to="/profile" className={clsx(linkStyle)}>
-                <li className={baseAsideLiStyles}>
-                  <>
-                    <Icon id="user-line" className="mr-3 h-6 w-6" />
-                    {t('documents.Upload.profile')}
-                  </>
-                </li>
-              </Link>
-              <li className={baseAsideLiStyles}>
-                <>
-                  <Icon id="email-line" className="mr-3 h-6 w-6" />
-                  {t('documents.Upload.notifications')}
-                </>
-              </li>
-              <li className={baseAsideLiStyles}>
-                <>
-                  <Icon id="wallet-line" className="mr-3 h-6 w-6" />
-                  {t('documents.Upload.wallet')}
-                </>
-              </li>
-            </ul>
-          </aside>
+          <Aside />
           <main className="space-y-4 md:col-span-3">
             <div className="flex items-center space-x-2">
               <Title size={4} as={3}>

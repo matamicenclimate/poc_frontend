@@ -12,7 +12,7 @@ export const Label = ({ name, label, required, labelClassName }: LabelProps) => 
   return (
     <label className={clsx('mb-2 text-xs text-neutral-4', labelClassName)} htmlFor={name} id={name}>
       {label}
-      {!required && ' *optional'}
+      {!required && ' (optional)'}
     </label>
   );
 };

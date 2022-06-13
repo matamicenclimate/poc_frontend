@@ -3,14 +3,20 @@ import { useAlert } from 'react-alert';
 import { useMutation, useQueryClient } from 'react-query';
 
 import { StrapiUser } from '@/features/auth';
+import { Country } from '@/features/documents';
 import { useAuth } from '@/lib/auth';
 import { httpClient } from '@/lib/httpClient';
 import { toFormData } from '@/utils/toFormData';
 
 interface UpdateProfileDTO {
-  firstname: string;
+  alias: string;
+  name: string;
   surname: string;
   avatar: File | any; // TODO: check this type xD
+  city: string;
+  country: Country;
+  bio: string;
+  personal_URL: string;
 }
 
 function updateProfile(formData: FormData, userId: string): Promise<StrapiUser> {

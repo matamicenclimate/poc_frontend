@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useDropzone } from 'react-dropzone';
-import { useController,UseControllerProps } from 'react-hook-form';
+import { useController, UseControllerProps } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { Icon } from '../Icon/Icon';
@@ -84,9 +84,11 @@ function FileInput<FormSchema>({
               <div className="text-sm font-bold text-primary">
                 {t<string>('components.FileInput.dragAndDrop')}
               </div>
-              <div className="text-xs text-neutral-4">
-                {t<string>('components.FileInput.selectFiles')} ({accept} - Max 10Mb/file)
-              </div>
+              {accept && (
+                <div className="text-xs text-neutral-4">
+                  {t<string>('components.FileInput.selectFiles')} ({accept} - Max 10Mb/file)
+                </div>
+              )}
             </div>
           )}
           <div className="space-y-2">

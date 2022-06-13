@@ -14,6 +14,7 @@ module.exports = {
           purple: 'var(--color--primary-purple)',
           orange: 'var(--color--primary-orange)',
           green: 'var(--color--primary-green)',
+          red: 'var(--color--primary-red)',
         },
         secondary: {
           DEFAULT: 'var(--color--primary-cold-green)',

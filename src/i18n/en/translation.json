@@ -215,8 +215,15 @@
       "adress": "Wallet Adress"
     },
     "edit": "Edit profile",
-    "avatar": "Avatar",
-    "button": "Update"
+    "avatar": "Upload avatar",
+    "alias": "Alias",
+    "city": "City",
+    "country": "Country",
+    "bio": "Bio",
+    "personal_URL": "Personal URL",
+    "button_update": "Update",
+    "button_remove": "Remove avatar",
+    "button_delete": "Delete account"
   },
   "uploadDocuments": {
     "country": "Country",
@@ -357,5 +364,8 @@
       "downloadCertificate": "Download certificate",
       "viewTxn": "View transaction"
     }
+  },
+  "Profile": {
+    "title": "Edit profile"
   }
 }

@@ -1,3 +1,5 @@
+import { Country } from '@/features/documents';
+
 export type MagicUser = {
   issuer: string;
   publicAddress: string;
@@ -24,9 +26,14 @@ export interface StrapiUser {
   role?: Role;
   id?: string;
   type?: 'buyer' | 'developer';
-  first_name?: string;
-  last_name?: string;
+  name?: string;
+  surname?: string;
   avatar?: AvatarClass;
+  alias?: string;
+  city?: string;
+  country?: Country;
+  bio?: string;
+  personal_URL?: string;
 }
 
 interface Role {
@@ -50,8 +57,8 @@ export interface Avatar {
   updatedAt: Date;
   __v: number;
   role: Role;
-  first_name: string;
-  last_name: string;
+  name: string;
+  surname: string;
   avatar: AvatarClass;
   id: string;
   magic_user: MagicUser;

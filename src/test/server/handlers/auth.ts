@@ -5,8 +5,8 @@ export default [
   rest.get('/user/me', (req, res, ctx) => {
     return res(
       ctx.json({
-        firstName: 'John',
-        lastName: 'Maverick',
+        name: 'John',
+        surname: 'Maverick',
       })
     );
   }),
