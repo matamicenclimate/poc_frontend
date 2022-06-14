@@ -45,7 +45,7 @@ export function useOptinToAsset() {
   };
 
   return useMutation((assetId: number) => optinToAsset(assetId), {
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries(['account']);
     },
     onError: () => {

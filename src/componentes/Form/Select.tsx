@@ -75,7 +75,7 @@ export function Select<FormSchema>({
     control,
     rules: { required },
     // TODO: this is for the fileValidation, should be improved
-    defaultValue: isMulti ? ([] as any) : ('' as any),
+    defaultValue: isMulti ? ([] as any) : (undefined as any),
   });
 
   return (

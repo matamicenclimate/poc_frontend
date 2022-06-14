@@ -18,6 +18,7 @@ import { useWalletContext } from '@/providers/Wallet.context';
 import { useBurnClimatecoins } from '../api/burnClimatecoins';
 import { useCalculateCompensation } from '../api/calculateCompensation';
 import { CompensationCalculation } from '../types';
+import { CalculateCompensationSchema } from '../validation/CompensateValidation';
 
 export enum CompensateSteps {
   INITIAL = 0,
@@ -34,10 +35,10 @@ export const CompensateForm = ({ defaultAddress }: { defaultAddress: string }) =
   const { formatter, climatecoinValue } = useCurrencyContext();
 
   const [oracleResponse, setOracleResponse] = useState<null | CompensationCalculation>(null);
-  const methods = useForm<any>({
+  const methods = useForm<CalculateCompensationSchema>({
     mode: 'onBlur',
     defaultValues: {
-      wallet: { value: defaultAddress, label: defaultAddress },
+      wallet: { value: defaultAddress as any, label: defaultAddress as any },
     },
   });
 
@@ -54,7 +55,7 @@ export const CompensateForm = ({ defaultAddress }: { defaultAddress: string }) =
       calculateCompensation.mutateAsync(data.amount).then((oracleTxn) => {
         setOracleResponse(oracleTxn);
       }),
-    ]).catch((e) => setCurrStep(CompensateSteps.INITIAL));
+    ]).catch(() => setCurrStep(CompensateSteps.INITIAL));
   };
   const navigate = useNavigate();
 
@@ -101,17 +102,35 @@ export const CompensateForm = ({ defaultAddress }: { defaultAddress: string }) =
                 {...baseInputProps}
               />
               <div className="space-y-2">
-                <Input
-                  {...baseInputProps}
-                  wrapperClassName="col-span-1"
-                  label={t('compensations.Compensate.amount.label')}
-                  name="amount"
-                  type="number"
-                  required
-                  max={climatecoinBalance()}
-                  inputClassName="border-0 text-[5rem] w-full text-center"
-                  placeholder={'00.00'}
-                />
+                <div className="relative flex items-center justify-center">
+                  <div
+                    className={clsx('absolute z-10 -mt-4 text-2xl font-bold')}
+                    style={{
+                      marginLeft: `-${
+                        (typeof methods.watch('amount') === 'undefined'
+                          ? 4
+                          : methods.watch('amount').toString().length > 7
+                          ? 7
+                          : methods.watch('amount').toString().length < 4
+                          ? 4
+                          : methods.watch('amount').toString().length) * 4.5
+                      }rem`,
+                    }}
+                  >
+                    CC
+                  </div>
+                  <Input
+                    {...baseInputProps}
+                    wrapperClassName="col-span-1"
+                    label={t('compensations.Compensate.amount.label')}
+                    name="amount"
+                    type="number"
+                    required
+                    max={climatecoinBalance()}
+                    inputClassName="border-0 text-[5rem] w-full text-center "
+                    placeholder={'00.00'}
+                  />
+                </div>
                 <div className="text-center text-xl">
                   {formatter(climatecoinValue(methods.watch('amount')))}
                 </div>

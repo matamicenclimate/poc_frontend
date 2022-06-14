@@ -38,7 +38,6 @@ const ErrorFallback = () => {
 export const AppProvider = ({ children }: { children: React.ReactElement }) => {
   return (
     <>
-      {/* @ts-expect-error - Temporary Fix - https://github.com/getsentry/sentry-javascript/issues/4904 */}
       <Sentry.ErrorBoundary fallback={() => <ErrorFallback />} showDialog>
         <HelmetProvider>
           <AlertProvider template={Alert} {...options}>
