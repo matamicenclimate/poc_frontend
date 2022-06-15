@@ -38,6 +38,7 @@ const ErrorFallback = () => {
 export const AppProvider = ({ children }: { children: React.ReactElement }) => {
   return (
     <>
+      {/** @ts-expect-error Property 'children' does not exist on type 'IntrinsicAttributes & IntrinsicClassAttributes<ErrorBoundary> & Readonly<ErrorBoundaryProps>' */}
       <Sentry.ErrorBoundary fallback={() => <ErrorFallback />} showDialog>
         <HelmetProvider>
           <AlertProvider template={Alert} {...options}>

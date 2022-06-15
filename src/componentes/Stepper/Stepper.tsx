@@ -79,8 +79,7 @@ export function Stepper<Obj>({
                 index + 1
               )}
             </div>
-            {/** @ts-expect-error idk */}
-            <div className="flex items-center">{t(`${translationRoot}.${title}`)}</div>
+            <div className="flex items-center">{t(`${translationRoot}.${title.toString()}`)}</div>
           </div>
         </div>
       ))}
