@@ -47,6 +47,9 @@ export function Stepper<Obj>({
           ) : null}
           <div
             key={index}
+            role="button"
+            tabIndex={0}
+            aria-label={`stepper-${title.toString()}`}
             onClick={() => {
               if (index > currStep) {
                 if (disableFutureSteps) return;
@@ -65,7 +68,11 @@ export function Stepper<Obj>({
               )}
             >
               {errors?.[title] ? (
-                <Icon id="x-close-neutral-9" className="h-4 w-4" />
+                <Icon
+                  id="x-close-neutral-9"
+                  className="stepperErrorIcon h-4 w-4"
+                  alt="stepper-error-icon"
+                />
               ) : currStep > index ? (
                 <CheckIcon />
               ) : (

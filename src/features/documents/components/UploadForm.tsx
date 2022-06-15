@@ -53,6 +53,12 @@ export const UploadForm = ({ email }: { email?: string }) => {
   const methods = useForm<UploadFormSchema>({
     resolver,
     mode: 'onBlur',
+    // TODO: our validation schema is not great,
+    //  if the file inputs haven't been mounted the validation doesnt work for these fields
+    defaultValues: {
+      pdd: [],
+      verification_report: [],
+    },
   });
 
   const uploadDocuments = useUploadDocument();

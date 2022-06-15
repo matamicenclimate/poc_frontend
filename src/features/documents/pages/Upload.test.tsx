@@ -21,8 +21,28 @@ test('switches between steps', async () => {
     const titleElement = await screen.getByRole('heading', { level: 2 });
     expect(titleElement).toHaveTextContent(title);
   };
+
   await goToNextStep('Project details');
   await goToNextStep('Configuration');
   await goToNextStep('Upload files');
   await goToNextStep('Confirmation');
+});
+
+test('submits the empty form counts steps with error', async () => {
+  await minimalRender(<UploadForm email="test@deka.com" />);
+
+  await act(() => {
+    fireEvent.click(screen.getByRole('button', { name: 'stepper-CONFIRMATION' }));
+  });
+
+  await act(() => {
+    fireEvent.click(screen.getByText(/I confirm the creation of this project/i));
+  });
+
+  await act(() => {
+    fireEvent.click(screen.getByText(/send/i));
+  });
+
+  const errorIcons = screen.getAllByAltText(/stepper-error-icon/i);
+  expect(errorIcons.length).toBe(4);
 });
