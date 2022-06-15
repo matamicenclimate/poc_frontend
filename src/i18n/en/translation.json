@@ -160,7 +160,7 @@
       "projects": "My projects",
       "profile": "Edit profile",
       "notifications": "Notifications",
-      "wallet": "My Wallet",
+      "wallet": "My Wallets",
       "hi": "Hi "
     },
     "Details": {
@@ -367,5 +367,14 @@
   },
   "Profile": {
     "title": "Edit profile"
+  },
+  "Wallet": {
+    "title": "My wallets",
+    "span": "Wallet",
+    "button": {
+      "view": "View",
+      "delete": "Delete wallet",
+      "new": "Add new wallet"
+    }
   }
 }

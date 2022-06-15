@@ -107,12 +107,14 @@ export const Aside = () => {
             {t('documents.Upload.notifications')}
           </>
         </li>
-        <li className={baseAsideLiStyles}>
-          <>
-            <Icon id="wallet-line" className="mr-3 h-6 w-6" />
-            {t('documents.Upload.wallet')}
-          </>
-        </li>
+        <Link to="/wallet/*" className={clsx(linkStyle)}>
+          <li className={baseAsideLiStyles}>
+            <>
+              <Icon id="wallet-line" className="mr-3 h-6 w-6" />
+              {t('documents.Upload.wallet')}
+            </>
+          </li>
+        </Link>
       </ul>
     </aside>
   );

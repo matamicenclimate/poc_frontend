@@ -6,77 +6,79 @@ import { Link } from '@/componentes/Elements/Link/Link';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { EXPLORER_URL } from '@/config';
-import { useGetSwappableDocuments } from '@/features/documents';
-import { BalanceShowcase } from '@/features/misc';
-import { useAuth } from '@/lib/auth';
 import { useWalletContext } from '@/providers/Wallet.context';
-
-import { useGetChartData } from '../api/useGetChartData';
-import { useOptinToAsset } from '../api/useOptinToAsset';
-import { CarbonDocumentNftCard } from '../components/CarbonDocumentNftCard';
 
 export const Wallet = () => {
   const { t } = useTranslation();
-  const { user } = useAuth();
-  const { account, hasOptedIn } = useWalletContext();
-  const optinToAsset = useOptinToAsset();
-  const swappableNfts = useGetSwappableDocuments(user?.email);
-  const { climatecoinBalance } = useWalletContext();
-  const chartBalance = useGetChartData();
+  const { account } = useWalletContext();
+
   return (
     <MainLayout title={t('head.Wallet.title')}>
-      <div className="flex items-center justify-between py-8">
-        <Title size={3} as={1}>
-          {t('wallet.Wallet.title')}
-        </Title>
-        <div>
-          <Link
-            href={`${EXPLORER_URL}address/${encodeURIComponent(account?.address as string)}`}
-            className="inline-flex items-center text-sm"
-          >
-            {account?.address}
-            <img src="/icons/algoexplorer.png" className="h-3 w-3 rounded-full" />
-          </Link>
-        </div>
-      </div>
-      {!hasOptedIn(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)) && (
-        <Card padding="sm">
-          <div className="flex items-center justify-between">
-            <div>You have to opt-in to receive Climatecoins in order to continue</div>
-            <Button
-              onClick={() =>
-                optinToAsset.mutate(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string))
-              }
-              size="xs"
-            >
-              opt in to climatecoin
-            </Button>
+      <div className="mt-16 grid items-center gap-8 md:grid-cols-4">
+        <main className="space-y-4 md:col-span-3">
+          <div>
+            <Card>
+              <Title size={5} as={2} className="mb-12">
+                {t('Wallet.title')}
+              </Title>
+              {account?.address && (
+                <Card padding={'sm'}>
+                  <div className="flex flex-row items-center justify-between">
+                    <div className="flex flex-col space-y-1 text-sm text-neutral-4">
+                      <span> {t('Wallet.span')} 1 (10,50 cc)</span>
+                      <div className="inline-flex items-center font-bold text-black">
+                        {account?.address.slice(0, 10)}...{account.address?.slice(-10)}
+                        <img src="/icons/algoexplorer.png" className="ml-2 h-4 w-4 rounded-full" />
+                      </div>
+                    </div>
+                    <div className="flex space-x-3">
+                      <Link
+                        href={`${EXPLORER_URL}address/${encodeURIComponent(
+                          account?.address as string
+                        )}`}
+                        className="inline-flex items-center font-bold no-underline"
+                      >
+                        <Button
+                          type="button"
+                          className="bg-neutral-7 py-1"
+                          variant="grey"
+                          size="md"
+                        >
+                          {t('Wallet.button.view')}
+                        </Button>
+                      </Link>
+                      <Button type="button" variant="danger" className="py-1" size="md" disabled>
+                        {t('Wallet.button.delete')}
+                      </Button>
+                    </div>
+                  </div>
+                </Card>
+              )}
+              {/* TO DO: at this time it is not possible to have multiple wallets. You can only have the wallet provided by Magic Link*/}
+              <div className="mt-8 flex w-full justify-center">
+                <Button type="button" variant="primary" className="py-1" size="md" disabled>
+                  + {t('Wallet.button.new')}
+                </Button>
+              </div>
+            </Card>
           </div>
-        </Card>
-      )}
-      {!hasOptedIn(Number(process.env.REACT_APP_USDC_ASA_ID as string)) && (
-        <Card padding="sm">
-          <div className="flex items-center justify-between">
-            <div>You have to opt-in to receive usdc in order to continue</div>
-            <Button
-              onClick={() =>
-                optinToAsset.mutate(Number(process.env.REACT_APP_USDC_ASA_ID as string))
-              }
-              size="xs"
-            >
-              opt in to usdc
-            </Button>
-          </div>
-        </Card>
-      )}
-      <div className="flex flex-col space-y-8">
-        <BalanceShowcase climatecoinBalance={climatecoinBalance} chartBalance={chartBalance} />
-
-        <Title size={4} as={2}>
-          Unclaimed Nfts
-        </Title>
-        <CarbonDocumentNftCard data={swappableNfts} />
+        </main>
       </div>
     </MainLayout>
+    //   {!hasOptedIn(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)) && (
+    //     <Card padding="sm">
+    //       <div className="flex items-center justify-between">
+    //         <div>You have to opt-in to receive Climatecoins in order to continue</div>
+    //         <Button
+    //           onClick={() =>
+    //             optinToAsset.mutate(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string))
+    //           }
+    //           size="xs"
+    //         >
+    //           opt in to climatecoin
+    //         </Button>
+    //       </div>
+    //     </Card>
+    //   )}
   );
 };
