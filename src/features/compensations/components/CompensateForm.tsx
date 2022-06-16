@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import { Card } from '@/componentes/Card/Card';
+import { Dl, DlItem } from '@/componentes/DescriptionList';
 import { Button } from '@/componentes/Elements/Button/Button';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
@@ -25,8 +26,6 @@ export enum CompensateSteps {
   CONFIRMATION = 1,
   SUCCESS = 2,
 }
-const dtClassName = '';
-const ddClassName = 'font-bold text-neutral-2';
 export const CompensateForm = ({ defaultAddress }: { defaultAddress: string }) => {
   const { t } = useTranslation();
   const { account, climatecoinBalance } = useWalletContext();
@@ -169,25 +168,19 @@ export const CompensateForm = ({ defaultAddress }: { defaultAddress: string }) =
                 })}{' '}
                 <Link to="/">Read more</Link>
               </p>
-              <dl className="grid grid-cols-2 gap-4 rounded border p-4 text-sm text-neutral-4">
-                <div>
-                  <dt className={dtClassName}>Total coins to compensate</dt>
-                  <dd className={clsx(ddClassName, 'text-primary-green')}>
-                    {t('intlNumber', { val: methods.getValues('amount') })} cc
-                  </dd>
-                </div>
-                <div>
-                  <dt className={dtClassName}>Total</dt>
-                  <dd className={ddClassName}>
-                    {formatter(climatecoinValue(methods.getValues('amount')))}
-                  </dd>
-                </div>
+              <Dl>
+                <DlItem
+                  dt={'Total coins to compensate'}
+                  dd={`${t('intlNumber', { val: methods.getValues('amount') })} cc`}
+                  ddClassNames="text-primary-green"
+                />
+                <DlItem
+                  dt={'Total'}
+                  dd={formatter(climatecoinValue(methods.getValues('amount')))}
+                />
                 <hr className="col-span-2" />
-                <div className="col-span-2">
-                  <dt className={dtClassName}>Wallet address</dt>
-                  <dd className={ddClassName}>{account?.address}</dd>
-                </div>
-              </dl>
+                <DlItem dt={'Wallet address'} dd={account?.address ?? ''} fullWidth />
+              </Dl>
               <div className="grid grid-cols-3 gap-4">
                 <div></div>
                 <div className="flex items-center justify-end">
