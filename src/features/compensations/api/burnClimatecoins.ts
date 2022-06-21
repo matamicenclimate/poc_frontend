@@ -11,16 +11,12 @@ import { Compensation, CompensationCalculation, compensationKeys } from '../type
 
 async function handleBurnClimatecoins({
   amount,
-  txn: oracleTxN,
+  signedParamsTxn,
   encodedBurnTxn,
   encodedTransferTxn,
+  signedMintTxn,
   nftIds,
 }: CompensationCalculation): Promise<Compensation> {
-  // convert the txns to buffers
-  const oracleTxnBuffer = Buffer.from(Object.values(oracleTxN));
-  const transferTxnBuffer = Buffer.from(Object.values(encodedTransferTxn));
-  const burnTxnBuffer = Buffer.from(Object.values(encodedBurnTxn));
-
   // skip this in testing
   if (process.env.NODE_ENV === 'test') {
     return httpClient.post(`/compensations`, {
@@ -30,6 +26,12 @@ async function handleBurnClimatecoins({
     });
   }
 
+  // convert the txns to buffers
+  const oracleTxnBuffer = Buffer.from(Object.values(signedParamsTxn));
+  const transferTxnBuffer = Buffer.from(Object.values(encodedTransferTxn));
+  const burnTxnBuffer = Buffer.from(Object.values(encodedBurnTxn));
+  const mintTxnBuffer = Buffer.from(Object.values(signedMintTxn));
+
   // decode and sign
   const signedTransferTxn = await magiclink.algorand.signTransaction(
     algosdk.decodeUnsignedTransaction(transferTxnBuffer).toByte()
@@ -38,7 +40,7 @@ async function handleBurnClimatecoins({
     algosdk.decodeUnsignedTransaction(burnTxnBuffer).toByte()
   );
 
-  const signedTxn = [signedTransferTxn, oracleTxnBuffer, signedBurnTxn];
+  const signedTxn = [signedTransferTxn, oracleTxnBuffer, signedBurnTxn, mintTxnBuffer];
   return httpClient.post(`/compensations`, {
     signedTxn,
     amount,

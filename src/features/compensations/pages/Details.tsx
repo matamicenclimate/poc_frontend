@@ -9,7 +9,11 @@ import { PageTitle } from '@/componentes/Layout/PageTitle';
 import { Stepper } from '@/componentes/Stepper/Stepper';
 import { EXPLORER_URL, IPFS_GATEWAY_URL } from '@/config';
 
+import {useClaimCertificate} from "../api/claimCertificate";
+import { useClaimReceipt } from "../api/claimReceipt";
 import { useGetCompensation } from '../api/getCompensation';
+import {usePrepareClaimCertificate} from "../api/prepareClaimCertificate";
+import { usePrepareClaimReceipt } from "../api/prepareClaimReceipt";
 import { CompensateSteps } from '../components/CompensateForm';
 
 export const CompensationDetails = () => {
@@ -17,6 +21,24 @@ export const CompensationDetails = () => {
 
   const { compensationId } = useParams();
   const compensation = useGetCompensation(compensationId);
+  const prepareClaimReceipt = usePrepareClaimReceipt();
+  const claimReceipt = useClaimReceipt();
+  const prepareClaimCertificate = usePrepareClaimCertificate();
+  const claimCertificate = useClaimCertificate();
+
+  const handleClaimReceipt = () => {
+    if (compensationId == null) return
+
+    prepareClaimReceipt.mutate(compensationId,
+      {onSuccess: (receiptClaimTxns) => claimReceipt.mutate(receiptClaimTxns)})
+  };
+
+  const handleClaimCertificate = () => {
+    if (compensationId == null) return
+
+    prepareClaimCertificate.mutate(compensationId,
+      {onSuccess: (receiptClaimTxns) => claimCertificate.mutate(receiptClaimTxns)})
+  };
 
   return (
     <>
@@ -71,6 +93,25 @@ export const CompensationDetails = () => {
                     {t('compensations.Details.downloadCertificate')}
                   </Button>
                 )}
+              </div>
+            </div>
+          </Card>
+          <Card>
+            <div className="space-y-8">
+              <Title size={5} as={2}>
+                Claim your compensation NFT
+              </Title>
+              <p className="text-sm text-neutral-4">
+                Claim the compensation NFT to show everyone how much you care for the planet!
+              </p>
+              <div className="grid grid-cols-3 ">
+                <Button onClick={handleClaimReceipt} size="md">
+                  Claim receipt NFT
+                </Button>
+                <div/>
+                <Button onClick={handleClaimCertificate} size="md">
+                  Claim final NFT
+                </Button>
               </div>
             </div>
           </Card>

@@ -11,9 +11,10 @@ export interface CompensationCalculation {
   amount: number;
   assets: number[]; // blockchain asa ids
   nftIds: string[]; // db ids
-  txn: { [key: string]: number };
+  signedParamsTxn: { [key: string]: number };
   encodedTransferTxn: { [key: string]: number };
   encodedBurnTxn: { [key: string]: number };
+  signedMintTxn: { [key: string]: number };
 }
 
 export interface Compensation {
@@ -28,4 +29,16 @@ export interface Compensation {
   updatedAt: Date;
   __v: number;
   id: string;
+}
+
+export interface ReceiptClaimTxns {
+  compensationId: string,
+  encodedOptinTxn: { [key: string]: number };
+  signedTransferTxn: { [key: string]: number };
+}
+
+export interface CertificateClaimTxns {
+  compensationId: string,
+  encodedOptinTxn: { [key: string]: number };
+  signedExchangeTxn: { [key: string]: number };
 }
