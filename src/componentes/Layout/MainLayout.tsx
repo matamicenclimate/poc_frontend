@@ -1,4 +1,3 @@
-
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { Icon } from '@/componentes/Icon/Icon';
@@ -20,7 +19,7 @@ export const MainLayout = ({ title, children }: MainLayoutProps) => {
         <Navbar />
         <div className="mx-auto w-full max-w-screen-lg flex-grow">{children}</div>
         <footer className="mx-auto mt-12 w-full max-w-screen-lg">
-          <div className="grid grid-cols-3">
+          <div className="grid grid-cols-3 gap-4">
             <div></div>
             <div>
               <Title size={5} as={3}>

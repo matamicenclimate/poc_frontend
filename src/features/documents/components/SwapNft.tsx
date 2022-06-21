@@ -1,30 +1,56 @@
-import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
+import { Dl, DlItem } from '@/componentes/DescriptionList';
+import { Dialog } from '@/componentes/Dialog/Dialog';
 import { Button } from '@/componentes/Elements/Button/Button';
-import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
-import { useWalletContext } from '@/providers/Wallet.context';
+import { useCurrencyContext } from '@/providers/Currency.context';
 
 import { useSwapNftForClimatecoins } from '../api/useSwapNftForClimatecoins';
+import { CarbonDocument } from '../types';
 
-export function SwapNft({ nftAsaId, nftSupply }: { nftAsaId?: number; nftSupply?: number }) {
-  const { account } = useWalletContext();
-  const { documentId } = useParams();
+type SwapNftProps = {
+  document: CarbonDocument;
+  account: string;
+};
 
+export function SwapNft({ document, account }: SwapNftProps) {
+  const { t } = useTranslation();
+  const [isOpen, setIsOpen] = useState(false);
   const swapNft = useSwapNftForClimatecoins();
+  const { formatter, climatecoinValue } = useCurrencyContext();
+
   return (
     <div>
-      asset id: {nftAsaId}; supply: {nftSupply}; userAddress: {account?.address}
-      {swapNft.isLoading && <Spinner />}
-      <Button
-        onClick={() =>
+      <Button onClick={() => setIsOpen(true)} disabled={swapNft.isLoading}>
+        {t('documents.Details.button.swap')}
+      </Button>
+      <Dialog
+        size="xs"
+        isOpen={isOpen}
+        setIsOpen={() => setIsOpen(false)}
+        onAccept={() =>
           swapNft.mutateAsync({
-            documentId: documentId as string,
+            documentId: document.id,
           })
         }
-        disabled={swapNft.isLoading}
+        acceptLabel="Yes, swap"
+        cancelLabel="Back"
+        onCancel={() => setIsOpen(!isOpen)}
+        isLoading={swapNft.isLoading}
+        title={'🚨 Are you sure?'}
+        claim={'Are you sure you want to swap this product? This action is not reversible.'}
       >
-        Swap
-      </Button>
+        <Dl wrapperClassName={'mb-8'}>
+          <DlItem dt={'Total Climatecoins'} dd={document.credits} />
+          <DlItem dt={'In Euros'} dd={formatter(climatecoinValue(Number(document.credits)))} />
+          <hr className="col-span-2" />
+          <DlItem
+            dt={'Swap in wallet...'}
+            dd={`${account?.slice(0, 10)}...${account?.slice(-10)}`}
+          />
+        </Dl>
+      </Dialog>
     </div>
   );
 }

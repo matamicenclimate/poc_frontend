@@ -1,22 +1,26 @@
 import clsx from 'clsx';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { DataRenderer } from '@/componentes/DataRenderer/DataRenderer';
 import { Button } from '@/componentes/Elements/Button/Button';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Pill, PillProps } from '@/componentes/Elements/Pill/Pill';
-import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { DayPickerRange } from '@/componentes/Form/DayPickerRange';
 import { Input } from '@/componentes/Form/Inputs';
 import { Icon } from '@/componentes/Icon/Icon';
-import { Aside } from '@/componentes/Layout/Aside';
+import { Aside } from '@/componentes/Layout/Aside/Aside';
+import { OperationsMenu } from '@/componentes/Layout/Aside/components/OperationsMenu';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
 import Popover from '@/componentes/Popover/Popover';
+import { CarbonDocument } from '@/features/documents';
 import { useSort } from '@/hooks/useSort';
 import { useAuth } from '@/lib/auth';
 
+import { PersonalMenu } from '../../../componentes/Layout/Aside/components/PersonalMenu';
 import { useGetDocuments } from '../api/useGetDocuments';
 
 const pillVariants: Record<string, PillProps['variant']> = {
@@ -25,13 +29,25 @@ const pillVariants: Record<string, PillProps['variant']> = {
   swapped: 'comingSoon',
 };
 
-export const DocumentList = () => {
+export const DocumentList = ({
+  defaultFilter,
+}: {
+  defaultFilter?: { status: 'accepted' | 'completed' | undefined };
+}) => {
   const { user } = useAuth();
   const { t } = useTranslation();
 
   const methods = useForm<any>({
     mode: 'onBlur',
+    defaultValues: {
+      ...defaultFilter,
+    },
   });
+
+  useEffect(() => {
+    methods.setValue('status', defaultFilter?.status);
+  }, [defaultFilter?.status]);
+
   const baseInputProps = {
     register: methods.register,
     control: methods.control,
@@ -42,44 +58,13 @@ export const DocumentList = () => {
   const { sort, toggleSort, renderArrow } = useSort();
   const documents = useGetDocuments(user?.email as string, methods.watch(), sort);
 
-  const renderDocuments = () => {
-    if (documents.data) {
-      return (
-        <>
-          {documents.data.map((document) => (
-            <tr key={document._id} className="text-left">
-              <td>
-                <div className="flex py-3">
-                  <Pill variant={pillVariants[document.status]}>{document.status}</Pill>
-                </div>
-              </td>
-              <td className="text-neutral-2">{document.title}</td>
-              <td>{document.serial_number}</td>
-              <td className="text-right">
-                <Link to={`/documents/${document._id}`}>{t('documents.List.viewDetails')}</Link>
-              </td>
-            </tr>
-          ))}
-        </>
-      );
+  const getProfileAvatar = () => {
+    if (user?.avatar?.url) {
+      return user?.avatar.url;
     }
-    if (documents.error instanceof Error) {
-      return (
-        <tr>
-          <td colSpan={4}>{('An error has occurred: ' + documents.error.message) as string}</td>
-        </tr>
-      );
-    }
-    return (
-      <tr>
-        <td colSpan={4}>
-          <div className="flex justify-center p-8">
-            <Spinner />
-          </div>
-        </td>
-      </tr>
-    );
+    return 'avatar-placeholder.jpg';
   };
+
   return (
     <MainLayout title={t('head.List.title')}>
       <PageTitle
@@ -91,10 +76,26 @@ export const DocumentList = () => {
           </Link>
         }
       />
-      <form onSubmit={(e) => e.preventDefault()}>
-        <div className="grid gap-8 md:grid-cols-4">
-          <Aside />
-          <main className="space-y-4 md:col-span-3">
+      <div className="grid gap-8 md:grid-cols-4">
+        <aside className="text-sm text-neutral-4">
+          <img src={getProfileAvatar()} className="h-32 rounded-full" />
+          <div className="mb-4 mt-8 flex flex-col capitalize ">
+            <div className="text-2xl  text-black">
+              {t('documents.Upload.hi')}
+              {user?.username?.split('@')[0]} 👋🏻
+            </div>
+            <div className="mt-2 text-lg text-neutral-5">
+              {user?.type}
+              {user?.country?.name && `, ${user.country.name}`}
+            </div>
+          </div>
+          <hr />
+          <Aside menu={OperationsMenu()} />
+          <hr />
+          <Aside menu={PersonalMenu()} />
+        </aside>
+        <main className="space-y-4 md:col-span-3">
+          <form onSubmit={(e) => e.preventDefault()}>
             <div className="flex items-center space-x-2">
               <Title size={4} as={3}>
                 {t('documents.List.table.title')}
@@ -133,46 +134,62 @@ export const DocumentList = () => {
               <thead className="border-b-2 border-neutral-6 text-left text-xs text-neutral-4">
                 <th>
                   <div
-                    className={clsx('flex cursor-pointer p-4')}
+                    className={clsx('flex cursor-pointer items-center p-4')}
                     onClick={() => toggleSort('status')}
                   >
-                    <>
-                      {t('documents.List.table.status')}
-                      {renderArrow('status')}
-                    </>
+                    {t('documents.List.table.status')}
+                    {renderArrow('status')}
                   </div>
                 </th>
                 <th>
                   <div
-                    className={clsx('flex cursor-pointer  p-4')}
+                    className={clsx('flex cursor-pointer items-center p-4')}
                     onClick={() => toggleSort('title')}
                   >
-                    <>
-                      {t('documents.List.table.projectName')}
-                      {renderArrow('title')}
-                    </>
+                    {t('documents.List.table.projectName')}
+                    {renderArrow('title')}
                   </div>
                 </th>
                 <th className="flex">
                   <div
-                    className={clsx('flex cursor-pointer  p-4')}
+                    className={clsx('flex cursor-pointer items-center p-4')}
                     onClick={() => toggleSort('serial_number')}
                   >
-                    <>
-                      {t('documents.List.table.idOperation')}
-                      {renderArrow('serial_number')}
-                    </>
+                    {t('documents.List.table.idOperation')}
+                    {renderArrow('serial_number')}
                   </div>
                 </th>
                 <th className="text-right">
                   <div className=" p-4">{t<string>('documents.List.table.actions')}</div>
                 </th>
               </thead>
-              <tbody>{renderDocuments()}</tbody>
+              <DataRenderer<CarbonDocument[]>
+                data={documents}
+                render={(model) => (
+                  <tbody>
+                    {model.map((document) => (
+                      <tr key={document._id} className="text-left">
+                        <td>
+                          <div className="flex py-3">
+                            <Pill variant={pillVariants[document.status]}>{document.status}</Pill>
+                          </div>
+                        </td>
+                        <td className="text-neutral-2">{document.title}</td>
+                        <td>{document.serial_number}</td>
+                        <td className="text-right">
+                          <Link to={`/documents/${document._id}`}>
+                            {t('documents.List.viewDetails')}
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                )}
+              />
             </table>
-          </main>
-        </div>
-      </form>
+          </form>
+        </main>
+      </div>
     </MainLayout>
   );
 };

@@ -88,11 +88,11 @@ export const useCurrencyContext = () => {
     }).format(convertCurrency(amountInCents));
   };
 
-  const climatecoinValue = (amount: number, target?: keyof typeof currencies) => {
+  const climatecoinValue = (amountOfClimatecoins: number, target?: keyof typeof currencies) => {
     const climatecoin_per_usd = exchangeRate.data?.usd_climatecoin;
     if (!climatecoin_per_usd) return 0;
     const multiplier = Math.pow(climatecoin_per_usd, -1);
-    return amount * multiplier;
+    return amountOfClimatecoins * multiplier;
   };
 
   return {

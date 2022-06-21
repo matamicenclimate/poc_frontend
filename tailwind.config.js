@@ -13,6 +13,7 @@ module.exports = {
           DEFAULT: 'var(--color--primary-dark-green)',
           purple: 'var(--color--primary-purple)',
           orange: 'var(--color--primary-orange)',
+          brightGreen: 'var(--color--primary-bright-green)',
           green: 'var(--color--primary-green)',
           red: 'var(--color--primary-red)',
         },

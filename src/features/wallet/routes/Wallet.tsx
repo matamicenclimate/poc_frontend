@@ -4,17 +4,46 @@ import { Card } from '@/componentes/Card/Card';
 import { Button } from '@/componentes/Elements/Button/Button';
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Title } from '@/componentes/Elements/Title/Title';
+import { Aside } from '@/componentes/Layout/Aside/Aside';
+import { OperationsMenu } from '@/componentes/Layout/Aside/components/OperationsMenu';
+import { PersonalMenu } from '@/componentes/Layout/Aside/components/PersonalMenu';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { EXPLORER_URL } from '@/config';
+import { useAuth } from '@/lib/auth';
 import { useWalletContext } from '@/providers/Wallet.context';
 
 export const Wallet = () => {
   const { t } = useTranslation();
   const { account } = useWalletContext();
+  const { user } = useAuth();
+
+  const getProfileAvatar = () => {
+    if (user?.avatar?.url) {
+      return user?.avatar.url;
+    }
+    return 'avatar-placeholder.jpg';
+  };
 
   return (
     <MainLayout title={t('head.Wallet.title')}>
-      <div className="mt-16 grid items-center gap-8 md:grid-cols-4">
+      <div className="mt-16 grid  gap-8 md:grid-cols-4">
+        <aside className="text-sm text-neutral-4">
+          <img src={getProfileAvatar()} className="h-32 rounded-full" />
+          <div className="mb-4 mt-8 flex flex-col capitalize ">
+            <div className="text-2xl  text-black">
+              {t('documents.Upload.hi')}
+              {user?.username?.split('@')[0]} 👋🏻
+            </div>
+            <div className="mt-2 text-lg text-neutral-5">
+              {user?.type}
+              {user?.country?.name && `, ${user.country.name}`}
+            </div>
+          </div>
+          <hr />
+          <Aside menu={OperationsMenu()} />
+          <hr />
+          <Aside menu={PersonalMenu()} />
+        </aside>
         <main className="space-y-4 md:col-span-3">
           <div>
             <Card>

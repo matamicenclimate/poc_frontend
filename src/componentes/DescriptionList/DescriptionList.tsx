@@ -2,10 +2,18 @@ import clsx from 'clsx';
 
 type DlProps = {
   children: React.ReactChild | React.ReactChild[];
+  wrapperClassName?: string;
 };
-export const Dl = ({ children }: DlProps) => {
+export const Dl = ({ children, wrapperClassName }: DlProps) => {
   return (
-    <dl className="grid grid-cols-2 gap-4 rounded border p-4 text-sm text-neutral-4">{children}</dl>
+    <dl
+      className={clsx(
+        wrapperClassName,
+        'grid grid-cols-2 gap-4 rounded-xl border p-6 text-sm text-neutral-4'
+      )}
+    >
+      {children}
+    </dl>
   );
 };
 

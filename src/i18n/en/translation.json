@@ -171,7 +171,23 @@
         "title": "Claim your NFT",
         "alert": "We will only send C02 to this address, please check that the network is correct.",
         "viewMore": "More info"
+      },
+      "menu": {
+        "notifications": "Notifications",
+        "projectDetails": "Project details",
+        "offers": "Offers",
+        "projectWallet": "Project wallet"
+      },
+      "viewAsset": "View asset",
+      "button": {
+        "claim": "Claim",
+        "deleteNft": "Delete NFT",
+        "mint": "Mint document",
+        "swap": "Swap NFT"
       }
+    },
+    "detail": {
+      "title": "My project"
     }
   },
   "head": {

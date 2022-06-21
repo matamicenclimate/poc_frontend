@@ -5,18 +5,21 @@ import { useTranslation } from 'react-i18next';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 
 import { Button } from '../Elements/Button/Button';
+import { Icon } from '../Icon/Icon';
 
 type DialogProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  title: string;
-  subtitle?: string;
-  claim?: string;
+  title: string | JSX.Element;
+  subtitle?: string | JSX.Element;
+  claim?: string | JSX.Element;
   onAccept?: () => void;
   acceptLabel?: string;
   onCancel?: () => void;
   cancelLabel?: string;
   isLoading?: boolean;
+  children?: JSX.Element;
+  iconClose?: boolean;
   size?: keyof typeof sizes;
 };
 
@@ -32,6 +35,8 @@ export const Dialog = ({
   onCancel,
   cancelLabel,
   isLoading,
+  iconClose = true,
+  children,
   size = 'default',
 }: DialogProps) => {
   const { t } = useTranslation();
@@ -43,14 +48,27 @@ export const Dialog = ({
     >
       {/* Use the overlay to style a dim backdrop for your dialog */}
       <HUIDialog.Overlay className="fixed inset-0 bg-black opacity-30" />
-      <div className={clsx('relative mx-auto w-full  rounded bg-white p-4', sizes[size])}>
-        <HUIDialog.Title className="text-xl">{title}</HUIDialog.Title>
+      <div className={clsx('relative mx-auto w-full rounded-2xl bg-white p-8', sizes[size])}>
+        <HUIDialog.Title className="flex justify-between text-3xl">
+          {title}{' '}
+          {iconClose && (
+            <button className="p-1" onClick={() => setIsOpen(!isOpen)}>
+              <Icon
+                id="x-close-neutral-4"
+                className="h-10 w-10 rounded-full border-2 border-neutral-6"
+              />
+            </button>
+          )}
+        </HUIDialog.Title>
         {subtitle ? <HUIDialog.Description>{subtitle}</HUIDialog.Description> : null}
-
-        {claim ? <p>{claim} </p> : null}
-        <div className="flex items-center justify-end space-x-2">
+        {claim ? (
+          <p className="flex py-8 px-4 text-center text-md leading-normal">{claim} </p>
+        ) : null}
+        {children}
+        <div className="grid grid-cols-2 space-x-4">
           {isLoading ? <Spinner /> : null}
           <Button
+            className="mr-2"
             onClick={() => (onCancel ? onCancel() : setIsOpen(false))}
             size="md"
             variant="dark"
@@ -59,6 +77,7 @@ export const Dialog = ({
             {cancelLabel ? cancelLabel : t('dialogs.base.cancel')}
           </Button>
           <Button
+            className="ml-2"
             onClick={() => (onAccept ? onAccept() : setIsOpen(false))}
             size="md"
             disabled={isLoading}
