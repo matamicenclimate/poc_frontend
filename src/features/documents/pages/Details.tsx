@@ -13,6 +13,7 @@ import { Aside, menuProps } from '@/componentes/Layout/Aside/Aside';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { EXPLORER_URL } from '@/config';
 import { CarbonDocument } from '@/features/documents';
+import { useOptinToAsset } from '@/features/wallet';
 import { useAuth } from '@/lib/auth';
 import { useCurrencyContext } from '@/providers/Currency.context';
 import { useWalletContext } from '@/providers/Wallet.context';
@@ -27,7 +28,8 @@ export const DocumentDetails = () => {
   const auth = useAuth();
   const document = useGetDocument(documentId as string);
   const claimNft = useClaimNftFromDocument();
-  const { account } = useWalletContext();
+  const { account, hasOptedIn } = useWalletContext();
+  const optinToAsset = useOptinToAsset();
   const { formatter, climatecoinValue } = useCurrencyContext();
 
   const handleClaim = async () => {
@@ -98,7 +100,23 @@ export const DocumentDetails = () => {
           <hr />
           <Aside menu={notifications} />
         </aside>
-        <div className="md:col-span-2">
+        <div className="space-y-4 md:col-span-2">
+          {!hasOptedIn(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)) && (
+            <Card>
+              <Title size={5} as={2}>
+                Optin to Climatecoin
+              </Title>{' '}
+              <div>You have to opt-in to receive Climatecoins in order to continue</div>
+              <Button
+                onClick={() =>
+                  optinToAsset.mutate(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string))
+                }
+                size="xs"
+              >
+                opt in to climatecoin
+              </Button>
+            </Card>
+          )}
           <DataRenderer<CarbonDocument>
             data={document}
             render={(document) => (
@@ -146,6 +164,7 @@ export const DocumentDetails = () => {
                       )}
                       {document.status === 'minted' && (
                         <>
+                          <div />
                           {claimNft.isLoading && <Spinner size="md" className="col-start-2" />}
                           <Button
                             className="col-start-3"
