@@ -21,24 +21,28 @@ export interface Compensation {
   consolidation_certificate_ipfs_cid?: string;
   state: string;
   nfts: Nft[];
+  burn_receipt: Record<string, any>;
+  compensation_receipt_nft?: Nft;
+  compensation_nft?: Nft;
   _id: string;
   txn_id: string;
   amount: string;
   published_at: Date;
   createdAt: Date;
   updatedAt: Date;
+  receipt_claimed: boolean;
   __v: number;
   id: string;
 }
 
 export interface ReceiptClaimTxns {
-  compensationId: string,
+  compensationId: string;
   encodedOptinTxn: { [key: string]: number };
   signedTransferTxn: { [key: string]: number };
 }
 
 export interface CertificateClaimTxns {
-  compensationId: string,
+  compensationId: string;
   encodedOptinTxn: { [key: string]: number };
   signedExchangeTxn: { [key: string]: number };
 }

@@ -35,7 +35,7 @@ export const Aside = ({ menu }: AsideProps) => {
               >
                 <NavLink
                   to={item.to ?? '/*'}
-                  className={({ isActive }) => clsx(linkStyles, isActive && 'text-red-500')}
+                  className={({ isActive }) => clsx(linkStyles, isActive && 'text-neutral-4')}
                 >
                   {({ isActive }) => (
                     <>
