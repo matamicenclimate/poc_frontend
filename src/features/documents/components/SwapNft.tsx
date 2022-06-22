@@ -21,8 +21,8 @@ export function SwapNft({ document, account }: SwapNftProps) {
   const { formatter, climatecoinValue } = useCurrencyContext();
 
   return (
-    <div>
-      <Button onClick={() => setIsOpen(true)} disabled={swapNft.isLoading}>
+    <>
+      <Button onClick={() => setIsOpen(true)} disabled={swapNft.isLoading} size="xs">
         {t('documents.Details.button.swap')}
       </Button>
       <Dialog
@@ -51,6 +51,6 @@ export function SwapNft({ document, account }: SwapNftProps) {
           />
         </Dl>
       </Dialog>
-    </div>
+    </>
   );
 }

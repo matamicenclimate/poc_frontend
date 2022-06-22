@@ -65,10 +65,9 @@ export const Dialog = ({
           <p className="flex py-8 px-4 text-center text-md leading-normal">{claim} </p>
         ) : null}
         {children}
-        <div className="grid grid-cols-2 space-x-4">
-          {isLoading ? <Spinner /> : null}
+        <div className="grid grid-cols-5 gap-2">
           <Button
-            className="mr-2"
+            className="col-span-2"
             onClick={() => (onCancel ? onCancel() : setIsOpen(false))}
             size="md"
             variant="dark"
@@ -76,8 +75,9 @@ export const Dialog = ({
           >
             {cancelLabel ? cancelLabel : t('dialogs.base.cancel')}
           </Button>
+          <div className="flex items-center justify-center">{isLoading ? <Spinner /> : null}</div>
           <Button
-            className="ml-2"
+            className="col-span-2"
             onClick={() => (onAccept ? onAccept() : setIsOpen(false))}
             size="md"
             disabled={isLoading}

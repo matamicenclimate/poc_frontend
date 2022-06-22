@@ -5,15 +5,15 @@ import { useMutation } from 'react-query';
 
 import { httpClient } from '@/lib/httpClient';
 import { magiclink } from '@/lib/magiclink';
-import {queryClient} from "@/lib/react-query";
+import { queryClient } from '@/lib/react-query';
 
-import {Compensation, compensationKeys, ReceiptClaimTxns} from '../types';
+import { Compensation, compensationKeys, ReceiptClaimTxns } from '../types';
 
 async function handleClaimReceipt({
-                                        compensationId,
-                                        signedTransferTxn,
-                                        encodedOptinTxn,
-                                      }: ReceiptClaimTxns): Promise<Compensation> {
+  compensationId,
+  signedTransferTxn,
+  encodedOptinTxn,
+}: ReceiptClaimTxns): Promise<Compensation> {
   // convert the txns to buffers
   const optinTxnBuffer = Buffer.from(Object.values(encodedOptinTxn));
   const signedTransferTxnBuffer = Buffer.from(Object.values(signedTransferTxn));
@@ -21,7 +21,7 @@ async function handleClaimReceipt({
   // skip this in testing
   if (process.env.NODE_ENV === 'test') {
     return httpClient.post(`/compensations/${compensationId}/claim/receipt`, {
-      signedTxn: []
+      signedTxn: [],
     });
   }
 
@@ -32,7 +32,7 @@ async function handleClaimReceipt({
 
   const signedTxn = [signedOptinTxn, signedTransferTxnBuffer];
   return httpClient.post(`/compensations/${compensationId}/claim/receipt`, {
-    signedTxn
+    signedTxn,
   });
 }
 
@@ -40,8 +40,8 @@ export function useClaimReceipt() {
   const alert = useAlert();
   return useMutation((claimTxns: ReceiptClaimTxns) => handleClaimReceipt(claimTxns), {
     onSuccess: () => {
-      queryClient.invalidateQueries(['account']);
-      queryClient.invalidateQueries(compensationKeys.lists());
+      // TODO: fer invalida esto bien, perro
+      queryClient.invalidateQueries(compensationKeys.all);
       alert.success('Receipt NFT claimed successfully');
     },
     onError: () => {

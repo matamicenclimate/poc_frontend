@@ -156,7 +156,7 @@ export const DocumentDetails = () => {
                       <DlItem dt={'ID Project'} dd={document.id} />
                       <DlItem dt={'Registry'} dd={document.registry.name} />
                     </Dl>
-                    <div className="grid grid-cols-3 gap-4 p-4 text-sm text-neutral-4">
+                    <div className="grid grid-cols-3 gap-4 text-sm text-neutral-4">
                       {document.status === 'completed' && (
                         <p className="col-span-2 col-start-2 text-2xl text-green-700">
                           Waiting for the mint
@@ -178,7 +178,7 @@ export const DocumentDetails = () => {
                       )}
                       {!!document.developer_nft && document.status === 'claimed' && account && (
                         <>
-                          <Button variant="danger" className="col-start-1" size="xs" disabled>
+                          <Button variant="danger" size="xs" disabled>
                             {t('documents.Details.button.deleteNft')}
                           </Button>
                           <div />

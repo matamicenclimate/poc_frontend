@@ -5,15 +5,15 @@ import { useMutation } from 'react-query';
 
 import { httpClient } from '@/lib/httpClient';
 import { magiclink } from '@/lib/magiclink';
-import {queryClient} from "@/lib/react-query";
+import { queryClient } from '@/lib/react-query';
 
-import {CertificateClaimTxns, Compensation, compensationKeys} from '../types';
+import { CertificateClaimTxns, Compensation, compensationKeys } from '../types';
 
 async function handleClaimCertificate({
-                                        compensationId,
-                                        signedExchangeTxn,
-                                        encodedOptinTxn,
-                                      }: CertificateClaimTxns): Promise<Compensation> {
+  compensationId,
+  signedExchangeTxn,
+  encodedOptinTxn,
+}: CertificateClaimTxns): Promise<Compensation> {
   // convert the txns to buffers
   const optinTxnBuffer = Buffer.from(Object.values(encodedOptinTxn));
   const signedTransferTxnBuffer = Buffer.from(Object.values(signedExchangeTxn));
@@ -21,7 +21,7 @@ async function handleClaimCertificate({
   // skip this in testing
   if (process.env.NODE_ENV === 'test') {
     return httpClient.post(`/compensations/${compensationId}/claim/certificate`, {
-      signedTxn: []
+      signedTxn: [],
     });
   }
 
@@ -32,7 +32,7 @@ async function handleClaimCertificate({
 
   const signedTxn = [signedOptinTxn, signedTransferTxnBuffer];
   return httpClient.post(`/compensations/${compensationId}/claim/certificate`, {
-    signedTxn
+    signedTxn,
   });
 }
 
@@ -40,8 +40,8 @@ export function useClaimCertificate() {
   const alert = useAlert();
   return useMutation((claimTxns: CertificateClaimTxns) => handleClaimCertificate(claimTxns), {
     onSuccess: () => {
-      queryClient.invalidateQueries(['account']);
-      queryClient.invalidateQueries(compensationKeys.lists());
+      // TODO: fer invalida esto bien, perro
+      queryClient.invalidateQueries(compensationKeys.all);
       alert.success('Certificate NFT claimed successfully');
     },
     onError: () => {
