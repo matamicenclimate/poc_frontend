@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.9.0](https://github.com/Dekalabs/climatecoin-frontend/compare/v0.8.0...v0.9.0) (2022-06-22)
+
+
+### Features
+
+* add My wallets screen and its styles ([#103](https://github.com/Dekalabs/climatecoin-frontend/issues/103)) ([61aabca](https://github.com/Dekalabs/climatecoin-frontend/commit/61aabca95c38da590aa0df4778553faf9dc6f1fc))
+* add new design and functionality to profile screen ([#102](https://github.com/Dekalabs/climatecoin-frontend/issues/102)) ([8d9373c](https://github.com/Dekalabs/climatecoin-frontend/commit/8d9373c0c5cf1bb5fa07959eeb2166406d4a051a))
+* carbon-document blockchain refactor ([#99](https://github.com/Dekalabs/climatecoin-frontend/issues/99)) ([acbda3a](https://github.com/Dekalabs/climatecoin-frontend/commit/acbda3a26d4c8be30782a5fa9a0abed680e688b8))
+* compensate validation and Select validation fix ([#105](https://github.com/Dekalabs/climatecoin-frontend/issues/105)) ([35b3e1d](https://github.com/Dekalabs/climatecoin-frontend/commit/35b3e1d9276324edc77474ce47dced97c8255bef))
+* compensation page restyling ([#100](https://github.com/Dekalabs/climatecoin-frontend/issues/100)) ([b16e6fc](https://github.com/Dekalabs/climatecoin-frontend/commit/b16e6fc4e79c2a79ff9d3184756937a4e392c8a3))
+* compensation UI ([#104](https://github.com/Dekalabs/climatecoin-frontend/issues/104)) ([3c70705](https://github.com/Dekalabs/climatecoin-frontend/commit/3c7070568023596115549b077d1965d0338f5c2c))
+* descriptionlist component ([#109](https://github.com/Dekalabs/climatecoin-frontend/issues/109)) ([d255365](https://github.com/Dekalabs/climatecoin-frontend/commit/d2553655916ea1968eebc56aa0fa3f172aca6e05))
+* moved burn txns to backend ([#101](https://github.com/Dekalabs/climatecoin-frontend/issues/101)) ([cc060de](https://github.com/Dekalabs/climatecoin-frontend/commit/cc060debad49927bb9a7a1d17a4ea784e879b1be))
+* project detail screen ([#110](https://github.com/Dekalabs/climatecoin-frontend/issues/110)) ([2ed3582](https://github.com/Dekalabs/climatecoin-frontend/commit/2ed35829765ce07c24a4660df645e810b0048b4c))
+* storybook ([#107](https://github.com/Dekalabs/climatecoin-frontend/issues/107)) ([31965e2](https://github.com/Dekalabs/climatecoin-frontend/commit/31965e2dafd645fd4385a4053534d4b480584fa9))
+* storybook a11y test ([#108](https://github.com/Dekalabs/climatecoin-frontend/issues/108)) ([43b9c7b](https://github.com/Dekalabs/climatecoin-frontend/commit/43b9c7bfc9461c844e8b1c391c1a78440b5e53fd))
+* verify compensation ([#111](https://github.com/Dekalabs/climatecoin-frontend/issues/111)) ([5fd2dc3](https://github.com/Dekalabs/climatecoin-frontend/commit/5fd2dc3595758c2f65f8c058924c711509d0c63d))
+
+
+### Bug Fixes
+
+* added optin card ([ceafdb7](https://github.com/Dekalabs/climatecoin-frontend/commit/ceafdb77485cd9542d15e55907fe45c320b38a90))
+* compensate page ([30d0c13](https://github.com/Dekalabs/climatecoin-frontend/commit/30d0c1301aae1220c5ea544bbb767cf1c224c812))
+* demo fixes ([5a4c37e](https://github.com/Dekalabs/climatecoin-frontend/commit/5a4c37eae10e515aa02f31d92e43d79d0e60a612))
+
 ## [0.8.0](https://github.com/Dekalabs/climatecoin-frontend/compare/v0.6.0...v0.8.0) (2022-06-08)
 
 
