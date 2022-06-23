@@ -36,13 +36,20 @@ export const WalletNav = () => {
             className={clsx(styles.button, 'border-2 border-solid border-neutral-6 px-3.5 pl-5')}
           >
             <div className="flex items-center space-x-1 text-sm font-bold text-neutral-2">
-              <span>{t<string>('components.Navbar.wallet.wallet')}</span>
-              <span className="flex items-center font-normal text-primary">
-                ({algoBalance()} <Icon id="algorand" className="h-6 w-6" /> -{' '}
-                {t('intlNumber', {
-                  val: climatecoinBalance(),
-                })}{' '}
-                CC)
+              <span>{t('components.Navbar.wallet.wallet')}</span>
+              <span className="flex  space-x-1 font-normal text-primary">
+                <div>(</div>
+                <div className="flex items-center">
+                  {t('intlNumber', {
+                    val: climatecoinBalance(),
+                  })}
+                  <img src="/climatecoin-icon.png" alt="climatecoin" className="h-4 w-3" />
+                </div>
+                <div>-</div>
+                <div className="flex items-center">
+                  {algoBalance()} <Icon id="algorand" className="h-3 w-3" />
+                </div>
+                <div>)</div>
               </span>
             </div>
             <Icon id="arrow-down-simple-line" className="h-6 w-6" />
