@@ -30,6 +30,10 @@ const variants = {
     'text-primary-red bg-neutral-7 border-solid border-2 border-neutral-7',
     'hover:border-primary-red disabled:border-neutral-2'
   ),
+  green: clsx(
+    'text-white bg-primary-brightGreen border-solid border-2 border-primary-brightGreen',
+    'hover:border-neutral-2'
+  ),
 };
 
 export const buttonStyles = { base, sizes, variants };

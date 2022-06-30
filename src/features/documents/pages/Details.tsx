@@ -165,7 +165,11 @@ export const DocumentDetails = () => {
                       {document.status === 'minted' && (
                         <>
                           <div />
-                          {claimNft.isLoading && <Spinner size="md" className="col-start-2" />}
+                          {claimNft.isLoading && (
+                            <div className="flex items-center justify-end">
+                              <Spinner size="md" />
+                            </div>
+                          )}
                           <Button
                             className="col-start-3"
                             size="xs"

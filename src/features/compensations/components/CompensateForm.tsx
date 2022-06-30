@@ -75,6 +75,8 @@ export const CompensateForm = ({ defaultAddress }: { defaultAddress: string }) =
 
   const { currStep, nextStep, prevStep, setCurrStep } = useStepper(CompensateSteps);
 
+  const amountPills = [10, 25, 50, climatecoinBalance()];
+
   return (
     <div className="grid gap-8 md:grid-cols-3">
       <div>
@@ -125,9 +127,10 @@ export const CompensateForm = ({ defaultAddress }: { defaultAddress: string }) =
                     name="amount"
                     type="number"
                     required
+                    min={1}
                     max={climatecoinBalance()}
                     inputClassName="border-0 text-[5rem] w-full text-center "
-                    placeholder={'00.00'}
+                    placeholder={'1'}
                   />
                 </div>
                 <div className="text-center text-xl">
@@ -135,14 +138,22 @@ export const CompensateForm = ({ defaultAddress }: { defaultAddress: string }) =
                 </div>
 
                 <div className="flex justify-center gap-4">
-                  {[25, 50, 100, climatecoinBalance()].map((amt, i) => (
+                  {amountPills.map((amt, i) => (
                     <Button
                       type="button"
                       key={amt}
+                      variant={'light'}
                       size="xs"
-                      onClick={() => methods.setValue('amount', amt)}
+                      onClick={() => {
+                        methods.setValue(
+                          'amount',
+                          amt === climatecoinBalance()
+                            ? climatecoinBalance()
+                            : Math.round((amt * climatecoinBalance()) / 100)
+                        );
+                      }}
                     >
-                      {i === 3 ? `Max(${amt})` : amt}
+                      {i === amountPills.length - 1 ? `Max ( ${amt} )` : `${amt} %`}
                     </Button>
                   ))}
                 </div>

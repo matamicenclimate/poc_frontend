@@ -23,10 +23,18 @@ export const Compensate = () => {
       {account?.address ? (
         <CompensateForm defaultAddress={account?.address} />
       ) : (
-        <Spinner size="md" />
+        <div className="flex justify-center pb-10">
+          <Spinner size="xl" />
+        </div>
       )}
-      <div className="col-span-3">
-        <CompensationHistory data={compensations} />
+      <div className="col-span-3 pt-10">
+        {compensations.data !== undefined ? (
+          <CompensationHistory data={compensations} />
+        ) : (
+          <div className="flex justify-center">
+            <Spinner size="xl" />
+          </div>
+        )}
       </div>
     </>
   );
