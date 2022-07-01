@@ -22,7 +22,12 @@ export function SwapNft({ document, account }: SwapNftProps) {
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)} disabled={swapNft.isLoading} size="xs">
+      <Button
+        onClick={() => setIsOpen(true)}
+        disabled={swapNft.isLoading}
+        size="xs"
+        className="col-span-1 col-start-3"
+      >
         {t('documents.Details.button.swap')}
       </Button>
       <Dialog

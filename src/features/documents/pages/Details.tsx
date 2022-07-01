@@ -101,22 +101,6 @@ export const DocumentDetails = () => {
           <Aside menu={notifications} />
         </aside>
         <div className="space-y-4 md:col-span-2">
-          {!hasOptedIn(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)) && (
-            <Card>
-              <Title size={5} as={2}>
-                Optin to Climatecoin
-              </Title>{' '}
-              <div>You have to opt-in to receive Climatecoins in order to continue</div>
-              <Button
-                onClick={() =>
-                  optinToAsset.mutate(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string))
-                }
-                size="xs"
-              >
-                opt in to climatecoin
-              </Button>
-            </Card>
-          )}
           <DataRenderer<CarbonDocument>
             data={document}
             render={(document) => (
@@ -180,16 +164,41 @@ export const DocumentDetails = () => {
                           </Button>
                         </>
                       )}
-                      {!!document.developer_nft && document.status === 'claimed' && account && (
-                        <>
-                          {/* TO DO: the NFT cannot be deleted because once created, it already exists on the blockchain */}
-                          {/* <Button variant="danger" size="xs" disabled>
+                      {!hasOptedIn(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)) && (
+                        <div className="col-span-3">
+                          <Card>
+                            <Title size={5} as={2}>
+                              {t('documents.Details.optIn.title')}
+                            </Title>
+                            <div className="mb-2">{t('documents.Details.optIn.message')}</div>
+                            <Button
+                              onClick={() =>
+                                optinToAsset.mutate(
+                                  Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)
+                                )
+                              }
+                              size="xs"
+                            >
+                              {t('documents.Details.optIn.title')}
+                            </Button>
+                          </Card>
+                        </div>
+                      )}
+                      {!!document.developer_nft &&
+                        document.status === 'claimed' &&
+                        account &&
+                        !!hasOptedIn(
+                          Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)
+                        ) && (
+                          <>
+                            {/* TO DO: the NFT cannot be deleted because once created, it already exists on the blockchain */}
+                            {/* <Button variant="danger" size="xs" disabled>
                             {t('documents.Details.button.deleteNft')}
                           </Button> */}
-                          <div />
-                          <SwapNft document={document} account={account?.address} />
-                        </>
-                      )}
+                            <div />
+                            <SwapNft document={document} account={account?.address} />
+                          </>
+                        )}
                     </div>
                   </div>
                 </Card>
