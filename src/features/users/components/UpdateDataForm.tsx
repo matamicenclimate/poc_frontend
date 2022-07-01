@@ -129,9 +129,10 @@ export const UpdateDataForm = ({ initialData }: UpdateDataFormProps) => {
       />
 
       <div className="mt-8 flex justify-between space-x-4">
-        <Button type="button" variant="danger" className="min-w-[28%]" size="md" disabled>
+        {/* TO DO: the account cannot be deleted because it is the one provided by magic link. We believe that it can only be blocked */}
+        {/* <Button type="button" variant="danger" className="min-w-[28%]" size="md" disabled>
           {t('profile.button_delete')}
-        </Button>
+        </Button> */}
         {updateProfile.isLoading && <Spinner size="md" />}
         <Button type="submit" className="min-w-[28%]" size="md" disabled={updateProfile.isLoading}>
           {t('profile.button_update')}

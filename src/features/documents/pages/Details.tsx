@@ -182,9 +182,10 @@ export const DocumentDetails = () => {
                       )}
                       {!!document.developer_nft && document.status === 'claimed' && account && (
                         <>
-                          <Button variant="danger" size="xs" disabled>
+                          {/* TO DO: the NFT cannot be deleted because once created, it already exists on the blockchain */}
+                          {/* <Button variant="danger" size="xs" disabled>
                             {t('documents.Details.button.deleteNft')}
-                          </Button>
+                          </Button> */}
                           <div />
                           <SwapNft document={document} account={account?.address} />
                         </>

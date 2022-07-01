@@ -124,6 +124,21 @@
   },
   "dialogs.base.accept": "Accept",
   "dialogs.base.cancel": "Cancel",
+  "compensate": {
+    "History": {
+      "table": {
+        "amount": "Amount",
+        "txn": "Txn",
+        "certificate": "Certificate",
+        "date": "Date",
+        "certificateView": "View Certificate",
+        "txnView": "View Transactions",
+        "details": "Details",
+        "time": "Time"
+      },
+      "title": "Compensation History"
+    }
+  },
   "documents": {
     "List": {
       "breadcrumbTitle": "Documents",
@@ -135,7 +150,12 @@
         "status": "Status",
         "projectName": "Project name",
         "idOperation": "ID Operation",
-        "actions": "Actions"
+        "actions": "Actions",
+        "amount": "Amount of CO2 tons",
+        "txn": "View Txn",
+        "certificate": "View Certificate",
+        "date": "Date",
+        "detail": "Details"
       }
     },
     "Upload": {
@@ -161,7 +181,8 @@
       "profile": "Edit profile",
       "notifications": "Notifications",
       "wallet": "My Wallets",
-      "hi": "Hi "
+      "hi": "Hi ",
+      "compensations": "My compensations"
     },
     "Details": {
       "thanks": "Thanks for submitting your credits!",
@@ -184,6 +205,13 @@
         "deleteNft": "Delete NFT",
         "mint": "Mint document",
         "swap": "Swap NFT"
+      },
+      "mint": {
+        "message": "Waiting for mint"
+      },
+      "optIn": {
+        "message": "You have to opt-in to receive Climatecoins in order to continue",
+        "title": "Optin to climatecoin"
       }
     },
     "detail": {

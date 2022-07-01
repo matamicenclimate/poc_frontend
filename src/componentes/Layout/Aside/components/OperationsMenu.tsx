@@ -22,6 +22,12 @@ export const OperationsMenu = () => {
       label: t('documents.Upload.projects'),
       to: '/documents/list',
     },
+    {
+      icon: 'wallet-line',
+      activeIcon: 'wallet-line-primary',
+      label: t('documents.Upload.compensations'),
+      to: '/coins/compensate/history',
+    },
   ];
 
   return operationsMenu;

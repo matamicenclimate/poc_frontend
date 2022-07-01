@@ -5,6 +5,7 @@
   "scripts": {
     "start": "craco start",
     "start:test": "set NODE_ENV=test && craco start",
+    "dev:staging": "REACT_APP_API_URL=\"https://backend.climatecoin.staging.dekaside.com\" craco start",
     "develop": "craco start",
     "start:local": "set NODE_ENV=localhost && craco start",
     "build": "craco build",
