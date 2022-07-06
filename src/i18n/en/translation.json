@@ -151,12 +151,15 @@
         "projectName": "Project name",
         "idOperation": "ID Operation",
         "actions": "Actions",
+        "transactions": "Transactions",
         "amount": "Amount of CO2 tons",
         "txn": "View Txn",
         "certificate": "View Certificate",
         "date": "Date",
         "detail": "Details"
-      }
+      },
+      "transactions": "View transactions",
+      "noTransactions": "No transactions"
     },
     "Upload": {
       "title": "Transfer credits",
@@ -178,6 +181,7 @@
       "buys": "My buys",
       "sold": "My solds",
       "projects": "My projects",
+      "transactions": "View transactions",
       "profile": "Edit profile",
       "notifications": "Notifications",
       "wallet": "My Wallets",
@@ -212,10 +216,18 @@
       "optIn": {
         "message": "You have to opt-in to receive Climatecoins in order to continue",
         "title": "Optin to climatecoin"
+      },
+      "total": {
+        "label": "In {{currency}}"
       }
     },
     "detail": {
       "title": "My project"
+    },
+    "transactions": {
+      "detail": {
+        "title": "Project transactions"
+      }
     }
   },
   "head": {

@@ -19,6 +19,7 @@ export function SwapNft({ document, account }: SwapNftProps) {
   const [isOpen, setIsOpen] = useState(false);
   const swapNft = useSwapNftForClimatecoins();
   const { formatter, climatecoinValue } = useCurrencyContext();
+  const currency = useCurrencyContext();
 
   return (
     <>
@@ -48,7 +49,12 @@ export function SwapNft({ document, account }: SwapNftProps) {
       >
         <Dl wrapperClassName={'mb-8'}>
           <DlItem dt={'Total Climatecoins'} dd={document.credits} />
-          <DlItem dt={'In Euros'} dd={formatter(climatecoinValue(Number(document.credits)))} />
+          <DlItem
+            dt={t('documents.Details.total.label', {
+              currency: currency.state.currency,
+            })}
+            dd={formatter(climatecoinValue(Number(document.credits)))}
+          />
           <hr className="col-span-2" />
           <DlItem
             dt={'Swap in wallet...'}

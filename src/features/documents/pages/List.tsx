@@ -159,6 +159,9 @@ export const DocumentList = ({
                     {renderArrow('serial_number')}
                   </div>
                 </th>
+                {/* <th className="text-right">
+                  <div className=" p-4">{t<string>('documents.List.table.transactions')}</div>
+                </th> */}
                 <th className="text-right">
                   <div className=" p-4">{t<string>('documents.List.table.actions')}</div>
                 </th>
@@ -176,6 +179,15 @@ export const DocumentList = ({
                         </td>
                         <td className="text-neutral-2">{document.title}</td>
                         <td>{document.serial_number}</td>
+                        {/* <td className="text-right">
+                          {document.fee_nft ? (
+                            <Link to={`/documents/${document._id}/transactions`}>
+                              {t('documents.List.transactions')}
+                            </Link>
+                          ) : (
+                            t('documents.List.noTransactions')
+                          )}
+                        </td> */}
                         <td className="text-right">
                           <Link to={`/documents/${document._id}`}>
                             {t('documents.List.viewDetails')}

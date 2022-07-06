@@ -177,6 +177,9 @@
         "title": "Reclama tu NFT",
         "viewMore": "Más información",
         "alert": "Solo enviaremos C02 a esta dirección, verifique que la red sea correcta."
+      },
+      "total": {
+        "label": "En {{currency}}"
       }
     }
   },

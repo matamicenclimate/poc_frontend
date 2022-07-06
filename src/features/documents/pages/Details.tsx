@@ -31,6 +31,7 @@ export const DocumentDetails = () => {
   const { account, hasOptedIn } = useWalletContext();
   const optinToAsset = useOptinToAsset();
   const { formatter, climatecoinValue } = useCurrencyContext();
+  const currency = useCurrencyContext();
 
   const handleClaim = async () => {
     if (!document.data || !account?.address || !document.data.developer_nft.asa_id)
@@ -133,7 +134,9 @@ export const DocumentDetails = () => {
                       <DlItem dt={'Serial Number'} dd={document.serial_number} />
                       <DlItem dt={'Total Climatecoins'} dd={document.credits} />
                       <DlItem
-                        dt={'In Euros'}
+                        dt={t('documents.Details.total.label', {
+                          currency: currency.state.currency,
+                        })}
                         dd={formatter(climatecoinValue(Number(document.credits)))}
                       />
                       <hr className="col-span-2" />

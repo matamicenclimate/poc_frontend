@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { DocumentDetails } from '../pages/Details';
 import { DocumentList } from '../pages/List';
+import { DocumentTransactions } from '../pages/Transactions';
 import { Upload } from '../pages/Upload';
 
 export const DocumentRouter = () => {
@@ -13,6 +14,7 @@ export const DocumentRouter = () => {
       <Route path="buys" element={<DocumentList defaultFilter={{ status: 'accepted' }} />} />
       <Route path="sells" element={<DocumentList defaultFilter={{ status: 'completed' }} />} />
       <Route path=":documentId" element={<DocumentDetails />} />
+      <Route path=":documentId/transactions" element={<DocumentTransactions />} />
       <Route path="*" element={<Navigate to="list" />} />
     </Routes>
   );
