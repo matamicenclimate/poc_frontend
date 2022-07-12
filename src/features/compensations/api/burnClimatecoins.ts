@@ -12,6 +12,7 @@ import { Compensation, CompensationCalculation, compensationKeys } from '../type
 async function handleBurnClimatecoins({
   amount,
   signedParamsTxn,
+  signedFundsTxn,
   encodedBurnTxn,
   encodedTransferTxn,
   nftIds,
@@ -27,6 +28,7 @@ async function handleBurnClimatecoins({
 
   // convert the txns to buffers
   const oracleTxnBuffer = Buffer.from(Object.values(signedParamsTxn));
+  const fundsTxnBuffer = Buffer.from(Object.values(signedFundsTxn));
   const transferTxnBuffer = Buffer.from(Object.values(encodedTransferTxn));
   const burnTxnBuffer = Buffer.from(Object.values(encodedBurnTxn));
 
@@ -38,7 +40,7 @@ async function handleBurnClimatecoins({
     algosdk.decodeUnsignedTransaction(burnTxnBuffer).toByte()
   );
 
-  const signedTxn = [signedTransferTxn, oracleTxnBuffer, signedBurnTxn];
+  const signedTxn = [signedTransferTxn, fundsTxnBuffer, oracleTxnBuffer, signedBurnTxn];
   return httpClient.post(`/compensations`, {
     signedTxn,
     amount,
