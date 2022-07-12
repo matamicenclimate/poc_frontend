@@ -14,7 +14,6 @@ async function handleBurnClimatecoins({
   signedParamsTxn,
   encodedBurnTxn,
   encodedTransferTxn,
-  signedMintTxn,
   nftIds,
 }: CompensationCalculation): Promise<Compensation> {
   // skip this in testing
@@ -30,7 +29,6 @@ async function handleBurnClimatecoins({
   const oracleTxnBuffer = Buffer.from(Object.values(signedParamsTxn));
   const transferTxnBuffer = Buffer.from(Object.values(encodedTransferTxn));
   const burnTxnBuffer = Buffer.from(Object.values(encodedBurnTxn));
-  const mintTxnBuffer = Buffer.from(Object.values(signedMintTxn));
 
   // decode and sign
   const signedTransferTxn = await magiclink.algorand.signTransaction(
@@ -40,7 +38,7 @@ async function handleBurnClimatecoins({
     algosdk.decodeUnsignedTransaction(burnTxnBuffer).toByte()
   );
 
-  const signedTxn = [signedTransferTxn, oracleTxnBuffer, signedBurnTxn, mintTxnBuffer];
+  const signedTxn = [signedTransferTxn, oracleTxnBuffer, signedBurnTxn];
   return httpClient.post(`/compensations`, {
     signedTxn,
     amount,

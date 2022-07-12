@@ -14,7 +14,6 @@ export interface CompensationCalculation {
   signedParamsTxn: { [key: string]: number };
   encodedTransferTxn: { [key: string]: number };
   encodedBurnTxn: { [key: string]: number };
-  signedMintTxn: { [key: string]: number };
 }
 
 export interface Compensation {
