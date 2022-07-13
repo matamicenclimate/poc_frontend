@@ -30,6 +30,16 @@ export const CompensationDetails = () => {
     });
   };
 
+  const pendingState =
+    compensation.data?.state !== 'minted' &&
+    compensation.data?.state !== 'claimed' &&
+    compensation.data?.state !== 'rejected';
+
+  const approvedState =
+    compensation.data?.state === 'minted' || compensation.data?.state === 'claimed';
+
+  const rejectedState = compensation.data?.state === 'rejected';
+
   return (
     <>
       <PageTitle
@@ -53,8 +63,15 @@ export const CompensationDetails = () => {
                 🎉 {t('compensations.Compensate.steps.confirmation.title')}
               </Title>
               <p className="text-sm text-neutral-4">
-                Thank you for helping to offset the carbon footprint, your tokens have been
-                successfully burned, you can view the transaction in real time directly on Algorand.
+                {pendingState &&
+                  'Thank you for helping to offset the carbon footprint, a compensation request has ' +
+                    'been created, you can view the transaction in real time directly on Algorand.'}
+                {approvedState &&
+                  'Thank you for helping to offset the carbon footprint, your tokens have been ' +
+                    'successfully burned, you can view the transaction on Algorand.'}
+                {rejectedState &&
+                  'Your compensation request has been rejected, the funds were transfered back ' +
+                    'to your account, you can view the transaction on Algorand.'}
               </p>
               <div className="grid grid-cols-3 ">
                 <Link
@@ -86,7 +103,7 @@ export const CompensationDetails = () => {
               </div>
             </div>
           </Card>
-          {compensation.data?.state === 'claimed' ? (
+          {compensation.data?.state === 'claimed' && (
             <Card>
               <div className="space-y-4">
                 <Title size={5} as={2}>
@@ -106,7 +123,8 @@ export const CompensationDetails = () => {
                 </div>
               </div>
             </Card>
-          ) : (
+          )}
+          {compensation.data?.state === 'minted' && (
             <Card>
               <div className="space-y-4">
                 <Title size={5} as={2}>
@@ -118,15 +136,13 @@ export const CompensationDetails = () => {
                 <p></p>
                 <div className="grid grid-cols-3 ">
                   <div className="col-span-2" />
-                  {compensation.data?.state === 'minted' && (
-                    <Button
-                      onClick={handleClaimCertificate}
-                      disabled={claimCertificate.isLoading}
-                      size="md"
-                    >
-                      Claim certificate NFT
-                    </Button>
-                  )}
+                  <Button
+                    onClick={handleClaimCertificate}
+                    disabled={claimCertificate.isLoading}
+                    size="md"
+                  >
+                    Claim certificate NFT
+                  </Button>
                 </div>
               </div>
             </Card>
