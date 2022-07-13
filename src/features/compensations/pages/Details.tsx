@@ -10,10 +10,8 @@ import { Stepper } from '@/componentes/Stepper/Stepper';
 import { EXPLORER_URL, IPFS_GATEWAY_URL } from '@/config';
 
 import { useClaimCertificate } from '../api/claimCertificate';
-import { useClaimReceipt } from '../api/claimReceipt';
 import { useGetCompensation } from '../api/getCompensation';
 import { usePrepareClaimCertificate } from '../api/prepareClaimCertificate';
-import { usePrepareClaimReceipt } from '../api/prepareClaimReceipt';
 import { CompensateSteps } from '../components/CompensateForm';
 
 export const CompensationDetails = () => {
@@ -21,18 +19,8 @@ export const CompensationDetails = () => {
 
   const { compensationId } = useParams();
   const compensation = useGetCompensation(compensationId);
-  const prepareClaimReceipt = usePrepareClaimReceipt();
-  const claimReceipt = useClaimReceipt();
   const prepareClaimCertificate = usePrepareClaimCertificate();
   const claimCertificate = useClaimCertificate();
-
-  const handleClaimReceipt = () => {
-    if (compensationId == null) return;
-
-    prepareClaimReceipt.mutate(compensationId, {
-      onSuccess: (receiptClaimTxns) => claimReceipt.mutate(receiptClaimTxns),
-    });
-  };
 
   const handleClaimCertificate = () => {
     if (compensationId == null) return;
@@ -41,16 +29,6 @@ export const CompensationDetails = () => {
       onSuccess: (receiptClaimTxns) => claimCertificate.mutate(receiptClaimTxns),
     });
   };
-
-  const showClaimReceiptButton =
-    compensation.data?.state !== 'minted' &&
-    compensation.data?.state !== 'claimed' &&
-    !compensation.data?.receipt_claimed;
-
-  const showViewReceiptButton =
-    compensation.data?.state !== 'minted' &&
-    compensation.data?.state !== 'claimed' &&
-    compensation.data?.receipt_claimed;
 
   return (
     <>
@@ -139,24 +117,6 @@ export const CompensationDetails = () => {
                 </p>
                 <p></p>
                 <div className="grid grid-cols-3 ">
-                  {showClaimReceiptButton && (
-                    <Button
-                      onClick={handleClaimReceipt}
-                      disabled={claimReceipt.isLoading}
-                      size="md"
-                    >
-                      Claim receipt NFT
-                    </Button>
-                  )}
-                  {showViewReceiptButton && (
-                    <Link
-                      as="button"
-                      size="md"
-                      href={`${EXPLORER_URL}asset/${compensation.data?.compensation_receipt_nft?.asa_id}`}
-                    >
-                      View receipt nft
-                    </Link>
-                  )}
                   <div className="col-span-2" />
                   {compensation.data?.state === 'minted' && (
                     <Button
@@ -164,7 +124,7 @@ export const CompensationDetails = () => {
                       disabled={claimCertificate.isLoading}
                       size="md"
                     >
-                      Claim final NFT
+                      Claim certificate NFT
                     </Button>
                   )}
                 </div>

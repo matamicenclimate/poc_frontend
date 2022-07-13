@@ -35,12 +35,6 @@ export interface Compensation {
   id: string;
 }
 
-export interface ReceiptClaimTxns {
-  compensationId: string;
-  encodedOptinTxn: { [key: string]: number };
-  signedTransferTxn: { [key: string]: number };
-}
-
 export interface CertificateClaimTxns {
   compensationId: string;
   encodedOptinTxn: { [key: string]: number };
