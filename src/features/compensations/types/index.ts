@@ -44,5 +44,5 @@ export interface ReceiptClaimTxns {
 export interface CertificateClaimTxns {
   compensationId: string;
   encodedOptinTxn: { [key: string]: number };
-  signedExchangeTxn: { [key: string]: number };
+  signedApproveTxn: { [key: string]: number };
 }

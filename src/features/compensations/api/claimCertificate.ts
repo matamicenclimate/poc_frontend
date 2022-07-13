@@ -11,12 +11,12 @@ import { CertificateClaimTxns, Compensation, compensationKeys } from '../types';
 
 async function handleClaimCertificate({
   compensationId,
-  signedExchangeTxn,
+  signedApproveTxn,
   encodedOptinTxn,
 }: CertificateClaimTxns): Promise<Compensation> {
   // convert the txns to buffers
   const optinTxnBuffer = Buffer.from(Object.values(encodedOptinTxn));
-  const signedTransferTxnBuffer = Buffer.from(Object.values(signedExchangeTxn));
+  const approveTxnBuffer = Buffer.from(Object.values(signedApproveTxn));
 
   // skip this in testing
   if (process.env.NODE_ENV === 'test') {
@@ -30,7 +30,7 @@ async function handleClaimCertificate({
     algosdk.decodeUnsignedTransaction(optinTxnBuffer).toByte()
   );
 
-  const signedTxn = [signedOptinTxn, signedTransferTxnBuffer];
+  const signedTxn = [signedOptinTxn, approveTxnBuffer];
   return httpClient.post(`/compensations/${compensationId}/claim/certificate`, {
     signedTxn,
   });
