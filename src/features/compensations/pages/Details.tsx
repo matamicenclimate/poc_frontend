@@ -10,10 +10,8 @@ import { Stepper } from '@/componentes/Stepper/Stepper';
 import { EXPLORER_URL, IPFS_GATEWAY_URL } from '@/config';
 
 import { useClaimCertificate } from '../api/claimCertificate';
-import { useClaimReceipt } from '../api/claimReceipt';
 import { useGetCompensation } from '../api/getCompensation';
 import { usePrepareClaimCertificate } from '../api/prepareClaimCertificate';
-import { usePrepareClaimReceipt } from '../api/prepareClaimReceipt';
 import { CompensateSteps } from '../components/CompensateForm';
 
 export const CompensationDetails = () => {
@@ -21,18 +19,8 @@ export const CompensationDetails = () => {
 
   const { compensationId } = useParams();
   const compensation = useGetCompensation(compensationId);
-  const prepareClaimReceipt = usePrepareClaimReceipt();
-  const claimReceipt = useClaimReceipt();
   const prepareClaimCertificate = usePrepareClaimCertificate();
   const claimCertificate = useClaimCertificate();
-
-  const handleClaimReceipt = () => {
-    if (compensationId == null) return;
-
-    prepareClaimReceipt.mutate(compensationId, {
-      onSuccess: (receiptClaimTxns) => claimReceipt.mutate(receiptClaimTxns),
-    });
-  };
 
   const handleClaimCertificate = () => {
     if (compensationId == null) return;
@@ -42,15 +30,15 @@ export const CompensationDetails = () => {
     });
   };
 
-  const showClaimReceiptButton =
+  const pendingState =
     compensation.data?.state !== 'minted' &&
     compensation.data?.state !== 'claimed' &&
-    !compensation.data?.receipt_claimed;
+    compensation.data?.state !== 'rejected';
 
-  const showViewReceiptButton =
-    compensation.data?.state !== 'minted' &&
-    compensation.data?.state !== 'claimed' &&
-    compensation.data?.receipt_claimed;
+  const approvedState =
+    compensation.data?.state === 'minted' || compensation.data?.state === 'claimed';
+
+  const rejectedState = compensation.data?.state === 'rejected';
 
   return (
     <>
@@ -75,7 +63,14 @@ export const CompensationDetails = () => {
                 🎉 {t('compensations.Compensate.steps.confirmation.title')}
               </Title>
               <p className="text-sm text-neutral-4">
-                {t('compensations.Compensate.steps.confirmation.claim')}
+                {pendingState &&
+                  t('compensations.Compensate.steps.confirmation.claim')}
+                {approvedState &&
+                  'Thank you for helping to offset the carbon footprint, your tokens have been ' +
+                    'successfully burned, you can view the transaction on Algorand.'}
+                {rejectedState &&
+                  'Your compensation request has been rejected, the funds were transfered back ' +
+                    'to your account, you can view the transaction on Algorand.'}
               </p>
               <div className="grid grid-cols-3 ">
                 <Link
@@ -107,7 +102,7 @@ export const CompensationDetails = () => {
               </div>
             </div>
           </Card>
-          {compensation.data?.state === 'claimed' ? (
+          {compensation.data?.state === 'claimed' && (
             <Card>
               <div className="space-y-4">
                 <Title size={5} as={2}>
@@ -125,7 +120,8 @@ export const CompensationDetails = () => {
                 </div>
               </div>
             </Card>
-          ) : (
+          )}
+          {compensation.data?.state === 'minted' && (
             <Card>
               <div className="space-y-4">
                 <Title size={5} as={2}>
@@ -136,25 +132,6 @@ export const CompensationDetails = () => {
                 </p>
                 <p></p>
                 <div className="grid grid-cols-3 ">
-                  {showClaimReceiptButton && (
-                    <Button
-                      onClick={handleClaimReceipt}
-                      disabled={claimReceipt.isLoading}
-                      size="md"
-                    >
-                      {t('compensations.Compensate.steps.claimed.card.receipt')}
-                    </Button>
-                  )}
-                  {showViewReceiptButton && (
-                    <Link
-                      as="button"
-                      size="md"
-                      href={`${EXPLORER_URL}asset/${compensation.data?.compensation_receipt_nft?.asa_id}`}
-                    >
-                      {t('compensations.Compensate.steps.claimed.card.viewReceipt')}
-                    </Link>
-                  )}
-                  {compensation.data?.state === 'minted' && (
                     <Button
                       onClick={handleClaimCertificate}
                       disabled={claimCertificate.isLoading}
@@ -162,7 +139,6 @@ export const CompensationDetails = () => {
                     >
                       {t('compensations.Compensate.steps.claimed.card.finalClaim')}
                     </Button>
-                  )}
                 </div>
               </div>
             </Card>
