@@ -112,7 +112,7 @@ export const DocumentDetails = () => {
                   </div>
                   <div className="space-y-8">
                     <Dl>
-                      <DlItem dt={'Project'} dd={document.title} />
+                      <DlItem dt={t('documents.Details.label.project')} dd={document.title} />
                       <div className="flex justify-end">
                         {document?.developer_nft ? (
                           <Link
@@ -130,23 +130,36 @@ export const DocumentDetails = () => {
                         )}
                       </div>
                       <hr className="col-span-2" />
-                      <DlItem dt={'Standard'} dd={document.standard.name} />
-                      <DlItem dt={'Serial Number'} dd={document.serial_number} />
-                      <DlItem dt={'Total Climatecoins'} dd={document.credits} />
                       <DlItem
-                        dt={t('documents.Details.total.label', {
+                        dt={t('documents.Details.label.standard')}
+                        dd={document.standard.name}
+                      />
+                      <DlItem
+                        dt={t('documents.Details.label.serialNumber')}
+                        dd={document.serial_number}
+                      />
+                      <DlItem
+                        dt={t('documents.Details.label.totalClimatecoins')}
+                        dd={document.credits + ' cc'}
+                        ddClassNames={'text-primary-brightGreen'}
+                      />
+                      <DlItem
+                        dt={t('documents.Details.label.totalCurrency', {
                           currency: currency.state.currency,
                         })}
                         dd={formatter(climatecoinValue(Number(document.credits)))}
                       />
                       <hr className="col-span-2" />
-                      <DlItem dt={'ID Project'} dd={document.id} />
-                      <DlItem dt={'Registry'} dd={document.registry.name} />
+                      <DlItem dt={t('documents.Details.label.projectID')} dd={document.id} />
+                      <DlItem
+                        dt={t('documents.Details.label.registry')}
+                        dd={document.registry.name}
+                      />
                     </Dl>
                     <div className="grid grid-cols-3 gap-4 text-sm text-neutral-4">
                       {document.status === 'completed' && (
                         <p className="col-span-2 col-start-2 text-2xl text-green-700">
-                          Waiting for the mint
+                          {t('documents.Details.button.mintWaiting')}
                         </p>
                       )}
                       {document.status === 'minted' && (

@@ -44,21 +44,25 @@ export function SwapNft({ document, account }: SwapNftProps) {
         cancelLabel="Back"
         onCancel={() => setIsOpen(!isOpen)}
         isLoading={swapNft.isLoading}
-        title={'🚨 Are you sure?'}
-        claim={'Are you sure you want to swap this product? This action is not reversible.'}
+        title={t('documents.Details.modal.title')}
+        claim={t('documents.Details.modal.claim')}
       >
         <Dl wrapperClassName={'mb-8'}>
-          <DlItem dt={'Total Climatecoins'} dd={document.credits} />
           <DlItem
-            dt={t('documents.Details.total.label', {
+            dt={t('documents.Details.modal.totalClimatecoins')}
+            dd={document.credits + ' cc'}
+            ddClassNames={'text-primary-brightGreen'}
+          />
+          <DlItem
+            dt={t('documents.Details.modal.totalCurrency', {
               currency: currency.state.currency,
             })}
             dd={formatter(climatecoinValue(Number(document.credits)))}
           />
           <hr className="col-span-2" />
           <DlItem
-            dt={'Swap in wallet...'}
-            dd={`${account?.slice(0, 10)}...${account?.slice(-10)}`}
+            dt={t('documents.Details.modal.wallet')}
+            dd={`${account?.slice(0, 30)}...${account?.slice(-3)}`}
           />
         </Dl>
       </Dialog>

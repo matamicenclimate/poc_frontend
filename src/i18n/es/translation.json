@@ -173,13 +173,21 @@
       "thanks": "¡Gracias por enviar sus créditos!",
       "waitMessage": "Hemos recibido tu solicitud correctamente, un administrador la revisará en detalle antes de realizar la transferencia.",
       "willSendEmail": "Recibirás un correo electrónico con la confirmación.",
+      "label": {
+        "totalCurrency": "En {{currency}}",
+        "totalClimatecoins": "Total Climatecoins"
+      },
       "claim": {
         "title": "Reclama tu NFT",
         "viewMore": "Más información",
         "alert": "Solo enviaremos C02 a esta dirección, verifique que la red sea correcta."
       },
-      "total": {
-        "label": "En {{currency}}"
+      "modal": {
+        "title": "¿Está seguro?",
+        "claim": "¿Está seguro de que desea swappear este producto? Esta acción no es reversible.",
+        "wallet": "Swappear en la cartera...",
+        "totalCurrency": "En {{currency}}",
+        "totalClimatecoins": "Total Climatecoins"
       }
     }
   },

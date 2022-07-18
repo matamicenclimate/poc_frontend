@@ -65,6 +65,13 @@ export const DocumentList = ({
     return 'avatar-placeholder.jpg';
   };
 
+  const getProjectImage = (document: CarbonDocument) => {
+    if (document?.thumbnail?.url) {
+      return document.thumbnail.url;
+    }
+    return 'image-placeholder.png';
+  };
+
   return (
     <MainLayout title={t('head.List.title')}>
       <PageTitle
@@ -96,7 +103,7 @@ export const DocumentList = ({
         </aside>
         <main className="space-y-4 md:col-span-3">
           <form onSubmit={(e) => e.preventDefault()}>
-            <div className="flex items-center space-x-2">
+            <div className="mb-10 flex items-center space-x-2">
               <Title size={4} as={3}>
                 {t('documents.List.table.title')}
               </Title>
@@ -114,7 +121,7 @@ export const DocumentList = ({
                   <Popover.Button
                     render={(isOpen) => (
                       <Button type="button" variant={isOpen ? 'primary' : 'light'} size="sm">
-                        Today
+                        {t('documents.List.table.filter')}
                         <Icon
                           id={isOpen ? 'calendar-line-white' : 'calendar-line'}
                           className="ml-3 h-4 w-4"
@@ -134,36 +141,49 @@ export const DocumentList = ({
               <thead className="border-b-2 border-neutral-6 text-left text-xs text-neutral-4">
                 <th>
                   <div
-                    className={clsx('flex cursor-pointer items-center p-4')}
-                    onClick={() => toggleSort('status')}
+                    className={clsx('flex cursor-pointer items-center pb-4')}
+                    onClick={() => toggleSort('title')}
                   >
-                    {t('documents.List.table.status')}
-                    {renderArrow('status')}
+                    {t('documents.List.table.projectImage')}
                   </div>
                 </th>
                 <th>
                   <div
-                    className={clsx('flex cursor-pointer items-center p-4')}
+                    className={clsx('flex cursor-pointer items-center pb-4')}
+                    onClick={() => toggleSort('status')}
+                  >
+                    {t('documents.List.table.status')}
+                    <div className="ml-1">{renderArrow('status')}</div>
+                  </div>
+                </th>
+                <th>
+                  <div
+                    className={clsx('flex cursor-pointer items-center pb-4')}
                     onClick={() => toggleSort('title')}
                   >
                     {t('documents.List.table.projectName')}
-                    {renderArrow('title')}
+                    <div className="ml-1">{renderArrow('title')}</div>
                   </div>
                 </th>
-                <th className="flex">
+                <th>
                   <div
-                    className={clsx('flex cursor-pointer items-center p-4')}
+                    className={clsx('flex cursor-pointer items-center pb-4')}
                     onClick={() => toggleSort('serial_number')}
                   >
-                    {t('documents.List.table.idOperation')}
-                    {renderArrow('serial_number')}
+                    {t('documents.List.table.transactions')}
+                    <div className="ml-1">{renderArrow('serial_number')}</div>
                   </div>
                 </th>
                 {/* <th className="text-right">
                   <div className=" p-4">{t<string>('documents.List.table.transactions')}</div>
                 </th> */}
                 <th className="text-right">
-                  <div className=" p-4">{t<string>('documents.List.table.actions')}</div>
+                  <div
+                    className={clsx('flex cursor-pointer justify-end pb-4')}
+                    onClick={() => toggleSort('serial_number')}
+                  >
+                    {t<string>('documents.List.table.actions')}
+                  </div>
                 </th>
               </thead>
               <DataRenderer<CarbonDocument[]>
@@ -173,11 +193,25 @@ export const DocumentList = ({
                     {model.map((document) => (
                       <tr key={document._id} className="text-left">
                         <td>
+                          <div
+                            style={{ backgroundImage: `url(${getProjectImage(document)})` }} // alt={document.data?.title}
+                            className="h-11 w-16 rounded-lg bg-neutral-6 bg-cover bg-center "
+                          />
+                        </td>
+                        <td>
                           <div className="flex py-3">
                             <Pill variant={pillVariants[document.status]}>{document.status}</Pill>
                           </div>
                         </td>
-                        <td className="text-neutral-2">{document.title}</td>
+                        <td className="text-neutral-2">
+                          <div className="flex flex-col">
+                            <span>{document.title}</span>
+                            <span className="text-xs text-neutral-4">
+                              {document.developer_nft?.supply &&
+                                `${document.developer_nft.supply} cc`}
+                            </span>
+                          </div>
+                        </td>
                         <td>{document.serial_number}</td>
                         {/* <td className="text-right">
                           {document.fee_nft ? (
@@ -190,7 +224,9 @@ export const DocumentList = ({
                         </td> */}
                         <td className="text-right">
                           <Link to={`/documents/${document._id}`}>
-                            {t('documents.List.viewDetails')}
+                            <span className="text-neutral-4">
+                              {t('documents.List.viewDetails')}
+                            </span>
                           </Link>
                         </td>
                       </tr>
