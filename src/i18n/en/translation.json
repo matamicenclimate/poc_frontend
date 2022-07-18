@@ -218,11 +218,7 @@
         "claim": "Claim",
         "deleteNft": "Delete NFT",
         "mint": "Mint document",
-        "swap": "Swap NFT",
-        "mintWaiting": "    Waiting for mint"
-      },
-      "mint": {
-        "message": "Waiting for mint"
+        "swap": "Swap NFT"
       },
       "optIn": {
         "message": "You have to opt-in to receive Climatecoins in order to continue",
@@ -243,6 +239,18 @@
         "wallet": "Swap in wallet...",
         "totalCurrency": "In {{currency}}",
         "totalClimatecoins": "Total Climatecoins"
+      },
+      "pending": {
+        "InfoTitle": "Project generated successfully",
+        "InfoClaim": "The current status is 'Pending'. We will notify you when the status changes to 'Accepted'."
+      },
+      "mint": {
+        "InfoTitle": "Waiting for Mint",
+        "InfoClaim": "Pending minting by the administrator"
+      },
+      "swap": {
+        "InfoTitle": "Process completed successfully",
+        "InfoClaim": "The current status is 'Swapped'."
       }
     },
     "detail": {

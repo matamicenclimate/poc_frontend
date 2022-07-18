@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
@@ -32,6 +33,7 @@ export const DocumentDetails = () => {
   const optinToAsset = useOptinToAsset();
   const { formatter, climatecoinValue } = useCurrencyContext();
   const currency = useCurrencyContext();
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleClaim = async () => {
     if (!document.data || !account?.address || !document.data.developer_nft.asa_id)
@@ -156,37 +158,53 @@ export const DocumentDetails = () => {
                         dd={document.registry.name}
                       />
                     </Dl>
-                    <div className="grid grid-cols-3 gap-4 text-sm text-neutral-4">
-                      {document.status === 'completed' && (
-                        <p className="col-span-2 col-start-2 text-2xl text-green-700">
-                          {t('documents.Details.button.mintWaiting')}
-                        </p>
-                      )}
-                      {document.status === 'minted' && (
-                        <>
-                          <div />
-                          {claimNft.isLoading && (
-                            <div className="flex items-center justify-end">
-                              <Spinner size="md" />
-                            </div>
-                          )}
-                          <Button
-                            className="col-start-3"
-                            size="xs"
-                            onClick={handleClaim}
-                            disabled={!account?.address || claimNft.isLoading}
-                          >
-                            {t('documents.Details.button.claim')}
-                          </Button>
-                        </>
-                      )}
-                      {!hasOptedIn(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)) && (
-                        <div className="col-span-3">
-                          <Card>
-                            <Title size={5} as={2}>
-                              {t('documents.Details.optIn.title')}
-                            </Title>
-                            <div className="mb-2">{t('documents.Details.optIn.message')}</div>
+                    {document.status === 'pending' && (
+                      <Card>
+                        <Title size={5} as={4}>
+                          ✅ {t('documents.Details.pending.InfoTitle')}
+                        </Title>
+                        <p>{t('documents.Details.pending.InfoClaim')}</p>
+                      </Card>
+                    )}
+                    {document.status === 'completed' && (
+                      <Card>
+                        <Title size={5} as={4}>
+                          🚨{t('documents.Details.min.InfoTitle')}
+                        </Title>
+                        <p>{t('documents.Details.mint.InfoClaim')}</p>
+                      </Card>
+                    )}
+                    {document.status === 'minted' && (
+                      <>
+                        <div />
+                        {claimNft.isLoading && (
+                          <div className="flex items-center justify-end">
+                            <Spinner size="md" />
+                          </div>
+                        )}
+                        <Button
+                          className="col-start-3"
+                          size="xs"
+                          onClick={handleClaim}
+                          disabled={!account?.address || claimNft.isLoading}
+                        >
+                          {t('documents.Details.button.claim')}
+                        </Button>
+                      </>
+                    )}
+                    {!hasOptedIn(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)) && (
+                      <div className="col-span-3">
+                        <Card>
+                          <Title size={5} as={4}>
+                            {t('documents.Details.optIn.title')}
+                          </Title>
+                          <p>{t('documents.Details.optIn.message')}</p>
+                          <div className="mt-4 flex justify-end">
+                            {optinToAsset.isLoading && (
+                              <div className="mr-4 flex items-center">
+                                <Spinner size="md" />
+                              </div>
+                            )}
                             <Button
                               onClick={() =>
                                 optinToAsset.mutate(
@@ -197,25 +215,33 @@ export const DocumentDetails = () => {
                             >
                               {t('documents.Details.optIn.title')}
                             </Button>
-                          </Card>
-                        </div>
-                      )}
-                      {!!document.developer_nft &&
-                        document.status === 'claimed' &&
-                        account &&
-                        !!hasOptedIn(
-                          Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)
-                        ) && (
-                          <>
-                            {/* TO DO: the NFT cannot be deleted because once created, it already exists on the blockchain */}
-                            {/* <Button variant="danger" size="xs" disabled>
+                          </div>
+                        </Card>
+                      </div>
+                    )}
+                    {!!document.developer_nft &&
+                      document.status === 'claimed' &&
+                      account &&
+                      !!hasOptedIn(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)) && (
+                        <>
+                          {/* TO DO: the NFT cannot be deleted because once created, it already exists on the blockchain */}
+                          {/* <Button variant="danger" size="xs" disabled>
                             {t('documents.Details.button.deleteNft')}
                           </Button> */}
-                            <div />
-                            <SwapNft document={document} account={account?.address} />
-                          </>
-                        )}
-                    </div>
+                          <div />
+                          <SwapNft document={document} account={account?.address} />
+                        </>
+                      )}
+                    {document.status === 'swapped' && (
+                      <div className="col-span-3">
+                        <Card>
+                          <Title size={5} as={4}>
+                            ✅ {t('documents.Details.swap.InfoTitle')}
+                          </Title>
+                          <p>{t('documents.Details.swap.InfoClaim')}</p>
+                        </Card>
+                      </div>
+                    )}
                   </div>
                 </Card>
               </div>
