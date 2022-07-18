@@ -7,6 +7,7 @@ import { ButtonStyleProps, buttonStyles } from '../Button/Button';
 type BaseProps = {
   as?: string;
   className?: string;
+  textVariant?: string;
   children?: React.ReactElement | string | TFunctionResult;
   navLink?: boolean;
 } & ({
@@ -37,6 +38,7 @@ export const Link = ({
   as,
   size,
   variant,
+  textVariant = 'text-primary',
   iconRight,
   iconLeft,
   children,
@@ -54,7 +56,7 @@ export const Link = ({
         buttonStyles.variants[variant ?? 'primary']
       );
     }
-    return clsx(`text-primary`, isActive && 'underline', navLink ? '' : 'underline', className);
+    return clsx(textVariant, isActive && 'underline', navLink ? '' : 'underline', className);
   };
 
   // anchor render

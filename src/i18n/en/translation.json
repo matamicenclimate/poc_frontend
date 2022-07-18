@@ -131,12 +131,20 @@
         "txn": "Txn",
         "certificate": "Certificate",
         "date": "Date",
-        "certificateView": "View Certificate",
+        "certificateView": "Open certificate",
         "txnView": "View Transactions",
-        "details": "Details",
-        "time": "Time"
+        "details": "View",
+        "time": "Time",
+        "status": "Status",
+        "operationID": "ID Operation",
+        "actions": "Actions"
       },
-      "title": "Compensation History"
+      "title": "Compensation History",
+      "status": {
+        "accepted": "Accepted",
+        "completed": "Completed",
+        "pending": "Pending"
+      }
     }
   },
   "documents": {
@@ -414,11 +422,26 @@
       },
       "steps": {
         "confirmation": {
-          "title": "Compensation confirmation"
+          "title": "Compensation confirmation",
+          "claim": " Thank you for helping to offset the carbon footprint, your tokens have been successfully burned, you can view the transaction in real time directly on Algorand.",
+          "viewTxn": "View transaction",
+          "certificate": "Download certificate"
         },
         "accept": {
           "title": "Accept conditions",
           "description": "Are you sure you want to offset {{amount}} tokens of Climatecoins, these tokens will be burned and will no longer be available in your account. You are helping the planet! Thank you. "
+        },
+        "claimed": {
+          "title": "Your compensation NFT",
+          "claim": "Thank you for offsetting your carbon footprint. You can view you compensation NFT.",
+          "viewNft": "View compensation nft",
+          "card": {
+            "title": "Claim your compensation NFT",
+            "claim": "Claim the compensation NFT to show everyone how much you care for the planet!",
+            "receipt": "Claim receipt NFT",
+            "viewReceipt": "View receipt nft",
+            "finalClaim": "Claim final NFT"
+          }
         }
       },
       "card": {
@@ -430,6 +453,11 @@
       },
       "amount": {
         "label": "Quantity"
+      },
+      "cardlist": {
+        "title": "Compensation Certificate",
+        "viewDetails": "View details",
+        "ipfs": "ipfs"
       }
     },
     "Details": {

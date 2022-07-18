@@ -374,5 +374,13 @@
       "downloadCertificate": "Descargar certificado",
       "viewTxn": "Ver transacción"
     }
+  },
+  "compensate": {
+    "History": {
+      "table": {
+        "certificateView": "Abrir certificado",
+        "details": "Ver"
+      }
+    }
   }
 }
