@@ -21,6 +21,7 @@ const variants = {
   new: 'border-2 border-[#ff6838]',
   popular: 'border-2 border-[#58bd7d]',
   swap: 'border-2 border-[#364237]',
+  danger: 'border-2 border-[#e24545]',
 };
 
 const backgrounds = {
@@ -30,6 +31,7 @@ const backgrounds = {
   new: 'bg-[#ff6838]',
   popular: 'bg-[#58bd7d]',
   swap: 'bg-[#364237]',
+  danger: 'bg-[#e24545]',
 };
 
 const textColors = {
@@ -39,6 +41,7 @@ const textColors = {
   new: 'text-[#ff6838]',
   popular: 'text-[#58bd7d]',
   swap: 'text-[#fcfcfd]',
+  danger: 'text-[#3772ff]',
 };
 
 export const Pill = ({ className, children, style = 'solid', variant = 'default' }: PillProps) => {

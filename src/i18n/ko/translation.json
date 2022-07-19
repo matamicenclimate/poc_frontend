@@ -42,6 +42,13 @@
       "button": "기후 코인 보상",
       "amount": {
         "label": "클라이밋코인 수량"
+      },
+      "description": "기후 동전을 태워 탄소 발자국을 상쇄하십시오.",
+      "wallet": {
+        "label": "지갑"
+      },
+      "quantity": {
+        "label": "클라이밋코인 수량"
       }
     }
   },
@@ -96,7 +103,8 @@
         "link": "더보기",
         "subtitle": "기후 변화에 맞서 싸우는 데 기후 코인을 사용하십시오.",
         "title": "기후 변화에 대한 귀하의 도움."
-      }
+      },
+      "swap": "교환"
     },
     "dialog": {
       "accept": {
@@ -113,7 +121,8 @@
     },
     "FileInput": {
       "dragAndDrop": "끌어서 놓기",
-      "selectFiles": "파일 선택"
+      "selectFiles": "파일 선택",
+      "ariaLabel": "파일 업로드"
     },
     "ProfileNav": {
       "profile": {
@@ -163,10 +172,20 @@
         "projectName": "프로젝트 이름",
         "search": "검색...",
         "status": "상태",
-        "title": "내 프로젝트"
+        "title": "내 프로젝트",
+        "txn": "Txn 보기",
+        "projectImage": "영상",
+        "transactions": "업무",
+        "filter": "오늘",
+        "detail": "세부",
+        "certificate": "인증서 보기",
+        "date": "날짜",
+        "amount": "CO2 톤량"
       },
       "title": "개발자",
-      "viewDetails": "세부 정보보기"
+      "viewDetails": "세부 정보보기",
+      "transactions": "거래 보기",
+      "noTransactions": "거래 없음"
     },
     "Upload": {
       "buys": "내 구매",
@@ -191,7 +210,9 @@
         "back": "뒤"
       },
       "title": "크레딧 이전",
-      "wallet": "내 지갑"
+      "wallet": "내 지갑",
+      "transactions": "거래 보기",
+      "compensations": "나의 보상"
     },
     "Details": {
       "waitMessage": "귀하의 요청이 올바르게 접수되었습니다. 관리자가 이전하기 전에 자세히 검토할 것입니다.",
@@ -200,7 +221,51 @@
         "title": "NFT 청구",
         "viewMore": "더 많은 정보",
         "alert": "이 주소로 C02만 보내드립니다. 네트워크가 올바른지 확인하십시오."
+      },
+      "menu": {
+        "projectWallet": "프로젝트 지갑",
+        "offers": "제안",
+        "projectDetails": "프로젝트 세부정보",
+        "notifications": "알림"
+      },
+      "mint": {
+        "InfoTitle": "주조를 기다리는 중",
+        "InfoClaim": "관리자에 의한 발행 대기 중"
+      },
+      "optIn": {
+        "title": "기후 코인에 옵틴",
+        "message": "계속하려면 클라이밋코인을 받도록 선택해야 합니다."
+      },
+      "swap": {
+        "InfoTitle": "프로세스가 성공적으로 완료되었습니다.",
+        "InfoClaim": "현재 상태는 '교체됨'입니다."
+      },
+      "pending": {
+        "InfoTitle": "프로젝트가 성공적으로 생성되었습니다.",
+        "InfoClaim": "현재 상태는 '보류 중'입니다. \n상태가 '수락됨'으로 변경되면 알려드리겠습니다."
+      },
+      "button": {
+        "claim": "주장하다",
+        "mint": "민트 문서",
+        "deleteNft": "NFT 삭제",
+        "swap": "스왑 NFT"
+      },
+      "label": {
+        "project": "프로젝트",
+        "registry": "기재",
+        "projectID": "아이디 프로젝트",
+        "standard": "기준",
+        "serialNumber": "일련 번호"
+      },
+      "viewAsset": "자산 보기"
+    },
+    "transactions": {
+      "detail": {
+        "title": "프로젝트 거래"
       }
+    },
+    "detail": {
+      "title": "내 프로젝트"
     }
   },
   "head": {
@@ -219,6 +284,9 @@
     "climatecoins": {
       "Buy": {
         "title": "클라이밋코인 구매"
+      },
+      "Compensate": {
+        "title": "클라이밋코인 보상"
       }
     }
   },
@@ -241,7 +309,15 @@
       "adress": "지갑 주소"
     },
     "edit": "프로필 편집",
-    "avatar": "화신"
+    "avatar": "화신",
+    "country": "국가",
+    "personal_URL": "개인 URL",
+    "city": "도시",
+    "button_update": "업데이트",
+    "button_remove": "아바타 제거",
+    "button_delete": "계정 삭제",
+    "alias": "별명",
+    "bio": "바이오"
   },
   "uploadDocuments": {
     "PDD": "PDD",
@@ -278,11 +354,37 @@
       },
       "steps": {
         "confirmation": {
-          "title": "보상 확인"
+          "title": "보상 확인",
+          "viewTxn": "거래 보기",
+          "claim": "탄소 발자국을 상쇄하는 데 도움을 주셔서 감사합니다. 귀하의 토큰은 성공적으로 소각되었습니다. \n알고랜드에서 직접 실시간으로 거래를 볼 수 있습니다.",
+          "certificate": "인증서 다운로드"
         },
         "accept": {
           "title": "조건 수락",
           "description": "클라이밋코인의 {{amount}} 토큰을 상쇄하시겠습니까? 이 토큰은 소각되어 귀하의 계정에서 더 이상 사용할 수 없습니다. \n당신은 지구를 돕고 있습니다! \n고맙습니다."
+        },
+        "pending": {
+          "title": "보상 보류 중",
+          "claim": "탄소 발자국을 상쇄하는 데 도움을 주셔서 감사합니다. \n보상의 현재 상태는 '보류 중'입니다. \n관리자의 발행을 기다리고 있습니다."
+        },
+        "rejected": {
+          "title": "보상 거부",
+          "claim": "귀하의 보상 요청이 거부되었으며 자금이 귀하의 계정으로 다시 이체되었습니다. \n알고랜드에서 거래를 볼 수 있습니다."
+        },
+        "approved": {
+          "title": "축하합니다! \n확인된 보상"
+        },
+        "claimed": {
+          "title": "보상 NFT",
+          "claim": "탄소 발자국을 상쇄해 주셔서 감사합니다. \n보상 NFT를 볼 수 있습니다.",
+          "viewNft": "NFT 보상 보기",
+          "card": {
+            "title": "보상 청구 NFT",
+            "finalClaim": "최종 NFT 청구",
+            "claim": "보상 NFT를 청구하여 지구를 얼마나 아끼는지 모두에게 보여주세요!",
+            "viewReceipt": "영수증 nft 보기",
+            "receipt": "청구 영수증 NFT"
+          }
         }
       },
       "card": {
@@ -294,11 +396,50 @@
       },
       "amount": {
         "label": "수량"
+      },
+      "cardlist": {
+        "ipfs": "ipfs",
+        "viewDetails": "세부 정보보기",
+        "title": "보상 증명서"
       }
     },
     "Details": {
       "downloadCertificate": "인증서 다운로드",
       "viewTxn": "거래 보기"
+    }
+  },
+  "Profile": {
+    "title": "프로필 편집"
+  },
+  "Wallet": {
+    "button": {
+      "delete": "지갑 삭제",
+      "new": "새 지갑 추가",
+      "view": "보다"
+    },
+    "span": "지갑",
+    "title": "내 지갑"
+  },
+  "compensate": {
+    "History": {
+      "status": {
+        "completed": "완전한",
+        "accepted": "수락됨",
+        "pending": "보류 중",
+        "rejected": "거부됨"
+      },
+      "table": {
+        "actions": "행위",
+        "amount": "양",
+        "date": "날짜",
+        "certificate": "자격증",
+        "operationID": "아이디 조작",
+        "time": "시간",
+        "status": "상태",
+        "txnView": "거래 보기",
+        "txn": "Txn"
+      },
+      "title": "보상내역"
     }
   }
 }

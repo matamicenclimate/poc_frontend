@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
@@ -13,7 +14,6 @@ import { Aside, menuProps } from '@/componentes/Layout/Aside/Aside';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { EXPLORER_URL } from '@/config';
 import { CarbonDocument } from '@/features/documents';
-import { useOptinToAsset } from '@/features/wallet';
 import { useAuth } from '@/lib/auth';
 import { useCurrencyContext } from '@/providers/Currency.context';
 import { useWalletContext } from '@/providers/Wallet.context';
@@ -28,10 +28,10 @@ export const DocumentDetails = () => {
   const auth = useAuth();
   const document = useGetDocument(documentId as string);
   const claimNft = useClaimNftFromDocument();
-  const { account, hasOptedIn } = useWalletContext();
-  const optinToAsset = useOptinToAsset();
+  const { account } = useWalletContext();
   const { formatter, climatecoinValue } = useCurrencyContext();
   const currency = useCurrencyContext();
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleClaim = async () => {
     if (!document.data || !account?.address || !document.data.developer_nft.asa_id)
@@ -112,7 +112,7 @@ export const DocumentDetails = () => {
                   </div>
                   <div className="space-y-8">
                     <Dl>
-                      <DlItem dt={'Project'} dd={document.title} />
+                      <DlItem dt={t('documents.Details.label.project')} dd={document.title} />
                       <div className="flex justify-end">
                         {document?.developer_nft ? (
                           <Link
@@ -130,43 +130,62 @@ export const DocumentDetails = () => {
                         )}
                       </div>
                       <hr className="col-span-2" />
-                      <DlItem dt={'Standard'} dd={document.standard.name} />
-                      <DlItem dt={'Serial Number'} dd={document.serial_number} />
-                      <DlItem dt={'Total Climatecoins'} dd={document.credits} />
                       <DlItem
-                        dt={t('documents.Details.total.label', {
+                        dt={t('documents.Details.label.standard')}
+                        dd={document.standard.name}
+                      />
+                      <DlItem
+                        dt={t('documents.Details.label.serialNumber')}
+                        dd={document.serial_number}
+                      />
+                      <DlItem
+                        dt={t('documents.Details.label.totalClimatecoins')}
+                        dd={document.credits + ' cc'}
+                        ddClassNames={'text-primary-brightGreen'}
+                      />
+                      <DlItem
+                        dt={t('documents.Details.label.totalCurrency', {
                           currency: currency.state.currency,
                         })}
                         dd={formatter(climatecoinValue(Number(document.credits)))}
                       />
                       <hr className="col-span-2" />
-                      <DlItem dt={'ID Project'} dd={document.id} />
-                      <DlItem dt={'Registry'} dd={document.registry.name} />
+                      <DlItem dt={t('documents.Details.label.projectID')} dd={document.id} />
+                      <DlItem
+                        dt={t('documents.Details.label.registry')}
+                        dd={document.registry.name}
+                      />
                     </Dl>
-                    <div className="grid grid-cols-3 gap-4 text-sm text-neutral-4">
-                      {document.status === 'completed' && (
-                        <p className="col-span-2 col-start-2 text-2xl text-green-700">
-                          Waiting for the mint
-                        </p>
-                      )}
-                      {document.status === 'minted' && (
-                        <>
-                          <div />
-                          {claimNft.isLoading && (
-                            <div className="flex items-center justify-end">
-                              <Spinner size="md" />
-                            </div>
-                          )}
-                          <Button
-                            className="col-start-3"
-                            size="xs"
-                            onClick={handleClaim}
-                            disabled={!account?.address || claimNft.isLoading}
-                          >
-                            {t('documents.Details.button.claim')}
-                          </Button>
-                        </>
-                      )}
+                    {document.status === 'pending' && (
+                      <Card>
+                        <Title size={5} as={4}>
+                          ✅ {t('documents.Details.pending.InfoTitle')}
+                        </Title>
+                        <p>{t('documents.Details.pending.InfoClaim')}</p>
+                      </Card>
+                    )}
+                    {document.status === 'completed' && (
+                      <Card>
+                        <Title size={5} as={4}>
+                          🚨 {t('documents.Details.mint.InfoTitle')}
+                        </Title>
+                        <p>{t('documents.Details.mint.InfoClaim')}</p>
+                      </Card>
+                    )}
+                    {document.status === 'minted' && (
+                      <div className="grid grid-cols-3 gap-4">
+                        <div></div>
+                        <div className="flex items-center justify-end">
+                          <Spinner size="md" />
+                        </div>
+                        <Button
+                          onClick={handleClaim}
+                          disabled={!account?.address || claimNft.isLoading}
+                        >
+                          {t('documents.Details.button.claim')}
+                        </Button>
+                      </div>
+                    )}
                       {!!document.developer_nft && document.status === 'claimed' && account && (
                         <>
                           {/* TO DO: the NFT cannot be deleted because once created, it already exists on the blockchain */}
@@ -177,7 +196,16 @@ export const DocumentDetails = () => {
                           <SwapNft document={document} account={account?.address} />
                         </>
                       )}
-                    </div>
+                    {document.status === 'swapped' && (
+                      <div className="col-span-3">
+                        <Card>
+                          <Title size={5} as={4}>
+                            ✅ {t('documents.Details.swap.InfoTitle')}
+                          </Title>
+                          <p>{t('documents.Details.swap.InfoClaim')}</p>
+                        </Card>
+                      </div>
+                    )}
                   </div>
                 </Card>
               </div>

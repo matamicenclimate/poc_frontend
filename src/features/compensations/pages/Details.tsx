@@ -60,18 +60,14 @@ export const CompensationDetails = () => {
           <Card>
             <div className="space-y-8">
               <Title size={5} as={2}>
-                🎉 {t('compensations.Compensate.steps.confirmation.title')}
+                {pendingState && '🚨  ' + t('compensations.Compensate.steps.pending.title')}
+                {approvedState && '🎉  ' + t('compensations.Compensate.steps.approved.title')}
+                {rejectedState && '❌  ' + t('compensations.Compensate.steps.rejected.title')}
               </Title>
               <p className="text-sm text-neutral-4">
-                {pendingState &&
-                  'Thank you for helping to offset the carbon footprint, a compensation request has ' +
-                    'been created, you can view the transaction in real time directly on Algorand.'}
-                {approvedState &&
-                  'Thank you for helping to offset the carbon footprint, your tokens have been ' +
-                    'successfully burned, you can view the transaction on Algorand.'}
-                {rejectedState &&
-                  'Your compensation request has been rejected, the funds were transfered back ' +
-                    'to your account, you can view the transaction on Algorand.'}
+                {pendingState && t('compensations.Compensate.steps.pending.claim')}
+                {approvedState && t('compensations.Compensate.steps.confirmation.claim')}
+                {rejectedState && t('compensations.Compensate.steps.rejected.claim')}
               </p>
               <div className="grid grid-cols-3 ">
                 <Link
@@ -83,7 +79,7 @@ export const CompensationDetails = () => {
                   )}`}
                   className="inline-flex items-center"
                 >
-                  {t('compensations.Details.viewTxn')}
+                  {t('compensations.Compensate.steps.confirmation.viewTxn')}
                 </Link>
                 <div></div>
                 {compensation.data?.consolidation_certificate_ipfs_cid ? (
@@ -93,11 +89,11 @@ export const CompensationDetails = () => {
                     as="button"
                     size="md"
                   >
-                    {t('compensations.Details.downloadCertificate')}
+                    {t('compensations.Compensate.steps.confirmation.certificate')}
                   </Link>
                 ) : (
                   <Button onClick={() => null} size="md" disabled>
-                    {t('compensations.Details.downloadCertificate')}
+                    {t('compensations.Compensate.steps.confirmation.certificate')}
                   </Button>
                 )}
               </div>
@@ -107,18 +103,16 @@ export const CompensationDetails = () => {
             <Card>
               <div className="space-y-4">
                 <Title size={5} as={2}>
-                  Your compensation NFT
+                  {t('compensations.Compensate.steps.claimed.title')}
                 </Title>
-                <p>
-                  Thank you for offsetting your carbon footprint. You can view you compensation NFT.
-                </p>
+                <p>{t('compensations.Compensate.steps.claimed.claim')}</p>
                 <div className="grid grid-cols-3 ">
                   <Link
                     as="button"
                     size="md"
                     href={`${EXPLORER_URL}asset/${compensation.data?.compensation_nft?.asa_id}`}
                   >
-                    View compensation nft
+                    {t('compensations.Compensate.steps.claimed.viewNft')}
                   </Link>
                 </div>
               </div>
@@ -128,20 +122,19 @@ export const CompensationDetails = () => {
             <Card>
               <div className="space-y-4">
                 <Title size={5} as={2}>
-                  Claim your compensation NFT
+                  {t('compensations.Compensate.steps.claimed.card.title')}
                 </Title>
                 <p className="text-sm text-neutral-4">
-                  Claim the compensation NFT to show everyone how much you care for the planet!
+                  {t('compensations.Compensate.steps.claimed.card.claim')}
                 </p>
                 <p></p>
                 <div className="grid grid-cols-3 ">
-                  <div className="col-span-2" />
                   <Button
                     onClick={handleClaimCertificate}
                     disabled={claimCertificate.isLoading}
                     size="md"
                   >
-                    Claim certificate NFT
+                    {t('compensations.Compensate.steps.claimed.card.finalClaim')}
                   </Button>
                 </div>
               </div>

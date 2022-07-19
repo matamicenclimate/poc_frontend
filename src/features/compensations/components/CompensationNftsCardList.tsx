@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { UseQueryResult } from 'react-query';
 
 import { Card } from '@/componentes/Card/Card';
@@ -9,6 +10,7 @@ import { useWalletContext } from '@/providers/Wallet.context';
 
 export const CompensationNftsCardList = ({ data }: { data: UseQueryResult<Nft[]> }) => {
   const { hasOptedIn } = useWalletContext();
+  const { t } = useTranslation();
 
   const getIpfsCid = (ipfsUrl: string) => {
     if (ipfsUrl.indexOf('ipfs://') === 0) {
@@ -25,7 +27,7 @@ export const CompensationNftsCardList = ({ data }: { data: UseQueryResult<Nft[]>
             <Card key={document.asa_id}>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="text-2xl">Compensation Certificate</div>
+                  <div className="text-2xl">{t('compensations.Compensate.cardlist.title')}</div>
                 </div>
                 <pre className="overflow-scroll bg-slate-200 p-2 text-xs">
                   {JSON.stringify(document.metadata, null, 2)}
@@ -39,7 +41,7 @@ export const CompensationNftsCardList = ({ data }: { data: UseQueryResult<Nft[]>
                       size="sm"
                       variant="dark"
                     >
-                      View details
+                      {t('compensations.Compensate.cardlist.viewDetails')}
                     </Link>
                     <Link
                       href={`${EXPLORER_URL}asset/${document.asa_id}`}
@@ -57,7 +59,7 @@ export const CompensationNftsCardList = ({ data }: { data: UseQueryResult<Nft[]>
                       size="sm"
                       variant="dark"
                     >
-                      ipfs
+                      {t('compensations.Compensate.cardlist.ipfs')}
                     </Link>
                   </div>
                   <Link to={`/nfts/${document.id}`} as="button" className="w-full" size="sm">

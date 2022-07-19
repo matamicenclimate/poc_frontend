@@ -72,7 +72,8 @@
         "title": "Tu ayuda contra el cambio climático.",
         "subtitle": "Utiliza tus climatecoins para ayudar en la lucha contra el cambio climático.",
         "link": "Ver más"
-      }
+      },
+      "swap": "Intercambio"
     },
     "DayPickerRange": {
       "ranges": {
@@ -99,7 +100,8 @@
     },
     "FileInput": {
       "dragAndDrop": "Arrastrar y soltar",
-      "selectFiles": "Selecciona archivos"
+      "selectFiles": "Selecciona archivos",
+      "ariaLabel": "Subir archivo"
     },
     "ProfileNav": {
       "profile": {
@@ -136,8 +138,18 @@
         "status": "Estado",
         "projectName": "Nombre del projecto",
         "idOperation": "Numero de serie",
-        "actions": "Acciones"
-      }
+        "actions": "Acciones",
+        "txn": "Ver Txn",
+        "projectImage": "Imagen",
+        "transactions": "Transacciones",
+        "filter": "Hoy",
+        "detail": "Detalles",
+        "certificate": "Ver Certificado",
+        "date": "Fecha",
+        "amount": "Cantidad de toneladas de CO2"
+      },
+      "transactions": "Ver transacciones",
+      "noTransactions": "Sin transacciones"
     },
     "Upload": {
       "stepper.CONFIG": "Configuración",
@@ -167,20 +179,72 @@
         "send": "Enviar",
         "continue": "Continuar",
         "back": "Atrás"
-      }
+      },
+      "transactions": "Ver transacciones",
+      "compensations": "Mis compensaciones"
     },
     "Details": {
       "thanks": "¡Gracias por enviar sus créditos!",
       "waitMessage": "Hemos recibido tu solicitud correctamente, un administrador la revisará en detalle antes de realizar la transferencia.",
       "willSendEmail": "Recibirás un correo electrónico con la confirmación.",
+      "label": {
+        "totalCurrency": "En {{currency}}",
+        "totalClimatecoins": "Total Climatecoins",
+        "project": "Proyecto",
+        "registry": "Registro",
+        "projectID": "ID del Proyecto",
+        "standard": "Estándar",
+        "serialNumber": "Número de serie"
+      },
       "claim": {
         "title": "Reclama tu NFT",
         "viewMore": "Más información",
         "alert": "Solo enviaremos C02 a esta dirección, verifique que la red sea correcta."
       },
-      "total": {
-        "label": "En {{currency}}"
+      "modal": {
+        "title": "¿Está seguro?",
+        "claim": "¿Está seguro de que desea swappear este producto? Esta acción no es reversible.",
+        "wallet": "Swappear en la cartera...",
+        "totalCurrency": "En {{currency}}",
+        "totalClimatecoins": "Total Climatecoins"
+      },
+      "menu": {
+        "projectWallet": "Billetera del proyecto",
+        "offers": "Ofertas",
+        "projectDetails": "Detalles del proyecto",
+        "notifications": "Notificaciones"
+      },
+      "mint": {
+        "InfoTitle": "Esperando la acuñación",
+        "InfoClaim": "Pendiente de acuñación por el administrador"
+      },
+      "optIn": {
+        "title": "Optin por Climatecoins",
+        "message": "Tienes que hacer opt-in para recibir Climatecoins para poder continuar"
+      },
+      "swap": {
+        "InfoTitle": "Proceso completado con éxito",
+        "InfoClaim": "El estado actual es 'Intercambiado'."
+      },
+      "pending": {
+        "InfoTitle": "Proyecto generado con éxito",
+        "InfoClaim": "El estado actual es 'Pendiente'. \nLe notificaremos cuando el estado cambie a 'Aceptado'."
+      },
+      "button": {
+        "claim": "Reclamar",
+        "mint": "Acuñar documento",
+        "deleteNft": "Eliminar NFT",
+        "swap": "Intercambiar NFT"
+      },
+      "viewAsset": "Ver activo"
+    },
+    "transactions": {
+      "detail": {
+        "title": "Transacciones del proyecto"
       }
+    },
+    "detail": {
+      "title": "Mi proyecto"
     }
   },
   "head": {
@@ -199,6 +263,9 @@
     "climatecoins": {
       "Buy": {
         "title": "Comprar Climatecoins"
+      },
+      "Compensate": {
+        "title": "Compensación de Climatecoins"
       }
     }
   },
@@ -221,7 +288,15 @@
       "adress": "Dirección de la cartera"
     },
     "edit": "Editar perfil",
-    "avatar": "Avatar"
+    "avatar": "Avatar",
+    "country": "País",
+    "personal_URL": "URL personal",
+    "city": "Ciudad",
+    "button_update": "Actualizar",
+    "button_remove": "Quitar avatar",
+    "button_delete": "Borrar cuenta",
+    "alias": "Alias",
+    "bio": "Biografía"
   },
   "uploadDocuments": {
     "credits": {
@@ -319,6 +394,13 @@
       "button": "Compensar Climatecoins",
       "amount": {
         "label": "Cantidad de Climatecoins"
+      },
+      "description": "Compensa tu huella de carbono quemando climatecoins",
+      "wallet": {
+        "label": "Cartera"
+      },
+      "quantity": {
+        "label": "Cantidad de Climatecoins"
       }
     }
   },
@@ -344,11 +426,37 @@
       },
       "steps": {
         "confirmation": {
-          "title": "Confirmación de compensación"
+          "title": "Confirmación de compensación",
+          "viewTxn": "Ver transacción",
+          "claim": "Gracias por ayudar a compensar la huella de carbono, sus tokens se han quemado con éxito. \nPuede ver la transacción en tiempo real directamente en Algorand.",
+          "certificate": "Descargar certificado"
         },
         "accept": {
           "title": "Aceptar condiciones",
           "description": "¿Está seguro de que desea compensar {{amount}} tokens de Climatecoins, estos tokens se quemarán y ya no estarán disponibles en su cuenta. \n¡Estás ayudando al planeta! \nGracias."
+        },
+        "pending": {
+          "title": "Compensación pendiente",
+          "claim": "Gracias por ayudar a compensar la huella de carbono. \nEl estado actual de su compensación es 'Pendiente'. \nA la espera de la acuñación por parte del administrador."
+        },
+        "rejected": {
+          "title": "Compensación rechazada",
+          "claim": "Su solicitud de compensación ha sido rechazada, los fondos fueron transferidos nuevamente a su cuenta. \nPuede ver la transacción en Algorand."
+        },
+        "approved": {
+          "title": "¡Felicidades! \nCompensación confirmada"
+        },
+        "claimed": {
+          "title": "NFT de compensación",
+          "claim": "Gracias por compensar tu huella de carbono. \nPuede ver su NFT de compensación.",
+          "viewNft": "Ver compensación NFT",
+          "card": {
+            "title": "Reclama tu compensación NFT",
+            "finalClaim": "Reclamar NFT final",
+            "claim": "¡Reclame la compensación NFT para mostrar a todos cuánto se preocupa por el planeta!",
+            "viewReceipt": "Ver recibo nft",
+            "receipt": "Recibo de reclamación NFT"
+          }
         }
       },
       "card": {
@@ -360,11 +468,52 @@
       },
       "amount": {
         "label": "Cantidad"
+      },
+      "cardlist": {
+        "ipfs": "ipfs",
+        "viewDetails": "Ver detalles",
+        "title": "Certificado de Compensación"
       }
     },
     "Details": {
       "downloadCertificate": "Descargar certificado",
       "viewTxn": "Ver transacción"
     }
+  },
+  "compensate": {
+    "History": {
+      "table": {
+        "certificateView": "Abrir certificado",
+        "details": "Ver",
+        "actions": "Acciones",
+        "amount": "Cantidad",
+        "date": "Fecha",
+        "certificate": "Certificado",
+        "operationID": "ID de la Operación",
+        "time": "Hora",
+        "status": "Estado",
+        "txnView": "Ver transacciones",
+        "txn": "Txn"
+      },
+      "status": {
+        "completed": "Terminado",
+        "accepted": "Aceptado",
+        "pending": "Pendiente",
+        "rejected": "Rechazado"
+      },
+      "title": "Historial de compensación"
+    }
+  },
+  "Profile": {
+    "title": "Editar perfil"
+  },
+  "Wallet": {
+    "button": {
+      "delete": "Eliminar billetera",
+      "new": "Agregar nueva billetera",
+      "view": "Vista"
+    },
+    "span": "Cartera",
+    "title": "Mis billeteras"
   }
 }

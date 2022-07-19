@@ -131,19 +131,28 @@
         "txn": "Txn",
         "certificate": "Certificate",
         "date": "Date",
-        "certificateView": "View Certificate",
+        "certificateView": "Open certificate",
         "txnView": "View Transactions",
-        "details": "Details",
-        "time": "Time"
+        "details": "View",
+        "time": "Time",
+        "status": "Status",
+        "operationID": "ID Operation",
+        "actions": "Actions"
       },
-      "title": "Compensation History"
+      "title": "Compensation History",
+      "status": {
+        "accepted": "Accepted",
+        "completed": "Completed",
+        "pending": "Pending",
+        "rejected": "Rejected"
+      }
     }
   },
   "documents": {
     "List": {
       "breadcrumbTitle": "Documents",
       "title": "Developer",
-      "viewDetails": "View details",
+      "viewDetails": "View",
       "table": {
         "title": "My projects",
         "search": "Search...",
@@ -156,7 +165,9 @@
         "txn": "View Txn",
         "certificate": "View Certificate",
         "date": "Date",
-        "detail": "Details"
+        "detail": "Details",
+        "projectImage": "Image",
+        "filter": "Today"
       },
       "transactions": "View transactions",
       "noTransactions": "No transactions"
@@ -210,15 +221,37 @@
         "mint": "Mint document",
         "swap": "Swap NFT"
       },
-      "mint": {
-        "message": "Waiting for mint"
-      },
       "optIn": {
         "message": "You have to opt-in to receive Climatecoins in order to continue",
-        "title": "Optin to climatecoin"
+        "title": "Optin to Climatecoins"
       },
-      "total": {
-        "label": "In {{currency}}"
+      "label": {
+        "totalCurrency": "In {{currency}}",
+        "totalClimatecoins": "Total Climatecoins",
+        "standard": "Standard",
+        "serialNumber": "Serial Number",
+        "project": "Project",
+        "projectID": "ID Project",
+        "registry": "Registry"
+      },
+      "modal": {
+        "title": "Are you sure?",
+        "claim": "Are you sure you want to swap this product? This action is not reversible.",
+        "wallet": "Swap in wallet...",
+        "totalCurrency": "In {{currency}}",
+        "totalClimatecoins": "Total Climatecoins"
+      },
+      "pending": {
+        "InfoTitle": "Project generated successfully",
+        "InfoClaim": "The current status is 'Pending'. We will notify you when the status changes to 'Accepted'."
+      },
+      "mint": {
+        "InfoTitle": "Waiting for Minting",
+        "InfoClaim": "Pending minting by the administrator"
+      },
+      "swap": {
+        "InfoTitle": "Process completed successfully",
+        "InfoClaim": "The current status is 'Swapped'."
       }
     },
     "detail": {
@@ -248,7 +281,7 @@
         "title": "Buy Climatecoins"
       },
       "Compensate": {
-        "title": "Compensateing of Climatecoins"
+        "title": "Compensating of Climatecoins"
       }
     }
   },
@@ -398,11 +431,37 @@
       },
       "steps": {
         "confirmation": {
-          "title": "Compensation confirmation"
+          "title": "Compensation confirmation",
+          "claim": " Thank you for helping to offset the carbon footprint, your tokens have been successfully burned. You can view the transaction in real time directly on Algorand.",
+          "viewTxn": "View transaction",
+          "certificate": "Download certificate"
         },
         "accept": {
           "title": "Accept conditions",
           "description": "Are you sure you want to offset {{amount}} tokens of Climatecoins, these tokens will be burned and will no longer be available in your account. You are helping the planet! Thank you. "
+        },
+        "claimed": {
+          "title": "Compensation NFT",
+          "claim": "Thank you for offsetting your carbon footprint. You can view your compensation NFT.",
+          "viewNft": "View NFT compensation",
+          "card": {
+            "title": "Claim your compensation NFT",
+            "claim": "Claim the compensation NFT to show everyone how much you care for the planet!",
+            "receipt": "Claim receipt NFT",
+            "viewReceipt": "View receipt nft",
+            "finalClaim": "Claim final NFT"
+          }
+        },
+        "pending": {
+          "title": "Pending Compensation",
+          "claim": "Thank you for helping to offset the carbon footprint. The current status of your compensation is 'Pending'. Waiting for minting by the administrator."
+        },
+        "rejected": {
+          "title": "Rejected Compensation",
+          "claim": "Your compensation request has been rejected, the funds were transfered back to your account. You can view the transaction on Algorand."
+        },
+        "approved": {
+          "title": "Congratulations! Confirmed compensation"
         }
       },
       "card": {
@@ -414,6 +473,11 @@
       },
       "amount": {
         "label": "Quantity"
+      },
+      "cardlist": {
+        "title": "Compensation Certificate",
+        "viewDetails": "View details",
+        "ipfs": "ipfs"
       }
     },
     "Details": {
