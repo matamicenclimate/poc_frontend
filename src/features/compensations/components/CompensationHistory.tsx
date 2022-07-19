@@ -38,6 +38,7 @@ export const CompensationHistory = ({ data }: { data: UseQueryResult<Compensatio
 
   const pillVariants: Record<string, PillProps['variant']> = {
     pending: 'new',
+    rejected: 'danger',
     accepted: 'featured',
     swapped: 'comingSoon',
     completed: 'popular',
@@ -49,6 +50,9 @@ export const CompensationHistory = ({ data }: { data: UseQueryResult<Compensatio
     }
     if (state === 'claimed') {
       return t('compensate.History.status.completed');
+    }
+    if (state === 'rejected') {
+      return t('compensate.History.status.rejected');
     }
     return t('compensate.History.status.pending');
   };

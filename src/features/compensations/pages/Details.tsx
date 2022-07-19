@@ -60,17 +60,14 @@ export const CompensationDetails = () => {
           <Card>
             <div className="space-y-8">
               <Title size={5} as={2}>
-                🎉 {t('compensations.Compensate.steps.confirmation.title')}
+                {pendingState && '🚨  ' + t('compensations.Compensate.steps.pending.title')}
+                {approvedState && '🎉  ' + t('compensations.Compensate.steps.approved.title')}
+                {rejectedState && '❌  ' + t('compensations.Compensate.steps.rejected.title')}
               </Title>
               <p className="text-sm text-neutral-4">
-                {pendingState &&
-                  t('compensations.Compensate.steps.confirmation.claim')}
-                {approvedState &&
-                  'Thank you for helping to offset the carbon footprint, your tokens have been ' +
-                    'successfully burned, you can view the transaction on Algorand.'}
-                {rejectedState &&
-                  'Your compensation request has been rejected, the funds were transfered back ' +
-                    'to your account, you can view the transaction on Algorand.'}
+                {pendingState && t('compensations.Compensate.steps.pending.claim')}
+                {approvedState && t('compensations.Compensate.steps.confirmation.claim')}
+                {rejectedState && t('compensations.Compensate.steps.rejected.claim')}
               </p>
               <div className="grid grid-cols-3 ">
                 <Link
@@ -132,13 +129,13 @@ export const CompensationDetails = () => {
                 </p>
                 <p></p>
                 <div className="grid grid-cols-3 ">
-                    <Button
-                      onClick={handleClaimCertificate}
-                      disabled={claimCertificate.isLoading}
-                      size="md"
-                    >
-                      {t('compensations.Compensate.steps.claimed.card.finalClaim')}
-                    </Button>
+                  <Button
+                    onClick={handleClaimCertificate}
+                    disabled={claimCertificate.isLoading}
+                    size="md"
+                  >
+                    {t('compensations.Compensate.steps.claimed.card.finalClaim')}
+                  </Button>
                 </div>
               </div>
             </Card>

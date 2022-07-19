@@ -169,28 +169,24 @@ export const DocumentDetails = () => {
                     {document.status === 'completed' && (
                       <Card>
                         <Title size={5} as={4}>
-                          🚨{t('documents.Details.min.InfoTitle')}
+                          🚨 {t('documents.Details.mint.InfoTitle')}
                         </Title>
                         <p>{t('documents.Details.mint.InfoClaim')}</p>
                       </Card>
                     )}
                     {document.status === 'minted' && (
-                      <>
-                        <div />
-                        {claimNft.isLoading && (
-                          <div className="flex items-center justify-end">
-                            <Spinner size="md" />
-                          </div>
-                        )}
+                      <div className="grid grid-cols-3 gap-4">
+                        <div></div>
+                        <div className="flex items-center justify-end">
+                          <Spinner size="md" />
+                        </div>
                         <Button
-                          className="col-start-3"
-                          size="xs"
                           onClick={handleClaim}
                           disabled={!account?.address || claimNft.isLoading}
                         >
                           {t('documents.Details.button.claim')}
                         </Button>
-                      </>
+                      </div>
                     )}
                     {!hasOptedIn(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)) && (
                       <div className="col-span-3">
@@ -211,7 +207,6 @@ export const DocumentDetails = () => {
                                   Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)
                                 )
                               }
-                              size="xs"
                             >
                               {t('documents.Details.optIn.title')}
                             </Button>

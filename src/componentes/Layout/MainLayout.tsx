@@ -17,8 +17,8 @@ export const MainLayout = ({ title, children }: MainLayoutProps) => {
       <Head title={title} />
       <div className="flex min-h-screen flex-col pb-12">
         <Navbar />
-        <div className="mx-auto w-full max-w-screen-lg flex-grow">{children}</div>
-        <footer className="mx-auto mt-12 w-full max-w-screen-lg">
+        <div className="mx-auto w-full max-w-screen-xl flex-grow">{children}</div>
+        <footer className="mx-auto mt-12 w-full max-w-screen-xl">
           <div className="grid grid-cols-3 gap-4">
             <div></div>
             <div>

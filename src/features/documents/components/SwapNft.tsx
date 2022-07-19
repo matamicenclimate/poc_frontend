@@ -23,14 +23,16 @@ export function SwapNft({ document, account }: SwapNftProps) {
 
   return (
     <>
-      <Button
-        onClick={() => setIsOpen(true)}
-        disabled={swapNft.isLoading}
-        size="xs"
-        className="col-span-1 col-start-3"
-      >
-        {t('documents.Details.button.swap')}
-      </Button>
+      <div className="grid grid-cols-3 gap-4">
+        <Button
+          onClick={() => setIsOpen(true)}
+          disabled={swapNft.isLoading}
+          className="col-span-1 col-start-3"
+        >
+          {t('documents.Details.button.swap')}
+        </Button>
+      </div>
+
       <Dialog
         size="xs"
         isOpen={isOpen}

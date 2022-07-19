@@ -190,7 +190,15 @@ export const CompensateForm = ({ defaultAddress }: { defaultAddress: string }) =
                   dd={formatter(climatecoinValue(methods.getValues('amount')))}
                 />
                 <hr className="col-span-2" />
-                <DlItem dt={'Wallet address'} dd={account?.address ?? ''} fullWidth />
+                <DlItem
+                  dt={'Wallet address'}
+                  dd={
+                    account?.address
+                      ? `${account.address?.slice(0, 15)}...${account.address?.slice(-15)}`
+                      : ''
+                  }
+                  fullWidth
+                />
               </Dl>
               <div className="grid grid-cols-3 gap-4">
                 <div></div>
