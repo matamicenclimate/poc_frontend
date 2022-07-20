@@ -3,7 +3,7 @@ import { Buffer } from 'buffer';
 import { useAlert } from 'react-alert';
 import { useMutation, useQueryClient } from 'react-query';
 
-import { accountKeys } from '@/features/wallet';
+import { accountKeys, useOptinToAsset } from '@/features/wallet';
 import { httpClient } from '@/lib/httpClient';
 import { magiclink } from '@/lib/magiclink';
 
@@ -29,18 +29,25 @@ async function handleSwap(documentId: string): Promise<CarbonDocument> {
 export function useSwapNftForClimatecoins() {
   const queryClient = useQueryClient();
   const alert = useAlert();
+  const optinToAsset = useOptinToAsset();
 
-  return useMutation(({ documentId }: { documentId: string }) => handleSwap(documentId), {
-    onSuccess: (data: CarbonDocument) => {
-      if (data._id) {
-        queryClient.invalidateQueries(documentKeys.detail(data._id));
-      }
-      queryClient.invalidateQueries(accountKeys.all);
-      alert.success('Asset swapped successfully');
-    },
-    onError: (e: Error) => {
-      alert.error('Error claiming nft');
-      console.error(e.message);
-    },
-  });
+  return useMutation(
+    ({ documentId }: { documentId: string }) =>
+      optinToAsset
+        .mutateAsync(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID))
+        .then(() => handleSwap(documentId)),
+    {
+      onSuccess: (data: CarbonDocument) => {
+        if (data._id) {
+          queryClient.invalidateQueries(documentKeys.detail(data._id));
+        }
+        queryClient.invalidateQueries(accountKeys.all);
+        alert.success('Asset swapped successfully');
+      },
+      onError: (e: Error) => {
+        alert.error('Error claiming nft');
+        console.error(e.message);
+      },
+    }
+  );
 }
