@@ -175,10 +175,13 @@ export const DocumentDetails = () => {
                     {document.status === 'minted' && (
                       <div className="grid grid-cols-3 gap-4">
                         <div></div>
-                        <div className="flex items-center justify-end">
-                          <Spinner size="md" />
-                        </div>
+                        {claimNft.isLoading && (
+                          <div className="flex items-center justify-end">
+                            <Spinner size="md" />
+                          </div>
+                        )}
                         <Button
+                          className="col-start-3"
                           onClick={handleClaim}
                           disabled={!account?.address || claimNft.isLoading}
                         >
@@ -186,16 +189,16 @@ export const DocumentDetails = () => {
                         </Button>
                       </div>
                     )}
-                      {!!document.developer_nft && document.status === 'claimed' && account && (
-                        <>
-                          {/* TO DO: the NFT cannot be deleted because once created, it already exists on the blockchain */}
-                          {/* <Button variant="danger" size="xs" disabled>
+                    {!!document.developer_nft && document.status === 'claimed' && account && (
+                      <>
+                        {/* TO DO: the NFT cannot be deleted because once created, it already exists on the blockchain */}
+                        {/* <Button variant="danger" size="xs" disabled>
                             {t('documents.Details.button.deleteNft')}
                           </Button> */}
-                          <div />
-                          <SwapNft document={document} account={account?.address} />
-                        </>
-                      )}
+                        <div />
+                        <SwapNft document={document} account={account?.address} />
+                      </>
+                    )}
                     {document.status === 'swapped' && (
                       <div className="col-span-3">
                         <Card>
