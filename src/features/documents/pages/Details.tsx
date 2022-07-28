@@ -106,6 +106,32 @@ export const DocumentDetails = () => {
             data={document}
             render={(document) => (
               <div className="space-y-8">
+                {document.status === 'pending' && (
+                  <Card shadow={false}>
+                    <Title size={5} as={4}>
+                      ✅ {t('documents.Details.pending.InfoTitle')}
+                    </Title>
+                    <p>{t('documents.Details.pending.InfoClaim')}</p>
+                  </Card>
+                )}
+                {document.status === 'completed' && (
+                  <Card shadow={false}>
+                    <Title size={5} as={4}>
+                      🚨 {t('documents.Details.mint.InfoTitle')}
+                    </Title>
+                    <p>{t('documents.Details.mint.InfoClaim')}</p>
+                  </Card>
+                )}
+                {document.status === 'swapped' && (
+                  <div className="col-span-3">
+                    <Card shadow={false}>
+                      <Title size={5} as={4}>
+                        ✅ {t('documents.Details.swap.InfoTitle')}
+                      </Title>
+                      <p>{t('documents.Details.swap.InfoClaim')}</p>
+                    </Card>
+                  </div>
+                )}
                 <Card>
                   <div className="mb-8 space-y-4">
                     <p className="text-sm text-neutral-4">{document.description}</p>
@@ -156,22 +182,7 @@ export const DocumentDetails = () => {
                         dd={document.registry.name}
                       />
                     </Dl>
-                    {document.status === 'pending' && (
-                      <Card>
-                        <Title size={5} as={4}>
-                          ✅ {t('documents.Details.pending.InfoTitle')}
-                        </Title>
-                        <p>{t('documents.Details.pending.InfoClaim')}</p>
-                      </Card>
-                    )}
-                    {document.status === 'completed' && (
-                      <Card>
-                        <Title size={5} as={4}>
-                          🚨 {t('documents.Details.mint.InfoTitle')}
-                        </Title>
-                        <p>{t('documents.Details.mint.InfoClaim')}</p>
-                      </Card>
-                    )}
+
                     {document.status === 'minted' && (
                       <div className="grid grid-cols-3 gap-4">
                         <div></div>
@@ -198,16 +209,6 @@ export const DocumentDetails = () => {
                         <div />
                         <SwapNft document={document} account={account?.address} />
                       </>
-                    )}
-                    {document.status === 'swapped' && (
-                      <div className="col-span-3">
-                        <Card>
-                          <Title size={5} as={4}>
-                            ✅ {t('documents.Details.swap.InfoTitle')}
-                          </Title>
-                          <p>{t('documents.Details.swap.InfoClaim')}</p>
-                        </Card>
-                      </div>
                     )}
                   </div>
                 </Card>
