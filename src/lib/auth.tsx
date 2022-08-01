@@ -24,20 +24,16 @@ async function loadUser(): Promise<AuthUser | null> {
   console.log('loading user ...', storage.getToken());
   if (process.env.NODE_ENV === 'test') return { name: 'Fernando' } as AuthUser;
   if (!storage.getToken()) return null;
+  const isLoggedIn = await magiclink.user.isLoggedIn();
 
-  try {
-    console.log('get user token');
-    const start = performance.now();
+  if (isLoggedIn) {
     /* Get the DID for the user */
     const jwt = await magiclink.user.getIdToken();
-    console.log('got user token check', performance.now() - start);
     storage.setToken(jwt);
 
     /* Get user metadata including email */
     const userMetadata = await getUser();
     return userMetadata;
-  } catch {
-    return null;
   }
 
   return null;
