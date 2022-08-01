@@ -9,10 +9,7 @@
       "pageTitle": "Access to Climatecoin",
       "safetyWarning": "Please make sure that you access from",
       "form": {
-        "email": {
-          "placeholder": "Write your email...",
-          "label": "Email"
-        }
+        "email": ""
       }
     },
     "Register": {
@@ -120,6 +117,14 @@
     "base": {
       "accept": "Accept",
       "cancel": "Cancel"
+    },
+    "__i18n_ally_root__": {
+      "__i18n_ally_root__": {
+        "base": {
+          "cancel": "",
+          "accept": ""
+        }
+      }
     }
   },
   "dialogs.base.accept": "Accept",
@@ -232,7 +237,8 @@
         "serialNumber": "Serial Number",
         "project": "Project",
         "projectID": "ID Project",
-        "registry": "Registry"
+        "registry": "Registry",
+        "description": "Project description"
       },
       "modal": {
         "title": "Are you sure?",
@@ -368,7 +374,13 @@
       "type": "Type",
       "creditStart": "Credit start",
       "url": "Project URL",
-      "registration": "Registration date"
+      "registration": "Registration date",
+      "project": {
+        "video": "Project Video",
+        "title": "Project Title",
+        "type": "Project type",
+        "url": "Project URL"
+      }
     },
     "registry": {
       "name": "Name of registry",
@@ -379,6 +391,9 @@
     },
     "validation": {
       "report": "Validation report"
+    },
+    "send": {
+      "button": "Send"
     }
   },
   "validation": {
@@ -386,7 +401,10 @@
     "errors.format.image": "Required field. Required format: png, jpg or jpeg",
     "errors.format.pdf": "Invalid format. Required format: pdf",
     "errors.format": "Invalid format",
-    "errors.required": "Required field"
+    "errors.required": "Required field",
+    "errors": {
+      "format": "Invalid format"
+    }
   },
   "wallet.Wallet.title": "Wallet",
   "climatecoins": {

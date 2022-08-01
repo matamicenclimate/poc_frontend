@@ -15,7 +15,6 @@
       },
       "pageTitle": "Acceso a Climatecoin",
       "safetyWarning": "Por favor, asegúrese de acceder desde",
-      "pageTitlev": "",
       "login": "Acceso con Magiclink"
     },
     "Register": {
@@ -194,7 +193,8 @@
         "registry": "Registro",
         "projectID": "ID del Proyecto",
         "standard": "Estándar",
-        "serialNumber": "Número de serie"
+        "serialNumber": "Número de serie",
+        "description": "Descripción del Proyecto"
       },
       "claim": {
         "title": "Reclama tu NFT",
@@ -203,7 +203,7 @@
       },
       "modal": {
         "title": "¿Está seguro?",
-        "claim": "¿Está seguro de que desea swappear este producto? Esta acción no es reversible.",
+        "claim": "¿Seguro que quieres cambiar este producto? Esta acción no es reversible.",
         "wallet": "Swappear en la cartera...",
         "totalCurrency": "En {{currency}}",
         "totalClimatecoins": "Total Climatecoins"
@@ -327,7 +327,10 @@
       "project.video": "Video del proyecto",
       "title": "Título",
       "project": {
-        "video": ""
+        "video": "Vídeo del proyecto",
+        "url": "URL del proyecto",
+        "title": "Título del Proyecto",
+        "type": "Tipo de proyecto"
       },
       "type": "Tipo",
       "video": "Video",
@@ -355,7 +358,7 @@
       "link": "Link del registro"
     },
     "send": {
-      "button": ""
+      "button": "Enviar"
     },
     "validation": {
       "report": "Informe de validación"
@@ -372,7 +375,7 @@
     "errors.format": "Formato inválido",
     "errors.required": "Campo requerido",
     "errors": {
-      "format": ""
+      "format": "Formato inválido"
     }
   },
   "wallet.Wallet.title": "Cartera",

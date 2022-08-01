@@ -16,7 +16,6 @@
       },
       "login": "Accès avec Magiclink",
       "pageTitle": "Accès au Climatecoin",
-      "pageTitlev": "",
       "safetyWarning": "Veuillez vous assurer que vous accédez à partir de"
     },
     "Register": {
@@ -84,7 +83,8 @@
       },
       "wallet": {
         "wallet": "Portefeuille"
-      }
+      },
+      "burn": "Compenser"
     },
     "Overview": {
       "activity": "Activité",
@@ -217,7 +217,7 @@
       "compensations": "Mes rémunérations"
     },
     "Details": {
-      "thanks": "Merci d'avoir soumis vos crédits !",
+      "thanks": "Merci d'avoir soumis vos crédits!",
       "waitMessage": "Nous avons bien reçu votre demande, un administrateur l'examinera en détail avant d'effectuer le transfert.",
       "willSendEmail": "Vous recevrez un email avec la confirmation.",
       "claim": {
@@ -258,9 +258,19 @@
         "registry": "Enregistrement",
         "projectID": "Identification d'projet",
         "standard": "Standard",
-        "serialNumber": "Numéro de série"
+        "serialNumber": "Numéro de série",
+        "totalClimatecoins": "Total des pièces climatiques",
+        "totalCurrency": "En {{currency}}",
+        "description": "Description du projet"
       },
-      "viewAsset": "Afficher l'actif"
+      "viewAsset": "Afficher l'actif",
+      "modal": {
+        "title": "Êtes-vous sûr?",
+        "totalClimatecoins": "Total des pièces climatiques",
+        "wallet": "Échange en portefeuille...",
+        "totalCurrency": "En {{currency}}",
+        "claim": "Voulez-vous vraiment échanger ce produit ? \nCette action n'est pas réversible"
+      }
     },
     "transactions": {
       "detail": {
@@ -343,11 +353,19 @@
       "report": "Rapport de suivi"
     },
     "project": {
-      "url": "",
+      "url": "URL du projet",
       "video": "Vidéo",
       "title": "Titre",
       "creditEnd": "Fin des crédits",
-      "creditStart": "Début du crédit"
+      "creditStart": "Début du crédit",
+      "project": {
+        "video": "Vidéo du projet",
+        "url": "URL du projet",
+        "title": "Titre du projet",
+        "type": "Type de projet"
+      },
+      "type": "Taper",
+      "registration": "Date d'inscription"
     },
     "projectCover": "Images du projet : couverture",
     "projectLatitude": "Latitude",
@@ -355,12 +373,12 @@
     "projectLongitude": "Longitude",
     "projectThumbnail": "Images du projet : vignette",
     "registry": {
-      "link": "",
-      "name": ""
+      "link": "Lien de registre",
+      "name": "Nom du registre"
     },
     "sdgs": "ODD",
     "send": {
-      "button": ""
+      "button": "Envoyer"
     },
     "serialNumber": "Numéro de série des crédits",
     "standard": "Standard",
@@ -368,16 +386,16 @@
     "title": "Télécharger des documents carbone",
     "type": "Taper",
     "validation": {
-      "report": ""
+      "report": "Rapport de validation"
     },
     "validator": "Validateur",
     "verification": {
-      "report": ""
+      "report": "Rapport de vérification"
     }
   },
   "validation": {
     "errors": {
-      "format": ""
+      "format": "Format invalide"
     }
   },
   "compensations": {
@@ -474,9 +492,16 @@
         "time": "Temps",
         "status": "Statut",
         "txnView": "Afficher les transactions",
-        "txn": "Txn"
+        "txn": "Txn",
+        "details": "Voir",
+        "certificateView": "Ouvrir le certificat"
       },
       "title": "Historique de la rémunération"
+    }
+  },
+  "wallet": {
+    "Wallet": {
+      "title": "Porte monnaie"
     }
   }
 }

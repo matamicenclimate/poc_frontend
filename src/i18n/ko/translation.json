@@ -16,7 +16,6 @@
       },
       "login": "Magiclink로 액세스",
       "pageTitle": "클라이밋코인 접근",
-      "pageTitlev": "",
       "safetyWarning": "에서 액세스하는지 확인하십시오."
     },
     "Register": {
@@ -83,7 +82,9 @@
       "sell": "팔다",
       "wallet": {
         "wallet": "지갑"
-      }
+      },
+      "burn": "보상",
+      "nfts": "NFT"
     },
     "Overview": {
       "activity": "활동",
@@ -255,9 +256,20 @@
         "registry": "기재",
         "projectID": "아이디 프로젝트",
         "standard": "기준",
-        "serialNumber": "일련 번호"
+        "serialNumber": "일련 번호",
+        "totalClimatecoins": "총 기후 코인",
+        "totalCurrency": "{{currency}}",
+        "description": "프로젝트 설명"
       },
-      "viewAsset": "자산 보기"
+      "viewAsset": "자산 보기",
+      "modal": {
+        "title": "확실합니까?",
+        "totalClimatecoins": "총 기후 코인",
+        "wallet": "지갑으로 교환...",
+        "totalCurrency": "{{currency}}",
+        "claim": "이 제품을 교환하시겠습니까? \n이 작업은 되돌릴 수 없습니까"
+      },
+      "thanks": "크레딧을 제출해주셔서 감사합니다!"
     },
     "transactions": {
       "detail": {
@@ -333,15 +345,52 @@
       "button": {
         "accept": "알겠습니다. 감사합니다!"
       },
-      "claim": "메시지가 성공적으로 전송되었습니다. \n며칠 내로 연락드리겠습니다."
+      "claim": "메시지가 성공적으로 전송되었습니다. \n며칠 내로 연락드리겠습니다.",
+      "title": "양식이 성공적으로 제출되었습니다."
     },
     "project": {
-      "registration": "",
+      "registration": "등록 날짜",
       "title": "제목",
       "creditEnd": "크레딧 종료",
       "video": "동영상",
-      "creditStart": "크레딧 시작"
-    }
+      "creditStart": "크레딧 시작",
+      "url": "프로젝트 URL",
+      "project": {
+        "video": "프로젝트 비디오",
+        "url": "프로젝트 URL",
+        "title": "프로젝트 제목",
+        "type": "프로젝트 유형"
+      },
+      "type": "유형"
+    },
+    "registry": {
+      "link": "레지스트리 링크",
+      "name": "레지스트리 이름"
+    },
+    "validation": {
+      "report": "검증 보고서"
+    },
+    "verification": {
+      "report": "확인 보고서"
+    },
+    "send": {
+      "button": "보내다"
+    },
+    "monitoring": {
+      "report": "모니터링 보고서"
+    },
+    "projectCover": "프로젝트 이미지: 표지",
+    "projectLatitude": "위도",
+    "projectLongitude": "경도",
+    "projectLocation": "프로젝트 위치",
+    "sdgs": "SDG의",
+    "projectThumbnail": "프로젝트 이미지: 축소판",
+    "serialNumber": "크레딧의 일련 번호",
+    "standard": "기준",
+    "subtype": "하위 유형",
+    "title": "탄소 문서 업로드",
+    "type": "유형",
+    "validator": "검증자"
   },
   "compensations": {
     "Compensate": {
@@ -437,9 +486,21 @@
         "time": "시간",
         "status": "상태",
         "txnView": "거래 보기",
-        "txn": "Txn"
+        "txn": "Txn",
+        "details": "보다",
+        "certificateView": "인증서 열기"
       },
       "title": "보상내역"
+    }
+  },
+  "validation": {
+    "errors": {
+      "format": "잘못된 형식"
+    }
+  },
+  "wallet": {
+    "Wallet": {
+      "title": "지갑"
     }
   }
 }
