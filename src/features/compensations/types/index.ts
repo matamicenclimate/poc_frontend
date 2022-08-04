@@ -3,7 +3,7 @@ import { Nft } from '@/features/nfts';
 export const compensationKeys = {
   all: ['compensations'] as const,
   lists: () => [...compensationKeys.all, 'list'] as const,
-  me: () => [...compensationKeys.all, 'list', 'me'] as const,
+  me: (filter: Record<string, unknown>) => [...compensationKeys.all, 'list', 'me', JSON.stringify(filter)] as const,
   detail: (id: string) => [...compensationKeys.all, 'detail', id] as const,
 };
 

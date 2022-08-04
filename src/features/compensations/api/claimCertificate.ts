@@ -40,7 +40,6 @@ export function useClaimCertificate() {
   const alert = useAlert();
   return useMutation((claimTxns: CertificateClaimTxns) => handleClaimCertificate(claimTxns), {
     onSuccess: () => {
-      // TODO: fer invalida esto bien, perro
       queryClient.invalidateQueries(compensationKeys.all);
       alert.success('Certificate NFT claimed successfully');
     },
