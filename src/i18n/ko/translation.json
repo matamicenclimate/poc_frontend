@@ -464,10 +464,35 @@
     "button": {
       "delete": "지갑 삭제",
       "new": "새 지갑 추가",
-      "view": "보다"
+      "view": "지갑 보기"
     },
     "span": "지갑",
-    "title": "내 지갑"
+    "title": "내 지갑",
+    "copy": "복사",
+    "filter": {
+      "freeze": "겨울 왕국",
+      "actions": "행위",
+      "assetID": "자산 ID"
+    },
+    "action": {
+      "dialog": {
+        "send": {
+          "acceptLabel": "보내다",
+          "title": "자산 보내기",
+          "claim": "자산을 다른 지갑으로 보냅니다. \n지갑 주소를 입력하세요. \n경고. \n잘못된 주소를 입력하면 자산을 잃게 됩니다."
+        },
+        "delete": {
+          "title": "자산 삭제",
+          "acceptLabel": "삭제",
+          "claim": "이 자산을 삭제하시겠습니까? \n이 작업은 되돌릴 수 없습니다."
+        },
+        "cancel": "취소",
+        "yourAsset": "당신의 자산...",
+        "amount": "수량",
+        "from": "지갑에서...",
+        "to": "보내기..."
+      }
+    }
   },
   "compensate": {
     "History": {
@@ -501,6 +526,14 @@
   "wallet": {
     "Wallet": {
       "title": "지갑"
+    }
+  },
+  "nfts": {
+    "List": {
+      "viewDetails": "세부 정보보기",
+      "assets": "자산 보기",
+      "available": "사용 가능:",
+      "standard": "탄소배출권 @"
     }
   }
 }

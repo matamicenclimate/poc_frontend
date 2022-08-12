@@ -22,7 +22,7 @@ const ddClassName = 'font-bold text-neutral-2';
 type DlItemProps = {
   dt: string;
   dtClassNames?: string;
-  dd: string | string[];
+  dd: string | string[] | React.ReactElement;
   ddClassNames?: string;
   wrapperClassName?: string;
   fullWidth?: boolean;

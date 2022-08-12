@@ -1,21 +1,31 @@
+import clsx from 'clsx';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Card } from '@/componentes/Card/Card';
-import { Button } from '@/componentes/Elements/Button/Button';
-import { Link } from '@/componentes/Elements/Link/Link';
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { Title } from '@/componentes/Elements/Title/Title';
+import { Icon } from '@/componentes/Icon/Icon';
 import { Aside } from '@/componentes/Layout/Aside/Aside';
 import { OperationsMenu } from '@/componentes/Layout/Aside/components/OperationsMenu';
 import { PersonalMenu } from '@/componentes/Layout/Aside/components/PersonalMenu';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
-import { EXPLORER_URL } from '@/config';
+import { useSort } from '@/hooks/useSort';
 import { useAuth } from '@/lib/auth';
+import { useCurrencyContext } from '@/providers/Currency.context';
 import { useWalletContext } from '@/providers/Wallet.context';
+
+import { AssetAction } from '../components/AssetAction';
+import { SendFunds } from '../components/SendFunds';
 
 export const Wallet = () => {
   const { t } = useTranslation();
   const { account } = useWalletContext();
   const { user } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const { sort, toggleSort, renderArrow } = useSort();
+  const { formatter, climatecoinValue } = useCurrencyContext();
 
   const getProfileAvatar = () => {
     if (user?.avatar?.url) {
@@ -23,6 +33,64 @@ export const Wallet = () => {
     }
     return 'avatar-placeholder.jpg';
   };
+
+  const renderNfts = () => {
+    if (account?.assets) {
+      return (
+        <>
+          {account.assets.map((asset) => (
+            <tbody key={asset['asset-id']}>
+              <td className="flex">
+                <div className="flex">
+                  <span>{asset['asset-id']}</span>
+                </div>
+              </td>
+              <td>
+                <div className="flex flex-col">
+                  <span> {t('intlNumber', { val: asset.amount.toFixed(2) })} CC</span>
+                  <span className="text-xs text-neutral-4">
+                    {formatter(climatecoinValue(Number(asset.amount)))}
+                  </span>
+                </div>
+              </td>
+              <td>
+                <div>
+                  {asset['is-frozen'] ? (
+                    <span className="text-primary-red">Yes</span>
+                  ) : (
+                    <span className="text-primary-brightGreen">No</span>
+                  )}
+                </div>
+              </td>
+              <td>
+                <div className="flex justify-center">
+                  <AssetAction
+                    asset={asset}
+                    account={account?.address}
+                    disabled={asset['is-frozen']}
+                    type="send"
+                  />
+                  <AssetAction
+                    asset={asset}
+                    account={account?.address}
+                    disabled={asset['is-frozen']}
+                    className="pl-5"
+                    type="remove"
+                  />
+                </div>
+              </td>
+            </tbody>
+          ))}
+        </>
+      );
+    }
+    if (!account?.assets) {
+      return <>No existen assets para visualizar</>;
+    }
+    return <Spinner />;
+  };
+
+  const thStyles = 'flex cursor-pointer text-sm items-center pb-3';
 
   return (
     <MainLayout title={t('head.Wallet.title')}>
@@ -51,63 +119,76 @@ export const Wallet = () => {
                 {t('Wallet.title')}
               </Title>
               {account?.address && (
-                <Card padding={'sm'}>
-                  <div className="flex flex-row items-center justify-between">
-                    <div className="flex flex-col space-y-1 text-sm text-neutral-4">
-                      <span> {t('Wallet.span')} 1 (10,50 cc)</span>
-                      <div className="inline-flex items-center font-bold text-black">
-                        {account?.address.slice(0, 10)}...{account.address?.slice(-10)}
-                        <img src="/icons/algoexplorer.png" className="ml-2 h-4 w-4 rounded-full" />
+                <Card padding={'sm'} rounded="sm" shadow={false}>
+                  <div className="flex flex-col items-center">
+                    <div className="w-full flex-row justify-between text-sm text-neutral-4">
+                      <div>
+                        <span> {t('Wallet.span')} #1 </span>
+                      </div>
+                      <div className="justify-items-end font-bold text-black">
+                        <span className="px-4 ">{account?.address}</span>
+                        <span className="text-primary-calmGreen">{t('Wallet.copy')}</span>
                       </div>
                     </div>
-                    <div className="flex space-x-3">
-                      <Link
-                        href={`${EXPLORER_URL}address/${encodeURIComponent(
-                          account?.address as string
-                        )}`}
-                        className="inline-flex items-center font-bold no-underline"
-                      >
-                        <Button
-                          type="button"
-                          className="bg-neutral-7 py-1"
-                          variant="grey"
-                          size="md"
-                        >
-                          {t('Wallet.button.view')}
-                        </Button>
-                      </Link>
-                      <Button type="button" variant="danger" className="py-1" size="md" disabled>
-                        {t('Wallet.button.delete')}
-                      </Button>
+
+                    <div className="flex">
+                      <button onClick={() => setIsOpen(!isOpen)}>
+                        <Icon id="arrow-down-simple-line" className="h-9 w-9" />
+                      </button>
                     </div>
+                    <SendFunds account={account} />
                   </div>
+
+                  {isOpen === true && (
+                    <div>
+                      <form onSubmit={(e) => e.preventDefault()}>
+                        <div className="items-left flex flex-col space-y-3">
+                          <Title size={5} as={5} className="mt-6">
+                            {t('Wallet.table.title')}
+                          </Title>
+                          <table className="font-Poppins w-full text-sm font-medium text-primary">
+                            <thead className="border-b-2 border-neutral-6 text-left text-xs text-neutral-4">
+                              <th>
+                                <div
+                                  className={clsx(thStyles)}
+                                  onClick={() => toggleSort('assetId')}
+                                >
+                                  {t('Wallet.filter.assetID')}
+                                  {renderArrow('assetId')}
+                                </div>
+                              </th>
+                              <th>
+                                <div
+                                  className={clsx(thStyles)}
+                                  onClick={() => toggleSort('amount')}
+                                >
+                                  {t('compensate.History.table.amount')} {renderArrow('amount')}
+                                </div>
+                              </th>
+                              <th>
+                                <div
+                                  className={clsx(thStyles)}
+                                  onClick={() => toggleSort('isFrozen')}
+                                >
+                                  {t('Wallet.filter.freeze')} {renderArrow('isFrozen')}
+                                </div>
+                              </th>
+                              <th className="flex justify-center">
+                                <div className={clsx(thStyles)}> {t('Wallet.filter.actions')}</div>
+                              </th>
+                            </thead>
+                            {renderNfts()}
+                          </table>
+                        </div>
+                      </form>
+                    </div>
+                  )}
                 </Card>
               )}
-              {/* TO DO: at this time it is not possible to have multiple wallets. You can only have the wallet provided by Magic Link*/}
-              <div className="mt-8 flex w-full justify-center">
-                <Button type="button" variant="primary" className="py-1" size="md" disabled>
-                  + {t('Wallet.button.new')}
-                </Button>
-              </div>
             </Card>
           </div>
         </main>
       </div>
     </MainLayout>
-    //   {!hasOptedIn(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string)) && (
-    //     <Card padding="sm">
-    //       <div className="flex items-center justify-between">
-    //         <div>You have to opt-in to receive Climatecoins in order to continue</div>
-    //         <Button
-    //           onClick={() =>
-    //             optinToAsset.mutate(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID as string))
-    //           }
-    //           size="xs"
-    //         >
-    //           opt in to climatecoin
-    //         </Button>
-    //       </div>
-    //     </Card>
-    //   )}
   );
 };

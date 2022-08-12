@@ -514,9 +514,42 @@
     "button": {
       "delete": "Eliminar billetera",
       "new": "Agregar nueva billetera",
-      "view": "Vista"
+      "view": "Ver billetera"
     },
     "span": "Cartera",
-    "title": "Mis billeteras"
+    "title": "Mi billetera",
+    "copy": "Copiar",
+    "filter": {
+      "freeze": "Congelado",
+      "actions": "Acciones",
+      "assetID": "ID de activo"
+    },
+    "action": {
+      "dialog": {
+        "send": {
+          "acceptLabel": "Enviar",
+          "title": "Enviar activo",
+          "claim": "Envía tu activo a otra billetera. \nIngrese la dirección de la billetera. \nAdvertencia. \nSi ingresa la dirección incorrecta, perderá su activo."
+        },
+        "delete": {
+          "title": "Eliminar activo",
+          "acceptLabel": "Borrar",
+          "claim": "¿Está seguro de que desea eliminar este recurso? \nEsta acción no es reversible."
+        },
+        "cancel": "Cancelar",
+        "yourAsset": "Tu activo...",
+        "amount": "Cantidad",
+        "from": "De la billetera...",
+        "to": "Enviar a..."
+      }
+    }
+  },
+  "nfts": {
+    "List": {
+      "viewDetails": "Ver detalles",
+      "assets": "Ver activo",
+      "available": "Disponible:",
+      "standard": "Crédito de emisión de carbono @"
+    }
   }
 }

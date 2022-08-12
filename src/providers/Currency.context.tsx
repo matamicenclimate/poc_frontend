@@ -58,7 +58,7 @@ export const CurrencyProvider = ({ initialData, children }: ProviderProps) => {
 
 export const useCurrencyContext = () => {
   const ctx = useContext(CurrencyContext);
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   if (!ctx) {
     throw new Error('useCurrencyContext must be used within a CurrencyContextProvider');
   }
@@ -88,6 +88,10 @@ export const useCurrencyContext = () => {
     }).format(convertCurrency(amountInCents));
   };
 
+  const formatToCC = (amount: number) => {
+    return `${t('intlNumber', { val: amount.toFixed(2) })} CC`;
+  };
+
   const climatecoinValue = (amountOfClimatecoins: number, target?: keyof typeof currencies) => {
     const climatecoin_per_usd = exchangeRate.data?.usd_climatecoin;
     if (!climatecoin_per_usd) return 0;
@@ -103,6 +107,7 @@ export const useCurrencyContext = () => {
     centsToFixed,
     formatter,
     climatecoinValue,
+    formatToCC,
     currencySymbol: simbols[state.currency],
   };
 };

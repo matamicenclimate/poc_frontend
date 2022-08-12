@@ -470,10 +470,35 @@
     "button": {
       "delete": "Supprimer le portefeuille",
       "new": "Ajouter un nouveau portefeuille",
-      "view": "Voir"
+      "view": "Voir le portefeuille"
     },
     "span": "Porte monnaie",
-    "title": "Mes portefeuilles"
+    "title": "Mon portefeuille",
+    "copy": "Copie",
+    "filter": {
+      "freeze": "Congelé",
+      "actions": "Actions",
+      "assetID": "ID de l'élément"
+    },
+    "action": {
+      "dialog": {
+        "send": {
+          "acceptLabel": "Envoyer",
+          "title": "Envoyer l'actif",
+          "claim": "Envoyez votre actif vers un autre portefeuille. \nEntrez l'adresse du portefeuille. \nAvertissement. \nSi vous entrez la mauvaise adresse, vous perdrez votre actif."
+        },
+        "delete": {
+          "title": "Supprimer l'actif",
+          "acceptLabel": "Effacer",
+          "claim": "Voulez-vous vraiment supprimer cet élément ? \nCette action n'est pas réversible."
+        },
+        "cancel": "Annuler",
+        "yourAsset": "Votre atout...",
+        "amount": "Quantité",
+        "from": "Du portefeuille...",
+        "to": "Envoyer à..."
+      }
+    }
   },
   "compensate": {
     "History": {
@@ -502,6 +527,14 @@
   "wallet": {
     "Wallet": {
       "title": "Porte monnaie"
+    }
+  },
+  "nfts": {
+    "List": {
+      "viewDetails": "Voir les détails",
+      "assets": "Afficher l'actif",
+      "available": "Disponible:",
+      "standard": "Crédit d'émission de carbone @"
     }
   }
 }

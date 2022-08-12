@@ -22,7 +22,7 @@ interface Account {
   'total-created-assets': number;
 }
 
-interface Asset {
+export interface Asset {
   amount: number;
   'asset-id': number;
   deleted: boolean;
