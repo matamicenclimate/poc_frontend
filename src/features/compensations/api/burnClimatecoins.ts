@@ -1,3 +1,4 @@
+import { SignedTxn } from 'algorand-session-wallet';
 import algosdk from 'algosdk';
 import { Buffer } from 'buffer';
 import { useAlert } from 'react-alert';
@@ -7,7 +8,6 @@ import { httpClient } from '@/lib/httpClient';
 import { queryClient } from '@/lib/react-query';
 import { sw } from '@/lib/sessionWallet';
 
-import { SignedTxn } from '../../../../../algorand-session-wallet';
 import { Compensation, CompensationCalculation, compensationKeys } from '../types';
 
 async function handleBurnClimatecoins({
