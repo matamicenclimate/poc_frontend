@@ -14,6 +14,7 @@ const styles = {
   3: 'text-[40px]',
   4: 'text-[32px]',
   5: 'text-[24px]',
+  6: 'text-[18px]',
 };
 
 export const Title = ({ size, as = undefined, children, className }: TitleProps) => {
