@@ -11,6 +11,7 @@ export interface Notification {
   title: string;
   createdAt: Date;
   updatedAt: Date;
+  extended_message: string;
   __v: number;
   user: { _id: string };
   id: string;

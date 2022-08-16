@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Link } from '@/componentes/Elements/Link/Link';
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
+import { Tooltip } from '@/componentes/Form/Tooltip';
 import { Icon } from '@/componentes/Icon/Icon';
 import { useGetNotifications } from '@/componentes/Layout/Navbar/api/useGetNotifications';
 import { useMarkNotificationsAsRead } from '@/componentes/Layout/Navbar/api/useMarkNotificationsAsRead';
@@ -85,7 +86,11 @@ export const NotificationNav = () => {
                     </div>
                     <div className="flex-grow space-y-1 pl-3">
                       <div className="flex w-full justify-between">
-                        <div className="font-medium">{notification.title}</div>
+                        <div className="flex justify-center">
+                          <div className="pr-2 font-medium">{notification.title}</div>
+                          {notification.extended_message &&
+                            renderExtendedInfo(notification.extended_message)}
+                        </div>
                         <div className="break-normal text-xs">{getDate()}</div>
                       </div>
                       <div className="text-xs text-neutral-5">{notification.description}</div>
@@ -107,6 +112,8 @@ export const NotificationNav = () => {
       </div>
     );
   };
+
+  const renderExtendedInfo = (info: string) => <Tooltip info={info} />;
 
   return (
     <div className="flex items-center">
