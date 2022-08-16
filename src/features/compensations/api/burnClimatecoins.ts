@@ -4,17 +4,19 @@ import { useAlert } from 'react-alert';
 import { useMutation } from 'react-query';
 
 import { httpClient } from '@/lib/httpClient';
-import { magiclink } from '@/lib/magiclink';
 import { queryClient } from '@/lib/react-query';
+import { sw } from '@/lib/sessionWallet';
 
+import { SignedTxn } from '../../../../../algorand-session-wallet';
 import { Compensation, CompensationCalculation, compensationKeys } from '../types';
 
 async function handleBurnClimatecoins({
   amount,
-  signedParamsTxn,
-  signedFundsTxn,
-  encodedBurnTxn,
   encodedTransferTxn,
+  encodedFundsTxn,
+  encodedParamsTxn,
+  encodedBurnTxn,
+  signature,
   nftIds,
 }: CompensationCalculation): Promise<Compensation> {
   // skip this in testing
@@ -26,23 +28,27 @@ async function handleBurnClimatecoins({
     });
   }
 
-  // convert the txns to buffers
-  const oracleTxnBuffer = Buffer.from(Object.values(signedParamsTxn));
-  const fundsTxnBuffer = Buffer.from(Object.values(signedFundsTxn));
-  const transferTxnBuffer = Buffer.from(Object.values(encodedTransferTxn));
-  const burnTxnBuffer = Buffer.from(Object.values(encodedBurnTxn));
-
-  // decode and sign
-  const signedTransferTxn = await magiclink.algorand.signTransaction(
-    algosdk.decodeUnsignedTransaction(transferTxnBuffer).toByte()
+  // convert the txns to Transaction objects
+  const transferTxn = algosdk.decodeUnsignedTransaction(
+    Buffer.from(Object.values(encodedTransferTxn))
   );
-  const signedBurnTxn = await magiclink.algorand.signTransaction(
-    algosdk.decodeUnsignedTransaction(burnTxnBuffer).toByte()
-  );
+  const fundsTxn = algosdk.decodeUnsignedTransaction(Buffer.from(Object.values(encodedFundsTxn)));
+  const oracleTxn = algosdk.decodeUnsignedTransaction(Buffer.from(Object.values(encodedParamsTxn)));
+  const burnTxn = algosdk.decodeUnsignedTransaction(Buffer.from(Object.values(encodedBurnTxn)));
 
-  const signedTxn = [signedTransferTxn, fundsTxnBuffer, oracleTxnBuffer, signedBurnTxn];
+  const signedTxns: SignedTxn[] | undefined = await sw?.signTxn([
+    transferTxn,
+    fundsTxn,
+    oracleTxn,
+    burnTxn,
+  ]);
+  if (!signedTxns) return Promise.reject('Transaction not signed');
+
+  const signedTxnBlobs = signedTxns.map((stxn) => stxn.blob);
+
   return httpClient.post(`/compensations`, {
-    signedTxn,
+    signedTxn: signedTxnBlobs,
+    signature,
     amount,
     nfts: nftIds,
   });

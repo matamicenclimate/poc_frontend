@@ -5,10 +5,12 @@ import { useTranslation } from 'react-i18next';
 import { ReactComponent as LockIcon } from '@/assets/icons/bx-lock-alt.svg';
 import LogoMagic from '@/assets/icons/bx-magic-link.png';
 import { Button } from '@/componentes/Elements/Button/Button';
+import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import { Title } from '@/componentes/Elements/Title/Title';
 import { Form } from '@/componentes/Form/Form';
 import { Input } from '@/componentes/Form/Inputs';
 import { LoginLayout } from '@/componentes/Layout/LoginLayout';
+import { WalletIssuer } from '@/features/auth';
 import { useAuth } from '@/lib/auth';
 
 export const Login = () => {
@@ -20,7 +22,7 @@ export const Login = () => {
   const handleLogin = async (data: { email: string }) => {
     setIsLoading(true);
     try {
-      await auth.login({ email: data.email });
+      await auth.login({ email: data.email, issuer: WalletIssuer.MAGICLINK });
     } catch (e) {
       alert.error('Error loging in');
     } finally {
@@ -52,7 +54,7 @@ export const Login = () => {
             placeholder={t('auth.Login.form.email.placeholder')}
             required
           />
-
+          <div className="flex items-center justify-center">{isLoading ? <Spinner /> : null}</div>
           <Button type="submit" disabled={isLoading} size="sm">
             <div className="flex items-center justify-center">
               <>

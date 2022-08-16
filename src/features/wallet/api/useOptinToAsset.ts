@@ -1,10 +1,8 @@
-import algosdk, { waitForConfirmation } from 'algosdk';
-import { Buffer } from 'buffer';
+import algosdk, { Transaction } from 'algosdk';
 import { useAlert } from 'react-alert';
 import { useMutation, useQueryClient } from 'react-query';
 
 import { getClient } from '@/lib/algosdk';
-import { magiclink } from '@/lib/magiclink';
 import { useWalletContext } from '@/providers/Wallet.context';
 
 export function useOptinToAsset() {
@@ -13,13 +11,11 @@ export function useOptinToAsset() {
 
   const { account, hasOptedIn } = useWalletContext();
 
-  const optinToAsset = async (asaId: number) => {
+  const optinToAsset = async (asaId: number): Promise<Transaction | undefined> => {
     // create the asset accept transaction
-    console.log('opting in...');
 
-    if (hasOptedIn(asaId)) Promise.resolve();
+    if (hasOptedIn(asaId)) return Promise.resolve(undefined);
     if (!account?.address) return;
-    console.log('opting in...');
     const suggestedParams = await getClient().getTransactionParams().do();
 
     const transactionOptions = {
@@ -30,26 +26,15 @@ export function useOptinToAsset() {
       suggestedParams,
     };
 
-    const txn = algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject(transactionOptions);
-    console.log({ txn });
-
-    const signedTxn = await magiclink.algorand.signGroupTransactionV2([
-      { txn: Buffer.from(txn.toByte()).toString('base64') },
-    ]);
-
-    const blob = signedTxn.map((txn: string) => new Uint8Array(Buffer.from(txn, 'base64')));
-    const { txId } = await getClient().sendRawTransaction(blob).do();
-    const result = await waitForConfirmation(getClient(), txId, 3);
-
-    console.log({ result });
+    return algosdk.makeAssetTransferTxnWithSuggestedParamsFromObject(transactionOptions);
   };
 
   return useMutation((assetId: number) => optinToAsset(assetId), {
-    onSuccess: () => {
+    onSuccess: (txn) => {
       queryClient.invalidateQueries(['account']);
     },
     onError: () => {
-      alert.error('Error uploading document');
+      alert.error('Error creating the transaction');
     },
   });
 }

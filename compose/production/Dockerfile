@@ -3,6 +3,7 @@ FROM node:16-alpine
 
 # add nginx with settings
 RUN apk add --no-cache nginx
+RUN apk add git
 ADD ./compose/production/nginx.conf /etc/nginx/nginx.conf
 
 # set working directory

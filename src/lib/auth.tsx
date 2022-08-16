@@ -1,74 +1,107 @@
+import { SessionWallet } from 'algorand-session-wallet';
+import algosdk from 'algosdk';
+import { Buffer } from 'buffer';
+import jwtDecode from 'jwt-decode';
 import { AuthProviderConfig, initReactQueryAuth } from 'react-query-auth';
 
 import { Spinner } from '@/componentes/Elements/Spinner/Spinner';
 import {
   AuthUser,
+  ChallengeResponse,
   getUser,
   LoginCredentialsDTO,
   RegisterCredentialsDTO,
-  registerWithEmailAndPassword,
   UserResponse,
 } from '@/features/auth';
 import { httpClient } from '@/lib/httpClient';
+import { queryClient } from '@/lib/react-query';
+import { setSW, sw } from '@/lib/sessionWallet';
 import storage from '@/utils/storage';
 
-import { magiclink } from './magiclink';
+function isJwtExpired(token: string) {
+  let isJwtExpired = false;
+  const { exp }: any = jwtDecode(token);
+  const currentTime = new Date().getTime() / 1000;
 
-async function handleUserResponse(data: UserResponse) {
-  const { jwt, user } = data;
-  storage.setToken(jwt);
-  return user;
+  if (currentTime > exp) isJwtExpired = true;
+
+  return isJwtExpired;
 }
 
 async function loadUser(): Promise<AuthUser | null> {
-  console.log('loading user ...', storage.getToken());
+  const localJWT = storage.getToken();
+  console.log('loading user ...', localJWT);
   if (process.env.NODE_ENV === 'test') return { name: 'Fernando' } as AuthUser;
-  if (!storage.getToken()) return null;
-  const isLoggedIn = await magiclink.user.isLoggedIn();
-
-  if (isLoggedIn) {
-    /* Get the DID for the user */
-    const jwt = await magiclink.user.getIdToken();
-    storage.setToken(jwt);
-
-    /* Get user metadata including email */
-    const userMetadata = await getUser();
-    return userMetadata;
-  }
-
-  return null;
-}
-
-async function loginFn(data: LoginCredentialsDTO): Promise<AuthUser> {
-  const redirectURI = `${window.location.origin}/auth/callback`; // 👈 This will be our callback URI
-
-  const jwt = await magiclink.auth.loginWithMagicLink({ ...data, redirectURI });
-
-  storage.setToken(jwt as string);
+  if (!localJWT || isJwtExpired(localJWT)) return null;
 
   const userMetadata = await getUser();
 
-  const issuer = userMetadata.magic_user.issuer;
-  const publicAddress = userMetadata.magic_user.publicAddress;
-
-  const updateData = { issuer: issuer, publicAddress: publicAddress };
-  httpClient.put(`/users/${userMetadata.id}`, updateData);
+  if (!sw || sw.wname !== userMetadata.issuer)
+    setSW(
+      new SessionWallet(
+        'TestNet',
+        undefined,
+        userMetadata.issuer,
+        userMetadata.email,
+        process.env.REACT_APP_MAGICLINK_PUBLIC as string,
+        process.env.REACT_APP_ALGORAND_RPC_URL as string
+      )
+    );
 
   return userMetadata;
 }
 
-async function registerFn(data: RegisterCredentialsDTO) {
-  const response = await registerWithEmailAndPassword(data);
-  const user = await handleUserResponse(response);
+async function loginFn(data: LoginCredentialsDTO): Promise<AuthUser | null> {
+  const w = new SessionWallet(
+    'TestNet',
+    undefined,
+    data.issuer,
+    data.email,
+    process.env.REACT_APP_MAGICLINK_PUBLIC as string,
+    process.env.REACT_APP_ALGORAND_RPC_URL as string
+  );
 
-  // TODO: fix this
-  return user as unknown as AuthUser;
+  setSW(w);
+  if (!sw) return null;
+
+  if (!(await sw.connect())) return null;
+
+  const challenge: ChallengeResponse = await httpClient.get(
+    `/web3-auth/challenge/${await sw.getDefaultAccount()}`
+  );
+
+  const { challengeTxn } = challenge;
+  const rawTxnChallenge = Buffer.from(Object.values(challengeTxn));
+  const unsignedTxn = algosdk.decodeUnsignedTransaction(rawTxnChallenge);
+  const signedTxns = await sw.signTxn([unsignedTxn], false);
+  const signedTxn = signedTxns[0];
+
+  const response: UserResponse = await httpClient.post(`/web3-auth/login`, {
+    challengeTxn: signedTxn,
+    issuer: data.issuer,
+    email: data.email,
+  });
+
+  storage.setToken(response.jwt as string);
+
+  return response.user;
+}
+
+async function registerFn(data: RegisterCredentialsDTO) {
+  // const response = await registerWithEmailAndPassword(data);
+  // const user = await handleUserResponse(response);
+  //
+  // // TODO: fix this
+  // return user as unknown as AuthUser;
+  return null;
 }
 
 async function logoutFn() {
-  await magiclink.user.logout();
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  sw?.disconnect();
   storage.clearToken();
   window.location.assign(window.location.origin as unknown as string);
+  await queryClient.resetQueries();
 }
 
 const authConfig: AuthProviderConfig<AuthUser | null, unknown> = {

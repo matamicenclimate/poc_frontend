@@ -1,28 +1,35 @@
-import algosdk from 'algosdk';
+import algosdk, { Transaction } from 'algosdk';
 import { Buffer } from 'buffer';
 import { useAlert } from 'react-alert';
 import { useMutation, useQueryClient } from 'react-query';
 
 import { accountKeys, useOptinToAsset } from '@/features/wallet';
 import { httpClient } from '@/lib/httpClient';
-import { magiclink } from '@/lib/magiclink';
+import { sw } from '@/lib/sessionWallet';
 
 import { CarbonDocument, documentKeys } from '../types';
 
-async function handleSwap(documentId: string): Promise<CarbonDocument> {
-  const unsignedTxns: Buffer[] = await httpClient.get(
+async function handleSwap(
+  documentId: string,
+  optinTxn: Transaction | undefined
+): Promise<CarbonDocument> {
+  const unsignedTxnsBuffers: Buffer[] = await httpClient.get(
     `/carbon-documents/${documentId}/swap/prepare`
   );
 
-  const unsignedTxnBuffers = unsignedTxns.map((txn) => Buffer.from(Object.values(txn)));
-  const signedTxnBuffersPromises = unsignedTxnBuffers.map((txn) =>
-    magiclink.algorand.signTransaction(algosdk.decodeUnsignedTransaction(txn).toByte())
+  const unsignedTxns = unsignedTxnsBuffers.map((txn) =>
+    algosdk.decodeUnsignedTransaction(Buffer.from(Object.values(txn)))
   );
 
-  const signedTxnBuffers = await Promise.all(signedTxnBuffersPromises);
+  if (optinTxn) unsignedTxns.unshift(optinTxn);
+
+  const signedTxns = await sw?.signTxn(unsignedTxns);
+
+  if (!signedTxns) return Promise.reject('Transaction not signed');
+  const signedTxnsBlob = signedTxns.map((txn) => txn.blob);
 
   return httpClient.post(`/carbon-documents/${documentId}/swap`, {
-    signedTxn: signedTxnBuffers,
+    signedTxn: signedTxnsBlob,
   });
 }
 
@@ -35,7 +42,7 @@ export function useSwapNftForClimatecoins() {
     ({ documentId }: { documentId: string }) =>
       optinToAsset
         .mutateAsync(Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID))
-        .then(() => handleSwap(documentId)),
+        .then((txn: Transaction | undefined) => handleSwap(documentId, txn)),
     {
       onSuccess: (data: CarbonDocument) => {
         if (data._id) {
