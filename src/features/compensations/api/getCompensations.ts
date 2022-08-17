@@ -13,7 +13,7 @@ export type PaginatedCompensationResponse = {
 
 function fetchCompensations(filter: Record<string, unknown>): Promise<PaginatedCompensationResponse> {
   const params = getFromFilter(filter);
-  return httpClient.get(`/compensations/paginated?${params}`);
+  return httpClient.get(`/compensations/by-user/paginated?${params}`);
 }
 
 export function useGetCompensations(sort: SortState, firstIndex?: number, maxItemsPerPage?: number) {
