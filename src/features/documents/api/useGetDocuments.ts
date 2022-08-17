@@ -7,18 +7,26 @@ import { getFromFilter } from '@/utils/queryParams';
 
 import { CarbonDocument, documentKeys } from '../types';
 
-function fetchDocuments(filter: Record<string, unknown>): Promise<CarbonDocument[]> {
+export type PaginatedDocumentsResponse = {
+  data: CarbonDocument[];
+  total: number;
+};
+
+function fetchDocuments(filter: Record<string, unknown>): Promise<PaginatedDocumentsResponse> {
   const params = getFromFilter(filter);
-  return httpClient.get(`/carbon-documents?${params}`);
+  return httpClient.get(`/carbon-documents/by-user/paginated?${params}`);
 }
 
-export function useGetDocuments(filter: Record<any, any>, sort: SortState) {
+export function useGetDocuments(filter: Record<any, any>, sort: SortState, firstIndex?: number, maxItemsPerPage?: number) {
   const { dates, ...newFilter } = filter;
   const parsed = {
     ...newFilter,
     credit_start_lte: dates?.from ? format(dates.from, 'yyyy-MM-dd') : undefined,
     credit_end_gte: dates?.to ? format(dates.to, 'yyyy-MM-dd') : undefined,
     _sort: !!sort.field && !!sort.order ? `${sort.field}:${sort.order}` : undefined,
+    _start: firstIndex ?? '0',
+    _limit: maxItemsPerPage ?? '10',
   };
-  return useQuery(documentKeys.search(parsed), () => fetchDocuments(parsed));
+
+  return useQuery(documentKeys.paginated(parsed), () => fetchDocuments(parsed));
 }

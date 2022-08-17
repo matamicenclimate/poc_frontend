@@ -7,6 +7,8 @@ export const documentKeys = {
     [...documentKeys.all, 'list', JSON.stringify(filter)] as const,
   detail: (id: string) => [...documentKeys.all, 'detail', id] as const,
   form: () => [...documentKeys.all, 'form'] as const,
+  paginated: (filter: Record<string, unknown>) =>
+  [...documentKeys.all, 'paginated', JSON.stringify(filter)] as const,
 };
 
 export interface CarbonDocument {

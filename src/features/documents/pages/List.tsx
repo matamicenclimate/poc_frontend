@@ -15,13 +15,15 @@ import { Aside } from '@/componentes/Layout/Aside/Aside';
 import { OperationsMenu } from '@/componentes/Layout/Aside/components/OperationsMenu';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { PageTitle } from '@/componentes/Layout/PageTitle';
+import { Pagination } from '@/componentes/Pagination/Pagination';
 import Popover from '@/componentes/Popover/Popover';
 import { CarbonDocument } from '@/features/documents';
 import { useSort } from '@/hooks/useSort';
 import { useAuth } from '@/lib/auth';
+import { usePaginationContext } from '@/providers/Pagination.context';
 
 import { PersonalMenu } from '../../../componentes/Layout/Aside/components/PersonalMenu';
-import { useGetDocuments } from '../api/useGetDocuments';
+import { PaginatedDocumentsResponse, useGetDocuments } from '../api/useGetDocuments';
 
 const pillVariants: Record<string, PillProps['variant']> = {
   pending: 'new',
@@ -36,6 +38,7 @@ export const DocumentList = ({
 }) => {
   const { user } = useAuth();
   const { t } = useTranslation();
+  const { firstIndex, maxItemsPerPage, setTotalItems } = usePaginationContext();
 
   const methods = useForm<any>({
     mode: 'onBlur',
@@ -56,7 +59,9 @@ export const DocumentList = ({
   };
 
   const { sort, toggleSort, renderArrow } = useSort();
-  const documents = useGetDocuments(methods.watch(), sort);
+  const paginatedDocumentsResponse = useGetDocuments(methods.watch(), sort, firstIndex, maxItemsPerPage);
+  if (paginatedDocumentsResponse?.data?.total) setTotalItems(paginatedDocumentsResponse.data.total);
+  const itemsToDisplay = paginatedDocumentsResponse?.data?.data?.length || 0;
 
   const getProfileAvatar = () => {
     if (user?.avatar?.url) {
@@ -186,11 +191,12 @@ export const DocumentList = ({
                   </div>
                 </th>
               </thead>
-              <DataRenderer<CarbonDocument[]>
-                data={documents}
+              <DataRenderer<PaginatedDocumentsResponse>
+                data={paginatedDocumentsResponse}
                 render={(model) => (
                   <tbody>
-                    {model.map((document) => (
+                    {
+                    model.data.map((document) => (
                       <tr key={document._id} className="text-left">
                         <td>
                           <div
@@ -235,6 +241,7 @@ export const DocumentList = ({
                 )}
               />
             </table>
+            {itemsToDisplay > 0 && (<Pagination/>)}
           </form>
         </main>
       </div>
