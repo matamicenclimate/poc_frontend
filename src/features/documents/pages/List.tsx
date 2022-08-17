@@ -89,7 +89,7 @@ export const DocumentList = ({
           <div className="mb-4 mt-8 flex flex-col capitalize ">
             <div className="text-2xl  text-black">
               {t('documents.Upload.hi')}
-              {user?.username?.split('@')[0]} 👋🏻
+              {user?.name ? user?.name : user?.email && user?.email?.split('@')[0]} 👋🏻
             </div>
             <div className="mt-2 text-lg text-neutral-5">
               {user?.type}
