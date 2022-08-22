@@ -1,12 +1,15 @@
+import algosdk from 'algosdk';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { Dl, DlItem } from '@/componentes/DescriptionList';
 import { Dialog } from '@/componentes/Dialog/Dialog';
 import { Button } from '@/componentes/Elements/Button/Button';
-import { useCurrencyContext } from '@/providers/Currency.context';
+import { Input } from '@/componentes/Form/Inputs';
+import { formatter } from '@/providers/Wallet.context';
 
-import { Asset, ButtonProps, DialogDataProps } from '../types';
+import { useTransferAsset } from '../api/useTransferAsset';
+import { Asset, AssetTransfer, ButtonProps, DialogDataProps } from '../types';
 
 type AssetActionProps = {
   asset: Asset;
@@ -18,8 +21,51 @@ type AssetActionProps = {
 
 export function AssetAction({ asset, address, disabled, className, type }: AssetActionProps) {
   const { t } = useTranslation();
+  const initialAssetTransfer = { amount: 0, receiver: '', asset: asset };
   const [isOpen, setIsOpen] = useState(false);
-  const { formatToCC } = useCurrencyContext();
+  const [errors, setErrors] = useState<object>({});
+  const [assetTransfer, setAssetTransfer] = useState<AssetTransfer>(initialAssetTransfer);
+  const [validAssetTransfer, setValidassetTransfer] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const sendAsset = useTransferAsset();
+
+  const handleSubmit = () => {
+    if (!isValid(assetTransfer)) return;
+    setIsLoading(true);
+    sendAsset.mutateAsync(assetTransfer).then(() => {
+      close();
+      setIsLoading(false);
+    });
+  };
+
+  const isValid = (assetTransfer: AssetTransfer): boolean => {
+    const detectedErrors: { receiver?: string; amount?: string } = {};
+    if (assetTransfer.receiver && !algosdk.isValidAddress(assetTransfer.receiver))
+      detectedErrors['receiver'] = t('Asset.actions.adress.error');
+    if (assetTransfer.amount >= asset.amount)
+      detectedErrors['amount'] = t('Asset.actions.amount.error');
+    if (assetTransfer.amount < 0) detectedErrors['amount'] = t('Asset.actions.amount.invalid');
+
+    setErrors(detectedErrors);
+    const valid =
+      assetTransfer.amount !== initialAssetTransfer.amount &&
+      assetTransfer.receiver !== initialAssetTransfer.receiver &&
+      Object.keys(detectedErrors).length === 0;
+    setValidassetTransfer(valid);
+    return valid;
+  };
+
+  const handleInput = (assetTransfer: AssetTransfer) => {
+    setAssetTransfer(assetTransfer);
+    isValid(assetTransfer);
+  };
+
+  const close = () => {
+    setIsOpen(false);
+    setAssetTransfer(initialAssetTransfer);
+    setValidassetTransfer(false);
+  };
 
   const send: DialogDataProps = {
     acceptLabel: t('Wallet.action.dialog.send.acceptLabel'),
@@ -55,7 +101,20 @@ export function AssetAction({ asset, address, disabled, className, type }: Asset
           <DlItem
             fullWidth
             dt={t('Wallet.action.dialog.to')}
-            dd={<textarea id="name" name="name" maxLength={70} className="w-full border-2" />}
+            dd={
+              <textarea
+                id="name"
+                name="name"
+                maxLength={70}
+                className="w-full border-2"
+                onBlur={(e: any) =>
+                  handleInput({
+                    ...assetTransfer,
+                    receiver: e.target.value,
+                  })
+                }
+              />
+            }
           />
         </>
       );
@@ -84,12 +143,15 @@ export function AssetAction({ asset, address, disabled, className, type }: Asset
       <Dialog
         size="xs"
         isOpen={isOpen}
-        setIsOpen={() => setIsOpen(false)}
+        setIsOpen={close}
         acceptLabel={DialogData[type].acceptLabel}
         cancelLabel={t('Wallet.action.dialog.cancel')}
         onCancel={() => setIsOpen(!isOpen)}
         title={DialogData[type].title}
         claim={DialogData[type].claim}
+        isValid={validAssetTransfer}
+        isLoading={isLoading}
+        onAccept={handleSubmit}
       >
         <Dl wrapperClassName={'mb-8'}>
           <DlItem
@@ -98,16 +160,36 @@ export function AssetAction({ asset, address, disabled, className, type }: Asset
           />
 
           <hr className="col-span-2" />
+          <DlItem dt={t('Asset.actions.table.id')} dd={asset['asset-id'].toString()} />
+
+          <DlItem dt={t('Asset.actions.table.name')} dd={asset.name} />
+
           <DlItem
-            dt={t('Wallet.action.dialog.yourAsset')}
-            dd={asset['asset-id'].toString()}
+            dt={t('Asset.actions.table.balance')}
+            dd={formatter(asset.amount, asset.decimals) + ' ' + asset['unit-name']}
             ddClassNames={DialogData[type].accentColor}
           />
 
           <DlItem
             dt={t('Wallet.action.dialog.amount')}
-            dd={formatToCC(asset.amount)}
-            ddClassNames={DialogData[type].accentColor}
+            dd={
+              <Input
+                type="number"
+                step="any"
+                name="amount"
+                placeholder="0"
+                required
+                inputClassName="w-full border-2"
+                errors={errors}
+                onBlur={(e: any) =>
+                  handleInput({
+                    ...assetTransfer,
+                    amount: Number(e.target.value) * 10 ** asset.decimals,
+                  })
+                }
+              />
+            }
+            ddClassNames="text-primary-brightGreen"
           />
 
           {renderSendTo()}

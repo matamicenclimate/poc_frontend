@@ -10,12 +10,14 @@
       "form": {
         "email": {
           "placeholder": "Escribe tu correo...",
-          "label": "Correo"
+          "label": "EMAIL"
         }
       },
       "pageTitle": "Acceso a Climatecoin",
       "safetyWarning": "Por favor, asegúrese de acceder desde",
-      "login": "Acceso con Magiclink"
+      "MyAlgo": "Accede con MyAlgo",
+      "WalletConnect": "Acceso con Wallet Connect",
+      "MagicLink": "Acceso con Magiclink"
     },
     "Register": {
       "pageTitle": "Registrarse",
@@ -496,7 +498,8 @@
         "time": "Hora",
         "status": "Estado",
         "txnView": "Ver transacciones",
-        "txn": "Txn"
+        "txn": "Txn",
+        "type": "Tipo "
       },
       "status": {
         "completed": "Terminado",
@@ -522,7 +525,9 @@
     "filter": {
       "freeze": "Congelado",
       "actions": "Acciones",
-      "assetID": "ID de activo"
+      "assetID": "ID de activo",
+      "amount": "Cantidad",
+      "type": "Tipo"
     },
     "action": {
       "dialog": {
@@ -561,6 +566,12 @@
     },
     "asset": {
       "error": "No hay activos para mostrar"
+    },
+    "send": {
+      "Climatecoins": "Enviar ClimateCoins"
+    },
+    "account": {
+      "copied": "Número de cuenta copiado al portapapeles"
     }
   },
   "nfts": {
@@ -569,6 +580,54 @@
       "assets": "Ver activo",
       "available": "Disponible:",
       "standard": "Crédito de emisión de carbono @"
+    }
+  },
+  "Payment": {
+    "adress": {
+      "error": "Dirección inválida"
+    },
+    "txn": {
+      "sign": {
+        "error": "¡Transacción no firmada!"
+      }
+    },
+    "algos": {
+      "sent": {
+        "success": "Algos enviado con éxito",
+        "error": "Error al enviar los algos"
+      }
+    }
+  },
+  "Transfer": {
+    "adress": {
+      "error": "Dirección inválida"
+    },
+    "txn": {
+      "sign": {
+        "error": "¡Transacción no firmada!"
+      }
+    },
+    "asset": {
+      "send": {
+        "success": "Activo enviado con éxito",
+        "error": "Error al enviar el activo"
+      }
+    }
+  },
+  "Asset": {
+    "actions": {
+      "table": {
+        "id": "ID de activo",
+        "name": "Nombre del recurso",
+        "balance": "Tu balance"
+      },
+      "adress": {
+        "error": "Dirección inválida"
+      },
+      "amount": {
+        "invalid": "Monto invalido",
+        "error": "No hay suficiente equilibrio"
+      }
     }
   }
 }

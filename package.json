@@ -22,7 +22,6 @@
   "dependencies": {
     "@craco/craco": "^6.4.3",
     "@headlessui/react": "^1.5.0",
-    "@magic-ext/algorand": "^4.0.0",
     "@popperjs/core": "^2.11.4",
     "@sentry/react": "^6.19.6",
     "@sentry/tracing": "^6.19.6",

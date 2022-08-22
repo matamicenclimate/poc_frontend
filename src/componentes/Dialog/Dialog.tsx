@@ -18,6 +18,7 @@ type DialogProps = {
   onCancel?: () => void;
   cancelLabel?: string;
   isLoading?: boolean;
+  isValid?: boolean;
   children?: JSX.Element;
   iconClose?: boolean;
   size?: keyof typeof sizes;
@@ -35,6 +36,7 @@ export const Dialog = ({
   onCancel,
   cancelLabel,
   isLoading,
+  isValid = true,
   iconClose = true,
   children,
   size = 'default',
@@ -80,7 +82,8 @@ export const Dialog = ({
             className="col-span-2"
             onClick={() => (onAccept ? onAccept() : setIsOpen(false))}
             size="md"
-            disabled={isLoading}
+            disabled={isLoading || !isValid}
+            type="button"
           >
             {acceptLabel ? acceptLabel : t('dialogs.base.accept')}
           </Button>

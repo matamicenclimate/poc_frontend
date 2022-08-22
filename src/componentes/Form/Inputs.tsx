@@ -32,6 +32,7 @@ export type InputProps<FormSchema> = {
   max?: number;
   min?: number;
   step?: string;
+  onBlur?: (e: any) => void;
 };
 
 export function Input<FormSchema extends Record<string, any>>({
@@ -50,13 +51,14 @@ export function Input<FormSchema extends Record<string, any>>({
   iconRight,
   max,
   min,
+  onBlur = (e) => null,
   ...rest
 }: InputProps<FormSchema>) {
   const { t } = useTranslation();
 
-  if (!register) {
+  /*  if (!register) {
     throw new Error('Input component requires a register. Are you using it inside a <Form />');
-  }
+  }*/
 
   return (
     <div className={`relative flex flex-col ${wrapperClassName}`}>
@@ -76,10 +78,11 @@ export function Input<FormSchema extends Record<string, any>>({
             inputClassName,
             errors[name] && 'border-red-500'
           )}
-          {...register(name as Path<FormSchema>)}
+          {...(register && register(name as Path<FormSchema>))}
           {...rest}
           max={max}
           min={min}
+          onBlur={onBlur}
         />
         {!!iconRight && <div className="absolute right-2">{iconRight}</div>}
       </div>
@@ -103,13 +106,15 @@ export function Textarea<FormSchema>({
   errorClassName,
   inputClassName,
   wrapperClassName,
+  max,
+  onBlur = (e) => null,
   ...rest
 }: InputProps<FormSchema>) {
   const { t } = useTranslation();
 
-  if (!register) {
-    throw new Error('Input component requires a register. Are you using it inside a <Form />');
-  }
+  // if (!register) {
+  //   throw new Error('Input component requires a register. Are you using it inside a <Form />');
+  // }
 
   return (
     <div className={`flex flex-col ${wrapperClassName}`}>
@@ -117,13 +122,15 @@ export function Textarea<FormSchema>({
       <textarea
         id={name}
         placeholder={placeholder}
+        maxLength={max}
         className={clsx(
           `rounded-md border-2 p-2 text-sm`,
           inputClassName,
           errors[name] && 'border-red-500'
         )}
-        {...register(name)}
+        {...(register && register(name))}
         {...rest}
+        onBlur={onBlur}
       />
       {errors[name] && type !== 'hidden' && (
         <FieldError errorClassName={errorClassName}>{t<string>(errors[name].key)}</FieldError>

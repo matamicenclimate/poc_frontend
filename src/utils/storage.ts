@@ -15,6 +15,9 @@ const storage = {
   clearToken: () => {
     window.localStorage.removeItem(`${storagePrefix}token`);
   },
+  clear: () => {
+    window.localStorage.clear();
+  },
 };
 
 export default storage;

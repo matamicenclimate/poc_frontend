@@ -10,11 +10,11 @@ export const PersonalMenu = () => {
       label: t('documents.Upload.profile'),
       to: '/profile',
     },
-    {
-      icon: 'email-line',
-      activeIcon: 'email-line-primary',
-      label: t('documents.Upload.notifications'),
-    },
+    // {
+    //   icon: 'email-line',
+    //   activeIcon: 'email-line-primary',
+    //   label: t('documents.Upload.notifications'),
+    // },
     {
       icon: 'wallet-line',
       activeIcon: 'wallet-line-primary',

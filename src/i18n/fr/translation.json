@@ -10,13 +10,15 @@
     "Login": {
       "form": {
         "email": {
-          "label": "E-mail",
+          "label": "E-MAIL",
           "placeholder": "Écrivez votre e-mail..."
         }
       },
-      "login": "Accès avec Magiclink",
       "pageTitle": "Accès au Climatecoin",
-      "safetyWarning": "Veuillez vous assurer que vous accédez à partir de"
+      "safetyWarning": "Veuillez vous assurer que vous accédez à partir de",
+      "MyAlgo": "Accès avec MyAlgo",
+      "WalletConnect": "Accès avec Wallet Connect",
+      "MagicLink": "Accès avec Magiclink"
     },
     "Register": {
       "pageTitle": "S'inscrire",
@@ -478,7 +480,9 @@
     "filter": {
       "freeze": "Congelé",
       "actions": "Actions",
-      "assetID": "ID de l'élément"
+      "assetID": "ID de l'élément",
+      "amount": "Quantité",
+      "type": "Type"
     },
     "action": {
       "dialog": {
@@ -517,6 +521,12 @@
     },
     "asset": {
       "error": "Il n'y a aucun actif à afficher"
+    },
+    "send": {
+      "Climatecoins": "Envoyer des ClimateCoins"
+    },
+    "account": {
+      "copied": "Numéro de compte copié dans le presse-papiers"
     }
   },
   "compensate": {
@@ -538,7 +548,8 @@
         "txnView": "Afficher les transactions",
         "txn": "Txn",
         "details": "Voir",
-        "certificateView": "Ouvrir le certificat"
+        "certificateView": "Ouvrir le certificat",
+        "type": "Type"
       },
       "title": "Historique de la rémunération"
     }
@@ -554,6 +565,54 @@
       "assets": "Afficher l'actif",
       "available": "Disponible:",
       "standard": "Crédit d'émission de carbone @"
+    }
+  },
+  "Payment": {
+    "adress": {
+      "error": "Adresse invalide"
+    },
+    "txn": {
+      "sign": {
+        "error": "Transaction non signée !"
+      }
+    },
+    "algos": {
+      "sent": {
+        "success": "Algos envoyé avec succès",
+        "error": "Erreur d'envoi des algos"
+      }
+    }
+  },
+  "Transfer": {
+    "adress": {
+      "error": "Adresse invalide"
+    },
+    "txn": {
+      "sign": {
+        "error": "Transaction non signée !"
+      }
+    },
+    "asset": {
+      "send": {
+        "success": "Actif envoyé avec succès",
+        "error": "Erreur lors de l'envoi de l'actif"
+      }
+    }
+  },
+  "Asset": {
+    "actions": {
+      "table": {
+        "id": "ID de l'élément",
+        "name": "Nom de l'actif",
+        "balance": "Votre solde"
+      },
+      "adress": {
+        "error": "Adresse invalide"
+      },
+      "amount": {
+        "invalid": "Montant invalide",
+        "error": "Pas assez d'équilibre"
+      }
     }
   }
 }

@@ -14,9 +14,11 @@
           "placeholder": "이메일을 쓰세요..."
         }
       },
-      "login": "Magiclink로 액세스",
       "pageTitle": "클라이밋코인 접근",
-      "safetyWarning": "에서 액세스하는지 확인하십시오."
+      "safetyWarning": "에서 액세스하는지 확인하십시오.",
+      "MyAlgo": "MyAlgo로 액세스",
+      "WalletConnect": "WalletConnect로 액세스",
+      "MagicLink": "Magiclink로 액세스"
     },
     "Register": {
       "pageTitle": "등록하다",
@@ -472,7 +474,9 @@
     "filter": {
       "freeze": "겨울 왕국",
       "actions": "행위",
-      "assetID": "자산 ID"
+      "assetID": "자산 ID",
+      "amount": "수량",
+      "type": "유형"
     },
     "action": {
       "dialog": {
@@ -511,6 +515,12 @@
     },
     "asset": {
       "error": "표시할 자산이 없습니다"
+    },
+    "send": {
+      "Climatecoins": "ClimateCoins 보내기"
+    },
+    "account": {
+      "copied": "클립보드에 복사된 계정 번호"
     }
   },
   "compensate": {
@@ -532,7 +542,8 @@
         "txnView": "거래 보기",
         "txn": "Txn",
         "details": "보다",
-        "certificateView": "인증서 열기"
+        "certificateView": "인증서 열기",
+        "type": "유형"
       },
       "title": "보상내역"
     }
@@ -553,6 +564,54 @@
       "assets": "자산 보기",
       "available": "사용 가능:",
       "standard": "탄소배출권 @"
+    }
+  },
+  "Payment": {
+    "adress": {
+      "error": "잘못된 주소"
+    },
+    "txn": {
+      "sign": {
+        "error": "거래가 서명되지 않았습니다!"
+      }
+    },
+    "algos": {
+      "sent": {
+        "success": "알고리즘이 성공적으로 전송되었습니다.",
+        "error": "알고리즘을 보내는 동안 오류가 발생했습니다."
+      }
+    }
+  },
+  "Transfer": {
+    "adress": {
+      "error": "잘못된 주소"
+    },
+    "txn": {
+      "sign": {
+        "error": "거래가 서명되지 않았습니다!"
+      }
+    },
+    "asset": {
+      "send": {
+        "success": "자산이 성공적으로 전송되었습니다.",
+        "error": "자산을 보내는 동안 오류가 발생했습니다."
+      }
+    }
+  },
+  "Asset": {
+    "actions": {
+      "table": {
+        "id": "자산 ID",
+        "name": "자산 이름",
+        "balance": "잔액"
+      },
+      "adress": {
+        "error": "잘못된 주소"
+      },
+      "amount": {
+        "invalid": "잘못된 금액",
+        "error": "균형이 충분하지 않습니다."
+      }
     }
   }
 }

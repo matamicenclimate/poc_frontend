@@ -99,7 +99,7 @@ async function registerFn(data: RegisterCredentialsDTO) {
 async function logoutFn() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   sw?.disconnect();
-  storage.clearToken();
+  storage.clear();
   window.location.assign(window.location.origin as unknown as string);
   await queryClient.resetQueries();
 }

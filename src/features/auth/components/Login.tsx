@@ -1,3 +1,4 @@
+import { allowedWallets } from 'algorand-session-wallet';
 import { useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useTranslation } from 'react-i18next';
@@ -19,15 +20,22 @@ export const Login = () => {
   const alert = useAlert();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleLogin = async (data: { email: string }) => {
+  const handleLogin = async (issuer: WalletIssuer, email = '') => {
     setIsLoading(true);
     try {
-      await auth.login({ email: data.email, issuer: WalletIssuer.MAGICLINK });
+      await auth.login({ email, issuer });
     } catch (e) {
       alert.error('Error loging in');
     } finally {
       setIsLoading(false);
     }
+  };
+
+  const handleMagicLogin = async (data: { email: string }) => {
+    await handleLogin(WalletIssuer.MAGICLINK, data.email);
+  };
+  const handleExternalLogin = async (issuer: WalletIssuer) => {
+    await handleLogin(issuer);
   };
 
   return (
@@ -46,7 +54,7 @@ export const Login = () => {
           </div>
         </div>
         <hr />
-        <Form onSubmit={handleLogin} className="flex flex-col gap-8 text-left">
+        <Form onSubmit={handleMagicLogin} className="flex flex-col gap-8 text-left">
           <Input
             name="email"
             type="email"
@@ -54,15 +62,43 @@ export const Login = () => {
             placeholder={t('auth.Login.form.email.placeholder')}
             required
           />
-          <div className="flex items-center justify-center">{isLoading ? <Spinner /> : null}</div>
           <Button type="submit" disabled={isLoading} size="sm">
             <div className="flex items-center justify-center">
               <>
-                <img src={LogoMagic} className="mr-3 h-6 w-5" /> {t('auth.Login.login')}
+                <img src={LogoMagic} className="mr-3 h-6 w-5" /> {t('auth.Login.MagicLink')}
               </>
             </div>
           </Button>
         </Form>
+        <div className="flex items-center justify-center">{isLoading ? <Spinner /> : null}</div>
+        <div className="flex flex-col gap-8 text-left">
+          <Button
+            type="button"
+            onClick={() => handleExternalLogin(WalletIssuer.MYALGO)}
+            disabled={isLoading}
+            size="sm"
+          >
+            <div className="flex items-center justify-center">
+              <>
+                <img src={allowedWallets['my-algo-connect'].img(false)} className="mr-3 h-6 w-5" />{' '}
+                {t('auth.Login.MyAlgo')}
+              </>
+            </div>
+          </Button>
+          <Button
+            type="button"
+            onClick={() => handleExternalLogin(WalletIssuer.WALLETCONNECT)}
+            disabled={isLoading}
+            size="sm"
+          >
+            <div className="flex items-center justify-center">
+              <>
+                <img src={allowedWallets['wallet-connect'].img(false)} className="mr-3 h-6 w-5" />
+                {t('auth.Login.WalletConnect')}
+              </>
+            </div>
+          </Button>
+        </div>
       </div>
     </LoginLayout>
   );

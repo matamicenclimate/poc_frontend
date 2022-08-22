@@ -2122,7 +2122,7 @@
 
 "@magic-ext/algorand@^4.0.0":
   version "4.0.0"
-  resolved "https://registry.npmjs.org/@magic-ext/algorand/-/algorand-4.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/@magic-ext/algorand/-/algorand-4.0.0.tgz#ef3110e52bd66904063509f36ce3e865b1e4aff7"
   integrity sha512-fxr9yaFuvyFpuLdcqv4tI1Gj8ZlNpLn731UBwUKoLTcaH+dg95EF3qbmqSMfscKHcaiH9T45MmxjouLd9y1iUg==
 
 "@magic-sdk/commons@^5.0.0":

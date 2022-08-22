@@ -5,12 +5,17 @@
       "logingIn": "Login in with Magic Link..."
     },
     "Login": {
-      "login": "Access with Magiclink",
       "pageTitle": "Access to Climatecoin",
       "safetyWarning": "Please make sure that you access from",
       "form": {
-        "email": ""
-      }
+        "email": {
+          "label": "EMAIL",
+          "placeholder": "Write your email..."
+        }
+      },
+      "MyAlgo": "Access with MyAlgo",
+      "WalletConnect": "Access with Wallet Connect",
+      "MagicLink": "Access with Magiclink"
     },
     "Register": {
       "pageTitle": "Register",
@@ -142,7 +147,8 @@
         "time": "Time",
         "status": "Status",
         "operationID": "ID Operation",
-        "actions": "Actions"
+        "actions": "Actions",
+        "type": "Type"
       },
       "title": "My Compensations",
       "status": {
@@ -521,7 +527,9 @@
     "filter": {
       "freeze": "Frozen",
       "actions": "Actions",
-      "assetID": "Asset ID"
+      "assetID": "Asset ID",
+      "amount": "Amount",
+      "type": "Type"
     },
     "action": {
       "dialog": {
@@ -560,6 +568,12 @@
     },
     "asset": {
       "error": "There are no assets to display"
+    },
+    "send": {
+      "Climatecoins": "Send ClimateCoins"
+    },
+    "account": {
+      "copied": "Account number copied to clipboard"
     }
   },
   "nfts": {
@@ -568,6 +582,54 @@
       "assets": "View asset",
       "available": "Available:",
       "standard": "Carbon emission credit @"
+    }
+  },
+  "Payment": {
+    "adress": {
+      "error": "Invalid address"
+    },
+    "txn": {
+      "sign": {
+        "error": "Transaction not signed!"
+      }
+    },
+    "algos": {
+      "sent": {
+        "success": "Algos sent successfully",
+        "error": "Error sending the algos"
+      }
+    }
+  },
+  "Transfer": {
+    "adress": {
+      "error": "Invalid address"
+    },
+    "txn": {
+      "sign": {
+        "error": "Transaction not signed!"
+      }
+    },
+    "asset": {
+      "send": {
+        "success": "Asset sent successfully",
+        "error": "Error sending the asset"
+      }
+    }
+  },
+  "Asset": {
+    "actions": {
+      "table": {
+        "id": "Asset ID",
+        "name": "Asset name",
+        "balance": "Your balance"
+      },
+      "adress": {
+        "error": "Invalid address"
+      },
+      "amount": {
+        "invalid": "Invalid amount",
+        "error": "Not enough balance"
+      }
     }
   }
 }

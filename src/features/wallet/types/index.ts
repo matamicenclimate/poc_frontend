@@ -3,6 +3,11 @@ export interface IndexerAccount {
   'current-round': number;
 }
 
+export interface IndexerAccountAssets {
+  assets: Asset[];
+  'current-round': number;
+}
+
 export interface Account {
   address: string;
   amount: number;
@@ -28,6 +33,20 @@ export interface Asset {
   deleted: boolean;
   'is-frozen': boolean;
   'opted-in-at-round': number;
+  decimals: number;
+  'unit-name': string;
+  name: string;
+}
+
+export interface AssetTransfer {
+  asset: Asset;
+  amount: number;
+  receiver: string;
+}
+
+export interface Payment {
+  amount: number;
+  receiver: string;
 }
 
 export type DialogDataProps = {
@@ -42,4 +61,5 @@ export type ButtonProps = {
   variant: 'grey' | 'danger';
   onClick: () => void;
   label: string;
+  disabled?: boolean;
 };

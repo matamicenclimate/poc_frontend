@@ -12,7 +12,6 @@ import { OperationsMenu } from '@/componentes/Layout/Aside/components/Operations
 import { PersonalMenu } from '@/componentes/Layout/Aside/components/PersonalMenu';
 import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { EXPLORER_URL } from '@/config';
-import { useSort } from '@/hooks/useSort';
 import { useAuth } from '@/lib/auth';
 import { useCurrencyContext } from '@/providers/Currency.context';
 import { useWalletContext } from '@/providers/Wallet.context';
@@ -26,8 +25,8 @@ export const Wallet = () => {
   const { account, climatecoinBalance } = useWalletContext();
   const { user } = useAuth();
   const alert = useAlert();
+  const { algoBalance } = useWalletContext();
 
-  const { sort, toggleSort, renderArrow } = useSort();
   const { formatter, climatecoinValue, formatToCC } = useCurrencyContext();
 
   const getProfileAvatar = () => {
@@ -39,8 +38,12 @@ export const Wallet = () => {
 
   const copyAddress = (account: Account) => {
     navigator.clipboard.writeText(account?.address);
-    alert.success('Account number copied to clipboard');
+    alert.success(t('Wallet.account.copied'));
   };
+
+  const climatecoinAsaID = Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID);
+
+  const tdStyles = 'py-2 items-center';
 
   const renderNfts = () => {
     if (account?.assets) {
@@ -48,20 +51,29 @@ export const Wallet = () => {
         <>
           {account.assets.map((asset) => (
             <tbody key={asset['asset-id']}>
-              <td className="flex">
+              <td className={tdStyles}>
                 <div className="flex">
                   <span>{asset['asset-id']}</span>
                 </div>
               </td>
-              <td>
-                <div className="flex flex-col">
-                  <span> {t('intlNumber', { val: asset.amount.toFixed(2) })} CC</span>
-                  <span className="text-xs text-neutral-4">
-                    {formatter(climatecoinValue(Number(asset.amount)))}
-                  </span>
+              <td className={tdStyles}>
+                <div className="flex">
+                  <span className="text-xs text-neutral-4">{asset.name}</span>
                 </div>
               </td>
-              <td>
+              <td className={tdStyles}>
+                <div className="flex flex-col">
+                  <span>
+                    {t('intlNumber', { val: asset.amount.toFixed(2) })} {asset['unit-name']}
+                  </span>
+                  {asset['asset-id'] === climatecoinAsaID && (
+                    <span className="text-xs text-neutral-4">
+                      {formatter(climatecoinValue(Number(asset.amount)))}
+                    </span>
+                  )}
+                </div>
+              </td>
+              <td className={tdStyles}>
                 <div>
                   {asset['is-frozen'] ? (
                     <span className="text-primary-red">Yes</span>
@@ -70,7 +82,7 @@ export const Wallet = () => {
                   )}
                 </div>
               </td>
-              <td>
+              <td className={tdStyles}>
                 <div className="flex justify-center">
                   <AssetAction
                     asset={asset}
@@ -78,13 +90,13 @@ export const Wallet = () => {
                     disabled={asset['is-frozen']}
                     type="send"
                   />
-                  <AssetAction
+                  {/* <AssetAction
                     asset={asset}
                     address={account?.address}
                     disabled={asset['is-frozen']}
                     className="pl-5"
                     type="remove"
-                  />
+                  /> */}
                 </div>
               </td>
             </tbody>
@@ -149,45 +161,40 @@ export const Wallet = () => {
                       </div>
                       <hr className="w-full" />
                       <div className="flex w-full flex-row space-x-20 pt-4">
-                        {/* TO DO: in this moment we only have ClimateCoins and Algos. 
-                      The function getCoinsList() is made to show more coins when they exist in the wallet 
+                        {/* TO DO: in this moment we only have ClimateCoins and Algos.
+                      The function getCoinsList() is made to show more coins when they exist in the wallet
                       The function should receive an array of objects with label and value*/}
                         {/* {<CoinsList coinsList={account?.coins} />} */}
                         <div className="flex w-1/3 flex-col items-center">
                           <ul className="flex w-full flex-col space-y-4">
                             <div className="flex w-full justify-between">
-                              <li className="text-neutral-4">Algorands</li>
-                              <li>{account.amount}</li>
+                              <li className="text-neutral-4">Algos</li>
+                              <li>{algoBalance()}</li>
                             </div>
                           </ul>
                         </div>
-                        <div className="flex w-2/3 flex-col justify-start space-y-4">
-                          <div className="flex w-full items-center justify-between">
+                        {/* <div className="flex w-2/3 flex-col justify-start space-y-4"> */}
+                        {/* <div className="flex w-full items-center justify-between">
                             <span className="text-neutral-4">ClimateCoins</span>
                             <span className="text-4xl text-primary-brightGreen">
                               {formatToCC(climatecoinBalance())}
                             </span>
-                          </div>
-                          <div className={clsx('flex flex-row space-x-3')}>
-                            <Link
-                              href={`${EXPLORER_URL}address/${encodeURIComponent(
-                                account?.address as string
-                              )}`}
-                              className="inline-flex items-center font-bold no-underline"
-                            >
-                              <Button
-                                type="button"
-                                className="bg-neutral-7"
-                                variant="grey"
-                                size="sm"
-                              >
-                                {t('Wallet.button.view')}
-                              </Button>
-                            </Link>
-                            <SendFunds account={account} className="pl-5" type="add" />
-                            <SendFunds account={account} className="pl-5" type="send" />
-                          </div>
+                          </div> */}
+                        <div className={clsx('flex flex-row space-x-3')}>
+                          <Link
+                            href={`${EXPLORER_URL}address/${encodeURIComponent(
+                              account?.address as string
+                            )}`}
+                            className="inline-flex items-center font-bold no-underline"
+                          >
+                            <Button type="button" className="bg-neutral-7" variant="grey" size="sm">
+                              {t('Wallet.button.view')}
+                            </Button>
+                          </Link>
+                          <SendFunds account={account} className="pl-5" type="add" />
+                          <SendFunds account={account} className="pl-5" type="send" />
                         </div>
+                        {/* </div> */}
                       </div>
                     </div>
                   </Card>
@@ -199,32 +206,40 @@ export const Wallet = () => {
                             <Title size={6} as={3} className="mb-12">
                               {t('Wallet.table.title')}
                             </Title>
+
+                            <div className="flex w-full items-center justify-between pb-6">
+                              <div className="flex w-full items-center">
+                                <span className="mr-12 text-neutral-4">ClimateCoins</span>
+                                <span className="text-4xl text-primary-brightGreen">
+                                  {formatToCC(climatecoinBalance())}
+                                </span>
+                              </div>
+                              <div className="flex w-full items-center justify-end">
+                                <Button
+                                  type="button"
+                                  className="bg-neutral-7"
+                                  variant="grey"
+                                  size="sm"
+                                  disabled
+                                >
+                                  {t('Wallet.send.Climatecoins')}
+                                </Button>
+                              </div>
+                            </div>
+
                             <table className="font-Poppins w-full text-sm font-medium text-primary">
                               <thead className="border-b-2 border-neutral-6 text-left text-xs text-neutral-4">
                                 <th>
-                                  <div
-                                    className={clsx(thStyles)}
-                                    onClick={() => toggleSort('assetId')}
-                                  >
-                                    {t('Wallet.filter.assetID')}
-                                    {renderArrow('assetId')}
-                                  </div>
+                                  <div className={clsx(thStyles)}>{t('Wallet.filter.assetID')}</div>
                                 </th>
                                 <th>
-                                  <div
-                                    className={clsx(thStyles)}
-                                    onClick={() => toggleSort('amount')}
-                                  >
-                                    {t('compensate.History.table.amount')} {renderArrow('amount')}
-                                  </div>
+                                  <div className={clsx(thStyles)}>{t('Wallet.filter.type')}</div>
                                 </th>
                                 <th>
-                                  <div
-                                    className={clsx(thStyles)}
-                                    onClick={() => toggleSort('isFrozen')}
-                                  >
-                                    {t('Wallet.filter.freeze')} {renderArrow('isFrozen')}
-                                  </div>
+                                  <div className={clsx(thStyles)}>{t('Wallet.filter.amount')}</div>
+                                </th>
+                                <th>
+                                  <div className={clsx(thStyles)}>{t('Wallet.filter.freeze')}</div>
                                 </th>
                                 <th className="flex justify-center">
                                   <div className={clsx(thStyles)}>{t('Wallet.filter.actions')}</div>

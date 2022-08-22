@@ -59,7 +59,12 @@ export const DocumentList = ({
   };
 
   const { sort, toggleSort, renderArrow } = useSort();
-  const paginatedDocumentsResponse = useGetDocuments(methods.watch(), sort, firstIndex, maxItemsPerPage);
+  const paginatedDocumentsResponse = useGetDocuments(
+    methods.watch(),
+    sort,
+    firstIndex,
+    maxItemsPerPage
+  );
   if (paginatedDocumentsResponse?.data?.total) setTotalItems(paginatedDocumentsResponse.data.total);
   const itemsToDisplay = paginatedDocumentsResponse?.data?.data?.length || 0;
 
@@ -108,7 +113,7 @@ export const DocumentList = ({
         </aside>
         <main className="space-y-4 md:col-span-3">
           <form onSubmit={(e) => e.preventDefault()}>
-            <div className="mb-10 flex items-center space-x-2">
+            <div className="mb-10 flex items-center space-x-2 space-y-6">
               <Title size={4} as={3}>
                 {t('documents.List.table.title')}
               </Title>
@@ -142,7 +147,7 @@ export const DocumentList = ({
                 </Popover>
               </div>
             </div>
-            <table className="font-Poppins w-full text-sm font-medium text-neutral-4">
+            <table className="font-Poppins mb-6 w-full text-sm font-medium text-neutral-4">
               <thead className="border-b-2 border-neutral-6 text-left text-xs text-neutral-4">
                 <th>
                   <div
@@ -195,8 +200,7 @@ export const DocumentList = ({
                 data={paginatedDocumentsResponse}
                 render={(model) => (
                   <tbody>
-                    {
-                    model.data.map((document) => (
+                    {model.data.map((document) => (
                       <tr key={document._id} className="text-left">
                         <td>
                           <div
@@ -241,7 +245,7 @@ export const DocumentList = ({
                 )}
               />
             </table>
-            {itemsToDisplay > 0 && (<Pagination/>)}
+            {itemsToDisplay > 0 && <Pagination />}
           </form>
         </main>
       </div>
