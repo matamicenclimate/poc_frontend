@@ -41,7 +41,7 @@ export function useSwapNftForClimatecoins() {
       alert.success('Asset swapped successfully');
     },
     onError: (e: Error) => {
-      alert.error('Error claiming nft');
+      alert.error('Error swapping nft');
       console.error(e.message);
     },
   });

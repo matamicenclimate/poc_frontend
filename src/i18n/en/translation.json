@@ -122,14 +122,6 @@
     "base": {
       "accept": "Accept",
       "cancel": "Cancel"
-    },
-    "__i18n_ally_root__": {
-      "__i18n_ally_root__": {
-        "base": {
-          "cancel": "",
-          "accept": ""
-        }
-      }
     }
   },
   "dialogs.base.accept": "Accept",
@@ -251,7 +243,9 @@
         "claim": "Are you sure you want to swap this product? This action is not reversible.",
         "wallet": "Swap in wallet...",
         "totalCurrency": "In {{currency}}",
-        "totalClimatecoins": "Total Climatecoins"
+        "totalClimatecoins": "Total Climatecoins",
+        "warning": "Warning",
+        "message": "The 5% fee has already been applied on these Climatecoins and will not be applied again."
       },
       "pending": {
         "InfoTitle": "Project generated successfully",
@@ -264,6 +258,10 @@
       "swap": {
         "InfoTitle": "Process completed successfully",
         "InfoClaim": "The current status is 'Swapped'."
+      },
+      "warning": {
+        "label": "Warning",
+        "message": "A 5% of discount will be applied on this Climatecoins as a fee in favor of Climatetrade."
       }
     },
     "detail": {

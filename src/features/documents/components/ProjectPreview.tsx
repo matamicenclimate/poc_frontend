@@ -43,7 +43,11 @@ export const ProjectPreview = ({ values, noDescription = false }: ProjectPreview
           </div>
         </div>
       </div>
-      {!noDescription && <div className="text-neutral-4">{values.description}</div>}
+      {!noDescription && (
+        <div className="flex-wrap overflow-hidden text-ellipsis text-neutral-4">
+          {values.description}
+        </div>
+      )}
     </div>
   );
 };

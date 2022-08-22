@@ -466,6 +466,17 @@ export const UploadForm = () => {
                   <ProjectPreview values={methods.getValues()} />
                 </div>
                 <div className="col-span-2 text-xs">
+                  <div className="mb-6">
+                    <Card shadow={false} padding="sm" rounded="sm">
+                      <div className="flex flex-col text-sm">
+                        <span className="text-primary-red">
+                          {t('documents.Details.warning.label')}
+                        </span>
+
+                        <span>{t('documents.Details.warning.message')}</span>
+                      </div>
+                    </Card>
+                  </div>
                   <Switch
                     control={methods.control}
                     name="confirmation"

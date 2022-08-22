@@ -40,12 +40,14 @@ export const Login = () => {
 
   return (
     <LoginLayout title={t('auth.Login.pageTitle')}>
-      <div className="mx-auto max-w-screen-sm space-y-8 text-center">
-        <Title size={3} as={1}>
+      <div className="mx-auto max-w-screen-sm space-y-8 text-left">
+        <Title size={4} as={1}>
           {t('auth.Login.pageTitle')}
         </Title>
         <div>
-          <p className="mb-4 text-sm text-neutral-4">{t<string>('auth.Login.safetyWarning')}</p>
+          <p className="mb-4 text-left text-sm text-neutral-4">
+            {t<string>('auth.Login.safetyWarning')}
+          </p>
           <div className="flex items-center justify-center rounded-full bg-neutral-7 p-2 px-4 text-sm font-medium">
             <LockIcon />
             <p>
@@ -58,8 +60,8 @@ export const Login = () => {
           <Input
             name="email"
             type="email"
-            label={t('auth.Login.form.email.label')}
-            placeholder={t('auth.Login.form.email.placeholder')}
+            label={t('auth.Login.email.label')}
+            placeholder={t('auth.Login.email.placeholder')}
             required
           />
           <Button type="submit" disabled={isLoading} size="sm">

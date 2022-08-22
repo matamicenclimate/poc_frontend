@@ -94,12 +94,10 @@ export const DocumentTransactions = () => {
                     <tbody>
                       <tr key={document._id} className="text-left">
                         <td>{document.developer_nft.asa_txn_id.slice(0, 10)}...</td>
-
                         <td>{document.developer_nft.supply}</td>
                         <td>{document.developer_nft.owner_address.slice(0, 10)}...</td>
                         <td>{document.fee_nft.owner_address.slice(0, 10)}...</td>
                         <td>{document.fee_nft.supply}</td>
-
                         <td>0</td>
                       </tr>
                     </tbody>

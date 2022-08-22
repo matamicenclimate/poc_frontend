@@ -49,24 +49,26 @@ export function SwapNft({ document, account }: SwapNftProps) {
         title={t('documents.Details.modal.title')}
         claim={t('documents.Details.modal.claim')}
       >
-        <Dl wrapperClassName={'mb-8'}>
-          <DlItem
-            dt={t('documents.Details.modal.totalClimatecoins')}
-            dd={document.credits + ' cc'}
-            ddClassNames={'text-primary-brightGreen'}
-          />
-          <DlItem
-            dt={t('documents.Details.modal.totalCurrency', {
-              currency: currency.state.currency,
-            })}
-            dd={formatter(climatecoinValue(Number(document.credits)))}
-          />
-          <hr className="col-span-2" />
-          <DlItem
-            dt={t('documents.Details.modal.wallet')}
-            dd={`${account?.slice(0, 30)}...${account?.slice(-3)}`}
-          />
-        </Dl>
+        <div>
+          <Dl wrapperClassName="mb-8">
+            <DlItem
+              dt={t('documents.Details.modal.totalClimatecoins')}
+              dd={`${document.developer_nft.supply} CC`}
+              ddClassNames={'text-primary-brightGreen'}
+            />
+            <DlItem
+              dt={t('documents.Details.modal.totalCurrency', {
+                currency: currency.state.currency,
+              })}
+              dd={formatter(climatecoinValue(Number(document.developer_nft.supply)))}
+            />
+            <hr className="col-span-2" />
+            <DlItem
+              dt={t('documents.Details.modal.wallet')}
+              dd={`${account?.slice(0, 30)}...${account?.slice(-3)}`}
+            />
+          </Dl>
+        </div>
       </Dialog>
     </>
   );

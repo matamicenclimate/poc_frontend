@@ -154,11 +154,6 @@
       "base": {
         "accept": "수용하다",
         "cancel": "취소"
-      },
-      "__i18n_ally_root__": {
-        "base": {
-          "cancel": ""
-        }
       }
     },
     "base": {
@@ -269,9 +264,15 @@
         "totalClimatecoins": "총 기후 코인",
         "wallet": "지갑으로 교환...",
         "totalCurrency": "{{currency}}",
-        "claim": "이 제품을 교환하시겠습니까? \n이 작업은 되돌릴 수 없습니까"
+        "claim": "이 제품을 교환하시겠습니까? \n이 작업은 되돌릴 수 없습니까",
+        "warning": "경고",
+        "message": "5% 수수료는 이미 이러한 클라이밋코인에 적용되었으며 다시 적용되지 않습니다."
       },
-      "thanks": "크레딧을 제출해주셔서 감사합니다!"
+      "thanks": "크레딧을 제출해주셔서 감사합니다!",
+      "warning": {
+        "label": "경고",
+        "message": "이 Climatecoins에 5%의 할인이 Climatetrade에 유리한 수수료로 적용됩니다."
+      }
     },
     "transactions": {
       "detail": {

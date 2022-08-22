@@ -154,12 +154,6 @@
       "base": {
         "accept": "Accepter",
         "cancel": "Annuler"
-      },
-      "__i18n_ally_root__": {
-        "base": {
-          "accept": "",
-          "cancel": ""
-        }
       }
     },
     "base": {
@@ -271,7 +265,13 @@
         "totalClimatecoins": "Total des pièces climatiques",
         "wallet": "Échange en portefeuille...",
         "totalCurrency": "En {{currency}}",
-        "claim": "Voulez-vous vraiment échanger ce produit ? \nCette action n'est pas réversible"
+        "claim": "Voulez-vous vraiment échanger ce produit ? \nCette action n'est pas réversible",
+        "warning": "Avertissement",
+        "message": "La commission de 5% a déjà été appliquée sur ces Climatecoins et ne le sera plus."
+      },
+      "warning": {
+        "message": "Une remise de 5% sera appliquée sur ces Climatecoins à titre de frais en faveur de Climatetrade.",
+        "label": "Avertissement"
       }
     },
     "transactions": {

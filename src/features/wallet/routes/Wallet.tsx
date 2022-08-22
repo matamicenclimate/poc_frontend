@@ -22,10 +22,9 @@ import { Account } from '../types';
 
 export const Wallet = () => {
   const { t } = useTranslation();
-  const { account, climatecoinBalance } = useWalletContext();
+  const { account, climatecoinBalance, algoBalance } = useWalletContext();
   const { user } = useAuth();
   const alert = useAlert();
-  const { algoBalance } = useWalletContext();
 
   const { formatter, climatecoinValue, formatToCC } = useCurrencyContext();
 

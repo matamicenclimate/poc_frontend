@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
@@ -31,7 +30,6 @@ export const DocumentDetails = () => {
   const { account } = useWalletContext();
   const { formatter, climatecoinValue } = useCurrencyContext();
   const currency = useCurrencyContext();
-  const [isOpen, setIsOpen] = useState(false);
 
   const handleClaim = async () => {
     if (!document.data || !account?.address || !document.data.developer_nft.asa_id)
@@ -71,6 +69,29 @@ export const DocumentDetails = () => {
       to: '/wallet',
     },
   ];
+
+  const getWarningMessage = (document: CarbonDocument) => {
+    if (document.status === 'completed' || document.status === 'pending') {
+      return;
+    }
+    return (
+      <div className="mb-6">
+        <Card shadow={false} padding="sm" rounded="sm">
+          <div className="flex flex-col text-sm">
+            <span className="text-primary-red">{t('documents.Details.warning.label')}</span>
+            <span>{t('documents.Details.modal.message')}</span>
+          </div>
+        </Card>
+      </div>
+    );
+  };
+
+  const getAmount = (document: CarbonDocument) => {
+    if (document.status === 'completed' || document.status === 'pending') {
+      return `${document.credits} cc`;
+    }
+    return `${document.developer_nft.supply} cc`;
+  };
 
   return (
     <MainLayout>
@@ -166,14 +187,14 @@ export const DocumentDetails = () => {
                       />
                       <DlItem
                         dt={t('documents.Details.label.totalClimatecoins')}
-                        dd={document.credits + ' cc'}
+                        dd={getAmount(document)}
                         ddClassNames={'text-primary-brightGreen'}
                       />
                       <DlItem
                         dt={t('documents.Details.label.totalCurrency', {
                           currency: currency.state.currency,
                         })}
-                        dd={formatter(climatecoinValue(Number(document.credits)))}
+                        dd={formatter(climatecoinValue(Number(getAmount(document))))}
                       />
                       <hr className="col-span-2" />
                       <DlItem dt={t('documents.Details.label.projectID')} dd={document.id} />
@@ -183,14 +204,16 @@ export const DocumentDetails = () => {
                       />
                     </Dl>
 
+                    {getWarningMessage(document)}
+
                     {document.status === 'minted' && (
                       <div className="grid grid-cols-3 gap-4">
-                        <div></div>
                         {claimNft.isLoading && (
                           <div className="flex items-center justify-end">
                             <Spinner size="md" />
                           </div>
                         )}
+
                         <Button
                           className="col-start-3"
                           onClick={handleClaim}

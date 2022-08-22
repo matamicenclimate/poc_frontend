@@ -208,7 +208,9 @@
         "claim": "¿Seguro que quieres cambiar este producto? Esta acción no es reversible.",
         "wallet": "Swappear en la cartera...",
         "totalCurrency": "En {{currency}}",
-        "totalClimatecoins": "Total Climatecoins"
+        "totalClimatecoins": "Total Climatecoins",
+        "warning": "Advertencia",
+        "message": "La tarifa del 5% ya se aplicó en estas Climatecoins y no se volverá a aplicar."
       },
       "menu": {
         "projectWallet": "Billetera del proyecto",
@@ -238,7 +240,11 @@
         "deleteNft": "Eliminar NFT",
         "swap": "Intercambiar NFT"
       },
-      "viewAsset": "Ver activo"
+      "viewAsset": "Ver activo",
+      "warning": {
+        "label": "Advertencia",
+        "message": "Se aplicará un 5% de descuento en este Climatecoins como tarifa a favor de Climatetrade."
+      }
     },
     "transactions": {
       "detail": {
