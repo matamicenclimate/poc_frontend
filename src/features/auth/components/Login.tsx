@@ -60,8 +60,8 @@ export const Login = () => {
           <Input
             name="email"
             type="email"
-            label={t('auth.Login.email.label')}
-            placeholder={t('auth.Login.email.placeholder')}
+            label={t('auth.Login.form.email.label')}
+            placeholder={t('auth.Login.form.email.placeholder')}
             required
           />
           <Button type="submit" disabled={isLoading} size="sm">
