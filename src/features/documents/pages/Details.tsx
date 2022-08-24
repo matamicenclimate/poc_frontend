@@ -88,9 +88,9 @@ export const DocumentDetails = () => {
 
   const getAmount = (document: CarbonDocument) => {
     if (document.status === 'completed' || document.status === 'pending') {
-      return `${document.credits} cc`;
+      return document.credits;
     }
-    return `${document.developer_nft.supply} cc`;
+    return document.developer_nft.supply;
   };
 
   return (
@@ -187,7 +187,7 @@ export const DocumentDetails = () => {
                       />
                       <DlItem
                         dt={t('documents.Details.label.totalClimatecoins')}
-                        dd={getAmount(document)}
+                        dd={`${getAmount(document)} CC`}
                         ddClassNames={'text-primary-brightGreen'}
                       />
                       <DlItem
