@@ -197,7 +197,7 @@ export const DocumentDetails = () => {
                         dd={formatter(climatecoinValue(Number(getAmount(document))))}
                       />
                       <hr className="col-span-2" />
-                      <DlItem dt={t('documents.Details.label.projectID')} dd={document.id} />
+                      <DlItem dt="Carbon Credits Transfer ID" dd={document.id} />
                       <DlItem
                         dt={t('documents.Details.label.registry')}
                         dd={document.registry.name}
