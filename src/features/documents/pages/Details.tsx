@@ -209,7 +209,7 @@ export const DocumentDetails = () => {
                     {document.status === 'minted' && (
                       <div className="grid grid-cols-3 gap-4">
                         {claimNft.isLoading && (
-                          <div className="flex items-center justify-end">
+                          <div className="col-span-2 flex items-center justify-end">
                             <Spinner size="md" />
                           </div>
                         )}
