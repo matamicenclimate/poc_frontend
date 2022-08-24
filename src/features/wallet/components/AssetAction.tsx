@@ -6,7 +6,7 @@ import { Dl, DlItem } from '@/componentes/DescriptionList';
 import { Dialog } from '@/componentes/Dialog/Dialog';
 import { Button } from '@/componentes/Elements/Button/Button';
 import { Input } from '@/componentes/Form/Inputs';
-import { formatter } from '@/providers/Wallet.context';
+import { assetFormatter } from '@/providers/Wallet.context';
 
 import { useTransferAsset } from '../api/useTransferAsset';
 import { Asset, AssetTransfer, ButtonProps, DialogDataProps } from '../types';
@@ -33,17 +33,14 @@ export function AssetAction({ asset, address, disabled, className, type }: Asset
   const handleSubmit = () => {
     if (!isValid(assetTransfer)) return;
     setIsLoading(true);
-    sendAsset.mutateAsync(assetTransfer).then(() => {
-      close();
-      setIsLoading(false);
-    });
+    sendAsset.mutateAsync(assetTransfer).finally(close);
   };
 
   const isValid = (assetTransfer: AssetTransfer): boolean => {
     const detectedErrors: { receiver?: string; amount?: string } = {};
     if (assetTransfer.receiver && !algosdk.isValidAddress(assetTransfer.receiver))
       detectedErrors['receiver'] = t('Asset.actions.adress.error');
-    if (assetTransfer.amount >= asset.amount)
+    if (assetTransfer.amount > asset.amount)
       detectedErrors['amount'] = t('Asset.actions.amount.error');
     if (assetTransfer.amount < 0) detectedErrors['amount'] = t('Asset.actions.amount.invalid');
 
@@ -65,6 +62,7 @@ export function AssetAction({ asset, address, disabled, className, type }: Asset
     setIsOpen(false);
     setAssetTransfer(initialAssetTransfer);
     setValidassetTransfer(false);
+    setIsLoading(false);
   };
 
   const send: DialogDataProps = {
@@ -166,7 +164,7 @@ export function AssetAction({ asset, address, disabled, className, type }: Asset
 
           <DlItem
             dt={t('Asset.actions.table.balance')}
-            dd={formatter(asset.amount, asset.decimals) + ' ' + asset['unit-name']}
+            dd={assetFormatter(asset.amount, asset.decimals) + ' ' + asset['unit-name']}
             ddClassNames={DialogData[type].accentColor}
           />
 

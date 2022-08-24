@@ -14,7 +14,7 @@ import { MainLayout } from '@/componentes/Layout/MainLayout';
 import { EXPLORER_URL } from '@/config';
 import { useAuth } from '@/lib/auth';
 import { useCurrencyContext } from '@/providers/Currency.context';
-import { useWalletContext } from '@/providers/Wallet.context';
+import { assetFormatter, useWalletContext } from '@/providers/Wallet.context';
 
 import { AssetAction } from '../components/AssetAction';
 import { SendFunds } from '../components/SendFunds';
@@ -63,7 +63,7 @@ export const Wallet = () => {
               <td className={tdStyles}>
                 <div className="flex flex-col">
                   <span>
-                    {t('intlNumber', { val: asset.amount.toFixed(2) })} {asset['unit-name']}
+                    {assetFormatter(asset.amount, asset.decimals) + ' ' + asset['unit-name']}
                   </span>
                   {asset['asset-id'] === climatecoinAsaID && (
                     <span className="text-xs text-neutral-4">

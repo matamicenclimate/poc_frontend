@@ -24,7 +24,7 @@ export const WalletProvider = ({ children }: ProviderProps) => {
   return <WalletContext.Provider value={{ account }}>{children}</WalletContext.Provider>;
 };
 
-export const formatter = (amount: number, decimals = 0) => {
+export const assetFormatter = (amount: number, decimals = 0) => {
   return new Intl.NumberFormat(i18n.language, {
     style: 'decimal',
   }).format(amount / 10 ** decimals);
@@ -46,7 +46,9 @@ export const useWalletContext = () => {
 
   const algoDecimalPlaces = 1000000; // 6 decimal places
   const algoBalance = () =>
-    account.data?.account.amount ? formatter(account.data?.account.amount / algoDecimalPlaces) : 0;
+    account.data?.account.amount
+      ? assetFormatter(account.data?.account.amount / algoDecimalPlaces)
+      : 0;
 
   const getAssetBalance = (assetId: number) => {
     if (!account.data) return 0;
@@ -57,9 +59,6 @@ export const useWalletContext = () => {
     if (assetData.length !== 1) return 0;
 
     return assetData[0].amount;
-  };
-  const getAssetBalanceFormatted = (assetId: number) => {
-    return formatter(getAssetBalance(assetId));
   };
 
   const hasOptedIn = (assetId: number) => {

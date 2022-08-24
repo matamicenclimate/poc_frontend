@@ -32,10 +32,7 @@ export function SendFunds({ account, className, type }: SendFundsProps) {
   const handleSubmit = () => {
     if (!isValid(payment)) return;
     setIsLoading(true);
-    sendAlgos.mutateAsync(payment).then(() => {
-      close();
-      setIsLoading(false);
-    });
+    sendAlgos.mutateAsync(payment).finally(close);
   };
 
   const isValid = (payment: Payment): boolean => {
@@ -62,6 +59,7 @@ export function SendFunds({ account, className, type }: SendFundsProps) {
     setIsOpen(false);
     setPayment(initialPayment);
     setValidPayment(false);
+    setIsLoading(false);
   };
 
   const send: DialogDataProps = {
