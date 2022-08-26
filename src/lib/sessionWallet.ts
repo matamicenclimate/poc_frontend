@@ -1,4 +1,4 @@
-import { SessionWallet } from 'algorand-session-wallet-deka';
+import { SessionWallet } from 'algorand-session-wallet';
 
 export let sw: null | SessionWallet;
 

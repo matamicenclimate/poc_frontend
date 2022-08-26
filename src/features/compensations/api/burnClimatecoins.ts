@@ -1,4 +1,4 @@
-import { SignedTxn } from 'algorand-session-wallet-deka';
+import { SignedTxn } from 'algorand-session-wallet';
 import algosdk from 'algosdk';
 import { Buffer } from 'buffer';
 import { useAlert } from 'react-alert';

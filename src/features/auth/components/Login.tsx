@@ -1,4 +1,4 @@
-import { allowedWallets } from 'algorand-session-wallet-deka';
+import { allowedWallets } from 'algorand-session-wallet';
 import { useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useTranslation } from 'react-i18next';
