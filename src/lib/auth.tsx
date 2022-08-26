@@ -1,4 +1,4 @@
-import { SessionWallet } from 'algorand-session-wallet';
+import { SessionWallet } from 'algorand-session-wallet-deka';
 import algosdk from 'algosdk';
 import { Buffer } from 'buffer';
 import jwtDecode from 'jwt-decode';
