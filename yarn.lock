@@ -2285,9 +2285,9 @@
   integrity sha512-CuJNwtMTG1LHR1LQNWUPv+8xPUdkRY9p61wGJEp8J/N3q8djmnMySvSQlyVqLBvXsTPKmYc0ZmfXEXCpb5P5Cw==
 
 "@randlabs/myalgo-connect@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@randlabs/myalgo-connect/-/myalgo-connect-1.2.0.tgz#4a7bd4c8898fc9f3f9c031859512b2517fbd0e8d"
-  integrity sha512-eUuv90M4LBrdL+A6qTrOqaICeRqmwZKW7JIfgaM6GgmfDopf8ugdK0gA2TuaCvCytA/NahEnsM5+Eup/ngUsLA==
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@randlabs/myalgo-connect/-/myalgo-connect-1.3.0.tgz#d591e578b3202a7ef7888a05948cfb836e5704c2"
+  integrity sha512-ujHa/7f0g1yHNr1ZZO8d/AF7WTTEFGS76D8aDUV4DmoxUX6mVS4IzED88j0wys7TRCJbjGib2vcPg3Y8nKxsMw==
   dependencies:
     "@randlabs/communication-bridge" "^1.0.0"
 
@@ -4296,7 +4296,7 @@
     "@typescript-eslint/types" "5.33.1"
     eslint-visitor-keys "^3.3.0"
 
-"@walletconnect/browser-utils@^1.7.4", "@walletconnect/browser-utils@^1.8.0":
+"@walletconnect/browser-utils@^1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@walletconnect/browser-utils/-/browser-utils-1.8.0.tgz#33c10e777aa6be86c713095b5206d63d32df0951"
   integrity sha512-Wcqqx+wjxIo9fv6eBUFHPsW1y/bGWWRboni5dfD8PtOmrihrEpOCmvRJe4rfl7xgJW8Ea9UqKEaq0bIRLHlK4A==
@@ -4414,7 +4414,7 @@
     "@walletconnect/utils" "^1.8.0"
     ws "7.5.3"
 
-"@walletconnect/types@^1.7.4", "@walletconnect/types@^1.8.0":
+"@walletconnect/types@^1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@walletconnect/types/-/types-1.8.0.tgz#3f5e85b2d6b149337f727ab8a71b8471d8d9a195"
   integrity sha512-Cn+3I0V0vT9ghMuzh1KzZvCkiAxTq+1TR2eSqw5E5AVWfmCtECFkVZBP6uUJZ8YjwLqXheI+rnjqPy7sVM4Fyg==
@@ -4909,8 +4909,8 @@ algo-msgpack-with-bigint@^2.1.1:
   integrity sha512-F1tGh056XczEaEAqu7s+hlZUDWwOBT70Eq0lfMpBP2YguSQVyxRbprLq5rELXKQOyOaixTWYhMeMQMzP0U5FoQ==
 
 "algorand-session-wallet@git+https://git@github.com/fernando-deka/algorand-session-wallet#magic-link":
-  version "1.8.2"
-  resolved "git+https://git@github.com/fernando-deka/algorand-session-wallet#6ac84004e932d80ff73f748d4c5f122054563c47"
+  version "1.8.4"
+  resolved "git+https://git@github.com/fernando-deka/algorand-session-wallet#7555c63565faec367f940b9c7df3a2c017977c3a"
   dependencies:
     "@json-rpc-tools/utils" "^1.7.6"
     "@magic-ext/algorand" "^4.0.0"
@@ -4923,21 +4923,39 @@ algo-msgpack-with-bigint@^2.1.1:
     magic-sdk "^9.0.0"
 
 algorand-walletconnect-qrcode-modal@^1.7.4:
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/algorand-walletconnect-qrcode-modal/-/algorand-walletconnect-qrcode-modal-1.7.4.tgz#8471c2fe579cb028de33d2dbb0182ee52932a5d4"
-  integrity sha512-Xj/zt4O6o3f6H8ikXX5yrwVL+/VVwTpFF4N4daHaoK/HEooAGNdkrJ7vftbjhIrs0N8+b8NUqEcMyYdaCS/CKQ==
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/algorand-walletconnect-qrcode-modal/-/algorand-walletconnect-qrcode-modal-1.8.0.tgz#fa539ca3168a5423fd355e1fe8073dd0bca1b6b1"
+  integrity sha512-NQgYnG0yNnyxMfiJxQtQXf3JaqcuE2dfCklugK/kWCse0JYWVAvwmAKfFZ0j597N0rU+YQTWsW+TpHroAnVfnw==
   dependencies:
-    "@walletconnect/browser-utils" "^1.7.4"
+    "@walletconnect/browser-utils" "^1.8.0"
     "@walletconnect/mobile-registry" "^1.4.0"
-    "@walletconnect/types" "^1.7.4"
+    "@walletconnect/types" "^1.8.0"
     copy-to-clipboard "^3.3.1"
     preact "10.4.1"
     qrcode "1.4.4"
 
-algosdk@^1.13.1, algosdk@^1.19.0:
+algosdk@^1.13.1:
   version "1.19.0"
   resolved "https://registry.npmjs.org/algosdk/-/algosdk-1.19.0.tgz"
   integrity sha512-odDyNSsr3RK8oDgmMLqt0PFuukeXpETAVa0TkSCPE3IeUIEslwNu5zA6cXs5ParJOcsWjQENRw+XJ9FMEDHW4w==
+  dependencies:
+    algo-msgpack-with-bigint "^2.1.1"
+    buffer "^6.0.2"
+    hi-base32 "^0.5.1"
+    js-sha256 "^0.9.0"
+    js-sha3 "^0.8.0"
+    js-sha512 "^0.8.0"
+    json-bigint "^1.0.0"
+    superagent "^6.1.0"
+    tweetnacl "^1.0.3"
+    vlq "^2.0.4"
+  optionalDependencies:
+    fsevents "2.1.2"
+
+algosdk@^1.19.0:
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/algosdk/-/algosdk-1.19.1.tgz#81bfb8bc99bd31720c45f6e3083fa835d547375c"
+  integrity sha512-RBp6ihU1jX6OgPRstqskZmnLN4KmG+ZstFADiy0gYOYCy2xPoyKP5sTrf5DW8JECP5IIJi0azxsWgpPQjzJYaA==
   dependencies:
     algo-msgpack-with-bigint "^2.1.1"
     buffer "^6.0.2"
