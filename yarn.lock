@@ -4908,9 +4908,10 @@ algo-msgpack-with-bigint@^2.1.1:
   resolved "https://registry.yarnpkg.com/algo-msgpack-with-bigint/-/algo-msgpack-with-bigint-2.1.1.tgz#38bb717220525b3ff42232eefdcd9efb9ad405d6"
   integrity sha512-F1tGh056XczEaEAqu7s+hlZUDWwOBT70Eq0lfMpBP2YguSQVyxRbprLq5rELXKQOyOaixTWYhMeMQMzP0U5FoQ==
 
-"algorand-session-wallet@git+https://git@github.com/fernando-deka/algorand-session-wallet#magic-link":
-  version "1.8.4"
-  resolved "git+https://git@github.com/fernando-deka/algorand-session-wallet#7555c63565faec367f940b9c7df3a2c017977c3a"
+algorand-session-wallet-deka@^1.8.6:
+  version "1.8.6"
+  resolved "https://registry.yarnpkg.com/algorand-session-wallet-deka/-/algorand-session-wallet-deka-1.8.6.tgz#122e16a91bc9ceda7fdd39b5df9bcc61a30e6963"
+  integrity sha512-FeXOCmm+adttXHyHw/zqMegdCbx1TUXOdPYXFq6gZEMm4xNB/vgCGnhrcvu1xDRQGf1DOmWdgYe2wk6OzM3Sew==
   dependencies:
     "@json-rpc-tools/utils" "^1.7.6"
     "@magic-ext/algorand" "^4.0.0"
