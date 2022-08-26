@@ -15,12 +15,13 @@ const imageValidation = yup.array().test('format', 'validation.errors.format.ima
 });
 
 export const ProfileValidationSchema = yup.object({
-  avatar: imageValidation.required(),
-  alias: yup.string().required(),
+  avatar: imageValidation,
+  email: yup.string().email(),
+  alias: yup.string(),
   name: yup.string(),
   surname: yup.string(),
   city: yup.string(),
-  country: yup.object().nullable().required(),
+  country: yup.object({ label: yup.string(), value: yup.string() }),
   bio: yup.string(),
   personal_URL: yup.string(),
 });

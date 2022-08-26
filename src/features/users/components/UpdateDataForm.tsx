@@ -7,7 +7,7 @@ import { SelectOption } from '@/componentes/Form';
 import FileInput from '@/componentes/Form/FileInput';
 import { Input, Textarea } from '@/componentes/Form/Inputs';
 import { Select } from '@/componentes/Form/Select';
-import { AuthUser } from '@/features/auth';
+import { AuthUser, WalletIssuer } from '@/features/auth';
 
 import { FormOption, useGetFormOptions } from '../../../features/documents/api/useGetFormOptions';
 import { useUpdateProfile } from '../api/useUpdateProfile';
@@ -27,6 +27,13 @@ export const UpdateDataForm = ({ initialData }: UpdateDataFormProps) => {
       alias: initialData?.alias,
       name: initialData?.name,
       surname: initialData?.surname,
+      email: initialData?.email,
+      city: initialData?.city,
+      bio: initialData?.bio,
+      personal_URL: initialData?.personal_URL,
+      ...(initialData?.country && {
+        country: { label: initialData.country.name, value: initialData.country.id },
+      }),
     },
   });
 
@@ -49,7 +56,8 @@ export const UpdateDataForm = ({ initialData }: UpdateDataFormProps) => {
 
   const getAvatarPreview = () => {
     if (methods.watch('avatar')?.length === 1) {
-      return URL.createObjectURL(methods.watch('avatar')[0]);
+      const [blob] = methods.watch('avatar') ?? [];
+      return URL.createObjectURL(blob);
     }
     return 'avatar-placeholder.jpg';
   };
@@ -74,12 +82,19 @@ export const UpdateDataForm = ({ initialData }: UpdateDataFormProps) => {
         />
       </div>
       <Input<ProfileValidationSchema>
+        label={'Email'}
+        name="email"
+        type="text"
+        placeholder={'Email'}
+        {...baseInputProps}
+        {...(initialData.issuer === WalletIssuer.MAGICLINK && { disabled: true })}
+      />
+      <Input<ProfileValidationSchema>
         label={t('profile.alias')}
         name="alias"
         type="text"
         placeholder={t('profile.alias')}
         {...baseInputProps}
-        required
       />
       <Input<ProfileValidationSchema>
         label={t('profile.name')}
@@ -111,7 +126,6 @@ export const UpdateDataForm = ({ initialData }: UpdateDataFormProps) => {
           wrapperClassName: '',
           placeholder: 'Select country...',
         }}
-        required
       />
       <Textarea<ProfileValidationSchema>
         {...baseInputProps}

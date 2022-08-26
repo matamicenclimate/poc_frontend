@@ -2107,7 +2107,7 @@
   dependencies:
     keyvaluestorage-interface "^1.0.0"
 
-"@json-rpc-tools/utils@^1.7.6":
+"@json-rpc-tools/utils@1.7.6":
   version "1.7.6"
   resolved "https://registry.yarnpkg.com/@json-rpc-tools/utils/-/utils-1.7.6.tgz#67f04987dbaa2e7adb6adff1575367b75a9a9ba1"
   integrity sha512-HjA8x/U/Q78HRRe19yh8HVKoZ+Iaoo3YZjakJYxR+rw52NHo6jM+VE9b8+7ygkCFXl/EHID5wh/MkXaE/jGyYw==
@@ -2120,7 +2120,7 @@
   resolved "https://registry.npmjs.org/@leichtgewicht/ip-codec/-/ip-codec-2.0.4.tgz"
   integrity sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==
 
-"@magic-ext/algorand@^4.0.0":
+"@magic-ext/algorand@4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@magic-ext/algorand/-/algorand-4.0.0.tgz#ef3110e52bd66904063509f36ce3e865b1e4aff7"
   integrity sha512-fxr9yaFuvyFpuLdcqv4tI1Gj8ZlNpLn731UBwUKoLTcaH+dg95EF3qbmqSMfscKHcaiH9T45MmxjouLd9y1iUg==
@@ -2285,9 +2285,9 @@
   integrity sha512-CuJNwtMTG1LHR1LQNWUPv+8xPUdkRY9p61wGJEp8J/N3q8djmnMySvSQlyVqLBvXsTPKmYc0ZmfXEXCpb5P5Cw==
 
 "@randlabs/myalgo-connect@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@randlabs/myalgo-connect/-/myalgo-connect-1.2.0.tgz#4a7bd4c8898fc9f3f9c031859512b2517fbd0e8d"
-  integrity sha512-eUuv90M4LBrdL+A6qTrOqaICeRqmwZKW7JIfgaM6GgmfDopf8ugdK0gA2TuaCvCytA/NahEnsM5+Eup/ngUsLA==
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@randlabs/myalgo-connect/-/myalgo-connect-1.3.0.tgz#d591e578b3202a7ef7888a05948cfb836e5704c2"
+  integrity sha512-ujHa/7f0g1yHNr1ZZO8d/AF7WTTEFGS76D8aDUV4DmoxUX6mVS4IzED88j0wys7TRCJbjGib2vcPg3Y8nKxsMw==
   dependencies:
     "@randlabs/communication-bridge" "^1.0.0"
 
@@ -4307,7 +4307,7 @@
     "@walletconnect/window-metadata" "1.0.0"
     detect-browser "5.2.0"
 
-"@walletconnect/client@^1.8.0":
+"@walletconnect/client@1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@walletconnect/client/-/client-1.8.0.tgz#6f46b5499c7c861c651ff1ebe5da5b66225ca696"
   integrity sha512-svyBQ14NHx6Cs2j4TpkQaBI/2AF4+LXz64FojTjMtV4VMMhl81jSO1vNeg+yYhQzvjcGH/GpSwixjyCW0xFBOQ==
@@ -4379,7 +4379,7 @@
   resolved "https://registry.yarnpkg.com/@walletconnect/mobile-registry/-/mobile-registry-1.4.0.tgz#502cf8ab87330841d794819081e748ebdef7aee5"
   integrity sha512-ZtKRio4uCZ1JUF7LIdecmZt7FOLnX72RPSY7aUVu7mj7CSfxDwUn6gBuK6WGtH+NZCldBqDl5DenI5fFSvkKYw==
 
-"@walletconnect/qrcode-modal@^1.8.0":
+"@walletconnect/qrcode-modal@1.8.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@walletconnect/qrcode-modal/-/qrcode-modal-1.8.0.tgz#ddd6f5c9b7ee52c16adf9aacec2a3eac4994caea"
   integrity sha512-BueaFefaAi8mawE45eUtztg3ZFbsAH4DDXh1UNwdUlsvFMjqcYzLUG0xZvDd6z2eOpbgDg2N3bl6gF0KONj1dg==
@@ -4908,21 +4908,22 @@ algo-msgpack-with-bigint@^2.1.1:
   resolved "https://registry.yarnpkg.com/algo-msgpack-with-bigint/-/algo-msgpack-with-bigint-2.1.1.tgz#38bb717220525b3ff42232eefdcd9efb9ad405d6"
   integrity sha512-F1tGh056XczEaEAqu7s+hlZUDWwOBT70Eq0lfMpBP2YguSQVyxRbprLq5rELXKQOyOaixTWYhMeMQMzP0U5FoQ==
 
-"algorand-session-wallet@git+https://git@github.com/fernando-deka/algorand-session-wallet#magic-link":
-  version "1.8.2"
-  resolved "git+https://git@github.com/fernando-deka/algorand-session-wallet#6ac84004e932d80ff73f748d4c5f122054563c47"
+algorand-session-wallet-deka@1.8.7:
+  version "1.8.7"
+  resolved "https://registry.yarnpkg.com/algorand-session-wallet-deka/-/algorand-session-wallet-deka-1.8.7.tgz#c4249c1bacd594eb7069ad197058798aff38057b"
+  integrity sha512-EEXCrNkOlmtZV+4AvB7SnW6jqLvnMEeT38bCRpeo7v2GRb9kdmeRmqDzt3FNDP95PlddPFcDkJ+incRFeRvf9A==
   dependencies:
-    "@json-rpc-tools/utils" "^1.7.6"
-    "@magic-ext/algorand" "^4.0.0"
+    "@json-rpc-tools/utils" "1.7.6"
+    "@magic-ext/algorand" "4.0.0"
     "@randlabs/myalgo-connect" "^1.2.0"
-    "@walletconnect/client" "^1.8.0"
-    "@walletconnect/qrcode-modal" "^1.8.0"
-    algorand-walletconnect-qrcode-modal "^1.7.4"
-    algosdk "^1.19.0"
-    buffer "^6.0.3"
-    magic-sdk "^9.0.0"
+    "@walletconnect/client" "1.8.0"
+    "@walletconnect/qrcode-modal" "1.8.0"
+    algorand-walletconnect-qrcode-modal "1.7.4"
+    algosdk "1.19.0"
+    buffer "6.0.3"
+    magic-sdk "9.0.0"
 
-algorand-walletconnect-qrcode-modal@^1.7.4:
+algorand-walletconnect-qrcode-modal@1.7.4:
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/algorand-walletconnect-qrcode-modal/-/algorand-walletconnect-qrcode-modal-1.7.4.tgz#8471c2fe579cb028de33d2dbb0182ee52932a5d4"
   integrity sha512-Xj/zt4O6o3f6H8ikXX5yrwVL+/VVwTpFF4N4daHaoK/HEooAGNdkrJ7vftbjhIrs0N8+b8NUqEcMyYdaCS/CKQ==
@@ -4934,9 +4935,9 @@ algorand-walletconnect-qrcode-modal@^1.7.4:
     preact "10.4.1"
     qrcode "1.4.4"
 
-algosdk@^1.13.1, algosdk@^1.19.0:
+algosdk@1.19.0, algosdk@^1.13.1:
   version "1.19.0"
-  resolved "https://registry.npmjs.org/algosdk/-/algosdk-1.19.0.tgz"
+  resolved "https://registry.yarnpkg.com/algosdk/-/algosdk-1.19.0.tgz#168905e633ccedc8b8d2167d5dcd6f6ac58dafbe"
   integrity sha512-odDyNSsr3RK8oDgmMLqt0PFuukeXpETAVa0TkSCPE3IeUIEslwNu5zA6cXs5ParJOcsWjQENRw+XJ9FMEDHW4w==
   dependencies:
     algo-msgpack-with-bigint "^2.1.1"
@@ -5930,6 +5931,14 @@ buffer-xor@^1.0.3:
   resolved "https://registry.npmjs.org/buffer-xor/-/buffer-xor-1.0.3.tgz"
   integrity sha512-571s0T7nZWK6vB67HI5dyUF7wXiNcfaPPPTl6zYCNApANjIvYJTg7hlud/+cJpdAhS7dVzqMLmfhfHR3rAcOjQ==
 
+buffer@6.0.3, buffer@^6.0.2, buffer@^6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/buffer/-/buffer-6.0.3.tgz#2ace578459cc8fbe2a70aaa8f52ee63b6a74c6c6"
+  integrity sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==
+  dependencies:
+    base64-js "^1.3.1"
+    ieee754 "^1.2.1"
+
 buffer@^4.3.0:
   version "4.9.2"
   resolved "https://registry.npmjs.org/buffer/-/buffer-4.9.2.tgz"
@@ -5946,14 +5955,6 @@ buffer@^5.4.3, buffer@^5.5.0:
   dependencies:
     base64-js "^1.3.1"
     ieee754 "^1.1.13"
-
-buffer@^6.0.2, buffer@^6.0.3:
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/buffer/-/buffer-6.0.3.tgz#2ace578459cc8fbe2a70aaa8f52ee63b6a74c6c6"
-  integrity sha512-FTiCpNxtwiZZHEZbcbTIcZjERVICn9yq/pDFkTl95/AxzD1naBctN7YO68riM/gLSDY7sdrMby8hofADYuuqOA==
-  dependencies:
-    base64-js "^1.3.1"
-    ieee754 "^1.2.1"
 
 bufferutil@^4.0.1:
   version "4.0.6"
@@ -11761,9 +11762,9 @@ lz-string@^1.4.4:
   resolved "https://registry.npmjs.org/lz-string/-/lz-string-1.4.4.tgz"
   integrity sha512-0ckx7ZHRPqb0oUm8zNr+90mtf9DQB60H1wMCjBtfi62Kl3a7JbHob6gA2bC+xRvZoOL+1hzUK8jeuEIQE8svEQ==
 
-magic-sdk@^9.0.0:
+magic-sdk@9.0.0, magic-sdk@^9.0.0:
   version "9.0.0"
-  resolved "https://registry.npmjs.org/magic-sdk/-/magic-sdk-9.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/magic-sdk/-/magic-sdk-9.0.0.tgz#9dc46687a646ab8bf00f99347cdf31984df7769c"
   integrity sha512-FBW22kN2EkAWrXhuOHgIH9iRJkAI4Zq4HpNXiIGujmjsrhIyKoFz60W1vK3Ak/1hHw59KObSyyjU3RsIGvL0Wg==
   dependencies:
     "@magic-sdk/commons" "^5.0.0"
