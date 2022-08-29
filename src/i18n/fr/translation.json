@@ -482,7 +482,9 @@
       "actions": "Actions",
       "assetID": "ID de l'élément",
       "amount": "Quantité",
-      "type": "Type"
+      "type": "Type",
+      "error": "Le nombre ne peut pas être supérieur à {{maxAssets}}",
+      "label": "Atouts à montrer"
     },
     "action": {
       "dialog": {

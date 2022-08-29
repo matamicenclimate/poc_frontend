@@ -477,7 +477,9 @@
       "actions": "행위",
       "assetID": "자산 ID",
       "amount": "수량",
-      "type": "유형"
+      "type": "유형",
+      "error": "숫자는 {{maxAssets}}보다 클 수 없습니다.",
+      "label": "표시할 자산"
     },
     "action": {
       "dialog": {

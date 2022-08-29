@@ -527,7 +527,9 @@
       "actions": "Actions",
       "assetID": "Asset ID",
       "amount": "Amount",
-      "type": "Type"
+      "type": "Type",
+      "error": "The number cannot be greater than {{maxAssets}}",
+      "label": "Assets to show"
     },
     "action": {
       "dialog": {

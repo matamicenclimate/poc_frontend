@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { useState } from 'react';
 import { useAlert } from 'react-alert';
 import { useTranslation } from 'react-i18next';
 
@@ -16,6 +17,7 @@ import { useAuth } from '@/lib/auth';
 import { useCurrencyContext } from '@/providers/Currency.context';
 import { assetFormatter, useWalletContext } from '@/providers/Wallet.context';
 
+import { useGetAssets } from '../api/useGetAssets';
 import { AssetAction } from '../components/AssetAction';
 import { SendFunds } from '../components/SendFunds';
 import { Account } from '../types';
@@ -25,8 +27,14 @@ export const Wallet = () => {
   const { account, climatecoinBalance, algoBalance } = useWalletContext();
   const { user } = useAuth();
   const alert = useAlert();
-
   const { formatter, climatecoinValue, formatToCC } = useCurrencyContext();
+
+  const [numberOfAssets, setNumberOfAssets] = useState(10);
+  const assetsResponse = useGetAssets(numberOfAssets);
+  const [maxInputAssets, setMaxInputAssets] = useState(numberOfAssets);
+  const [inputError, setInputError] = useState(false);
+
+  const maxAssets = 50;
 
   const getProfileAvatar = () => {
     if (user?.avatar?.url) {
@@ -40,15 +48,34 @@ export const Wallet = () => {
     alert.success(t('Wallet.account.copied'));
   };
 
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = Number(e.target.value);
+    setInputError(false);
+    if (value > maxAssets) {
+      value = maxAssets;
+      setInputError(true);
+    }
+    setMaxInputAssets(value);
+    setNumberOfAssets(value);
+  };
+
   const climatecoinAsaID = Number(process.env.REACT_APP_CLIMATECOIN_ASA_ID);
 
   const tdStyles = 'py-2 items-center';
 
   const renderNfts = () => {
-    if (account?.assets) {
+    if (assetsResponse?.isLoading) {
+      return (
+        <div className="p-4">
+          <Spinner size="md" />
+        </div>
+      );
+    }
+
+    if (account?.assets && assetsResponse?.data?.assets) {
       return (
         <>
-          {account.assets.map((asset) => (
+          {assetsResponse.data.assets.map((asset) => (
             <tbody key={asset['asset-id']}>
               <td className={tdStyles}>
                 <div className="flex">
@@ -102,14 +129,12 @@ export const Wallet = () => {
           ))}
         </>
       );
-    }
-    if (!account?.assets) {
+    } else {
       return <>{t('Wallet.asset.error')}</>;
     }
-    return <Spinner />;
   };
 
-  const thStyles = 'flex cursor-pointer text-sm items-center pb-3';
+  const thStyles = 'flex text-sm items-center pb-3';
 
   return (
     <MainLayout title={t('head.Wallet.title')}>
@@ -172,13 +197,6 @@ export const Wallet = () => {
                             </div>
                           </ul>
                         </div>
-                        {/* <div className="flex w-2/3 flex-col justify-start space-y-4"> */}
-                        {/* <div className="flex w-full items-center justify-between">
-                            <span className="text-neutral-4">ClimateCoins</span>
-                            <span className="text-4xl text-primary-brightGreen">
-                              {formatToCC(climatecoinBalance())}
-                            </span>
-                          </div> */}
                         <div className={clsx('flex flex-row space-x-3')}>
                           <Link
                             href={`${EXPLORER_URL}address/${encodeURIComponent(
@@ -193,7 +211,6 @@ export const Wallet = () => {
                           <SendFunds account={account} className="pl-5" type="add" />
                           <SendFunds account={account} className="pl-5" type="send" />
                         </div>
-                        {/* </div> */}
                       </div>
                     </div>
                   </Card>
@@ -226,16 +243,43 @@ export const Wallet = () => {
                               </div>
                             </div>
 
+                            <div className="flex flex-col items-end text-sm">
+                              <div>
+                                <label htmlFor="numberOfAssets">{t('Wallet.filter.label')}</label>
+                                <input
+                                  type="number"
+                                  name="numberOfAssets"
+                                  required
+                                  min={1}
+                                  max={maxAssets}
+                                  className="ml-2 max-w-fit rounded border-2 border-solid border-neutral-5 pl-1"
+                                  defaultValue={numberOfAssets}
+                                  onChange={onChangeHandler}
+                                  value={maxInputAssets}
+                                />
+                              </div>
+                              {inputError && (
+                                <span className="text-primary-red">
+                                  {t('Wallet.filter.error', {
+                                    maxAssets,
+                                  })}
+                                </span>
+                              )}
+                            </div>
                             <table className="font-Poppins w-full text-sm font-medium text-primary">
                               <thead className="border-b-2 border-neutral-6 text-left text-xs text-neutral-4">
                                 <th>
                                   <div className={clsx(thStyles)}>{t('Wallet.filter.assetID')}</div>
                                 </th>
                                 <th>
-                                  <div className={clsx(thStyles)}>{t('Wallet.filter.type')}</div>
+                                  <div className={clsx(thStyles)}>
+                                    {t('compensate.History.table.type')}
+                                  </div>
                                 </th>
                                 <th>
-                                  <div className={clsx(thStyles)}>{t('Wallet.filter.amount')}</div>
+                                  <div className={clsx(thStyles)}>
+                                    {t('compensate.History.table.amount')}
+                                  </div>
                                 </th>
                                 <th>
                                   <div className={clsx(thStyles)}>{t('Wallet.filter.freeze')}</div>

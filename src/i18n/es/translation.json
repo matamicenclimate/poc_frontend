@@ -533,7 +533,9 @@
       "actions": "Acciones",
       "assetID": "ID de activo",
       "amount": "Cantidad",
-      "type": "Tipo"
+      "type": "Tipo",
+      "error": "El número no puede ser mayor a {{maxAssets}}",
+      "label": "Activos a mostrar"
     },
     "action": {
       "dialog": {

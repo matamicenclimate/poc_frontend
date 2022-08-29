@@ -63,3 +63,9 @@ export type ButtonProps = {
   label: string;
   disabled?: boolean;
 };
+
+export type IndexerAssets = {
+  assets: Asset[];
+  'current-round': number;
+  'next-token'?: string
+}
