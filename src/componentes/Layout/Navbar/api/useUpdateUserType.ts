@@ -6,7 +6,7 @@ import { useAuth } from '@/lib/auth';
 import { httpClient } from '@/lib/httpClient';
 
 function putUserType(userId: string, type: string): Promise<AuthUser> {
-  return httpClient.put(`/users/${userId}`, { type });
+  return httpClient.put(`/users/type`, { type });
 }
 
 export function useUpdateUserType() {
