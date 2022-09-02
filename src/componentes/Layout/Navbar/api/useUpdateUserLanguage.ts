@@ -5,15 +5,15 @@ import { AuthUser } from '@/features/auth';
 import { useAuth } from '@/lib/auth';
 import { httpClient } from '@/lib/httpClient';
 
-function putUserType(type: string): Promise<AuthUser> {
-  return httpClient.put(`/users/type`, { type });
+function putUserLanguage(language: string): Promise<AuthUser> {
+  return httpClient.put(`/users/language`, { language });
 }
 
-export function useUpdateUserType() {
+export function useUpdateUserLanguage() {
   const alert = useAlert();
   const auth = useAuth();
 
-  return useMutation((type: string) => putUserType(type), {
+  return useMutation((language: string) => putUserLanguage(language), {
     onSuccess: () => {
       auth.refetchUser();
     },

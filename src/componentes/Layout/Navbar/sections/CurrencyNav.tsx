@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import { useTranslation } from 'react-i18next';
 
 import { Icon } from '@/componentes/Icon/Icon';
+import { useUpdateUserLanguage } from '@/componentes/Layout/Navbar/api/useUpdateUserLanguage';
 import Popover from '@/componentes/Popover/Popover';
 import { useCurrencyContext } from '@/providers/Currency.context';
 
@@ -11,6 +12,7 @@ export const CurrencyNav = () => {
   const { t, i18n } = useTranslation();
 
   const currency = useCurrencyContext();
+  const updateLanguage = useUpdateUserLanguage();
 
   const languageOptions = [
     { name: `🇺🇸 ${t('components.Navbar.i18n.english')}`, key: 'en' },
@@ -41,7 +43,9 @@ export const CurrencyNav = () => {
                       isActive={i18n.language === lang.key}
                       name={lang.name}
                       onClick={() => {
-                        i18n.changeLanguage(lang.key);
+                        i18n
+                          .changeLanguage(lang.key)
+                          .then(() => updateLanguage.mutateAsync(lang.key));
                       }}
                       key={i}
                     />

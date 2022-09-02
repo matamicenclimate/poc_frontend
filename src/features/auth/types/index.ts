@@ -43,6 +43,7 @@ export interface AuthUser {
   personal_URL?: string;
   publicAddress?: string;
   issuer?: WalletIssuer;
+  language?: 'en' | 'es' | 'fr' | 'ko';
 }
 
 interface Role {

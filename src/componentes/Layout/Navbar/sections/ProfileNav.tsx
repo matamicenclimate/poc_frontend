@@ -58,10 +58,9 @@ export const ProfileNav = () => {
     if (!auth.user) return;
     if (updateType.isLoading) return;
     setIsDeveloper(!isDeveloper);
-    const data = await updateType.mutateAsync({
-      userId: auth.user?._id as string,
-      type: auth.user?.type === 'developer' ? 'buyer' : 'developer',
-    });
+    const data = await updateType.mutateAsync(
+      auth.user?.type === 'developer' ? 'buyer' : 'developer'
+    );
     setIsDeveloper(data.type === 'developer');
   };
 

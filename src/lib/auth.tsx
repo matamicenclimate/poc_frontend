@@ -1,6 +1,7 @@
 import { SessionWallet } from 'algorand-session-wallet-deka';
 import algosdk from 'algosdk';
 import { Buffer } from 'buffer';
+import i18n from 'i18next';
 import jwtDecode from 'jwt-decode';
 import { AuthProviderConfig, initReactQueryAuth } from 'react-query-auth';
 
@@ -48,6 +49,8 @@ async function loadUser(): Promise<AuthUser | null> {
       )
     );
 
+  await i18n.changeLanguage(userMetadata.language);
+
   return userMetadata;
 }
 
@@ -83,6 +86,7 @@ async function loginFn(data: LoginCredentialsDTO): Promise<AuthUser | null> {
   });
 
   storage.setToken(response.jwt as string);
+  await i18n.changeLanguage(response.user.language);
 
   return response.user;
 }
