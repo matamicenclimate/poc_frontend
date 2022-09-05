@@ -1,6 +1,6 @@
 import { Navigate, Outlet, useRoutes } from 'react-router-dom';
 
-import { AboutUs, EmailVerificationCallback,Overview, TermsAndConditions } from '@/features/misc';
+import { AboutUs, EmailVerificationCallback, TermsAndConditions } from '@/features/misc';
 import { NFTRouter } from '@/features/nfts';
 import { useAuth } from '@/lib/auth';
 
@@ -18,7 +18,6 @@ export const AppRouter = () => {
         { path: '/about', element: <AboutUs /> },
         { path: '/terms-conditions', element: <TermsAndConditions /> },
         { path: '/verify-email', element: <EmailVerificationCallback /> },
-        { path: '/', element: <Overview /> },
         { path: '*', element: <Navigate to="/" /> },
       ],
     },
