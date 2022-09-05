@@ -8,4 +8,5 @@ export const publicRoutes = [
     element: <AuthRouter />,
   },
   { path: '*', element: <Navigate to="." /> },
+  { path: '/', element: <Navigate to="/auth/login" /> },
 ];
