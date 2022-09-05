@@ -5226,7 +5226,7 @@ arrify@^1.0.1:
 
 arrify@^2.0.1:
   version "2.0.1"
-  resolved "https://registry.npmjs.org/arrify/-/arrify-2.0.1.tgz"
+  resolved "https://registry.yarnpkg.com/arrify/-/arrify-2.0.1.tgz#c9655e9331e0abcd588d2a7cad7e9956f66701fa"
   integrity sha512-3duEwti880xqi4eAMN8AyR4a0ByT90zoYdLlevfrvU43vb0YZwZVfxOgxWrLXXXpyugL0hNZc9G6BiB5B3nUug==
 
 asap@~2.0.6:
@@ -6532,7 +6532,7 @@ commander@^5.1.0:
 
 commander@^6.2.1:
   version "6.2.1"
-  resolved "https://registry.npmjs.org/commander/-/commander-6.2.1.tgz"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-6.2.1.tgz#0792eb682dfbc325999bb2b84fddddba110ac73c"
   integrity sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA==
 
 commander@^7.2.0:
@@ -7774,7 +7774,7 @@ dotenv@^10.0.0:
 
 dotenv@^8.0.0:
   version "8.6.0"
-  resolved "https://registry.npmjs.org/dotenv/-/dotenv-8.6.0.tgz"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.6.0.tgz#061af664d19f7f4d8fc6e4ff9b584ce237adcb8b"
   integrity sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==
 
 dotgitignore@^2.1.0:
@@ -7874,7 +7874,7 @@ encodeurl@~1.0.2:
 
 end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   version "1.4.4"
-  resolved "https://registry.npmjs.org/end-of-stream/-/end-of-stream-1.4.4.tgz"
+  resolved "https://registry.yarnpkg.com/end-of-stream/-/end-of-stream-1.4.4.tgz#5ae64a5f45057baf3626ec14da0ca5e4b2431eb0"
   integrity sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==
   dependencies:
     once "^1.4.0"
@@ -8623,7 +8623,7 @@ extend-shallow@^3.0.0, extend-shallow@^3.0.2:
 
 extend@^3.0.0:
   version "3.0.2"
-  resolved "https://registry.npmjs.org/extend/-/extend-3.0.2.tgz"
+  resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
   integrity sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==
 
 external-editor@^3.0.3:
@@ -9743,7 +9743,7 @@ html-parse-stringify@^3.0.1:
 
 html-tags@^3.1.0:
   version "3.2.0"
-  resolved "https://registry.npmjs.org/html-tags/-/html-tags-3.2.0.tgz"
+  resolved "https://registry.yarnpkg.com/html-tags/-/html-tags-3.2.0.tgz#dbb3518d20b726524e4dd43de397eb0a95726961"
   integrity sha512-vy7ClnArOZwCnqZgvv+ddgHgJiAFXe3Ge9ML5/mBctVJoUoYPCdxVucOywjDARn6CVoh3dRSFdPHy2sX80L0Wg==
 
 html-void-elements@^1.0.0:
@@ -15099,7 +15099,7 @@ run-queue@^1.0.0, run-queue@^1.0.3:
 
 rxjs@^6.6.3:
   version "6.6.7"
-  resolved "https://registry.npmjs.org/rxjs/-/rxjs-6.6.7.tgz"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.6.7.tgz#90ac018acabf491bf65044235d5863c4dab804c9"
   integrity sha512-hTdwr+7yYNIT5n4AMYp85KA6yw2Va0FLa3Rguvbpa4W3I5xynaBZo41cM3XM+4Q6fRMj3sBYIR1VAmZMXYJvRQ==
   dependencies:
     tslib "^1.9.0"

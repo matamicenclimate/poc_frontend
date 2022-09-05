@@ -87,10 +87,7 @@ export const DocumentDetails = () => {
   };
 
   const getAmount = (document: CarbonDocument) => {
-    if (document.status === 'completed' || document.status === 'pending') {
-      return document.credits;
-    }
-    return document.developer_nft.supply;
+    return document.developer_nft ? document.developer_nft.supply : document.credits;
   };
 
   return (
