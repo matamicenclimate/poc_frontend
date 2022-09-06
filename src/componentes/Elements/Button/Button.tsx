@@ -15,8 +15,8 @@ const variants = {
     'hover:bg-accent-primary disabled:bg-primary disabled:cursor-not-allowed'
   ),
   light: clsx(
-    'text-neutral-2 bg-neutral-8 border-solid border-2 border-neutral-6',
-    'hover:text-neutral-8 hover:bg-neutral-2 disabled:text-neutral-8 disabled:bg-neutral-2 disabled:cursor-not-allowed'
+    'text-neutral-2 bg-neutral-8 border-solid border-2 border-neutral-5',
+    'hover:text-neutral-8 hover:bg-neutral-2 disabled:text-neutral-8 disabled:bg-neutral-3 disabled:cursor-not-allowed'
   ),
   grey: clsx(
     'text-neutral-3 bg-neutral-7 border-solid border-2 border-neutral-7',
@@ -39,7 +39,7 @@ const variants = {
 export const buttonStyles = { base, sizes, variants };
 
 type ButtonProps = {
-  onClick?: () => void;
+  onClick?: JSX.IntrinsicElements['button']['onClick'];
   children: React.ReactNode;
   className?: string;
   type?: 'submit' | 'button' | undefined;
