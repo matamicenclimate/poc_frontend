@@ -39,6 +39,12 @@ export const Login = () => {
 
   return (
     <LoginLayout title={t('auth.Login.pageTitle')}>
+      {/*// TODO: Usar overlay*/}
+      {/*<div*/}
+      {/*  className="flex items-center justify-center"*/}
+      {/*>*/}
+      {/*  {isLoading ? <Spinner /> : null}*/}
+      {/*</div>*/}
       <div className="mx-auto max-w-screen-sm space-y-8 text-left">
         <div>
           <Title size={4} as={1}>
