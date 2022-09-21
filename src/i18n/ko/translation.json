@@ -18,7 +18,11 @@
       "safetyWarning": "에서 액세스하는지 확인하십시오.",
       "MyAlgo": "MyAlgo로 액세스",
       "WalletConnect": "WalletConnect로 액세스",
-      "MagicLink": "Magiclink로 액세스"
+      "MagicLink": {
+        "go": "Magiclink로 액세스",
+        "continue": "계속하다",
+        "message": "magiclink에 연결할 이메일을 입력하면 연결을 확인하기 위해 새 탭이 열립니다."
+      }
     },
     "Register": {
       "pageTitle": "등록하다",

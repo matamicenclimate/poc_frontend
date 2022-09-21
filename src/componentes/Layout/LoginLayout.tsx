@@ -24,7 +24,7 @@ export const LoginLayout = ({ title, children }: MainLayoutProps) => {
             <img className="h-auto w-64" src={`${Logolight}`} />
           </Link>
         </div>
-        <div className="col-span-3 flex flex-col justify-around p-4">{children}</div>
+        <div className="col-span-3 grid grid-cols-3 items-center">{children}</div>
       </div>
     </>
   );

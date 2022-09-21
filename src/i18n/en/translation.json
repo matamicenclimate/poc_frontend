@@ -15,7 +15,11 @@
       },
       "MyAlgo": "Access with MyAlgo",
       "WalletConnect": "Access with Wallet Connect",
-      "MagicLink": "Access with Magiclink"
+      "MagicLink": {
+        "go": "Access with Magiclink",
+        "continue": "Continue",
+        "message": "Enter your email to connect to magiclink, a new tab will open to validate your connection."
+      }
     },
     "Register": {
       "pageTitle": "Register",

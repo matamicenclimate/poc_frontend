@@ -18,7 +18,11 @@
       "safetyWarning": "Veuillez vous assurer que vous accédez à partir de",
       "MyAlgo": "Accès avec MyAlgo",
       "WalletConnect": "Accès avec Wallet Connect",
-      "MagicLink": "Accès avec Magiclink"
+      "MagicLink": {
+        "go": "Accès avec Magiclink",
+        "continue": "Continuer",
+        "message": "Entrez votre email pour vous connecter à magiclink, un nouvel onglet s'ouvrira pour valider votre connexion."
+      }
     },
     "Register": {
       "pageTitle": "S'inscrire",
